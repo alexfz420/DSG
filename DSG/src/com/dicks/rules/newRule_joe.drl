@@ -82,18 +82,20 @@ rule  "Default Mininum Packagethreshold"
         $i.minPackage();
         $logger.addLog("Rule \"Default Mininum Packagethreshold\"", "Product "+$i.getProdName()+ " separeted into a new package");
     	retract($i);
-endrule  "Special Route for AJ"
+end
+
+rule  "Special Route for AJ"
     salience 848
     when
         $order : Orders()
         $orderE : OrderE()
         $product : Product($id: prodId, sku.equals("NK-SH-AJ"))
-        eval ($orderE.getProductQty($id)>5)
+        eval ($orderE.getProductQty($id)>2)
         $s : Store( storeId == 2)
         eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
         $logger: EngineLog()
     then
-        $logger.addLog("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        $logger.addLog("Special Route for AJ","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         PackageE p = new PackageE($order);
         p.addProduct($product, $orderE.getProductQty($id));
@@ -107,16 +109,103 @@ endrule  "Special Route for AJ"
         parcelR.setSource($s);
         PackageTestResult packageR = new PackageTestResult(test);
         packageR.addResult(parcelR);
-        $logger.addLog($product + "get inserted into a new package by speical route rule");
-        $logger.addLog(packageR.toString());      
+        $logger.addLog("Special Route for AJ",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("Special Route for AJ",packageR.toString());      
         System.out.println(packageR);
         insert(packageR);
         retract(p);
         retract($product);
 end
 
-rule  "new threshold for kayak"
+rule  "fasdfasspsp"
     salience 846
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("AD-SH-SP"))
+        eval ($orderE.getProductQty($id)>2)
+        $s : Store( storeId == 1)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("fasdfasspsp","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        PackageTestResult packageR = new PackageTestResult(test);
+        packageR.addResult(parcelR);
+        $logger.addLog("fasdfasspsp",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("fasdfasspsp",packageR.toString());      
+        System.out.println(packageR);
+        insert(packageR);
+        retract(p);
+        retract($product);
+end
+
+rule  "new mickey"
+    salience 844
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("NK-SH-AJ"))
+        eval ($orderE.getProductQty($id)>2)
+        $s : Store( storeId == 1)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("new mickey","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        PackageTestResult packageR = new PackageTestResult(test);
+        packageR.addResult(parcelR);
+        $logger.addLog("new mickey",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("new mickey",packageR.toString());      
+        System.out.println(packageR);
+        insert(packageR);
+        retract(p);
+        retract($product);
+end
+
+rule  "fasdfasdf"
+    salience 842
+    when
+        $o : Orders()
+        $orderE : OrderE()
+        $i : Product( ((Length < 1)||( Length < 2)||( Length < 3)||( Length < 4))&& (( sku.equals("NK-CL-KD")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $logger: EngineLog()
+    then
+        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("fasdfasdf","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("fasdfasdf",p.toString()); 
+        }
+        retract($i);
+end
+
+rule  "new threshold for kayak"
+    salience 840
     when
         $o : Orders()
         $orderE : OrderE()
@@ -125,13 +214,13 @@ rule  "new threshold for kayak"
     then
         for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
         {
-            $logger.addLog("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            $logger.addLog("new threshold for kayak","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             PackageE p = new PackageE($o);
             p.addProduct($i,1);
             insert (p);
             $i.minPackage();
-            $logger.addLog(p.toString()); 
+            $logger.addLog("new threshold for kayak",p.toString()); 
         }
         retract($i);
 end
