@@ -20,7 +20,7 @@
       </action>
   		<action name="gotocategorylist" class="com.dicks.action.CategoryListAction" method="displayCategory">
           <result name="success">/CategoryList.jsp?act=store</result>
-          </action>
+          </action>       
           
           
        <!-- <action name="gotocategorylist" class="com.dicks.action.Redirect" method="gotocategorylist">
@@ -94,11 +94,11 @@
           </result>      
       </action>
 
-      <action name="displayCategoryList" class="com.dicks.action.CategoryListAction" method="displayCategory">
+   <action name="displayCategoryList" class="com.dicks.action.CategoryListAction" method="displayCategory">
           <result name="success" type="dispatcher">/CategoryList.jsp</result>    
 	</action>
 
-       <action name="gotonewcategory" class="com.dicks.action.CreateCategoryAction" method="goToNewCategory">
+      <action name="gotonewcategory" class="com.dicks.action.CreateCategoryAction" method="goToNewCategory">
           <result name="success">/NewCategory.jsp</result>
       </action>
       <action name="submitnewcate" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
@@ -123,8 +123,7 @@
    <!--    <action name="gotocreatecategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToCreate">
           <result name="success">/editCategory.jsp</result>
       </action>-->
-
-     <action name="viewStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewStoreCategory">
+ <action name="viewStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewStoreCategory">
 
       		<result name="success">/ViewStoreCategory.jsp</result>
       </action> 
@@ -156,7 +155,12 @@
        <action name="editrule" class="com.dicks.action.EditRuleAction" method="editRule">
           <result name="success">/Edit_TemplateResultRanking.jsp</result>
       </action>
-      
+            <action name="deleteCategory" class="com.dicks.action.DeleteCategoryAction">
+          <result name="success" type="chain">
+          <param name="actionName">displayCategoryList</param>
+          <param name="act">${act}</param>
+          </result>
+      </action>
       
    </package>
 </struts>

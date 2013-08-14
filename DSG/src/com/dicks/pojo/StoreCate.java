@@ -10,6 +10,8 @@ public class StoreCate extends Category implements java.io.Serializable {
 
 	private StoreCateId id;
 	private Store store;
+	private String appliedRuleList;
+
 
 	// Constructors
 
@@ -42,5 +44,13 @@ public class StoreCate extends Category implements java.io.Serializable {
 
 	public void setStore(Store store) {
 		this.store = store;
+	}
+
+	public String getAppliedRuleList() {
+		return appliedRuleList;
+	}
+
+	public void setAppliedRuleList(String appliedRuleList) {
+		this.appliedRuleList = appliedRuleList;
 	}
 }
