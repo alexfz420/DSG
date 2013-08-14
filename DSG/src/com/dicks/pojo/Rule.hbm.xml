@@ -55,7 +55,10 @@
         <property name="isSpecial" type="java.lang.Boolean">
             <column name="is_special"  />
         </property>
-        <set name="ruleCates" inverse="true">
+        <property name="able" type="java.lang.Boolean">
+            <column name="able"  />
+        </property>
+        <set name="ruleCates" inverse="true" lazy="false">
             <key>
                 <column name="rule_id"  />
             </key>

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dicks.dao.ProdCateDAO;
+import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.StoreCateDAO;
 import com.dicks.pojo.ProdCate;
+import com.dicks.pojo.Rule;
+import com.dicks.pojo.RuleCate;
 import com.dicks.pojo.StoreCate;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -21,6 +24,20 @@ public class CategoryListAction extends ActionSupport {
 		if("product".equals(act)){
 			try {
 				ProdCate[] all = ProdCateDAO.getInstance().getProdCategoryList();
+				
+				for(int i = 0;i<all.length;i++){
+					Rule[] rules = RuleCateDAO.getInstance().getRuleListByCateId(all[i].getId().getCateProdId()+"");
+					if(rules==null){
+						all[i].setAppliedRuleList("No rule applied.");
+						continue;
+					}
+					StringBuffer sb = new StringBuffer();
+					for(Rule rule: rules){
+						sb.append(rule.getRuleName()).append(", ");
+					}
+					sb.delete(sb.length()-2, sb.length()-1);
+					all[i].setAppliedRuleList(sb.toString()); 
+				}
 				this.setProdCategoryList(all);	
 			} catch (Exception e) {
 				return ERROR;
@@ -29,8 +46,22 @@ public class CategoryListAction extends ActionSupport {
 		}else if("store".equals(act)){ 
 			try {
 				StoreCate[] all = StoreCateDAO.getInstance().getStoreCategoryList();
+				for(int i = 0;i<all.length;i++){
+					Rule[] rules = RuleCateDAO.getInstance().getRuleListByCateId(all[i].getId().getCateStoreId()+"");
+					if(rules==null){
+						all[i].setAppliedRuleList("No rule applied.");
+						continue;
+					}
+					StringBuffer sb = new StringBuffer();
+					for(Rule rule: rules){
+						sb.append(rule.getRuleName()).append(", ");
+					}
+					sb.delete(sb.length()-2, sb.length()-1);
+					all[i].setAppliedRuleList(sb.toString()); 
+				}
 				this.setStoreCategoryList(all);
 			} catch (Exception e) {
+				System.out.println("!!!"+e.toString());
 				return ERROR;
 			}
 			return SUCCESS;
@@ -63,6 +94,7 @@ public class CategoryListAction extends ActionSupport {
 	public void setStoreCategoryList(StoreCate[] storeCategoryList) {
 		this.storeCategoryList = storeCategoryList;
 	}
+	
 	
 //	private ProdCate[] filterProdCate(ProdCate[] prodCates){
 //		if(prodCates==null) return null;

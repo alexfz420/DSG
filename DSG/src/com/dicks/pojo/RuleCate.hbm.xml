@@ -14,7 +14,7 @@
                 <column name="rule_id" />
             </key-property>
         </composite-id>
-        <many-to-one name="rule" class="com.dicks.pojo.Rule" update="false" insert="false" fetch="select">
+        <many-to-one name="rule" class="com.dicks.pojo.Rule" update="false" insert="false" fetch="join">
             <column name="rule_id" not-null="true" />
         </many-to-one>
         <property name="isProductRelated" type="java.lang.Boolean">

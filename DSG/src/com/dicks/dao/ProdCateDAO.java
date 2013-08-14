@@ -69,6 +69,14 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		ProdCate[] array = (ProdCate[])cateList.toArray(new ProdCate[cateList.size()]); 
 		return filterCate(array);
 	}
+	
+	public List<Integer> getAllIds() throws Exception{
+		List<Integer> result = new ArrayList<Integer>();
+		for(ProdCate pc : getProdCategoryList()){
+			result.add(pc.getId().getCateProdId());
+		}
+		return result;
+	}
 
 	public int getMaxId() throws Exception{
 		String sql = "select max(cate_prod_id) maxid from prod_cate";
@@ -126,6 +134,19 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		
 	}
 
+	public void deleteCategorys(String[] idArray) throws Exception {
+		for(String id: idArray){
+			ProdCate[] scs = getProdCategoryListById(id);
+			String[] skus = new String[scs.length];
+			for(int i =0; i <scs.length; i++ ){
+				skus[i]=scs[i].getProduct().getSku();
+			}
+			RuleCateDAO.getInstance().deleteCategory(id, skus);
+			for(ProdCate sc :scs){
+				super.delete(sc);
+			}
+		}			
+	}
 
 	
 
