@@ -1,0 +1,175 @@
+//created on: Jul 4, 2013
+package com.sample;
+
+//list any import classes here.
+import com.sample.Order
+import com.sample.Store
+import com.sample.Package
+import java.util.ArrayList
+import java.*;
+
+//declare any global variables here
+rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 10
+    dialect "java"
+    when
+        $order : Order()
+        $item : Product() from $order.getProducts()
+    then
+        insert( $item );
+//        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
+//        System.out.println("order quantity: " + $order.getQuantity());
+//        System.out.println("exlored: " + $order.getExploredItem());
+        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
+end
+
+/*
+rule "Explode Cart end"
+    agenda-group "init"
+    auto-focus true
+    salience 8
+    dialect "java"
+    when
+        $order : Order()
+    then
+        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
+end
+*/
+
+rule "filter stock"
+	salience 10
+	agenda-group "first"
+    when    	
+    	$item : Product()
+    	$store : Store()
+    	eval(!$store.containProduct($item))
+    then
+        retract($store);
+end
+/*
+rule  "Mininum Packagethreshold0"
+	salience 8
+	agenda-group "first"
+    when
+        $o : Order()
+//        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
+        $i : Product(weight >= 10)
+    then     
+    	Package p = new Package($o);
+    	p.addProduct($i);
+    	insert (p);    
+        $i.minPackage();
+        retract($i);
+end
+
+rule "insert package for remaining products"
+	salience 5
+	agenda-group "first"
+	when
+		$i : Product()
+		$o : Order()
+		not Package(isForRemain())
+	then
+		Package p = new Package($o);
+		p.setForRemain(true);
+		insert (p);
+		System.out.println("insert new package");
+//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
+//		System.out.println("set to next group");
+end
+
+rule "wrap up remaining products"
+	salience 3
+	agenda-group "first"
+	when
+		$i : Product()
+		$p : Package(isForRemain())
+	then
+		$p.addProduct($i);
+		retract($i);
+		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
+end
+
+/*
+rule "set to next group"
+	agenda-group "first"
+	when
+		not Product()
+	then
+		System.out.println("set to split");
+//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();		
+end
+
+
+rule "add all packages"
+	salience 10
+//	agenda-group "split"
+	when
+		$p : Package()
+		$order : Order()
+	then
+		$order.addPackage($p);
+//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
+end
+*/
+
+rule "for not splitable packages"
+	salience 5
+//	agenda-group "split"
+	when
+		$p : Package()
+//		$order : Order()
+	then
+		System.out.println("handle this package " + $p);
+//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
+end
+
+
+
+/*
+rule "for not splitable packages"
+	salience 4
+	agenda-group "split"
+	when
+		$p : Package( getSplitNum() == getProducts().size())
+	then
+		System.out.println("Unable to handle this package " + $p);
+end
+
+rule "for splitable packages"
+	salience 4
+	agenda-group "split"
+	when
+		$p : Package()
+	then
+		
+		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
+		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
+end
+*/
+
+rule "summarize"   
+//	agenda-group "report"
+    when
+        store : Store()
+    then
+        System.out.println(store.getZoneID());        
+end
+
+rule "summarizeProduct"  
+//	agenda-group "report" 
+    when
+        p : Product()
+    then
+        System.out.println(p.getProductName());        
+end
+
+rule "summarizePackage"
+//	agenda-group "report"   
+    when
+        $p : Package()
+    then
+        System.out.println($p);        
+end

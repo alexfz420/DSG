@@ -1,0 +1,11 @@
+rule "filter stock"
+	salience 98
+	agenda-group "first"
+    when    	
+    	$item : Product()
+    	$store : Store()
+    	eval(!$store.containProduct($item))
+    then
+        retract($store);
+end
+

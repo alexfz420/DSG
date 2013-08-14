@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<constant name="struts.devMode" value="true" />
+   <package name="helloworld" extends="struts-default">
+     <action name="index">
+            <result >/index.jsp</result>
+      </action>
+	 <action name="gotocreatenew" class="com.dicks.engine.CreateRuleWeb" method="gotocreatenew">
+          <result name="gotocreatenew">/CreateRule.jsp</result>
+      </action>
+      <action name="cnr" class="com.dicks.engine.CreateRuleWeb" method="cnr">
+          <result name="cnr">/CreateRule.jsp</result>
+      </action>
+      <action name="login" class="com.dicks.action.LoginAction" method="execute">
+          <result name="error">/login.jsp</result>
+          <result name="success">/OrderList.jsp</result>
+      </action>
+  		<action name="gotocategorylist" class="com.dicks.action.CategoryListAction" method="displayCategory">
+          <result name="success">/CategoryList.jsp?act=store</result>
+          </action>
+          
+          
+       <!-- <action name="gotocategorylist" class="com.dicks.action.Redirect" method="gotocategorylist">
+          <result name="goToCategoryList">/CategoryList.jsp</result>
+
+    
+
+      
+      <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
+          <result name="gotoorderlist">/OrderList.jsp</result>
+      </action>
+
+      <action name="gotonewbizrulelist" class="com.dicks.action.Redirect" method="gotonewbizrulelist">
+          <result name="gotonewbizrulelist">/newRules.jsp</result>
+      </action>-->
+            <action name="gotoorderlist" class="com.dicks.action.Redirect" method="gotoorderlist">
+          <result name="gotoorderlist">/OrderList.jsp</result>
+      </action>
+      <action name="gotorulelist" class="com.dicks.action.RuleList" method="gotorulelist">
+          <result name="success" type="dispatcher">/RuleList.jsp</result>
+      </action>
+      <action name="goToEdit" class="com.dicks.action.RuleList" method="goToEdit">
+           <result name="goToEditProductThreshold" type="dispatcher">/Edit_TemplateProductThreshold.jsp</result>
+           <result name="goToViewProductThreshold" type="dispatcher">/View_TemplateProductThreshold.jsp</result>
+           <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
+           <result name="goToEditSpecialRoute" type="dispatcher">/Edit_TemplateSpecialRoute.jsp</result>
+           <result name="goToViewSpecialRoute" type="dispatcher">/View_TemplateSpecialRoute.jsp</result>
+           <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
+      </action>
+      <action name="updateRule" class="com.dicks.action.RuleList" method="updateRule">
+          <result name="success" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
+      </action>
+      <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
+          <result name="success" type="dispatcher">/rulePriority.jsp</result>
+      </action>
+      <action name="reRank" class="com.dicks.action.RulePriority" method="reRank">
+          <result name="success" type="chain">
+            <param name="actionName">gotoruleprioritylist</param>
+          </result>   
+      </action>
+      <action name="gotonewbizrulelist" class="com.dicks.action.CreateNewBizRule" method="gotonewbizrulelist">
+          <result name="success" type="dispatcher">/newRules.jsp</result>
+      </action>
+      <action name="gotoplaceorder" class="com.dicks.action.Redirect" method="gotoplaceorder">
+          <result name="gotoplaceorder">/placeOrder.jsp</result>
+      </action>
+      <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
+           <result name="goToTemplate" type="dispatcher">/TemplateProductThreshold.jsp</result>
+           <result name="goToSpecial" type="dispatcher">/TemplateSpecialRoute.jsp</result>
+           <result name="goToStore" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+      </action>
+       <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
+          <result name="newrule" type="dispatcher">/newRules.jsp</result>
+      </action>
+      <action name="specialRoutes" class="com.dicks.action.CreateNewBizRule" method="specialRoutes">
+          <result name="specialRoutes" type="dispatcher">/newRules.jsp</result>
+      </action>
+      <action name="newrulePriority" class="com.dicks.action.CreateNewBizRule" method="ranking">
+          <result name="newrulePriority" type="dispatcher">/RuleList.jsp</result>
+      </action>
+      <action name="specialroute" class="com.dicks.action.CreateNewBizRule" method="specialRoute">
+          <result name="specialroute" type="dispatcher">/RuleList.jsp</result>
+      </action>
+      <action name="placeorder" class="com.dicks.action.PlaceOrder" method="placeorder">
+          <result name="success" type="chain">
+            <param name="actionName">orderdetail</param>
+          	<param name="id">${id}</param>   
+          	<param name="logs">${logs}</param> 
+          </result>      
+      </action>
+
+      <action name="displayCategoryList" class="com.dicks.action.CategoryListAction" method="displayCategory">
+          <result name="success" type="dispatcher">/CategoryList.jsp</result>    
+	</action>
+
+       <action name="gotonewcategory" class="com.dicks.action.CreateCategoryAction" method="goToNewCategory">
+          <result name="success">/NewCategory.jsp</result>
+      </action>
+      <action name="submitnewcate" class="com.dicks.action.CreateCategoryAction" method="createProductCategory">
+          <result name="submitnewcate">/NewCategory.jsp</result>
+      </action>
+
+      <action name="orderdetail" class="com.dicks.action.OrderDetailAction" method="showDetails">
+          <result name="success">/VisualizationOrderDetail.jsp</result>
+	  </action>
+      <action name="orderlist" class="com.dicks.action.OrderList" method="getOrderList">
+          <result name="success">/OrderList.jsp</result>
+      </action>
+      <action name="createCategory" class="com.dicks.action.CreateCategoryAction" method="createCategory">
+          <result name="success" type="chain">displayCategoryList</result>
+          <param name="act">store</param>
+      </action>
+
+    <action name="gotoviewcategory" class="com.dicks.action.CategoryListAction" method="displayCategory">
+          <result name="success">
+          /viewCategory.jsp?act=store</result>
+      </action>
+   <!--    <action name="gotocreatecategory" class="com.dicks.action.ViewAndCreateCategoryAction" method="goToCreate">
+          <result name="success">/editCategory.jsp</result>
+      </action>-->
+
+     <action name="viewStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewStoreCategory">
+
+      		<result name="success">/ViewStoreCategory.jsp</result>
+      </action> 
+      <action name="viewProdCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="viewProdCategory">
+      	<result name="success">/ViewProdCategory.jsp</result>
+      </action> 
+      <action name="editStoreCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="editStoreCategory">
+      		<result name="success">/ViewStoreCategory.jsp</result>
+      </action>
+ 		<action name="editProdCategory" class="com.dicks.action.ViewAndEditCategoryAction" method="editProdCategory">
+      		<result name="success">/ViewProdCategory.jsp</result>
+      		<param name="act">product</param>
+      </action> 
+
+       <action name="viewStoreCate2EditStoreCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
+      		<result name="success">/EditStoreCategory.jsp</result>
+      </action> 
+
+        <action name="viewProdCate2EditProdCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
+      		<result name="success">/EditProdCategory.jsp</result>
+      </action> 
+
+       <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
+          <result name="success">/RuleList.jsp</result>
+      </action>      
+       <action name="storethreshold" class="com.dicks.action.StoreThresholdAction" method="storeThreshold">
+          <result name="success">/RuleList.jsp</result>
+      </action>
+       <action name="editrule" class="com.dicks.action.EditRuleAction" method="editRule">
+          <result name="success">/Edit_TemplateResultRanking.jsp</result>
+      </action>
+      
+      
+   </package>
+</struts>

@@ -1,0 +1,16 @@
+rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 1000
+    dialect "java"
+    when
+        $order : Orders()
+        $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
+    then
+        insert( $item );
+        System.out.println("product"+$item.getSku());
+//        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
+//        System.out.println("order quantity: " + $order.getQuantity());
+//        System.out.println("exlored: " + $order.getExploredItem());
+       
+end

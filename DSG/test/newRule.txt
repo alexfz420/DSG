@@ -1,0 +1,21 @@
+rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 10
+    dialect "java"
+    when
+        $order : Order()
+        $item : Product() from $order.getProducts()
+    then
+        insert( $item );
+        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
+endrule "filter stock"
+	salience 10
+	agenda-group "first"
+    when    	
+    	$item : Product()
+    	$store : Store()
+    	eval(!$store.containProduct($item))
+    then
+        retract($store);
+end

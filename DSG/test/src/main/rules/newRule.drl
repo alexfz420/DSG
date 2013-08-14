@@ -1,0 +1,91 @@
+//created on: Jul 4, 2013
+package com.sample;
+
+//list any import classes here.
+import com.sample.Order
+import com.sample.Store
+import com.sample.Product
+import java.util.ArrayList
+import java.*;
+
+//declare any global variables here
+rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 100
+    dialect "java"
+    when
+        $order : Order()
+        $item : Product() from $order.getProducts()
+    then
+        insert( $item );
+        System.out.println($item);
+        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
+end
+
+rule "filter stock"
+	salience 98
+	agenda-group "first"
+    when    	
+    	$item : Product()
+    	$store : Store()
+    	eval(!$store.containProduct($item))
+    then
+        retract($store);
+end
+
+rule  "Special Route0"
+    salience 96
+    when
+        $o : Order()
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("005")))&& (flag.equals("TH-A,ST-A,SP-B")))
+    then
+        System.out.println("special routes allocated");
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        p.setAllocated(true); 
+        retract($i);
+end
+
+rule  "Store Filter0"
+    salience 94
+    when
+        $item: Product( (( productID.equals("store001")))&& (flag.equals("TH-A,ST-C,SP-A ")))
+        $store: Store()
+        eval(!$store.checkStore($item, "zone",">",5))
+        eval(!$store.checkStore($item, "Safety Stock","<",15))
+    then
+        retract($store);
+end
+
+rule  "Threshold0"
+    salience 92
+    when
+        $o : Order()
+        $i : Product( ((weight > 5)|| ( size < 3))&& (( productID.equals("1 "))|| (productID.equals("2 "))|| (productID.equals("4 "))|| (productID.equals("def234 ")))&& (flag.equals("TH-B,ST-A,SP-A")))
+    then
+        $i.minPackage();
+end
+
+rule "summarize"   
+salience -5
+    when
+        store : Store()
+    then
+        System.out.println(store.getZoneID());
+end
+
+rule  "Threshold555"
+    salience -7
+    when
+        $o : Order()
+        $i : Product( (( size < 34)||( length < 4))&& (( productID.equals("001"))|| (productID.equals("002"))|| (productID.equals("003")))&& (flag.equals("TH-A,ST-A,SP-A")))
+    then
+        Package p = new Package($o);
+        p.addProduct($i);
+        insert (p);
+        $i.minPackage();
+        retract($i);
+end
+

@@ -1,0 +1,23 @@
+//created on: Jul 4, 2013
+package com.dicks.rules;
+
+//list any import classes here.
+import com.dicks.pojo.Orders
+import com.dicks.pojo.Product
+import com.dicks.pojo.Store
+
+import com.dicks.dao.InventoryDAO
+import com.dicks.dao.OrderDetailDAO
+
+import com.dicks.engine.PackageE
+import com.dicks.engine.OrderE
+import com.dicks.engine.Parcel
+import com.dicks.engine.ParcelResult
+import com.dicks.engine.PackageTest
+import com.dicks.engine.PackageTestResult
+import java.util.ArrayList
+import java.*;
+import java.String.*;
+import java.util.HashMap;
+import com.dicks.dao.InventoryDAO;
+

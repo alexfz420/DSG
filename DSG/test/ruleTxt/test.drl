@@ -1,0 +1,72 @@
+//created on: Jul 4, 2013
+package com.sample
+
+//list any import classes here.
+import com.sample.Order
+import com.sample.Store
+import com.sample.Package
+import java.util.ArrayList
+import java.*;
+
+//declare any global variables here
+
+
+rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 10
+    dialect "java"
+    when
+        $order : Order()
+        $item : Product() from $order.getProducts()
+    then
+        insert( $item );
+        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
+end
+
+rule "filter stock"
+	salience 10
+	agenda-group "first"
+    when    	
+    	$item : Product()
+    	$store : Store()
+    	eval(!$store.containProduct($item))
+    then
+        retract($store);
+end
+
+rule "summarize"   
+    when
+        store : Store()
+    then
+        System.out.println(store.getZoneID());
+end
+        
+rule  "Mininum Packagethreshold0"
+    when
+        $o : Order()
+        $i : Product( ((weight > 5)|| ( size > 3))&& (( productID == 1 )|| (productID == 2 )))from $o.getProducts()
+    then
+        
+        //insertLogical( new Package($i, 1) );
+        retract($i);
+end
+
+rule "summarize3"
+salience -5   
+    when
+        $pp : Package()
+        $item : Product() from $pp.getProducts()
+    then
+        System.out.println("package has"+$item.getProductName());
+end
+
+rule "summarize2"
+salience -10   
+    when
+        $o : Order()
+        $item : Product() from $o.getProducts()
+    then
+        System.out.println("order has!!!"+$item.getProductName());
+end
+
