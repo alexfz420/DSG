@@ -72,22 +72,25 @@
 	function submitForm() {
 		var nameList = "";
 		var table = document.getElementById("sort");
-		var row = table.rows[0];
-		var col = row.cells[1];
-		nameList += col.innerText;
-
-		//iterate through rows
-		//rows would be accessed using the "row" variable assigned in the for loop
-		for ( var i = 1, row; row = table.rows[i]; i++) {
+		if (table != null && table.rows[0] != null) {
+			var row = table.rows[0];
+			var col = row.cells[1];
+			nameList += col.innerText;
+	
 			//iterate through rows
 			//rows would be accessed using the "row" variable assigned in the for loop
-			nameList += ",";
-			col = row.cells[1];
-			nameList += col.innerText;
+			for ( var i = 1, row; row = table.rows[i]; i++) {
+				//iterate through rows
+				//rows would be accessed using the "row" variable assigned in the for loop
+				nameList += ",";
+				col = row.cells[1];
+				nameList += col.innerText;
+			}
+	
+			console.log("rule list" + nameList);
+			document.getElementById('ruleString').value = nameList;
+			
 		}
-
-		console.log("rule list" + nameList);
-		document.getElementById('ruleString').value = nameList;
 		document.forms['myForm'].submit();
 		
 	}

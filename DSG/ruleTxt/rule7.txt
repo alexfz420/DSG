@@ -10,4 +10,3 @@ rule "Wrap up Remaining Products"
 		retract($i);
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end
-

@@ -9,4 +9,3 @@ rule "Default Filter Stock"
     	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
         retract($store);
 end
-
