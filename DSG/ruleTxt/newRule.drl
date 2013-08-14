@@ -1,0 +1,220 @@
+//created on: Jul 4, 2013
+package com.dicks.rules;
+
+//list any import classes here.
+import com.dicks.pojo.Orders
+import com.dicks.pojo.Product
+import com.dicks.pojo.Store
+
+import com.dicks.dao.InventoryDAO
+import com.dicks.dao.OrderDetailDAO
+
+import com.dicks.engine.PackageE
+import com.dicks.engine.OrderE
+import com.dicks.engine.Parcel
+import com.dicks.engine.ParcelResult
+import com.dicks.engine.PackageTest
+import com.dicks.engine.PackageTestResult
+import com.dicks.engine.EngineLog
+import java.util.ArrayList
+import java.*;
+import java.String.*;
+import java.util.HashMap;
+import com.dicks.dao.InventoryDAO;rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 1000
+    dialect "java"
+    when
+        $order : Orders()
+        $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
+    then
+        insert( $item );
+        System.out.println("product"+$item.getSku());
+//        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
+//        System.out.println("order quantity: " + $order.getQuantity());
+//        System.out.println("exlored: " + $order.getExploredItem());
+       
+end
+
+rule "Default Filter Stock"
+	salience 950
+	//agenda-group "first"
+    when    	
+    	$item : Product()
+    	$store : Store()
+    	eval(!InventoryDAO.getInstance().containProduct($store, $item))
+    then
+    	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
+        retract($store);
+end
+
+rule "Filter Stock for Stock whose margin is less than 2"
+	salience 925
+	//agenda-group "first2"
+    when
+    	//$o : Orders()
+        $item : Product()
+    	$store : Store()
+        //eval($store.checkStore($item, $o,"zone","<",2))
+        eval(InventoryDAO.getInstance().checkProduct($store, $item,">",2))
+        $logger : EngineLog() 
+    then
+    	$logger.addLog("");
+    	$logger.addLog("Rule \"Filter Stock2\":  store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
+        retract($store);
+end
+
+rule  "Default Mininum Packagethreshold"
+	salience 900
+	//agenda-group "first6"
+    when
+        $o : Orders()
+        $orderE : OrderE()
+		$i : Product( ((weight > 10)|| ( length > 10) || (width > 10) || (height >10)))
+
+    then     
+    	PackageE p = new PackageE($o);
+    	p.addProduct($i, $orderE.getProductQty($i.getProdId()));
+    	insert (p);    
+        $i.minPackage();
+        retract($i);
+end
+
+rule  "Special Route for Tmac"
+    salience 848
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("AD-SH-TM"))
+        eval ($orderE.getProductQty($id)>5)
+        $s : Store( storeId == 1)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        PackageTestResult packageR = new PackageTestResult(test);
+        packageR.addResult(parcelR);
+        $logger.addLog($product + "get inserted into a new package by speical route rule");
+        $logger.addLog(packageR.toString());      
+        System.out.println(packageR);
+        insert(packageR);
+        retract(p);
+        retract($product);
+end
+
+rule  "Special Route for AJ"
+    salience 846
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("NK-SH-AJ"))
+        eval ($orderE.getProductQty($id)>1)
+        $s : Store( storeId == 3)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        PackageTestResult packageR = new PackageTestResult(test);
+        packageR.addResult(parcelR);
+        $logger.addLog($product + "get inserted into a new package by speical route rule");
+        $logger.addLog(packageR.toString());      
+        System.out.println(packageR);
+        insert(packageR);
+        retract(p);
+        retract($product);
+end
+
+rule  "Threshold for Nike Shoe"
+    salience 844
+    when
+        $o : Orders()
+        $orderE : OrderE()
+        $i : Product( ((Length < 4)||( Width < 4)||( Height < 4)||( Weight < 10))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $logger: EngineLog()
+    then
+        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog(p.toString()); 
+        }
+        retract($i);
+end
+
+rule  "Threshold for nike good"
+    salience 842
+    when
+        $o : Orders()
+        $orderE : OrderE()
+        $i : Product( ((Length < 5)||( Width < 5)||( Height < 5)||( Weight < 5))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $logger: EngineLog()
+    then
+        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog(p.toString()); 
+        }
+        retract($i);
+end
+
+rule "Insert Package for Remaining Products"
+	salience -5
+	//agenda-group "first7"
+	when
+		$i : Product()
+		$o : Orders()
+		not PackageE(isForRemain())
+	then
+		PackageE p = new PackageE($o);
+		p.setForRemain(true);
+		insert (p);
+		System.out.println("insert new package");
+//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
+//		System.out.println("set to next group");
+end
+rule "Wrap up Remaining Products"
+	salience -10
+	//agenda-group "first8"
+	when
+		$i : Product()
+		$p : PackageE(isForRemain())
+		$orderE : OrderE()
+	then
+		$p.addProduct($i, $orderE.getProductQty($i.getProdId()));
+		retract($i);
+		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
+end
+

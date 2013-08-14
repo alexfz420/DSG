@@ -1,0 +1,74 @@
+//created on: Jul 4, 2013
+package com.dicks.rules;
+
+//list any import classes here.
+import com.dicks.engine.Orders
+import com.dicks.engine.Store
+import com.dicks.engine.Product
+import java.util.ArrayList
+import java.*;
+import java.util.HashMap
+
+//declare any global variables here
+rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 10
+    dialect "java"
+    when
+        $order : Orders()
+        $item : Product() from $order.getProducts()
+    then
+        insert( $item );
+        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
+end
+
+rule "summarize3" 
+salience 5
+    when
+        //$o : Orders()
+        $item : Product() 
+    then
+        System.out.println("inserted "+$item.getProductName());
+end
+
+rule "filter stock"
+	salience 10
+	agenda-group "first"
+    when    	
+    	$item : Product()
+    	$store : Store()
+    	eval(!$store.containProduct($item))
+    then
+        retract($store);
+end
+
+
+
+rule  "Mininum Packagethreshold0"
+    when
+        $o : Orders()
+        $i : Product( ((weight > 10)|| ( size > 1))&& (( productID == 1 )|| (productID == 2 )|| (productID == 3 )))from $o.getProducts()
+    then
+    	//insertLogical( new Package($i, 1) );
+        retract($i);
+       // $i.minPackage();
+end
+
+rule "summarize2" 
+salience -5  
+    when
+        //$o : Orders()
+        $item : Product() 
+    then
+        System.out.println("remaining"+$item.getProductName());
+end
+
+
+rule "summarize" 
+salience -5  
+    when
+        store : Store()
+    then
+        System.out.println(store.getZoneID());
+end

@@ -1,0 +1,64 @@
+//created on: Jul 4, 2013
+package com.dicks.rules;
+
+//list any import classes here.
+import com.dicks.pojo.Orders
+import com.dicks.pojo.Product
+import com.dicks.pojo.Store
+
+import com.dicks.dao.InventoryDAO
+import com.dicks.dao.OrderDetailDAO
+
+import com.dicks.engine.PackageE
+import com.dicks.engine.OrderE
+import com.dicks.engine.Parcel
+import com.dicks.engine.ParcelResult
+import com.dicks.engine.PackageTest
+import com.dicks.engine.PackageTestResult
+import java.util.ArrayList
+import java.*;
+import java.String.*;
+import java.util.HashMap;
+import com.dicks.dao.InventoryDAO;
+
+//declare any global variables here
+rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 100
+    dialect "java"
+    when
+        $order : Orders()
+        $item : Product() from $order.getProducts()
+    then
+        insert( $item );
+        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "first" ).setFocus();
+end
+
+rule "filter stock"
+	salience 98
+	agenda-group "first"
+    when    	
+    	$item : Product()
+    	$store : Store()
+    	eval(!$store.containProduct($item))
+    then
+        retract($store);
+end
+
+rule  "Mininum Packagethreshold0"
+    when
+        $o : Order()
+        $i : Product( ((size bigger 20))&& (( productID == 123 ))) from $o.getProducts()
+    then
+        $i.minPackage();
+end
+
+rule "summarize"   
+salience -5
+    when
+        store : Store()
+    then
+        System.out.println(store.getZoneID());
+end
+
