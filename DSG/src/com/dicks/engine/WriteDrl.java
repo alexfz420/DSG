@@ -13,7 +13,7 @@ import com.dicks.pojo.Product;
 import com.dicks.pojo.Vendor;
 import com.dicks.pojo.Rule;
 
-public class CreateTemplate {
+public class WriteDrl {
     public String myTab ="    ";
     public String myReturn = "\n";
     public String mySpace = " ";
@@ -29,106 +29,21 @@ public class CreateTemplate {
     
    
     
-	public CreateTemplate  (String ruleName, String description,String type, String[] objects, String[] attributes, 
-			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ){
-		System.out.println("route!!"+routes);
-		ruleInt --;
-		String condition = null;
-		if (conditions != null){
-			if (conditions.equals("all")){
-				condition = "||";
-			}
-			else{
-				condition = "&&";
-			}
-			System.out.println("condition is "+condition);
-		}
-		String current = null;
-		try {
-			current = new java.io.File( "." ).getCanonicalPath();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	        System.out.println("Current dir:"+current);
-	 String currentDir = System.getProperty("user.dir");
-	        System.out.println("Current dir using System:" +currentDir);
-		  /*
-		  rules[0] = "./ruleTxt/ruleHeader.txt";
-		  rules[1] = "./ruleTxt/rule1.txt";
-		  rules[2] = "./ruleTxt/rule2.txt";
-		  rules[3] = "./ruleTxt/rule3.txt";
-		  */
-		  System.out.println("--------------Start Adding New Rule--------------------------");
-		  Product shoes = new Product();
-			shoes.setProdName("shoes");
-			shoes.setFactoryPrice(50);
-			shoes.setWeight(10);
-			shoes.setWidth(2.0);
-			shoes.setSku("11");
-			//System.out.println("????"+shoes.getSku());
-			Product hat = new Product();
-			hat.setProdName("hat");
-			hat.setFactoryPrice(10);
-			hat.setWeight(4);
-			hat.setWidth(2.0);
-			hat.setSku("22");
-
-			Product shirt = new Product();
-			shirt.setProdName("shirt");
-			shirt.setFactoryPrice(20);
-			shirt.setWeight(8);
-			shirt.setWidth(5.0);
-			shirt.setSku("33");
-
-			product[0] = shoes;
-			product[1] = hat;
-			product[2] = shirt;
-
-			//System.out.println("!!!!"+shoes.getSku());
+	public WriteDrl(){
+		
+		
 
 
 			try {
-				ruleFile = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
+				ruleFiles = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			ruleFiles = new Rule[ruleFile.length+1];
-
-			for (int i = 0 ; i < ruleFile.length; i++){
-				ruleFiles[i] = ruleFile[i];
-				System.out.println("i "+ruleFile[i].getRuleName());
-			}
-
-			for (int i = 0 ; i < ruleFiles.length-1; i++){
-				//System.out.println(i+" "+ruleFiles[i].getRuleDescr());
-
-			}
 			
-			System.out.println("rule length"+ruleFile.length);
-			System.out.println("rules length"+ruleFiles.length);
-			
-			System.out.println("type"+type);
-			//System.out.println("!!!!!!!!!!!rule is "+ruleFile.length);
-		  /*if (ruleFile[0] == null){
-			  ruleFile[0] = new Rule("abc", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule1.txt","\"Explode Cart\"",100);
-		  }
-		  if (ruleFile[1] == null){
-		  ruleFile[1] = new Rule("bcd", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule2.txt","\"filter stock\"",98);}
-		  if (ruleFile[2] == null){
-		  ruleFile[2] = new Rule("def", "/Users/zhoufang/git/dicks3/HelloWorld/ruleTxt/rule3.txt","\"Summarize\"",-5);}
-*/
-		  //////get all rule in database and sorted with priority---->return to ruleFile
-		  /////get all product objects by a array of SKU.
-
-
-
-
-		  //get priority, hardcoded for 2 for demo
-		  System.out.println("Rules before editing");
+		  System.out.println("Rules to be Printed");
 		  int i = 0;
-		  for (i = 0; i<ruleFile.length;i++){
+		  for (i = 0; i<ruleFiles.length;i++){
 	    	  System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
 
 
@@ -139,139 +54,8 @@ public class CreateTemplate {
 
 	      //ruleInt = 1;
 
-	      System.out.println("ppppp"+ruleInt+"length"+ruleFile.length);
-	      if (ruleInt == ruleFile.length){
-	    	  System.out.println("the same");
-	    	  ruleFiles[ruleInt] = new Rule();
-	      }
-	      else{
-		      reRank(ruleInt);
-		      ruleFiles[ruleInt] = new Rule();
-	      }
-	      //System.out.println("nnnnnnnn");
-	      /*for (i = 0 ; i<ruleFiles.length;i++){
-	    	  System.out.println("rule "+i+" "+ruleFiles[i].getRuleName());
-	      }*/
-	      checkFlag(type, objects, flag);
-
-	      if (type.equalsIgnoreCase("Threshold")){
-	    	  type = "1";
-	    	  typeString = "Threshold";
-	      }
-	      if (type.equalsIgnoreCase("Store Filter")){
-	    	  type = "2";
-	    	  typeString = "Store Filter";
-	      }
-	      if (type.equalsIgnoreCase("Special Route")){
-	    	  type = "3";
-	    	  System.out.println("nimabi!!!!!!!!!!!!");
-	    	  typeString = "Special Route";
-	      }
-
-	      if (type.equalsIgnoreCase("1")||type.equalsIgnoreCase("2")){
-	    	  //System.out.println("Heresdlfjsdlkfjsdlfjsdl");
-	    	  //System.out.println("object length "+objects.length);
-	    	  if (ruleInt > 0){
-					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
-								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-	    		  	 if (ruleInt == (ruleFile.length)){
-	    		  		 System.out.println("last one");
-	    		  		ruleFiles[ruleInt] = new Rule(ruleName, "", description, 800,type,objects,
-			 					attributes,operators,values,condition, routes,actions,flag, "1",false);
-	    		  	 }
-	    		  	 else
-	    		  	 {
-	    		  		 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,
-							 					attributes,operators,values,condition, routes,actions,flag, "1",false);
-	    		  	 }
-				 }
-			  else{
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,condition, routes,actions,flag, "1",false);
-			  }
-	    	  
-	      }    
-	      else {
-		      if (ruleInt > 0){
-		    	  System.out.println("type!!!!"+type);
-		    	  if (ruleInt == (ruleFile.length)){
-					 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
-								//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    	  		ruleFiles[ruleInt] = new Rule(ruleName, "", description, 800,
-		    	  			type,objects,attributes,operators,values,condition, routes,actions,flag, "1",false);
-		    	  }
-		    	  else{
-		    		  	ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,
-			    	  			type,objects,attributes,operators,values,condition, routes,actions,flag, "1",false);
-		      		}
-				 }
-			  else{
-
-					 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()+2,type,objects,
-							 attributes,operators,values,condition, routes,actions,flag, "1",false);
-			  }
-
-
-	      }
-
-	      try {
-				RuleDAO.getInstance().createRule(ruleFiles[ruleInt]);
-				for (i = 0; i < ruleFiles.length;i++){
-					System.out.println("II"+i);
-					if (ruleFiles[i] == null){
-						System.out.println("!!null  "+i);
-					}
-					RuleDAO.getInstance().update(ruleFiles[i]);
-				}
-			} catch (Exception e) {
-				System.out.println("eeeeeeror"+e);// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		   /*
-		   try {
-		    	 for (i  = 0 ; rules[i] != null; i++){
-		    		 if (rules[i+1] == null){
-		    			 //System.out.println("new file is"+"./ruleTxt/rule"+(i+1)+".txt");
-		    			 //String newPath = "./ruleTxt/rule"+(i+1)+".txt";
-		    			 //File file = new File(newPath);  
-		    			// System.out.println("current rule is "+ruleFile[ruleInt]+ "with piority"+ruleFile[ruleInt].getPriority());
-		    			 if (ruleInt > 0){
-		    				 //public Rule(int ruleID, String path, String description, int piority, String type, String[] objects, 
-		    							//String[] attributes, String[] operators, String[] values, String[] routes, String[] actions)
-		    				 
-		    				 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()-2,type,objects,
-		    						 attributes,operators,values,null,actions);
-		    			 }
-		    			 else{
-		    				 ruleFile[ruleInt] = new Rule(ruleInt+1, null, "\""+type+ruleInt+"\"", ruleFile[ruleInt-1].getPriority()+2,type,objects,
-		    						 attributes,operators,values,null,actions);
-		    			 }
-		    			 
-		    			 FileOutputStream fop = new FileOutputStream(file);
-		    	 
-		    				// if file doesnt exists, then create it
-		    				if (!file.exists()) {
-		    					file.createNewFile();
-		    				}
-		    	 
-		    				// get the content in bytes
-		    				byte[] contentInBytes = content.getBytes();
-		    	 
-		    				fop.write(contentInBytes);
-		    				fop.flush();
-		    				fop.close();
-		    	 
-		    				System.out.println("Done");
-		    				break;
-		    	 
-		    			} 
-		    	 }
-		    }
-		     catch (IOException e) {
-		    	 e.printStackTrace();
-		     }			 
-		    */		 
+	    
+		   	 
 		    //combining all rules
 		     try {
 	             File file = new File("src/com/dicks/rules/newRule_joe.drl");         
@@ -291,6 +75,7 @@ public class CreateTemplate {
 	            		 continue;
 	            		 
 	            	 }*/
+	            	 
 	            	 if (ruleFiles[i].getAble() == false){
 	            		 System.out.println("rule "+i+" "+ruleFiles[i].getAble());
 	            		 continue;

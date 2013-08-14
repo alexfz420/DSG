@@ -9,6 +9,7 @@ import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.UpdateTemplate;
+import com.dicks.engine.WriteDrl;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Rule;
@@ -280,6 +281,18 @@ public class RuleList {
 			else if (viewEdit.equals("edit")){
 				return "goToEditSpecialRoute";
 			}
+			else if (viewEdit.equals("ables")){
+				System.out.println("getting albe!!!");
+				if (thisRule.getAble()  == true){
+					thisRule.setAble(false);
+				}
+				else{
+					thisRule.setAble(true);
+				}
+				RuleDAO.getInstance().update(thisRule);
+				WriteDrl wdrl = new WriteDrl();
+				return "enableSuccess";
+			}
 		}
 		else {
 			return "goToEditProductThreshold";
@@ -398,7 +411,7 @@ public class RuleList {
 		System.out.println("rule id "+hahaRule.getRuleId());
 		System.out.println("rulename pre "+rulename);
 		System.out.println("rulename after "+rulenames);
-		UpdateTemplate test= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
+		UpdateTemplate updateTemplate= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
 
 		return "success";
 	}

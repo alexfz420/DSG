@@ -117,6 +117,10 @@ public class ReMakeTemplate {
 	            		 continue;
 	            		 
 	            	 }*/
+	            	 if (ruleFiles[i].getAble() == false){
+	            		 System.out.println("rule "+i+" "+ruleFiles[i].getAble());
+	            		 continue;
+	            	 }
 	            	 	System.out.println("printing file "+i);
 	            	 if (ruleFiles[i].getType().equals("9")){
 	            		 //System.out.println("read file");
