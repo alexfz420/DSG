@@ -142,7 +142,9 @@ public class RuleList {
 		int mid = 0;
 		int last = 0;
 		try {
-			allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
+			// Claire change it to get all lists
+			//allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
+			allRule = RuleDAO.getInstance().getAllRuleList() ;
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
