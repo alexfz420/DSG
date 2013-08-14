@@ -1,4 +1,0 @@
-dicks
-=====
-
-Practicum Project
