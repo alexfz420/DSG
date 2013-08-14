@@ -49,6 +49,9 @@
            <result name="goToEditSpecialRoute" type="dispatcher">/Edit_TemplateSpecialRoute.jsp</result>
            <result name="goToViewSpecialRoute" type="dispatcher">/View_TemplateSpecialRoute.jsp</result>
            <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
+           <result name="enableSuccess" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
       </action>
       <action name="updateRule" class="com.dicks.action.RuleList" method="updateRule">
           <result name="success" type="chain">

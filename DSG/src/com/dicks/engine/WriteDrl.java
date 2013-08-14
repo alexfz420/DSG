@@ -29,26 +29,11 @@ public class WriteDrl {
     
    
     
-	public WriteDrl  (){
+	public WriteDrl(){
 		
-		String current = null;
-		try {
-			current = new java.io.File( "." ).getCanonicalPath();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
-	    System.out.println("Current dir:"+current);
-	    String currentDir = System.getProperty("user.dir");
-	    System.out.println("Current dir using System:" +currentDir);
-		  /*
-		  rules[0] = "./ruleTxt/ruleHeader.txt";
-		  rules[1] = "./ruleTxt/rule1.txt";
-		  rules[2] = "./ruleTxt/rule2.txt";
-		  rules[3] = "./ruleTxt/rule3.txt";
-		  */
-		  
+
+
 			try {
 				ruleFiles = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 			} catch (Exception e1) {
@@ -56,10 +41,9 @@ public class WriteDrl {
 				e1.printStackTrace();
 			}
 			
-			
-		  System.out.println("Rules Before Printing");
+		  System.out.println("Rules to be Printed");
 		  int i = 0;
-		  for (i = 0; i<ruleFile.length;i++){
+		  for (i = 0; i<ruleFiles.length;i++){
 	    	  System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
 
 
@@ -70,7 +54,9 @@ public class WriteDrl {
 
 	      //ruleInt = 1;
 
-	      
+	    
+		   	 
+		    //combining all rules
 		     try {
 	             File file = new File("src/com/dicks/rules/newRule_joe.drl");         
 	             FileOutputStream fos = new FileOutputStream(file);
@@ -90,6 +76,10 @@ public class WriteDrl {
 	            		 
 	            	 }*/
 	            	 
+	            	 if (ruleFiles[i].getAble() == false){
+	            		 System.out.println("rule "+i+" "+ruleFiles[i].getAble());
+	            		 continue;
+	            	 }
 	            	 	System.out.println("printing file "+i);
 	            	 if (ruleFiles[i].getType().equals("9")){
 	            		 //System.out.println("read file");

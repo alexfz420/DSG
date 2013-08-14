@@ -7,6 +7,7 @@ import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.Rule;
 import com.dicks.engine.ReMakeTemplate;
+import com.dicks.engine.WriteDrl;
 
 public class RulePriority {
 	public String[] ruleList;
@@ -137,7 +138,7 @@ public class RulePriority {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		ReMakeTemplate rmk = new ReMakeTemplate();
+		WriteDrl rmk = new WriteDrl();
 		return "success";
 	}
 	
