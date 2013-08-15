@@ -1,5 +1,6 @@
 package com.dicks.engine;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +49,7 @@ public class Split {
 //		}		
 	}
 	
+	@SuppressWarnings("restriction")
 	public Split(Collection<PackageE> packages, Collection<Store> stores, EngineLog stage2, Collection<PackageTestResult> allocatedResults) throws Exception {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
@@ -65,10 +67,7 @@ public class Split {
 		}
 
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-
-		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/evaluate.drl",
-
-				Split.class), ResourceType.DRL);
+		kbuilder.add(ResourceFactory.newFileResource(new File("src/com/dicks/rules/evaluate.drl")), ResourceType.DRL);
 
 		// Check the builder for errors
 		if (kbuilder.hasErrors()) {

@@ -15,4 +15,3 @@ rule  "Default Mininum Packagethreshold"
     	retract($i);
 end
 
-

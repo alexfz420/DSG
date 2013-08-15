@@ -405,9 +405,12 @@ public class Rule implements java.io.Serializable {
 	}
 
 
+
 	public boolean getAble() {
 		return able;
 	}
+
+
 
 	public void setAble(boolean able) {
 		this.able = able;

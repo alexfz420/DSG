@@ -1,5 +1,11 @@
 package com.dicks.action;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.dicks.engine.Allocate;
@@ -65,6 +71,34 @@ public class PlaceOrder {
 	}
 	
 	public String placeorder() throws Exception{
+		
+//		BufferedReader br = null;
+//		 
+//		try {
+// 
+//			String sCurrentLine = null;
+// 
+//			br = new BufferedReader(new FileReader("src/com/dicks/rules/newRule_joe.drl"));
+// 
+//			while ((sCurrentLine = br.readLine()) != null) {
+//				System.out.println(sCurrentLine);
+//			}
+// 
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (br != null)br.close();
+//			} catch (IOException ex) {
+//				ex.printStackTrace();
+//			}
+//		}
+		
+//		 File file = new File("src/com/dicks/rules/newRule_joe.drl");         
+//         FileInputStream fos = new FileInputStream(file);
+//         fos.close();
+//         
+         
 		for(int i=0;i<quantity.length;i++){
 			quantity[i] = quantity[i].toLowerCase();
 			

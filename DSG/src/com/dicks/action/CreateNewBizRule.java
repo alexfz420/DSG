@@ -6,6 +6,7 @@ import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.engine.CreateTemplate;
+import com.dicks.engine.WriteDrl;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
 
@@ -278,7 +279,8 @@ public class CreateNewBizRule {
 		
 		
 		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
-
+		WriteDrl wdl = new WriteDrl();
+		
 		return "newrule";
 	}
 	
@@ -349,7 +351,7 @@ public class CreateNewBizRule {
 		 
 		 String flag = "TH-A,ST-A,SP-B";
 		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,productcount,null,sources,action,flag,Integer.parseInt(priority));
-		
+		WriteDrl wdl = new WriteDrl();
 		
 		
 		

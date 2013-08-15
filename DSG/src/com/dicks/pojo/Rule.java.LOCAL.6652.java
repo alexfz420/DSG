@@ -27,7 +27,7 @@ public class Rule implements java.io.Serializable {
 	private String action;
 	private String condition;
 	private boolean isSpecial;
-	private boolean able = true;
+	private boolean able;
 	private Set ruleCates = new HashSet(0);
 	private Set logs = new HashSet(0);
 
@@ -403,7 +403,6 @@ public class Rule implements java.io.Serializable {
 		
 		return ruleReport.toString();
 	}
-
 
 	public boolean getAble() {
 		return able;

@@ -404,7 +404,11 @@ public class Rule implements java.io.Serializable {
 		return ruleReport.toString();
 	}
 
+<<<<<<< HEAD
+=======
 
+
+>>>>>>> f4543f13fe664abd79824c5e51f1810fc4afe3a6
 	public boolean getAble() {
 		return able;
 	}

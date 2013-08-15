@@ -1,5 +1,8 @@
 package com.dicks.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleCateDAO;
@@ -76,7 +79,7 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 	public String editStoreCategory(){
 		String[] ids = storeIdString.split(",");
 		try {
-		//update applied rules
+		//update applied rules, false means its Store group
 			updatAppliedRules(false);
 		
 		//update Category
@@ -96,13 +99,11 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 	
 	public String editProdCategory(){
 		String[] skus = skuString.split(",");
-		
-
 		try {
-			//update applied rules
-			updatAppliedRules(true);
+			//update applied rules including RuleCate table and Rule Table
+			updateAppliedRules(true, skus);
 			
-			//update Category
+			//update ProdCate table
 			ProdCate[] news = new ProdCate[skus.length];
 			for(int i=0; i<skus.length; i++){
 				int prodId = ProductDAO.getInstance().getProductById(skus[i]).getProdId();
@@ -180,16 +181,25 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 		setAppliedRuleString(sb1.toString()); 
 	}
 	
-	private void updatAppliedRules(boolean isProductRelated) throws Exception{
-		String[] rules  = appliedRuleString.split(", ");
-		RuleCate[] rcs = new RuleCate[rules.length];
-		for(int i=0; i<rules.length; i++){
-			int ruleId = RuleDAO.getInstance().getRuleByName(rules[i]).getRuleId();
+	private void updateAppliedRules(boolean isProductRelated, String[] array) throws Exception{
+		//update rulecate table
+		String[] ruleNames  = appliedRuleString.split(", ");
+		RuleCate[] rcs = new RuleCate[ruleNames.length];
+		List<Rule> rules = new ArrayList<Rule>();
+		for(int i=0; i<ruleNames.length; i++){
+			Rule rule = RuleDAO.getInstance().getRuleByName(ruleNames[i]);
+			rules.add(rule);
+			int ruleId = rule.getRuleId();
 			RuleCateId rcId = new RuleCateId(Integer.valueOf(categoryId), ruleId);
 			RuleCate rc = new RuleCate(rcId, null, isProductRelated);
 			rcs[i]= rc;
 		}
 		RuleCateDAO.getInstance().update(rcs);
+		
+		//update rule table
+		if(isProductRelated){
+			RuleDAO.getInstance().updateProdObjForUpdate(array, rules);
+		}
 	}
 	
 	

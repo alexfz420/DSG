@@ -95,7 +95,16 @@
 		                    <td class="">${allRule.ruleId}</td>
 		                    <td class="">${allRule.ruleName.replace("%20"," ")}</td>
 		                    <td class="">${allRule.type}</td>
-		                    <td><a class="button toggle">Disable</a></td>
+		                    <c:choose>
+								<c:when test="${ (allRule.able == true) }">
+									<td> <a class="button toggle" onclick='SubmitForm(${allRule.ruleId},"ables")'>&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+								</c:when>
+								<c:otherwise>
+									<td> <a class="button toggle disabled" onclick='SubmitForm(${allRule.ruleId},"ables")'>Disabled</a> </td>
+								</c:otherwise>
+							</c:choose>
+		                    
+		                  
 		                    <td class="">
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
