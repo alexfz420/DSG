@@ -25,6 +25,9 @@
         <property name="storeType" type="java.lang.String">
             <column name="store_type" length="45" not-null="true" />
         </property>
+        <property name="capacity" type="java.lang.Integer">
+            <column name="capacity" length="11" not-null="false" />
+        </property>
         <set name="packageses" inverse="true">
             <key>
                 <column name="store_id" />

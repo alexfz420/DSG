@@ -80,7 +80,7 @@ public class ViewAndEditCategoryAction extends ActionSupport{
 		String[] ids = storeIdString.split(",");
 		try {
 		//update applied rules, false means its Store group
-			updatAppliedRules(false);
+			updateAppliedRules(false,ids);
 		
 		//update Category
 		StoreCate[] news = new StoreCate[ids.length];

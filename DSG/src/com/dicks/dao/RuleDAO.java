@@ -81,6 +81,7 @@ public class RuleDAO extends BaseDao<Rule> {
 	
 	public void updateProdObjForUpdate(String[] skus, List<Rule> rules) throws Exception {
 		for(Rule rule:rules){
+			System.out.println();
 			String newObject = getNewProdObjForUpdate(rule.getObject(),skus);
 			rule.setObject(newObject);
 			super.update(rule);

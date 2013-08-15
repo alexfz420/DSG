@@ -37,8 +37,6 @@ public class Rule implements java.io.Serializable {
 	public Rule() {
 	}
 	
-	
-
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
 			Integer priority, String flag, String type, String stage,
 			String object, String attribute, String operator, String value,
@@ -60,8 +58,6 @@ public class Rule implements java.io.Serializable {
 		this.condition = condition;
 		this.isSpecial = isSpecial;
 	}
-
-
 
 	/** minimal constructor */
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
