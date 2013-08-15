@@ -1,9 +1,12 @@
 package com.dicks.engine;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 
 
 import javax.print.DocFlavor.URL;
@@ -14,6 +17,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.kie.api.io.Resource;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
 import org.kie.internal.KnowledgeBase;
@@ -57,6 +61,7 @@ public class Allocate {
     
     public static Product[] product = new Product[5]; 
     
+	@SuppressWarnings("restriction")
 	public Allocate  (String[] skus, String[] quantities, String shippingType, String shippingAddress, String shippingZipcode) throws Exception{
 		System.out.println("product "+skus[0]);
 		System.out.println("quantity "+quantities[0]);
@@ -93,9 +98,36 @@ public class Allocate {
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
 		// this will parse and compile in one step
-		kbuilder.add(ResourceFactory.newClassPathResource("com/dicks/rules/newRule_joe.drl",
-
-				SmallTest.class), ResourceType.DRL);
+		//Resource r = ResourceFactory.newClassPathResource("com/dicks/rules/newRule_joe.drl", getClass());
+		Resource r = ResourceFactory.newFileResource(new File("src/com/dicks/rules/newRule_joe.drl"));		
+		
+//		BufferedReader br = null;
+//		
+//		System.out.println("-------------In Rule-------------");
+//		
+//		try {
+//			 
+//			String sCurrentLine = null;
+// 
+//			br = new BufferedReader(r.getReader());
+// 
+//			while ((sCurrentLine = br.readLine()) != null) {
+//				System.out.println(sCurrentLine);
+//			}
+// 
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (br != null)br.close();
+//			} catch (IOException ex) {
+//				ex.printStackTrace();
+//			}
+//		}
+		
+		kbuilder.add(r, ResourceType.DRL);
+		
+//		kbuilder.add(ResourceFactory.newUrlResource( "com/dicks/rules/newRule_joe.drl" ), ResourceType.DRL);
 
 		// Check the builder for errors
 
