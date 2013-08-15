@@ -13,3 +13,4 @@ rule "Insert Package for Remaining Products"
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 //		System.out.println("set to next group");
 end
+

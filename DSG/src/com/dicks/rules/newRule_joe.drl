@@ -35,6 +35,7 @@ rule "Explode Cart"
 //        System.out.println("exlored: " + $order.getExploredItem());
        
 end
+
 rule "Default Filter Stock"
 	salience 950
 	//agenda-group "first"
@@ -46,6 +47,7 @@ rule "Default Filter Stock"
     	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
         retract($store);
 end
+
 rule "Filter Stock for Stock whose margin is less than 2"
 	salience 925
 	//agenda-group "first2"
@@ -78,26 +80,6 @@ rule  "Default Mininum Packagethreshold"
         $logger.addLog("Rule \"Default Mininum Packagethreshold\"", "Product "+$i.getProdName()+ " separeted into a new package");
     	retract($i);
 end
-rule  "Threshold for nike shoes"
-    salience 846
-    when
-        $o : Orders()
-        $orderE : OrderE()
-        $i : Product( ((Length > 3)||( Width > 3)||( Height > 3)||( Weight > 3))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB")))&& (flag.equals("TH-A,ST-A,SP-A")))
-        $logger: EngineLog()
-    then
-        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
-        {
-            $logger.addLog("Threshold for nike shoes","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            PackageE p = new PackageE($o);
-            p.addProduct($i,1);
-            insert (p);
-            $i.minPackage();
-            $logger.addLog("Threshold for nike shoes",p.toString()); 
-        }
-        retract($i);
-end
 
 rule "Insert Package for Remaining Products"
 	salience -5
@@ -114,6 +96,7 @@ rule "Insert Package for Remaining Products"
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 //		System.out.println("set to next group");
 end
+
 rule "Wrap up Remaining Products"
 	salience -10
 	//agenda-group "first8"
@@ -126,3 +109,5 @@ rule "Wrap up Remaining Products"
 		retract($i);
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end
+
+ 

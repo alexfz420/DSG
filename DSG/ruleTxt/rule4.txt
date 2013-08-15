@@ -14,3 +14,4 @@ rule  "Default Mininum Packagethreshold"
         $logger.addLog("Rule \"Default Mininum Packagethreshold\"", "Product "+$i.getProdName()+ " separeted into a new package");
     	retract($i);
 end
+
