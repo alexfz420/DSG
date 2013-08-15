@@ -404,13 +404,9 @@ public class Rule implements java.io.Serializable {
 		return ruleReport.toString();
 	}
 
-
-
-	public boolean isAble() {
+	public boolean getAble() {
 		return able;
 	}
-
-
 
 	public void setAble(boolean able) {
 		this.able = able;
