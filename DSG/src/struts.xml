@@ -48,7 +48,7 @@
            <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToEditSpecialRoute" type="dispatcher">/Edit_TemplateSpecialRoute.jsp</result>
            <result name="goToViewSpecialRoute" type="dispatcher">/View_TemplateSpecialRoute.jsp</result>
-           <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
+           <result name="goToCostCalculation" type="dispatcher">/Edit_TemplateCostCalculation.jsp</result>
            <result name="enableSuccess" type="chain">
             <param name="actionName">gotorulelist</param>
           </result> 
