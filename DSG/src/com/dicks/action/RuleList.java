@@ -37,6 +37,8 @@ public class RuleList {
 	public String[] action;
 	public String viewEdit;
 	public String[] sources;
+	private String ruleName;
+	private String ruleDescription;
 	
 	
 	public void setCates(String a){
@@ -248,7 +250,8 @@ public class RuleList {
 			this.storeFeeList = feeDAO.getByType("store");
 			this.warehouseFeeList = feeDAO.getByType("warehouse");
 			this.vendorFeeList = feeDAO.getByType("vendor");
-			
+			this.ruleName = thisRule.getRuleName();
+			this.setRuleDescription(thisRule.getRuleDescr());
 			return "goToCostCalculation";
 		} 
 		else if (thisRule.getType().equals("3")) {
@@ -432,5 +435,21 @@ public class RuleList {
 	}
 	public void setVendorFeeList(ArrayList<Fee> vendorFeeList) {
 		this.vendorFeeList = vendorFeeList;
+	}
+
+	public String getRuleName() {
+		return ruleName;
+	}
+
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
+	}
+
+	public String getRuleDescription() {
+		return ruleDescription;
+	}
+
+	public void setRuleDescription(String ruleDescription) {
+		this.ruleDescription = ruleDescription;
 	}
 }

@@ -3,18 +3,12 @@ package com.dicks.action;
 import java.util.ArrayList;
 
 import com.dicks.dao.FeeDAO;
-import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Fee;
-import com.dicks.pojo.Rule;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CostCalculationAction extends ActionSupport {
-
-	private static final long serialVersionUID = 1L;
-
-	FeeDAO feeDAO = FeeDAO.getInstance();	
-	
+	FeeDAO feeDAO = FeeDAO.getInstance();
 	private String[] storeFeeName;
 	private String[] storeFeeId;
 	private String[] storeFeeFlag;
