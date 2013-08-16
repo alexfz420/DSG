@@ -110,7 +110,7 @@ public class PlaceOrder {
 		
 		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
-		System.out.println("order id in place order: " + test.getOrderId());
+		//System.out.println("order id in place order: " + test.getOrderId());
 		this.id = test.getOrderId();
 		
 		this.stage1 = test.getStage1();

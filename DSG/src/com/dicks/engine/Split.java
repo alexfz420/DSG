@@ -89,7 +89,13 @@ public class Split {
 
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
-
+		
+//		ksession.insert(stage2);
+//		ksession.insert(stage3);
+		
+		ksession.setGlobal("stage2", stage2);
+		ksession.setGlobal("stage3", stage3);
+		
 		for (PackageE pack : packages) {
 			ksession.insert(pack);
 		}
@@ -98,9 +104,6 @@ public class Split {
 			ksession.insert(store);
 			System.out.println(store);
 		}
-		
-		ksession.insert(stage2);
-		ksession.insert(stage3);
 
 		System.out.println("----------------------");
 

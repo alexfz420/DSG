@@ -34,13 +34,13 @@ public class Util {
 		return r.nextInt(7);
 	}
 	
-	public static double getShippingCosts(Parcel parcel, Store store) throws Exception {
+	public static long getShippingCosts(Parcel parcel, Store store) throws Exception {
 		int supplyZip = Integer.parseInt(store.getZip());
 		int destinationZip = Integer.parseInt(parcel.getPack().getOrder().getShippingZip());
-		System.out.println("supply: " + supplyZip + ", destination: " + destinationZip);
+		//System.out.println("supply: " + supplyZip + ", destination: " + destinationZip);
 		Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(supplyZip, destinationZip);
 		if (shipment == null) {
-			System.out.println("shipment null");
+			//System.out.println("shipment null");
 			return Integer.MAX_VALUE;		
 		}
 		int rate = 0;
@@ -50,8 +50,8 @@ public class Util {
 		} else {
 			rate = shipment.getNormalRate();
 		}		
-		System.out.println("rate: " + rate);
-		return ((double) parcel.getWeight() * rate) / 10000.0;
+		//System.out.println("rate: " + rate);
+		return (parcel.getWeight() * rate) / 100;
 	}
 	
 	public static void calculateAttribute(ParcelResult parcelR) {
@@ -66,7 +66,7 @@ public class Util {
 			}			
 			parcelR.setAttribute((double) attribute / 100.0);
 		} else if (attribute.equals("shippingCost")) {
-			System.out.println("caculate attribute: shipping costs");
+			//System.out.println("caculate attribute: shipping costs");
 			parcelR.setAttribute(parcelR.getShippingCost());
 		} else if (attribute.equals("margin")) {
 			
@@ -74,7 +74,7 @@ public class Util {
 			
 		} else if (attribute.equals("totalCost")) {
 			parcelR.setAttribute(parcelR.getCost());
-			System.out.println("caculate attribute: total costs");
+			//System.out.println("caculate attribute: total costs");
 		}
 	}
 	
@@ -87,7 +87,7 @@ public class Util {
 		return 0;
 	}
 	
-	public static double calculateCosts(Parcel parcel, Store store) {
+	public static long calculateCosts(Parcel parcel, Store store) {
 		Set<Product> products = parcel.getProducts().keySet();		
 		long totalCosts = 0;
 		FeeDAO feeDao = FeeDAO.getInstance();
@@ -109,12 +109,13 @@ public class Util {
 								attributeValue = costs[i];
 							}
 						}
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("product")) {
 						for (Product p : products) {
 							attributeValue += getAttribute(p, Product.class, names[0]) * parcel.getProductQty(p);
 //							System.out.println("product: " + p.getProdName());
 						}	
-//						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("store")) {
 						attributeValue = getAttribute(store, Store.class, names[0]);
 					} else if (names[1].equals("orderDetail")) {	
@@ -130,15 +131,18 @@ public class Util {
 
 							attributeValue += attribute * qty;
 						}
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("inventory")) {
 						ArrayList<Inventory> inventories = InventoryDAO.getInstance().getInventoryByParcelStore(parcel, store);
-						
+						//System.out.println("inventory size: " + inventories.size());
 						for (Inventory inventory : inventories) {
 							attributeValue += getAttribute(inventory, Inventory.class, names[0]) * parcel.getProductQty(inventory.getProduct());
-//							System.out.println("product: " + p.getProdName());
+							System.out.println("product: " + inventory.getProduct().getProdName() + ", price: " + inventory.getRetailPrice());
 						}					
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					}
 					totalCosts += attributeValue * fee.getPercentage() / 10000;
 //					System.out.println("total costs: " + totalCosts);
@@ -148,7 +152,7 @@ public class Util {
 			e.printStackTrace();
 		}
 		
-		return ((double) totalCosts) / 100.0;
+		return totalCosts;
 	}
 	
 	public static <T> int getAttribute(T t, Class<T> clz, String name) {

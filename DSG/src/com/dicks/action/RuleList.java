@@ -271,7 +271,7 @@ public class RuleList {
 
 			prodCate = cate.toString();
 
-			System.out.println("WTF"+prodCate);
+			System.out.println(prodCate);
 			rulename = thisRule.getRuleName();
 			ruleDess = thisRule.getRuleDescr();
 			operator = thisRule.getOperators();

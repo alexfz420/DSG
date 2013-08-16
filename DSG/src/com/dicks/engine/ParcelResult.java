@@ -34,7 +34,7 @@ public class ParcelResult {
 	
 	@Override
 	public String toString() {
-		return this.parcel + ", source: " + this.source + ", shippingCost: " + this.cost;
+		return this.parcel + ", source: " + this.source + ", shippingCosts: " + this.shippingCost + ", cost: " + this.cost;
 	}
 
 	public double getAttribute() {
@@ -51,6 +51,14 @@ public class ParcelResult {
 
 	public void setShippingCost(double shippingCost) {
 		this.shippingCost = shippingCost;
+	}
+	
+	public void calculateCosts() throws Exception {
+		long shippingCosts = Util.getShippingCosts(parcel, source);
+		long otherCosts = Util.calculateCosts(parcel, source);
+		long totalCosts = shippingCosts + otherCosts;
+		this.shippingCost = (double) shippingCosts / 100.0;
+		this.cost = (double) totalCosts / 100.0;
 	}
 	
 }

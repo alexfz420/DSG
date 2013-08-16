@@ -28,42 +28,47 @@ import java.util.Comparator;
 
 //declare any global variables here
 
+global EngineLog stage2;
+global EngineLog stage3;
+
 rule "Explode Package"
     agenda-group "init"
     auto-focus true
     salience 100
     dialect "java"
     when
-    	$store : Store()
         $p : PackageE()
-        $logger : EngineLog()
+//        $logger : EngineLog()
     then
-    	//$logger.addLog("For Package: " + $p.toString());
-        System.out.println($p);
+//    	stage2.addLog("For Package ", $p.toString());
+        System.out.println("For package: " + $p);
 //        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
 //        System.out.println("order quantity: " + $order.getQuantity());
 //        System.out.println("exlored: " + $item.getProductName());
-       drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
+        drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end
+
 
 rule "for splitable packages"
 	salience 5
 	agenda-group "split"
 	when
 		$p : PackageE(isSplitable() && !isAllocated())
-		$logger : EngineLog()
+//		$logger : EngineLog()
 	then	
 //		System.out.println($p);
 		ArrayList r = SplitGenerater.getTests($p);
+		//System.out.println("package ready for test: " + $p);
 //		System.out.println(r.size());
 		for (int i = 0; i < r.size(); i++) {
 			PackageTest t = (PackageTest) r.get(i);
 			insert (t);
 			//$logger.addLog("--Test: " + t);
-			System.out.println("test: " + t);
+			System.out.println("Test: " + t);
 		}		
 //		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end
+
 
 rule "generate test results"
 	salience 4
@@ -72,16 +77,19 @@ rule "generate test results"
 		$test : PackageTest(!isTested())
 		$pack : PackageE($test.getPack() == $pack && !isAllocated())
 		$stores : ArrayList( ) from collect( Store () )
-		$logger : EngineLog()
+		//$logger : EngineLog()
 	then	
-		PackageTestResult testR = getTestResult($test, $stores);
-		if (testR != null) {
-			insert(testR);
-			modify($pack){ setAllocated(true); }
-			//$logger.addLog("**Test result: " + testR);
-			System.out.println("test result: " + testR);
-		}		
-		modify($test){ setTested(true); }
+		if ($stores.size() > 0) {
+			System.out.println("Package test is being tested: " + $test);
+			PackageTestResult testR = getTestResult($test, $stores);
+			if (testR != null) {
+				insert(testR);
+				modify($pack){ setAllocated(true); }
+				//$logger.addLog("**Test result: " + testR);
+				//System.out.println("test result: " + testR);
+			}		
+			modify($test){ setTested(true); }
+		}
 end
 
 rule "add splits"
@@ -89,11 +97,11 @@ rule "add splits"
 	agenda-group "split"
 	when
 		$p : PackageE(isSplitable() && !isAllocated())
-		$logger : EngineLog()
+		//$logger : EngineLog()
 	then
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
-		//$logger.addLog("--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
-		System.out.println("package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
+		stage2.addLog("Split Packages", "--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
+		//System.out.println("Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 end
 
 
@@ -102,7 +110,7 @@ rule "for not splitable packages"
 	agenda-group "split"
 	when
 		$p : PackageE((!$p.isSplitable()) && !isAllocated())
-		$logger : EngineLog()
+		//$logger : EngineLog()
 	then
 //		System.out.println("split num: " + $p.getSplitNum());
 //		System.out.println("product size: " + $p.getProducts().size());
@@ -119,7 +127,7 @@ rule "get to evaluate"
 	agenda-group "split"
 	when
 		$p : PackageE(isAllocated())
-		$logger : EngineLog()
+		//$logger : EngineLog()
 	then
 		//$logger.addLog("**" + $p + " has been allocated.");
 		System.out.println($p + " has been allocated.");
@@ -131,12 +139,13 @@ rule "evaluate package results"
 	agenda-group "evaluate"
 	when
 		$p : PackageE(isAllocated())
-		$results : ArrayList( ) from collect( PackageTestResult(getTest().getPack() == $p) )
-		$logger : EngineLog()
+		$results : ArrayList() from collect( PackageTestResult(getTest().getPack() == $p))
+		//$logger : EngineLog()
 	then
 		PackageTestResult r = getBestResult($results);
 		//$logger.addLog("**For package: " + $p);
 		//$logger.addLog("**Evaluate Result: " + r);
+		//System.out.println("result list size: " + $results.size());
 		System.out.println("Evaluate Result: " + r);
 
 end
@@ -151,13 +160,15 @@ function PackageTestResult getBestResult(ArrayList results) {
 		}			
 	});
 	
-	return (PackageTestResult) results.get(0);
+	PackageTestResult r = (PackageTestResult) results.get(0);
+	r.getTest().getPack().setBestResult(r);
+	return r;
 }
 
 function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	PackageTestResult r = new PackageTestResult(test);
 	ArrayList parcels = test.getParcels();
-	System.out.println("in get test result");
+	//System.out.println("in get test result");
 	for (int i = 0; i < parcels.size(); i++) {
 		Parcel p = (Parcel) parcels.get(i);
 		p.shipmentPreparation();
@@ -168,7 +179,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 			if (parcelR != null) {
 				parcelResults.add(parcelR);
 				Util.calculateAttribute(parcelR);
-				System.out.println("in get test result attribute");
+				//System.out.println("in get test result attribute");
 			}
 		}
 		if (parcelResults.size() < 1) {
@@ -201,13 +212,11 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 
 function ParcelResult getParcelResult(Parcel parcel, Store store) {
 	if (!InventoryDAO.getInstance().containAllProductsParcel(store, parcel)) return null;
-
 	ParcelResult r = new ParcelResult(parcel);
 	r.setSource(store);
-	r.setShippingCost(Util.getShippingCosts(parcel, store));
-	r.setCost(Util.calculateCosts(parcel, store) + r.getShippingCost());	
-	System.out.println("shipping costs: " + r.getShippingCost());
+	r.calculateCosts();	
+	System.out.println("For pacel " + parcel + ", store: " + store + ", totalCosts: " + r.getCost() + ", shipping costs: " + r.getShippingCost());
+	//System.out.println("shipping costs: " + r.getShippingCost());
 	return r;
 }
-
 
