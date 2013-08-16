@@ -69,16 +69,37 @@ public class Util {
 			//System.out.println("caculate attribute: shipping costs");
 			parcelR.setAttribute(parcelR.getShippingCost());
 		} else if (attribute.equals("margin")) {
+			Parcel parcel = parcelR.getParcel();
+			Store store = parcelR.getSource();
 			
+			ArrayList<Inventory> inventories = InventoryDAO.getInstance().getInventoryByParcelStore(parcel, store);
+			int attribute = 0;			
+			for (Inventory inventory : inventories) {
+				attribute += inventory.getRetailPrice();
+			}			
+			System.out.println("attribute: margin, retail price: " + attribute);
+			attribute -= parcelR.getShippingCost() * 100;
+			parcelR.setAttribute((double) attribute / 100.0);
 		} else if (attribute.equals("proximity")) {
 			
 		} else if (attribute.equals("totalCost")) {
 			parcelR.setAttribute(parcelR.getCost());
 			//System.out.println("caculate attribute: total costs");
+		} else if (attribute.equals("otherCost")) {
+			parcelR.setAttribute(parcelR.getOtherCost());
 		}
 	}
 	
 	public static int compareParcelResult(ParcelResult arg0, ParcelResult arg1) {
+		if (Util.operator.equals("max")) {
+			return Double.compare(arg1.getAttribute(), arg0.getAttribute());
+		} else if (Util.operator.equals("min")) {
+			return Double.compare(arg0.getAttribute(), arg1.getAttribute());
+		}
+		return 0;
+	}
+	
+	public static int comparePackageTestResult(PackageTestResult arg0, PackageTestResult arg1) {
 		if (Util.operator.equals("max")) {
 			return Double.compare(arg1.getAttribute(), arg0.getAttribute());
 		} else if (Util.operator.equals("min")) {

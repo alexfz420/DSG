@@ -12,7 +12,7 @@
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
 				href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>
 		</ul></li>
@@ -52,7 +52,7 @@
             <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span>
                 <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
                 <span><a href="#">Business Rule List</a><span> &gt; </span></span>
-                <span>Edit Rule</span>
+                <span>Edit Business Rule</span>
             </li>
             
             <!-- Success Message and Error Message -->
@@ -60,37 +60,60 @@
             <div class="warning" style="display:none">errorMessage</div>
             <!-- Success Message and Error Message -->
         </div>
-            <form action="#">
+            <form action="resultRanking">
+            <input type="hidden" name="ruleId" value="${rule.getRuleId()}"/>
             <table class="text">
                 <tr>
-                    <td>Rule Name:</td>
-                    <td>Result Ranking</td>
+                    <td>Rule Name&#58;</td>
+                    <td><input style="width:200px;" type="text" name="ruleName" value ="${ruleName}">&nbsp;&nbsp;</td>
                 </tr>   
                 <tr>
-                    <td>Rule Description:</td>
-                    <td>Set ranking methods of the result.</td>
+                    <td>Rule Description&#58;</td>
+                    <td><textarea name ="ruleDescription" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" >${ruleDescription}</textarea></td>
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates}</textarea>
-                   </td>
-                </tr> 
-                <tr>
-                    <td>Stage:</td>
-                    <td>Stage3: Evaluation</td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" readonly>All</textarea>
+                    If not found, <a href="createcategory.html">new Group</a></td>
                 </tr>
                 <tr>
-                    <td>Rule Template:</td>
+                    <td>Stage&#58;</td>
+                    <td>Stage3: Allocation Optimization</td>
+                </tr>
+                <tr>
+                    <td>Rule Template&#58;</td>
                     <td>Candidate Evaluate</td>
                 </tr>
                 <tr class="drl-height">
-                    <td>Rule Editor:</td>
+                    <td>Rule Editor&#58;</td>
                     <td>
                     <div class="drl"> 
                         
-                        <div>Rank the routing candidates according to&#58;<br/><br/></div> 
-                        <div><input type="radio" name="cost" value="cost">Fulfillment cost<br>
-                             <input type="radio" name="margin" value="margin">Total margin of the order 
+                        <div>Select the routing candidates which can&#58;<br/><br/></div> 
+                        <div style="padding-left:50px;">
+                        	<input type="radio" name="rankOption" value="max" <c:if test="${rule.getOperator() == 'max'}">checked="checked"</c:if>>
+                        	maximize&nbsp;
+                        	<select name="maxOption" style="width:200px;">
+                        	 	<option value="margin" <c:if test="${rule.getAttribute() == 'margin'}">checked="checked"</c:if>> Total Margin </option>                        	
+                        		<option value="retailPrice" <c:if test="${rule.getAttribute() == 'retailPrice'}">checked="checked"</c:if>> Net Merchandise Sales </option>
+                        		<option value="shippingCost" <c:if test="${rule.getAttribute() == 'shippingCost'}">checked="checked"</c:if>>Fulfillment Cost</option>
+                         		<option value="otherCost" <c:if test="${rule.getAttribute() == 'otherCost'}">checked="checked"</c:if>>Other Cost</option>
+                        		<option value="proximity" <c:if test="${rule.getAttribute() == 'proximity'}">checked="checked"</c:if>> Proximity to Customer </option>
+                        		<option value="totalCost" <c:if test="${rule.getAttribute() == 'totalCost'}">checked="checked"</c:if>> Total Cost </option>
+                        	</select>
+                        </div>
+                        <br/>
+                        <div style="padding-left:50px;">
+                             <input type="radio" name="rankOption" value="min" <c:if test="${rule.getOperator() == 'min'}">checked="checked"</c:if>>
+                             minimize&nbsp;&nbsp;
+                             <select name="minOption" style="width:200px;">
+                                <option value="totalCost" <c:if test="${rule.getAttribute() == 'totalCost'}">checked="checked"</c:if>> Total Cost </option>
+                           		<option value="shippingCost" <c:if test="${rule.getAttribute() == 'shippingCost'}">checked="checked"</c:if>>Fulfillment Cost</option>
+                        		<option value="otherCost" <c:if test="${rule.getAttribute() == 'otherCost'}">checked="checked"</c:if>>Other Cost</option>
+                        		<option value="proximity" <c:if test="${rule.getAttribute() == 'proximity'}">checked="checked"</c:if>> Proximity to Customer </option>
+                        	 	<option value="margin" <c:if test="${rule.getAttribute() == 'margin'}">checked="checked"</c:if>> Total Margin </option>
+                        		<option value="retailPrice" <c:if test="${rule.getAttribute() == 'retailPrice'}">checked="checked"</c:if>> Net Merchandise Sales </option>
+                        	 </select>
                          </div>
                          <br/>
                           

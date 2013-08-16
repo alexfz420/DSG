@@ -157,7 +157,7 @@ function PackageTestResult getBestResult(ArrayList results) {
 	Collections.sort(results, new Comparator<PackageTestResult>() {
 		@Override
 		public int compare(PackageTestResult arg0, PackageTestResult arg1) {
-			return (int) (arg0.getCost() - arg1.getCost()); 
+			return Util.comparePackageTestResult(arg0, arg1); 
 		}			
 	});
 	
@@ -216,7 +216,9 @@ function ParcelResult getParcelResult(Parcel parcel, Store store) {
 	ParcelResult r = new ParcelResult(parcel);
 	r.setSource(store);
 	r.calculateCosts();	
-	System.out.println("For pacel " + parcel + ", store: " + store + ", totalCosts: " + r.getCost() + ", shipping costs: " + r.getShippingCost());
+	System.out.println("For pacel " + parcel + ", store: " + store + 
+						", totalCosts: " + r.getCost() + ", shipping costs: " + r.getShippingCost() + 
+						", other costs: " + r.getOtherCost() + ", attribute: " + r.getAttribute());
 	//System.out.println("shipping costs: " + r.getShippingCost());
 	return r;
 }

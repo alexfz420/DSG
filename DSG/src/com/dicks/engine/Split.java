@@ -61,9 +61,11 @@ public class Split {
 		Rule rule = rules.get(0);
 		synchronized (Util.operator) {
 			Util.operator = rule.getOperator();
+			System.out.println("operator: " + Util.operator);
 		}
 		synchronized (Util.attribute) {
 			Util.attribute = rule.getAttribute();
+			System.out.println("attribute: " + Util.attribute);
 		}
 
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();

@@ -8,6 +8,7 @@ public class ParcelResult {
 	private double cost;
 	private double attribute;
 	private double shippingCost;
+	private double otherCost;
 	
 	public ParcelResult(Parcel parcel) {
 		this.parcel = parcel;
@@ -59,6 +60,16 @@ public class ParcelResult {
 		long totalCosts = shippingCosts + otherCosts;
 		this.shippingCost = (double) shippingCosts / 100.0;
 		this.cost = (double) totalCosts / 100.0;
+		this.otherCost = (double) otherCosts / 100.0;
+		Util.calculateAttribute(this);
+	}
+
+	public double getOtherCost() {
+		return otherCost;
+	}
+
+	public void setOtherCost(double otherCost) {
+		this.otherCost = otherCost;
 	}
 	
 }
