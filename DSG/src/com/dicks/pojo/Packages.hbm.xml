@@ -34,8 +34,8 @@
         <property name="shippingDay" type="java.lang.Integer">
             <column name="shipping_day" not-null="true" />
         </property>
-        <property name="weight" type="java.lang.Double">
-            <column name="weight" precision="22" scale="0" not-null="true" />
+        <property name="weight" type="java.lang.Integer">
+            <column name="weight"  length="11" not-null="true" />
         </property>
         <set name="packageDetails" inverse="true">
             <key>
