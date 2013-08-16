@@ -59,6 +59,11 @@ public class Allocate {
     private EngineLog stage2;
 	private EngineLog stage3;
     
+	private Collection<PackageE> packages;
+	private Collection<Store> leftStores;
+	private Collection<PackageTestResult> allocatedResults;
+
+	
     public static Product[] product = new Product[5]; 
     
 	@SuppressWarnings("restriction")
@@ -176,9 +181,9 @@ public class Allocate {
 		ksession.insert(stage1);
 		ksession.fireAllRules();
 
-		Collection<PackageE> packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
-		Collection<Store> leftStores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
-		Collection<PackageTestResult> allocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
+		packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );
+		leftStores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
+		allocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 
 		this.stage2 = new EngineLog(2);
 		
@@ -202,8 +207,7 @@ public class Allocate {
 
 		ksession.dispose();
 		
-		Split split = new Split(packages, leftStores, stage2, allocatedResults);
-		this.setStage3(split.stage3);
+
 	}
 
 	private static void setUpProduct(Product p, String name, double price) {
@@ -241,6 +245,30 @@ public class Allocate {
 
 	public void setStage2(EngineLog stage2) {
 		this.stage2 = stage2;
+	}
+
+	public Collection<PackageE> getPackages() {
+		return packages;
+	}
+
+	public void setPackages(Collection<PackageE> packages) {
+		this.packages = packages;
+	}
+
+	public Collection<Store> getLeftStores() {
+		return leftStores;
+	}
+
+	public void setLeftStores(Collection<Store> leftStores) {
+		this.leftStores = leftStores;
+	}
+
+	public Collection<PackageTestResult> getAllocatedResults() {
+		return allocatedResults;
+	}
+
+	public void setAllocatedResults(Collection<PackageTestResult> allocatedResults) {
+		this.allocatedResults = allocatedResults;
 	}
 
 }

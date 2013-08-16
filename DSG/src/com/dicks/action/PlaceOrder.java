@@ -7,11 +7,16 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import com.dicks.engine.Allocate;
 import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.EngineLog;
+import com.dicks.engine.PackageE;
+import com.dicks.engine.PackageTestResult;
+import com.dicks.engine.Split;
 import com.dicks.engine.EngineLog.Log;
+import com.dicks.pojo.Store;
 
 public class PlaceOrder {
 	private String[] product;
@@ -26,6 +31,10 @@ public class PlaceOrder {
 	private EngineLog stage2;
 	private EngineLog stage3;
 	private ArrayList<Log> stage1Logs;
+	
+	private Collection<PackageE> packages;
+	private Collection<Store> leftStores;
+	private Collection<PackageTestResult> allocatedResults;
 	
 	public String[] getQuantity(){
 		return quantity;
@@ -71,34 +80,6 @@ public class PlaceOrder {
 	}
 	
 	public String placeorder() throws Exception{
-		
-//		BufferedReader br = null;
-//		 
-//		try {
-// 
-//			String sCurrentLine = null;
-// 
-//			br = new BufferedReader(new FileReader("src/com/dicks/rules/newRule_joe.drl"));
-// 
-//			while ((sCurrentLine = br.readLine()) != null) {
-//				System.out.println(sCurrentLine);
-//			}
-// 
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (br != null)br.close();
-//			} catch (IOException ex) {
-//				ex.printStackTrace();
-//			}
-//		}
-		
-//		 File file = new File("src/com/dicks/rules/newRule_joe.drl");         
-//         FileInputStream fos = new FileInputStream(file);
-//         fos.close();
-//         
-         
 		for(int i=0;i<quantity.length;i++){
 			quantity[i] = quantity[i].toLowerCase();
 			
@@ -110,13 +91,24 @@ public class PlaceOrder {
 		
 		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
+		
+		Split split = new Split(packages, leftStores, stage2, allocatedResults);
+		
+		
 		//System.out.println("order id in place order: " + test.getOrderId());
 		this.id = test.getOrderId();
 		
 		this.stage1 = test.getStage1();
 		this.stage2 = test.getStage2();
-		this.stage3 = test.getStage3();
+		this.stage3 = split.getStage3();
 		this.stage1Logs = stage1.getLogs();
+		
+		this.packages = test.getPackages();
+		this.leftStores = test.getLeftStores();
+		this.allocatedResults = test.getAllocatedResults();
+		
+		
+		
 		return "success";	
 	}
 
@@ -158,6 +150,30 @@ public class PlaceOrder {
 
 	public void setStage1Logs(ArrayList<Log> stage1Logs) {
 		this.stage1Logs = stage1Logs;
+	}
+
+	public Collection<PackageE> getPackages() {
+		return packages;
+	}
+
+	public void setPackages(Collection<PackageE> packages) {
+		this.packages = packages;
+	}
+
+	public Collection<Store> getLeftStores() {
+		return leftStores;
+	}
+
+	public void setLeftStores(Collection<Store> leftStores) {
+		this.leftStores = leftStores;
+	}
+
+	public Collection<PackageTestResult> getAllocatedResults() {
+		return allocatedResults;
+	}
+
+	public void setAllocatedResults(Collection<PackageTestResult> allocatedResults) {
+		this.allocatedResults = allocatedResults;
 	}
 
 }
