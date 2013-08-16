@@ -108,7 +108,7 @@ public class WriteDrl {
 		} catch(Exception e){
 			System.out.println("error: " + e);
 		} 
-		
+
 		//threshold abc = new threshold("hold");
 		System.out.println("Rules after editing");
 
@@ -282,7 +282,7 @@ public class WriteDrl {
 			}
 
 
-		   
+
 		   /*System.out.println("multi "+multiObject.toString());
 		    split the attribute
 		    System.out.println(attribute);
@@ -299,7 +299,7 @@ public class WriteDrl {
 		   String[] splitValue = values.split(",");
 		   
 		   first operator (default)*/
-		   
+
 
 		   //appending the whole "when" part
 
@@ -309,23 +309,23 @@ public class WriteDrl {
 		   tmp.append(myTab+"when"+myReturn);
 		   tmp.append(myTab+myTab+"$order : Orders()"+myReturn);
 		   tmp.append(myTab+myTab+"$orderE : OrderE()"+myReturn);
-		   
+
 		     /*tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+"&& (flag.equals(\""+flag+
 			   		"\")))"+myReturn);
 			multiple stores 
 			*/
 		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
 		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+" \")))"+myReturn);
-		   
+
 		   for (int i = 0; i < splitAttribute.length; i++){
 			   System.out.println("attribute "+i+" "+splitAttribute[i]);
 			   }
-		   
-		   
+
+
 		   if (splitAttribute[0].equals("Margin"))
 		   {
 			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
-			   
+
 		   }
 		   else if (splitAttribute[0].equals("Competition"))
 		   {
@@ -335,7 +335,7 @@ public class WriteDrl {
 			   if (splitAttribute[i].equals("Margin"))
 			   {
 				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
-				   
+
 			   }
 			   else if (splitAttribute[i].equals("Competition"))
 			   {

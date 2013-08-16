@@ -118,6 +118,14 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		}
 		return result;
 	}
+
+	public int getCateIdByCateName(String cateName) throws Exception {
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("cateName",cateName);
+		criterions.add(criterion);
+		StoreCate pc = ((List<StoreCate>)super.getList(criterions)).get(0);
+		return pc.getId().getCateStoreId();
+	}
 	
 //	public StoreCate getCategoryById(int categoryId) throws Exception {
 //	List<Criterion> criterions = new ArrayList<Criterion>();

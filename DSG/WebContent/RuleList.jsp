@@ -108,7 +108,7 @@
 		                    <td class="">
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
-		                    
+
 		            	 </tr>
                 <c:set var="ruleNum" value="${ruleNum+1}" />
 				</c:forEach>
