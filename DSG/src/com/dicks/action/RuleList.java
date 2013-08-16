@@ -39,7 +39,44 @@ public class RuleList {
 	public String[] sources;
 	private String ruleName;
 	private String ruleDescription;
+	private String thisValue;
+	private String thisSources;
+	private String thisOperator;
+	private String cateList ;
 	
+	private void setCateList(String cateList){
+		this.cateList = cateList;
+	}
+	
+	private String getCateList(){
+		return cateList;
+	}
+	
+	
+	public void setThisValue(String a){
+		this.thisValue = a;
+	}
+	
+	public String getThisValue(){
+		return thisValue;
+	}
+	
+	
+	public void setThisSources(String a){
+		this.thisSources = a;
+	}
+	
+	public String getThisSources(){
+		return thisSources;
+	}
+	
+	public void setThisOperator(String a){
+		this.thisOperator = a;
+	}
+	
+	public String getThisOperator(){
+		return thisOperator;
+	}
 	
 	public void setCates(String a){
 		this.cates = a;
@@ -200,6 +237,23 @@ public class RuleList {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		String[] cateLists = null;
+		try {
+			cateLists = RuleCateDAO.getInstance().getCateNamesByRuleId(thisRule.getRuleId().toString());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		StringBuffer cateBuffer = new StringBuffer();
+		/*cateBuffer.append(cateLists[0]);
+		for (int i = 1; i<cateLists.length;i++){
+			cateBuffer.append(","+cateLists[i]);
+		}
+		
+		cateList = cateBuffer.toString();*/
+	
+		System.out.println("!!!!!!!Cate"+cateLists.length);
 		if (thisRule.getType().equals("1")){
 			String[] tmp2 = null;
 			try {
@@ -277,6 +331,12 @@ public class RuleList {
 			operator = thisRule.getOperators();
 			value = thisRule.getValues();
 			sources = thisRule.getRoutes();
+			System.out.println("this value "+value[0]);
+			thisOperator  = operator[0];
+			thisValue = value[0];
+			thisSources = sources[0];
+			
+			
 			System.out.println("rule name is"+rulename);
 			if (viewEdit.equals("view")){
 				return "goToViewSpecialRoute";

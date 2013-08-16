@@ -81,12 +81,26 @@ rule  "Default Mininum Packagethreshold"
     	retract($i);
 end
 
-rule  "Threshold for nikeshoe"
+rule  "afsd"
     salience 848
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id :prodId)
+        $s: Store( (( storeName.equals("NK-SH-AJ"))|| (storeName.equals("NK-SH-KB"))|| (storeName.equals("NK-CL-KD")))&& (flag.equals("TH-A,ST-A,SP-A ")))
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+    then
+        retract($s);
+end
+
+rule  "Threshold for nikeshoe"
+    salience 846
     when
         $o : Orders()
         $orderE : OrderE()
-        $i : Product( ((Length > 1)||( Width > 2)||( Height > 3)||( Weight > 4))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length > 12)||( Width > 2)||( Height > 34)||( Weight > 4))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD")))&& (flag.equals("TH-A,ST-A,SP-A")))
         $logger: EngineLog()
     then
         for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
@@ -100,6 +114,39 @@ rule  "Threshold for nikeshoe"
             $logger.addLog("Threshold for nikeshoe",p.toString()); 
         }
         retract($i);
+end
+
+rule  "speical route"
+    salience 844
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("NK-SH-AJ"))
+        eval ($orderE.getProductQty($id)==1)
+        $s : Store( storeId == 1)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, "==", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("speical route","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        PackageTestResult packageR = new PackageTestResult(test);
+        packageR.addResult(parcelR);
+        $logger.addLog("speical route",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("speical route",packageR.toString());      
+        System.out.println(packageR);
+        insert(packageR);
+        retract(p);
+        retract($product);
 end
 
 rule "Insert Package for Remaining Products"

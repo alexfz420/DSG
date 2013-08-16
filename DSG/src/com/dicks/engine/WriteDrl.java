@@ -266,22 +266,23 @@ public class WriteDrl {
 
 		   //first product, special case it if the input is "all"
 		   StringBuffer multiObject = new StringBuffer();
-		   if (splits[0].equals("ALL")){
-			   multiObject.append(")");
-		   }
-		   else{
-		   multiObject.append("(( storeId =="+splits[0]+"))");
+			if (splits[0].equals("ALL")){
+				multiObject.append("");
+			}
+			else{
+				multiObject.append("(( storeName.equals(\""+splits[0]+"\"))");
 
-		   //combing all the other products
-		   //System.out.println("splits.size: " + splits.length);
-		   for (int i = 1; i < splits.length; i++){
-			   multiObject.append("|| (storeId =="+splits[i]+"))");
+				//combing all the other products
+				//sS System.out.println("splits.size: " + splits.length);
+				for (int i = 1; i < splits.length; i++){
+					multiObject.append("|| (storeName.equals(\""+splits[i]+"\"))");
+					//System.out.println("add second product");
+				}
+				multiObject.append(")");
+			}
 
-		   }
 
-
-		   multiObject.append(")");
-		   }
+		   
 		   /*System.out.println("multi "+multiObject.toString());
 		    split the attribute
 		    System.out.println(attribute);
@@ -313,7 +314,7 @@ public class WriteDrl {
 			   		"\")))"+myReturn);
 			multiple stores 
 			*/
-		   tmp.append(myTab+myTab+"$product : Product()"+myReturn);
+		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
 		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+" \")))"+myReturn);
 		   
 		   for (int i = 0; i < splitAttribute.length; i++){
@@ -352,7 +353,7 @@ public class WriteDrl {
 	public String writeThenStoreRule(String[] action){
 		StringBuffer tmp = new StringBuffer();
 		tmp.append(myTab+"then"+myReturn);
-		tmp.append(myTab+myTab+"retract($store);"+myReturn);
+		tmp.append(myTab+myTab+"retract($s);"+myReturn);
 		tmp.append("end"+myReturn+myReturn);
 		return tmp.toString();
 	}

@@ -41,6 +41,11 @@ public class RuleDAO extends BaseDao<Rule> {
 
 	public Rule[] getAllRuleList() throws Exception{
 		ArrayList<Rule> ruleList = (ArrayList<Rule>) super.getList();
+		Collections.sort(ruleList, new Comparator<Rule>() {
+			public int compare(Rule o1, Rule o2) {
+				return o2.getPriority() - o1.getPriority();
+			}
+		});
 		return (Rule[]) ruleList.toArray(new Rule[ruleList.size()]);
 	}
 	

@@ -228,20 +228,19 @@ function goBack(){
             <form name ="myForm" action="updateRule">
             <table class="text" >
                 <tr>
-                    <td>Rule Name&#58;</td>
-                    <td><input style="width:200px;" type="text" name="rulenames" value ="${rulename}">&nbsp;&nbsp;</td>
+                    <td>Rule Name&#58;</td> 
+                    <td><input style="width:200px;" type="text" name="rulenames" value ='${rulename.replace("%20"," ")}' >&nbsp;&nbsp;</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" >${ruleDess}</textarea></td>
+                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" 	>${ruleDess.replace("%20"," ")}</textarea></td>
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates}</textarea>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates.replace("%20"," ")}</textarea>
                     
                     </td>
-                    
-                </tr>
+                </tr> 
                 <tr>
                     <td>Stage&#58;</td>
                     <td>Stage 1 - Fulfillment Eligibility</td>
@@ -256,28 +255,29 @@ function goBack(){
                     <td style="width:500px;">
                     <div id ="firstStep" class="drl"> 
                       <div id="specialroute1">
-                        <div style="padding-bottom:10px;">If the product quantity is &nbsp;&nbsp;&nbsp;</div>
+                      
+                      <!-- should put for each here -->
+                      
+                      
+                       <div style="padding-bottom:10px;">If the product quantity is &nbsp;&nbsp;&nbsp;  </div>
                         <div id ="operatorDiv" style="padding-bottom:10px;">
                         <select style="width:120px;" name="operator" >
-                                <option value="&gt;">More Than</option>
-                                <option value="=">Equal</option>
-                                <option value="&lt;">Less than</option>
+                                <option value=">"<c:if test="${thisOperator == '>'}">selected="selected"</c:if>>More Than</option>
+                                <option value="="<c:if test="${thisOperator == '='}">selected="selected"</c:if>>Equal</option>
+                                <option value="<"<c:if test="${thisOperator == '<'}">selected="selected"</c:if>>Less than</option>
                             </select>&nbsp;&nbsp;
-                            <input type="text" name="productcount" style="width:50px;"> 
+                            <input type="text" name="productcount" style="width:50px;" value ="${thisValue}"> 
                            </div>
                         <div style="padding-bottom:10px;float:left;">Ship the product from&#58;&nbsp;&nbsp;</div>
-                        <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" ></textarea></div>
+                        <div style="padding-bottom:10px;float:left;"class="ui-widget"><textarea id="tags" name = "sources" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in fulfillment sources&hellip;" >${thisSources }</textarea></div>
+                   
                       </div>
-                      
+                     
                       <input type="hidden" value="1" id="theValue"/>
                         <a class="button" href="javascript:;" onclick="addSpecialRoute(myDiv);">+ Add Special Route</a>
                         <div id="myDiv"></div>
    
-                    <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
-	                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
-	                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
-	           		<input type="hidden" name="des"  value=<%=request.getAttribute("des")%> />
-	           		<input type="hidden" id="priorityId" name="priority">   
+                    
                     </div>
                     </td>
                 </tr>

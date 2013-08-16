@@ -318,6 +318,9 @@ public class Rule implements java.io.Serializable {
 		if (s2 != null && s2[0] != null){
 			s1.append(s2[0]);
 			for (int i = 1; i < s2.length; i++){
+					if (s2[i].equals("=")){
+						s2[i] = "==";
+					}
 					s1.append(",");
 					s1.append(s2[i]);
 			}
@@ -333,6 +336,7 @@ public class Rule implements java.io.Serializable {
 
 	public String[] translateBack(String s1){
 		
+		s1 = s1.replace("=", "==");
 		String[] s2 = s1.split(",");
 		System.out.println("translated back");
 		for (int i = 0;i<s2.length;i++){
