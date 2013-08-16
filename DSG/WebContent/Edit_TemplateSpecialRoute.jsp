@@ -238,9 +238,10 @@ function goBack(){
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
                     <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates}</textarea>
-                    If not found, <a href="createcategory.html">new Group</a>.
+                    
                     </td>
                     
+                </tr>
                 <tr>
                     <td>Stage&#58;</td>
                     <td>Stage 1 - Fulfillment Eligibility</td>

@@ -117,9 +117,10 @@ function removeElement(divNum) {
                     <td>Set the formula for fulfillment cost calculation.</td>
                 </tr>
                 <tr>
-                    <td>Category&#58;</td>
-                    <td>Clothes&#44;&nbsp;Fishing</td>
-                </tr>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates}</textarea>
+                   </td>
+                </tr> 
                 <tr>
                     <td>Stage&#58;</td>
                     <td>Stage 3: Evaluation</td>

@@ -228,23 +228,24 @@ function goBack(){
             <table id="rule" class="text">
                 <tr>
                     <td>Rule Name&#58;</td>
-                    <td>Special Route</td>
+                    <td>${rulename}</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td>Set special route for products</td>
+                    <td>${des}</td>
+                </tr>
+               	<tr>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td>${cates} </td>
+                    
                 </tr>
                 <tr>
-                    <td>Category&#58;</td>
-                    <td>Fishing&#44;&nbsp;Clothes</td>
-                </tr>
-                <tr>
-                    <td>Stage:</td>
-                    <td>Stage1 - preprocessing</td>
+                    <td>Stage&#58;</td>
+                    <td>Stage 1 - Fulfillment Eligibility</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
-                    <td>Special Route</td>
+                    <td>${templatename }</td>
                 </tr>
                 <tr class="drl-height">
                     <td>Rule Editor&#58;</td>
