@@ -265,6 +265,7 @@ function goBack(){
 		<!-- Success Message and Error Message -->
 
 		<form action="costcalculation">
+			<input name="ruleId" type="hidden" value="${rule.getRuleId()}"/>
 			<table class="text" style="width: 850px;">
 				<tr>
 					<td style="width: 150px;">Rule Name&#58;</td>
@@ -278,7 +279,6 @@ function goBack(){
 					<td>Group<span class="red">*</span>&#58;</td>
 					<td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" readonly> All </textarea>
                     If not found, <a href="createcategory.html">new Group</a>.
->>>>>>> branch 'master' of https://github.com/alexfz420/DSG.git
                     </td>
 				</tr>
 				<tr>

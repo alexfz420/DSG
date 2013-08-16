@@ -43,6 +43,8 @@ public class RuleList {
 	private String thisSources;
 	private String thisOperator;
 	private String cateList ;
+	private Rule rule;
+	
 	
 	private void setCateList(String cateList){
 		this.cateList = cateList;
@@ -306,7 +308,13 @@ public class RuleList {
 			this.vendorFeeList = feeDAO.getByType("vendor");
 			this.ruleName = thisRule.getRuleName();
 			this.setRuleDescription(thisRule.getRuleDescr());
+			this.rule = thisRule;
 			return "goToCostCalculation";
+		} else if (thisRule.getType().equals("6")) {
+			this.rule = thisRule;
+			this.ruleName = thisRule.getRuleName();
+			this.ruleDescription = thisRule.getRuleDescr();
+			return "goToEvaluationMethod";
 		} 
 		else if (thisRule.getType().equals("3")) {
 			String[] tmp2 = null;
@@ -511,5 +519,13 @@ public class RuleList {
 
 	public void setRuleDescription(String ruleDescription) {
 		this.ruleDescription = ruleDescription;
+	}
+
+	public Rule getRule() {
+		return rule;
+	}
+
+	public void setRule(Rule rule) {
+		this.rule = rule;
 	}
 }

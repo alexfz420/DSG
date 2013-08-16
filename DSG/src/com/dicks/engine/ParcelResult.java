@@ -8,6 +8,7 @@ public class ParcelResult {
 	private double cost;
 	private double attribute;
 	private double shippingCost;
+	private double otherCost;
 	
 	public ParcelResult(Parcel parcel) {
 		this.parcel = parcel;
@@ -34,7 +35,7 @@ public class ParcelResult {
 	
 	@Override
 	public String toString() {
-		return this.parcel + ", source: " + this.source + ", shippingCost: " + this.cost;
+		return this.parcel + ", source: " + this.source + ", shippingCosts: " + this.shippingCost + ", cost: " + this.cost;
 	}
 
 	public double getAttribute() {
@@ -51,6 +52,24 @@ public class ParcelResult {
 
 	public void setShippingCost(double shippingCost) {
 		this.shippingCost = shippingCost;
+	}
+	
+	public void calculateCosts() throws Exception {
+		long shippingCosts = Util.getShippingCosts(parcel, source);
+		long otherCosts = Util.calculateCosts(parcel, source);
+		long totalCosts = shippingCosts + otherCosts;
+		this.shippingCost = (double) shippingCosts / 100.0;
+		this.cost = (double) totalCosts / 100.0;
+		this.otherCost = (double) otherCosts / 100.0;
+		Util.calculateAttribute(this);
+	}
+
+	public double getOtherCost() {
+		return otherCost;
+	}
+
+	public void setOtherCost(double otherCost) {
+		this.otherCost = otherCost;
 	}
 	
 }

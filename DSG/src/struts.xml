@@ -48,7 +48,8 @@
            <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToEditSpecialRoute" type="dispatcher">/Edit_TemplateSpecialRoute.jsp</result>
            <result name="goToViewSpecialRoute" type="dispatcher">/View_TemplateSpecialRoute.jsp</result>
-           <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
+           <result name="goToCostCalculation" type="dispatcher">/Edit_TemplateCostCalculation.jsp</result>
+           <result name="goToEvaluationMethod" type="dispatcher">/Edit_TemplateResultRanking.jsp</result>
            <result name="enableSuccess" type="chain">
             <param name="actionName">gotorulelist</param>
           </result> 
@@ -153,11 +154,16 @@
       		<result name="success">/EditProdCategory.jsp</result>
       </action> 
 
-      <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
+       <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
           <result name="success" type="chain">gotorulelist</result>
-      </action>     
-       
-       
+      </action>         
+      <action name="resultRanking" class="com.dicks.action.ResultRankingAction" method="resultRanking">
+          <result name="success" type="chain">gotorulelist</result>
+      </action>         
+       <action name="storethreshold" class="com.dicks.action.StoreThresholdAction" method="storeThreshold">
+          <result name="success">/RuleList.jsp</result>
+      </action>
+
        <action name="editrule" class="com.dicks.action.EditRuleAction" method="editRule">
           <result name="success">/Edit_TemplateResultRanking.jsp</result>
       </action>

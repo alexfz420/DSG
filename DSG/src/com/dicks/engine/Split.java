@@ -38,9 +38,17 @@ import com.dicks.pojo.Store;
 import com.dicks.engine.Util;
 
 public class Split {
-	EngineLog stage2;
-	EngineLog stage3;
+	private EngineLog stage2;
+	private EngineLog stage3;
 	
+	public EngineLog getStage3() {
+		return stage3;
+	}
+
+	public void setStage3(EngineLog stage3) {
+		this.stage3 = stage3;
+	}
+
 	public static void main(String[] args) {					
 //		ArrayList<PackageTestResult> results = getTestResult(p1, order);
 //		
@@ -54,16 +62,18 @@ public class Split {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
 		
-		this.stage2 = stage2;
+		this.setStage2(stage2);
 		this.stage3 = new EngineLog(3);
 		
 		ArrayList<Rule> rules = RuleDAO.getInstance().getRuleByType("6");
 		Rule rule = rules.get(0);
 		synchronized (Util.operator) {
 			Util.operator = rule.getOperator();
+			System.out.println("operator: " + Util.operator);
 		}
 		synchronized (Util.attribute) {
 			Util.attribute = rule.getAttribute();
+			System.out.println("attribute: " + Util.attribute);
 		}
 
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
@@ -89,7 +99,13 @@ public class Split {
 
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
-
+		
+//		ksession.insert(stage2);
+//		ksession.insert(stage3);
+		
+		ksession.setGlobal("stage2", stage2);
+		ksession.setGlobal("stage3", stage3);
+		
 		for (PackageE pack : packages) {
 			ksession.insert(pack);
 		}
@@ -98,9 +114,6 @@ public class Split {
 			ksession.insert(store);
 			System.out.println(store);
 		}
-		
-		ksession.insert(stage2);
-		ksession.insert(stage3);
 
 		System.out.println("----------------------");
 
@@ -244,6 +257,14 @@ public class Split {
 			}
 			System.out.println();
 		}
+	}
+
+	public EngineLog getStage2() {
+		return stage2;
+	}
+
+	public void setStage2(EngineLog stage2) {
+		this.stage2 = stage2;
 	}
 
 	public static class Combination {
