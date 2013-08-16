@@ -59,6 +59,11 @@
             <param name="actionName">gotorulelist</param>
           </result> 
       </action>
+      <action name="updateRuleSpecial" class="com.dicks.action.RuleList" method="updateRuleSpecial">
+          <result name="success" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
+      </action>
       <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
           <result name="success" type="dispatcher">/PrioritizeRule.jsp</result>
       </action>

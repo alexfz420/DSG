@@ -136,7 +136,7 @@
                     <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" >${ruleDess.replace("%20"," ")}</textarea></td>
                 </tr>
                 <tr>
-                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td>Group<span class="red">*</span>&#58;</td>	
                     <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates.replace("%20"," ")}</textarea>
                     
                     </td>
