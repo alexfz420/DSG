@@ -3,6 +3,7 @@ package com.dicks.action;
 import java.util.ArrayList;
 
 import com.dicks.dao.ProdCateDAO;
+import com.dicks.dao.StoreCateDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.engine.CreateTemplate;
@@ -28,7 +29,15 @@ public class CreateNewBizRule {
 	public String des;
 
 	public String prodCate;
+	public String storeCate;
 	
+	public void setStoreCate(String storeCate){
+		this.storeCate = storeCate;
+	}
+	
+	public String getstoreCate(){
+		return storeCate;
+	}
 	
 	public String getDes(){
 		return des;
@@ -149,6 +158,7 @@ public class CreateNewBizRule {
 
 	public String gotonewbizrulelist(){
 		String[] tmp2 = null;
+		String[] tmp3 = null;
 		try {
 			tmp2 = ProdCateDAO.getInstance().getProdCateNames();
 		} catch (Exception e) {
@@ -161,8 +171,19 @@ public class CreateNewBizRule {
 			//System.out.println(tmp2[i]);
 			cate.append(","+tmp2[i]);
 		}
-		
-		
+		try {
+			tmp3 = StoreCateDAO.getInstance().getStoreCateNames();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		StringBuffer cates = new StringBuffer();
+		cate.append(tmp3[0]);
+		for (int i = 1;i<tmp3.length;i++){
+			//System.out.println(tmp2[i]);
+			cates.append(","+tmp3[i]);
+		}
+		storeCate = cates.toString();
 		prodCate = cate.toString();
 		return "success";
 	}
