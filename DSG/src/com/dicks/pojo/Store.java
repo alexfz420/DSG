@@ -17,6 +17,7 @@ public class Store implements java.io.Serializable {
 	private String zip;
 	private String flag;
 	private String storeType;
+	private Integer capacity;
 	private Set inventories = new HashSet(0);
 	private Set storeCates = new HashSet(0);
 	private Set packageses = new HashSet(0);
@@ -127,5 +128,13 @@ public class Store implements java.io.Serializable {
 
 	public void setPackageses(Set packageses) {
 		this.packageses = packageses;
+	}
+
+	public Integer getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
 	}
 }

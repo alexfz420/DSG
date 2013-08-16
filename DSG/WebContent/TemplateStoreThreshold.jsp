@@ -25,10 +25,18 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
-        </li>  
+        </li>
+        <li class=""><a class="recordable open" href="#" id="togglefour"
+            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
+                
+            </ul>
+		</li>   
     </ul>
     </div>
   <script>
@@ -39,6 +47,7 @@
 
   //var rule = allRule;
     function show() {
+        
 	    document.getElementById('secondStep').style.display='block';
 	    document.getElementById('firstStep').style.display='none';
 	    document.getElementById('buttons').style.display='none';
@@ -48,57 +57,26 @@
 	  document.getElementById('secondStep').style.display='none';
 	  document.getElementById('firstStep').style.display='block';
       document.getElementById('buttons').style.display='block';    
+      
+
+
+      
   } 
 
   function pageOnLoad() {
-	  console.log("logged");
 	  close();
   }
-  
-  /*function deleteRow(tableID) {
-    try {
-        var table = document.getElementById(tableID);
-        var rowCount = table.rows.length;
- 
-        for(var i=0; i<rowCount; i++) {
-            var row = table.rows[i];
-            var chkbox = row.cells[0].childNodes[0];
-            if(null != chkbox && true == chkbox.checked) {
-                table.deleteRow(i);
-                rowCount--;
-                i--;
-            }
-        }
-    }catch(e) {
-        alert(e);
-    }
-  }*/
-
-//style="margin-left:50px;float:left;width:800px;"
- function deleteRow(row){
-    var i = row.parentNode.parentNode.rowIndex;
-
-    var x;
-    var r = confirm("Do you really want to delete this rule?");
-    if(r == true){
-        document.getElementById('sort').deleteRow(i);
-    }
-    else{
-        ;
-    }
- }
- 
  
  function SubmitForm()
  {
 	 console.log("start");
-	 var rulename = '${rulename}';
+	 var rulename = '${rulename.replace("%20"," ")}';
+	 console.log("searching"+rulename);
 	 var table = document.getElementById("sort");
 	 for (var i = 0, row; row = table.rows[i]; i++){
 	    //iterate through rows
 	    //rows would be accessed using the "row" variable assigned in the for loop
 	    for (var j = 0, col; col = row.cells[j]; j++) {
-	    	console.log("caonimabi"+j);
 	      if (col.innerText == rulename){
 
 	    	  document.getElementById('priorityId').value= i;
@@ -113,96 +91,190 @@
  window.onload =pageOnLoad;
  
  </script>
-<script>
+ <script>
 function goBack(){
 	window.history.go(-1);
 }
 </script>
+    <!-- menu bar ends -->
+
     <!-- content starts -->
-   <div class="minibar recordable" id="minibar" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}" style="display:none;"><a id="menu-untoggle" href="javascript:void(0)" class="unfold" ></a></div> 
+    <div class="minibar recordable" id="minibar" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}" style="display:none;"><a id="menu-untoggle" href="javascript:void(0)" class="unfold" ></a></div> 
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix">
+        <div class="title-bar clearfix"></div>
             <h1 class="l">New Business Rule</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
-        
-        <div>
-            <li style="list-style:none;">
-            	<span><a href="#">Home</a><span> &gt; </span></span>
-                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
+
+            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
+                <span><a href="#">Manage Business Rule</a><span> > </span></span>
                 <span>New Business Rule</span>
             </li>
-        </div>
+            
             <!-- Success Message and Error Message -->
-            <div class="success_area" style="display:none">successMessage</div>
-            <div class="warning" style="display:none">errorMessage</div>
+            <div class="success_area">successMessage</div>
+            <div class="warning">errorMessage</div>
             <!-- Success Message and Error Message -->
-        </div>
-        <div>
-            <form action="storethreshold">
+
+            <form name ="myForm" action="storeThreshold">
+            
             <table class="text">
                 <tr>
                     <td>Rule Name&#58;</td>
-                    <td>Set Store Threshold</td>
-                </tr>
+                    <td>${rulename}</td>
+                </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td>Set store threshold.</td>
+                    <td>${des}</td>
                 </tr>
                 <tr>
-                    <td>Category&#58;</td>
-                    <td>Store1&#44;&nbsp;Hub Stores</td>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td>${cates} </td>
+                    
                 </tr>
                 <tr>
                     <td>Stage&#58;</td>
-                    <td>Stage1 - Preprocessing</td>
+                    <td>Stage 1 - Fulfillment Eligibility</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
-                    <td>Store Threshold</td>
+                    <td>${templatename }</td>
                 </tr>
                 <tr class="drl-height">
-                    <td>Rule Editor&#58;</td>
-                    <td style="width:500px;">
-                    <div class="drl">
-                         
-                         <div> If the specific fulfillment source shipped 
-                            <select style="width:90px;">
-                                <option value="#">more than</option>
-                                <option value="#">less than</option>
-                            </select> 
-                            <input type="text" name="storethreshold" style="width:50px;"> orders on the day&#44;
-                            <br/><br/>
-                        </div>
-                        <div> Perform the following action&#58;</div>
-                        <br/>
-                        <div>
-                            <select style="width:300px;">
-                                <option value="#">Lower the priority of this fulfillment source</option>
-                                <option value="#">Increase the priority of this fulfillment source</option>
-                                <option value="#">Filter out the fulfillment source</option>
-                            </select> 
-                            <br/><br/>
-                        </div>
-   			    <input type="hidden" name="rulename"  value=<%=request.getAttribute("rulename")%> />
-                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
-                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
-           		<input type="hidden" id="priorityId" name="priority">
-
-                    </div>
+                    <td colspan="2" >Rule Editor&#58;</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="Back" onclick="goBack()" class="button">  <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
-                    <td><input type="submit" value="Create" class="button"></td>
+                    <td></td>
+                    <td>
+                    <div id ="firstStep" class="drl"> 
+                         <div style="padding-left:100px">
+                         <div> If
+                            <select style="width:50px;" name="conditions">
+                                <option value="all">All</option> 
+                                <option value="any">Any</option>
+                            </select> of the following conditions are met&#58;
+                        </div>  
+                        <div>
+                            <select style="width:180px;" name="attribute">
+                                <option value="Distance">Shipping Distance</option> 
+                                <option value="Margin">Inventory Margin</option>
+                                <option value="Competition">Competition Rate</option>
+                            </select>&nbsp;&nbsp;
+                            <select style="width:40px;" name="operator">
+                             	<option value=">">&gt;</option>
+                                <option value="=">=</option>
+                                <option value="<">&lt;</option> 
+                            </select>&nbsp;&nbsp;
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:90px;">
+                                <option value="#">Miles</option> 
+                                <option value="#">Quantity</option>
+                                <option value="#">Rate</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select style="width:180px;" name="attribute">
+                                <option value="Margin">Inventory Margin</option>
+                                <option value="Distance">Shipping Distance</option> 
+                                <option value="Competition">Competition Rate</option>
+                            </select>&nbsp;&nbsp;
+                            <select style="width:40px;" name="operator" >
+                                <option value=">">&gt;</option>
+                                <option value="<">&lt;</option> 
+                                <option value="=">=</option>
+                                
+                            </select>&nbsp;&nbsp;
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:90px;">
+                                <option value="#">Quantity</option>
+                                <option value="#">Miles</option> 
+                                <option value="#">Rate</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select style="width:180px;" name="attribute">
+                           		<option value="Competition">Competition Rate</option>
+                           		<option value="Distance">Shipping Distance</option> 
+                                <option value="Margin">Inventory Margin</option>
+                                
+                            </select>&nbsp;&nbsp;
+                             <select style="width:40px;" name="operator" >
+                                <option value=">">&gt;</option>
+                                <option value="=">=</option>
+                                <option value="<">&lt;</option> 
+                            </select>&nbsp;&nbsp;
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:90px;">
+                                <option value="#">Rate</option>
+                                <option value="#">Miles</option> 
+                                <option value="#">Quantity</option>
+                                
+                            </select>
+                        </div>
+                         
+                        <div>Perform the following action&#58;</div>
+                        <div><select name="actions">
+                                <option value="miniumPackage">Not Ship Package</option>
+                                <option value="diffpackage">Lower Priority</option>
+                        </select></div>
+                        </div>
+                    </div>
                 </tr>
+                <tr id = "buttons">
+                    <td style = "text-align:right"><a class="button"  onclick='show()'>Next</a></td>
+                    <td>
+                    <a class="button" href="#">Cancel</a></td>
+                    
+                <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
+                <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
+                <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
+                <input type="hidden" name="des"  value=<%=request.getAttribute("des")%> />
+           		<input type="hidden" id="priorityId" name="priority"> 
+           
+                    
+                </tr>
+                 </table>   
+            
+            <div id = "secondStep">
+            <table id="sort" class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
+			<thead>
+                        <tr style="height:30px;background-color:#f1f1f1;border-bottom:none;">
+                            <th style="text-align:center;color:#666;">Rule Number</th>
+                            <th style="text-align:left;color:#666;">Rule Name</th>
+                            <th style="text-align:left;color:#666;">Rule Description</th>
+                        </tr>
+                    </thead>
+   			<c:set var="ruleNum" value ="1" />
+            <c:forEach var="allRule" items="${allRule}" >
+            
+            		<tr style="height:30px;">
+            				
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;">${ruleNum}</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${allRule.ruleName}</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${allRule.ruleDescr}</td>
+                        </tr>
+                 <c:set var="ruleNum" value="${ruleNum+1}" />   
+				</c:forEach>
+				<tr style="height:30px;background-color:8CEEF5">
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#8CEEF5">Your New Rule</td>
+
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">${rulename.replace("%20"," ")}</td>
+
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
+                </tr>
+                
             </table>
+            		
+            		<a class="button" onclick="goBack()">Back</a>
+                    <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
+                    <a class="button" onclick='SubmitForm()'>Create</a>
+                
+            </div>
             </form>
         </div>
-            
-     
-    </div>  
+
+
+
 
     
     <!-- content ends -->
@@ -210,7 +282,7 @@ function goBack(){
                 
     <!-- footer starts -->
  
-            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
+            <div class="footer"><span>©2013 eBusiness Team</span></div>
         
     <!-- footer ends -->
 

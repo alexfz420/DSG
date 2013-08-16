@@ -234,6 +234,7 @@ function goBack(){
 </script>
 <!-- menu bar ends -->
 
+
 <!-- content starts -->
 <div class="minibar recordable" id="minibar"
 	memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}"
@@ -277,6 +278,7 @@ function goBack(){
 					<td>Group<span class="red">*</span>&#58;</td>
 					<td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" readonly> All </textarea>
                     If not found, <a href="createcategory.html">new Group</a>.
+>>>>>>> branch 'master' of https://github.com/alexfz420/DSG.git
                     </td>
 				</tr>
 				<tr>

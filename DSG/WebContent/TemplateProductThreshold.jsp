@@ -5,6 +5,8 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
  <jsp:include page="template_top.jsp" />
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+ 
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -51,12 +53,16 @@
 	    document.getElementById('secondStep').style.display='block';
 	    document.getElementById('firstStep').style.display='none';
 	    document.getElementById('buttons').style.display='none';
+	    document.getElementById('progress1').style.display='none';
+	    document.getElementById('progress2').style.display='block';
 }
   
   function close() {
 	  document.getElementById('secondStep').style.display='none';
 	  document.getElementById('firstStep').style.display='block';
-      document.getElementById('buttons').style.display='block';    
+      document.getElementById('buttons').style.display='block'; 
+      document.getElementById('progress1').style.display='block';
+	    document.getElementById('progress2').style.display='none';
       
 
 
@@ -117,25 +123,37 @@ function goBack(){
             <div class="success_area">successMessage</div>
             <div class="warning">errorMessage</div>
             <!-- Success Message and Error Message -->
-
+			
+			<div class="progress progress-striped" id = "progress1" style="float:top;" >
+          		 <div class="bar" style="width: 60%;"></div>
+          	</div>
+          	
+          	<div class="progress progress-striped" id = "progress2" style="float:top;" >
+          		 <div class="bar" style="width: 100%;"></div>
+          	</div>
             <form name ="myForm" action="newrule">
             
             <table class="text">
                 <tr>
                     <td>Rule Name&#58;</td>
-                    <td>Set Store Threshold</td>
+                    <td>${rulename}</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td>Set store threshold</td>
+                    <td>${des}</td>
                 </tr>
                 <tr>
-                    <td>Stage:</td>
-                    <td>Stage1</td>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td>${cates} </td>
+                    
+                </tr>
+                <tr>
+                    <td>Stage&#58;</td>
+                    <td>Stage 1 - Fulfillment Eligibility</td>
                 </tr>
                 <tr>
                     <td>Rule Template&#58;</td>
-                    <td>Set Store Threshold</td>
+                    <td>${templatename }</td>
                 </tr>
                 <tr class="drl-height">
                     <td colspan="2" >Rule Editor&#58;</td>
@@ -153,77 +171,79 @@ function goBack(){
                             </select> of the following conditions are met&#58;
                         </div>  
                         <div>
-                            <select style="width:70px;" name="attribute">
+                            <select style="width:100px;" name="attribute">
                                 <option value="Length">Length</option> 
                                 <option value="Width">Width</option>
                                 <option value="Height">Height</option>
                                 <option value="Weight">Weight</option>
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator">
-                                <option value="<">&lt;</option> 
+                             	<option value=">">&gt;</option>
                                 <option value="=">=</option>
-                                <option value=">">&gt;</option>
+                                <option value="<">&lt;</option> 
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:90px;">
                                 <option value="#">inches</option> 
                                 <option value="#">feet</option>
                                 <option value="#">lbs</option>
                             </select>
                         </div>
                         <div>
-                            <select style="width:70px;" name="attribute">
-                                <option value="Length">Length</option> 
+                            <select style="width:100px;" name="attribute">
                                 <option value="Width">Width</option>
+                                <option value="Length">Length</option> 
                                 <option value="Height">Height</option>
                                 <option value="Weight">Weight</option>
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator" >
+                                <option value=">">&gt;</option>
                                 <option value="<">&lt;</option> 
                                 <option value="=">=</option>
-                                <option value=">">&gt;</option>
+                                
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:90px;">
                                 <option value="#">inches</option> 
                                 <option value="#">feet</option>
                                 <option value="#">lbs</option>
                             </select>
                         </div>
                         <div>
-                            <select style="width:70px;" name="attribute">
+                            <select style="width:100px;" name="attribute">
+                           		<option value="Height">Height</option>
                                 <option value="Length">Length</option> 
                                 <option value="Width">Width</option>
-                                <option value="Height">Height</option>
                                 <option value="Weight">Weight</option>
 
                             </select>&nbsp;&nbsp;
                              <select style="width:40px;" name="operator" >
-                                <option value="<">&lt;</option> 
-                                <option value="=">=</option>
                                 <option value=">">&gt;</option>
+                                <option value="=">=</option>
+                                <option value="<">&lt;</option> 
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:90px;">
                                 <option value="#">inches</option> 
                                 <option value="#">feet</option>
                                 <option value="#">lbs</option>
                             </select>
                         </div>
                          <div>
-                            <select style="width:70px;" name="attribute">
+                            <select style="width:100px;" name="attribute">
+                            	<option value="Weight">Weight</option>
                                 <option value="Length">Length</option> 
                                 <option value="Width">Width</option>
                                 <option value="Height">Height</option>
-                                <option value="Weight">Weight</option>
+                                
 
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator" >
-                                <option value="<">&lt;</option> 
-                                <option value="=">=</option>
                                 <option value=">">&gt;</option>
+                                <option value="=">=</option>
+                                <option value="<">&lt;</option> 
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:70px;">
+                            <input style="width:50px;" type="text" name="value">&nbsp;&nbsp;<select style="width:90px;">
+                                <option value="#">lbs</option>
                                 <option value="#">inches</option> 
                                 <option value="#">feet</option>
-                                <option value="#">lbs</option>
                             </select>
                         </div>
                         <div>Perform the following action&#58;</div>

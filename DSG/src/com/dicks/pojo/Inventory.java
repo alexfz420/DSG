@@ -13,6 +13,7 @@ public class Inventory implements java.io.Serializable {
 	private Integer retailPrice;
 	private Integer inventory;
 	private Integer safetyStock;
+	private Double competition;
 
 	// Constructors
 
@@ -83,6 +84,14 @@ public class Inventory implements java.io.Serializable {
 	
 	public int getMargin() {
 		return this.getInventory() - this.getSafetyStock();
+	}
+
+	public Double getCompetition() {
+		return competition;
+	}
+
+	public void setCompetition(Double competition) {
+		this.competition = competition;
 	}
 
 }

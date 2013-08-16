@@ -48,7 +48,7 @@
            <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
            <result name="goToEditSpecialRoute" type="dispatcher">/Edit_TemplateSpecialRoute.jsp</result>
            <result name="goToViewSpecialRoute" type="dispatcher">/View_TemplateSpecialRoute.jsp</result>
-           <result name="goToCostCalculation" type="dispatcher">/Edit_TemplateCostCalculation.jsp</result>
+           <result name="goToCostCalculation" type="dispatcher">/TemplateCostCalculation.jsp</result>
            <result name="enableSuccess" type="chain">
             <param name="actionName">gotorulelist</param>
           </result> 
@@ -59,7 +59,7 @@
           </result> 
       </action>
       <action name="gotoruleprioritylist" class="com.dicks.action.RulePriority" method="gotoruleprioritylist">
-          <result name="success" type="dispatcher">/rulePriority.jsp</result>
+          <result name="success" type="dispatcher">/PrioritizeRule.jsp</result>
       </action>
       <action name="reRank" class="com.dicks.action.RulePriority" method="reRank">
           <result name="success" type="chain">
@@ -67,21 +67,25 @@
           </result>   
       </action>
       <action name="gotonewbizrulelist" class="com.dicks.action.CreateNewBizRule" method="gotonewbizrulelist">
-          <result name="success" type="dispatcher">/newRules.jsp</result>
+          <result name="success" type="dispatcher">/CreateNewRule.jsp</result>
       </action>
       <action name="gotoplaceorder" class="com.dicks.action.Redirect" method="gotoplaceorder">
-          <result name="gotoplaceorder">/placeOrder.jsp</result>
+          <result name="gotoplaceorder">/SimulationOrder.jsp</result>
       </action>
       <action name="gototemplate" class="com.dicks.action.CreateNewBizRule" method="gototemplate">
-           <result name="goToTemplate" type="dispatcher">/TemplateProductThreshold.jsp</result>
+           <result name="goToProductThreshold" type="dispatcher">/TemplateProductThreshold.jsp</result>
            <result name="goToSpecial" type="dispatcher">/TemplateSpecialRoute.jsp</result>
-           <result name="goToStore" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+           <result name="goToStoreCapacity" type="dispatcher">/TemplateStoreThreshold.jsp</result>
+           <result name="goToStoreThreshold" type="dispatcher">/TemplateStoreThreshold.jsp</result>
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
-          <result name="newrule" type="dispatcher">/newRules.jsp</result>
+          <result name="newrule" type="dispatcher">/CreateNewRule.jsp</result>
+      </action>
+      <action name="storeThreshold" class="com.dicks.action.CreateNewBizRule" method="storeThreshold">
+          <result name="storeThreshold" type="dispatcher">/CreateNewRule.jsp</result>
       </action>
       <action name="specialRoutes" class="com.dicks.action.CreateNewBizRule" method="specialRoutes">
-          <result name="specialRoutes" type="dispatcher">/newRules.jsp</result>
+          <result name="specialRoutes" type="dispatcher">/CreateNewRule.jsp</result>
       </action>
       <action name="newrulePriority" class="com.dicks.action.CreateNewBizRule" method="ranking">
           <result name="newrulePriority" type="dispatcher">/RuleList.jsp</result>
@@ -155,6 +159,7 @@
        <action name="storethreshold" class="com.dicks.action.StoreThresholdAction" method="storeThreshold">
           <result name="success">/RuleList.jsp</result>
       </action>
+
        <action name="editrule" class="com.dicks.action.EditRuleAction" method="editRule">
           <result name="success">/Edit_TemplateResultRanking.jsp</result>
       </action>

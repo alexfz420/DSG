@@ -162,6 +162,11 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param rcs
+	 * @throws Exception
+	 */
 	public void update(RuleCate[] rcs) throws Exception {
 		int cateId = rcs[0].getId().getCategoryId();
 		List<RuleCate> ruleCates = getRuleCateListByCateId(cateId);

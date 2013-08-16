@@ -71,9 +71,10 @@
                     <td>Set ranking methods of the result.</td>
                 </tr>
                 <tr>
-                    <td>Group:</td>
-                    <td>All</td>
-                </tr>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates}</textarea>
+                   </td>
+                </tr> 
                 <tr>
                     <td>Stage:</td>
                     <td>Stage3: Evaluation</td>
