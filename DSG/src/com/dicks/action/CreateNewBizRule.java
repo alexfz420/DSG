@@ -181,11 +181,13 @@ public class CreateNewBizRule {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 			//setAllRule(allRule);
 			/*for (int i = 0 ;  i < allRule.length; i++){
 			System.out.println("rule name  11111"+allRule[i].getRuleName());
 			System.out.println("rule desc  1111"+ allRule[i].getRuleDescr());
 			}*/
+			
 			des = des.replace(" ","%20");
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");

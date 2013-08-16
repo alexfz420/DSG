@@ -80,21 +80,23 @@
         <table cellspacing="0" cellpadding="0" class="list">
             <tbody><tr class="title">
                 <th><input type="checkbox" id="selectall"/></th>
-                <th>Rule ID</th>
+                <th>Rule Number</th>
                 <th>Rule Name</th>
                 <th>Description</th>
+                <th>Type</th>
                 <th>Status</th>
                 <th>Action</th>
                 </tr>
                 
-                
+                <c:set var="ruleNum" value="1" />
                  <c:forEach var="allRule" items="${allRule}" >
             
             		<tr style="height:30px;">
             				<td class=""><input type="checkbox" class="case"/></td>
-		                    <td class="">${allRule.ruleId}</td>
+            				<td style="width:10px;"class="">${ruleNum}</td>
 		                    <td class="">${allRule.ruleName.replace("%20"," ")}</td>
 		                    <td class="">${allRule.ruleDescr}</td>
+		                    <td class="" >${allRule.type}</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
 									<td> <a class="button toggle" onclick='SubmitForm(${allRule.ruleId},"ables")'>&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
@@ -106,9 +108,9 @@
 		                    <td class="">
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
-		                    
+
 		            	 </tr>
-                
+                <c:set var="ruleNum" value="${ruleNum+1}" />
 				</c:forEach>
                 <input type="hidden" id="ruleId" name="ruleId"> 
                 <input type="hidden" id="viewEdit" name="viewEdit"> 

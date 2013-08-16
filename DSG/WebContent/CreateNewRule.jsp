@@ -81,6 +81,7 @@
 	        }
 	      });
 	  });
+ 
  	$(function() {
  		
 	    var name = '${prodCate}';
@@ -131,7 +132,8 @@
 	        }
 	      });
 	  });
-
+      var type;
+      
 	  function textAreaAdjust(o) {
 	      o.style.height = "1px";
 	      o.style.height = (15+o.scrollHeight)+"px";
@@ -143,6 +145,19 @@
 		  
 		 	
 		  
+	  }
+	  
+	  function chooseFormat(type) {
+	  if (type == "product_threshold" ){
+		  
+	  }
+	  else if (type == "store_threshold" ){
+		  
+	  }
+	  else if (type == "special_route"){
+		  
+	  }
+	  
 	  }
 	  
 	  window.onload =pageOnLoad;
@@ -193,13 +208,9 @@
                     <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
                 </tr>
                 <tr>
-                    <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
-                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
-                </tr>
-                <tr>
                     <td>Rule Template<span class="red">*</span>&#58;</td>
-                    <td><select class="big" name="templatename">
+                    
+                    <td><select class="big" name="templatename" onchange="chooseFormat(this.value)">
                         <option value="product_threshold">Product Threshold</option> 
                         <option value="store_threshold">Store Threshold</option>
                         <option value="special_route">Special Route</option>
@@ -207,6 +218,12 @@
                         <option value="#">Candidate Evaluate</option>-->
                         </select></td>
                 </tr>
+                <tr>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
+                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
+                </tr>
+                
                 <tr></tr>
                 <tr>  
                     <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>

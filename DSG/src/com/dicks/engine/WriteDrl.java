@@ -108,7 +108,7 @@ public class WriteDrl {
 		} catch(Exception e){
 			System.out.println("error: " + e);
 		} 
-		
+
 		//threshold abc = new threshold("hold");
 		System.out.println("Rules after editing");
 
@@ -266,22 +266,23 @@ public class WriteDrl {
 
 		   //first product, special case it if the input is "all"
 		   StringBuffer multiObject = new StringBuffer();
-		   if (splits[0].equals("ALL")){
-			   multiObject.append(")");
-		   }
-		   else{
-		   multiObject.append("(( storeId =="+splits[0]+"))");
+			if (splits[0].equals("ALL")){
+				multiObject.append("");
+			}
+			else{
+				multiObject.append("(( storeName.equals(\""+splits[0]+"\"))");
 
-		   //combing all the other products
-		   //System.out.println("splits.size: " + splits.length);
-		   for (int i = 1; i < splits.length; i++){
-			   multiObject.append("|| (storeId =="+splits[i]+"))");
+				//combing all the other products
+				//sS System.out.println("splits.size: " + splits.length);
+				for (int i = 1; i < splits.length; i++){
+					multiObject.append("|| (storeName.equals(\""+splits[i]+"\"))");
+					//System.out.println("add second product");
+				}
+				multiObject.append(")");
+			}
 
-		   }
 
 
-		   multiObject.append(")");
-		   }
 		   /*System.out.println("multi "+multiObject.toString());
 		    split the attribute
 		    System.out.println(attribute);
@@ -298,7 +299,7 @@ public class WriteDrl {
 		   String[] splitValue = values.split(",");
 		   
 		   first operator (default)*/
-		   
+
 
 		   //appending the whole "when" part
 
@@ -308,23 +309,23 @@ public class WriteDrl {
 		   tmp.append(myTab+"when"+myReturn);
 		   tmp.append(myTab+myTab+"$order : Orders()"+myReturn);
 		   tmp.append(myTab+myTab+"$orderE : OrderE()"+myReturn);
-		   
+
 		     /*tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+"&& (flag.equals(\""+flag+
 			   		"\")))"+myReturn);
 			multiple stores 
 			*/
-		   tmp.append(myTab+myTab+"$product : Product()"+myReturn);
+		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
 		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+" \")))"+myReturn);
-		   
+
 		   for (int i = 0; i < splitAttribute.length; i++){
 			   System.out.println("attribute "+i+" "+splitAttribute[i]);
 			   }
-		   
-		   
+
+
 		   if (splitAttribute[0].equals("Margin"))
 		   {
 			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
-			   
+
 		   }
 		   else if (splitAttribute[0].equals("Competition"))
 		   {
@@ -334,7 +335,7 @@ public class WriteDrl {
 			   if (splitAttribute[i].equals("Margin"))
 			   {
 				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
-				   
+
 			   }
 			   else if (splitAttribute[i].equals("Competition"))
 			   {
@@ -352,7 +353,7 @@ public class WriteDrl {
 	public String writeThenStoreRule(String[] action){
 		StringBuffer tmp = new StringBuffer();
 		tmp.append(myTab+"then"+myReturn);
-		tmp.append(myTab+myTab+"retract($store);"+myReturn);
+		tmp.append(myTab+myTab+"retract($s);"+myReturn);
 		tmp.append("end"+myReturn+myReturn);
 		return tmp.toString();
 	}
