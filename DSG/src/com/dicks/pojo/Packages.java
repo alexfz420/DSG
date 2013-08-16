@@ -11,7 +11,6 @@ import java.util.Set;
 public class Packages implements java.io.Serializable {
 
 	// Fields
-
 	private Integer packageId;
 	private Orders orders;
 	private Integer custId;
@@ -21,7 +20,7 @@ public class Packages implements java.io.Serializable {
 	private String shippingStatus;
 	private String shippingCompany;
 	private Integer shippingDay;
-	private Double weight;
+	private Integer weight;
 	private Set packageDetails = new HashSet(0);
 
 	// Constructors
@@ -32,7 +31,7 @@ public class Packages implements java.io.Serializable {
 	/** minimal constructor */
 	public Packages(Orders orders, Integer custId, Timestamp shippingDate,
 			Integer totAmt, String shippingStatus, String shippingCompany,
-			Integer shippingDay, Double weight) {
+			Integer shippingDay, Integer weight) {
 		this.orders = orders;
 		this.custId = custId;
 		this.shippingDate = shippingDate;
@@ -46,7 +45,7 @@ public class Packages implements java.io.Serializable {
 	/** full constructor */
 	public Packages(Orders orders, Integer custId, Timestamp shippingDate,
 			Integer totAmt, String shippingStatus, String shippingCompany,
-			Integer shippingDay, Double weight, Set packageDetails) {
+			Integer shippingDay, Integer weight, Set packageDetails) {
 		this.orders = orders;
 		this.custId = custId;
 		this.shippingDate = shippingDate;
@@ -124,11 +123,11 @@ public class Packages implements java.io.Serializable {
 		this.shippingDay = shippingDay;
 	}
 
-	public Double getWeight() {
+	public Integer getWeight() {
 		return this.weight;
 	}
 
-	public void setWeight(Double weight) {
+	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 

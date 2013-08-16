@@ -40,7 +40,17 @@ import com.dicks.engine.Util;
 public class Split {
 	private EngineLog stage2;
 	private EngineLog stage3;
+	private Collection<PackageTestResult> newAllocatedResults;
 	
+	public Collection<PackageTestResult> getNewAllocatedResults() {
+		return newAllocatedResults;
+	}
+
+	public void setNewAllocatedResults(
+			Collection<PackageTestResult> newAllocatedResults) {
+		this.newAllocatedResults = newAllocatedResults;
+	}
+
 	public EngineLog getStage3() {
 		return stage3;
 	}
@@ -119,10 +129,8 @@ public class Split {
 
 		ksession.fireAllRules();
 
-		// Remove comment if using logging
-
-		
-		Collection<PackageTestResult> newAllocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
+		// Remove comment if using logging	
+		newAllocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 		
 		logger.close();
 		ksession.dispose();
@@ -134,7 +142,7 @@ public class Split {
 		for (PackageTestResult r : newAllocatedResults) {
 			stage3.addLog("Allocated Results", r.toString());
 		}
-
+		
 	}
 
 	public static ArrayList<PackageTest> getTests(PackageE pack) {

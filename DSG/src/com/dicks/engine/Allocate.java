@@ -54,7 +54,7 @@ public class Allocate {
     public static Rule[] ruleFile = new Rule[100];
     public static int ruleInt;
     
-    private String orderId;
+    private Orders order;
     private EngineLog stage1;
     private EngineLog stage2;
 	private EngineLog stage3;
@@ -81,7 +81,7 @@ public class Allocate {
 		
 		OrdersDAO.getInstance().createOrder(order);
 		
-		this.setOrderId(order.getOrderId() + "");
+		this.order = order;
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		for (int i = 0; i < skus.length; i++) {
 			map.put(skus[i], Integer.parseInt(quantities[i]));
@@ -215,14 +215,6 @@ public class Allocate {
 		p.setProductName(name);*/
 	}
 
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
-	}
-
 	public EngineLog getStage1() {
 		return stage1;
 	}
@@ -269,6 +261,14 @@ public class Allocate {
 
 	public void setAllocatedResults(Collection<PackageTestResult> allocatedResults) {
 		this.allocatedResults = allocatedResults;
+	}
+
+	public Orders getOrder() {
+		return order;
+	}
+
+	public void setOrder(Orders order) {
+		this.order = order;
 	}
 
 }

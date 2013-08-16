@@ -14,8 +14,11 @@ import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.EngineLog;
 import com.dicks.engine.PackageE;
 import com.dicks.engine.PackageTestResult;
+import com.dicks.engine.ParcelResult;
 import com.dicks.engine.Split;
 import com.dicks.engine.EngineLog.Log;
+import com.dicks.pojo.Orders;
+import com.dicks.pojo.Packages;
 import com.dicks.pojo.Store;
 
 public class PlaceOrder {
@@ -35,6 +38,8 @@ public class PlaceOrder {
 	private Collection<PackageE> packages;
 	private Collection<Store> leftStores;
 	private Collection<PackageTestResult> allocatedResults;
+	private Collection<PackageTestResult> newAllocatedResults;
+	private Collection<PackageTestResult> allAllocatedResults;
 	
 	public String[] getQuantity(){
 		return quantity;
@@ -92,19 +97,33 @@ public class PlaceOrder {
 		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		
+		Orders order = test.getOrder();
 		this.packages = test.getPackages();
 		this.leftStores = test.getLeftStores();
 		this.allocatedResults = test.getAllocatedResults();
 		
-		Split split = new Split(packages, leftStores, stage2, allocatedResults);		
+		Split split = new Split(packages, leftStores, stage2, allocatedResults);	
+		this.newAllocatedResults = split.getNewAllocatedResults();
 		
 		//System.out.println("order id in place order: " + test.getOrderId());
-		this.id = test.getOrderId();
 		
 		this.stage1 = test.getStage1();
 		this.stage2 = test.getStage2();
 		this.stage3 = split.getStage3();
 		this.stage1Logs = stage1.getLogs();	
+		
+		allAllocatedResults = new ArrayList<PackageTestResult>();
+		allAllocatedResults.addAll(this.allAllocatedResults);
+		allAllocatedResults.addAll(this.newAllocatedResults);
+		
+		for (PackageTestResult r : allAllocatedResults) {
+			ArrayList<ParcelResult> parcelResults = r.getResults();
+			for (ParcelResult parcelResult : parcelResults) {
+				Packages pack = new Packages(order, order.getCustomer().getCustId(), order.getOrderDate(), 
+						order.getTotAmt(), "", "", 3, parcelResult.getParcel().getWeight());
+			}
+		
+		}
 		
 		return "success";	
 	}
@@ -171,6 +190,14 @@ public class PlaceOrder {
 
 	public void setAllocatedResults(Collection<PackageTestResult> allocatedResults) {
 		this.allocatedResults = allocatedResults;
+	}
+
+	public Collection<PackageTestResult> getNewAllocatedResults() {
+		return newAllocatedResults;
+	}
+
+	public void setNewAllocatedResults(Collection<PackageTestResult> newAllocatedResults) {
+		this.newAllocatedResults = newAllocatedResults;
 	}
 
 }
