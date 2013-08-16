@@ -77,4 +77,5 @@ public class PackageTestResult {
 	public void setShippingCost(double shippingCost) {
 		this.shippingCost = shippingCost;
 	}
+
 }

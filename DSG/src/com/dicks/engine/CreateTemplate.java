@@ -154,18 +154,21 @@ public class CreateTemplate {
 	      }*/
 	      checkFlag(type, objects, flag);
 
-	      if (type.equalsIgnoreCase("Threshold")){
+	      if (type.equalsIgnoreCase("Product Threshold")){
 	    	  type = "1";
-	    	  typeString = "Threshold";
+	    	  typeString = "Product Threshold";
 	      }
-	      if (type.equalsIgnoreCase("Store Filter")){
+	      if (type.equalsIgnoreCase("Store Threshold")){
 	    	  type = "2";
-	    	  typeString = "Store Filter";
+	    	  typeString = "Store Threshold";
 	      }
 	      if (type.equalsIgnoreCase("Special Route")){
 	    	  type = "3";
-	    	  System.out.println("nimabi!!!!!!!!!!!!");
 	    	  typeString = "Special Route";
+	      }
+	      if (type.equalsIgnoreCase("Store Threshold")){
+	    	  type = "4";
+	    	  typeString = "Store Threshold";
 	      }
 
 	      if (type.equalsIgnoreCase("1")||type.equalsIgnoreCase("2")){
@@ -271,7 +274,7 @@ public class CreateTemplate {
 		     catch (IOException e) {
 		    	 e.printStackTrace();
 		     }			 
-		    */		 
+		    	 
 		    //combining all rules
 		     try {
 	             File file = new File("src/com/dicks/rules/newRule_joe.drl");         
@@ -285,12 +288,7 @@ public class CreateTemplate {
 	                 fos.write(b);
 	             }
 
-	             for (i=0; i < ruleFiles.length; i++){
-	            	 /*if (!ruleFiles[i].getStage().equals("1")){
-	            		 System.out.println("not stage 1 rule");
-	            		 continue;
-	            		 
-	            	 }*/
+	             
 	            	 if (ruleFiles[i].getAble() == false){
 	            		 System.out.println("rule "+i+" "+ruleFiles[i].getAble());
 	            		 continue;
@@ -355,7 +353,7 @@ public class CreateTemplate {
 		    	  System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
 
 
-		      }
+		      }*/
 
 	}
 
@@ -421,6 +419,9 @@ public class CreateTemplate {
 	   public String writeWhenThreshold(String[] splits, String[] splitAttribute, String[] splitOperator, 
 			   String[] splitValue,String condition,String flag){
 
+		   
+		   
+		  
 		   //split the object 
 		   //System.out.println("1"+splits[0]+"1"+splits[1]+"2"+splits[2]);
 		   //first product, special case it if the input is "all"
@@ -512,12 +513,12 @@ public class CreateTemplate {
 			   multiObject.append(")");
 		   }
 		   else{
-		   multiObject.append("(( sku.equals(\""+splits[0]+"\"))");
+		   multiObject.append("(( storeId =="+splits[0]+"))");
 
 		   //combing all the other products
 		   //System.out.println("splits.size: " + splits.length);
 		   for (int i = 1; i < splits.length; i++){
-			   multiObject.append("|| (sku.equals(\""+splits[i]+"\"))");
+			   multiObject.append("|| (storeId =="+splits[i]+"))");
 
 		   }
 
@@ -540,13 +541,7 @@ public class CreateTemplate {
 		   String[] splitValue = values.split(",");
 		   
 		   first operator (default)*/
-		   StringBuffer multiAttribute = new StringBuffer();
-		   multiAttribute.append("("+ splitAttribute[0]+mySpace+splitOperator[0]+mySpace+splitValue[0] +")");
-
-		   //combining all the other operations
-		   for (int i = 1; i < splitAttribute.length; i++){
-			   multiAttribute.append("|| ( "+ splitAttribute[i]+mySpace+splitOperator[i]+mySpace+splitValue[i] + ")");
-			   }
+		   
 
 		   //appending the whole "when" part
 
@@ -554,13 +549,38 @@ public class CreateTemplate {
 
 
 		   tmp.append(myTab+"when"+myReturn);
-
-
-		   tmp.append(myTab+myTab+"$item: Product( "+multiObject.toString()+"&& (flag.equals(\""+flag+" \")))"+myReturn);
-		   tmp.append(myTab+myTab+"$store: Store()"+myReturn);
-		   tmp.append(myTab+myTab+"eval(!$store.checkStore($item, "+"\""+splitAttribute[0]+"\","+"\""+splitOperator[0]+"\","+splitValue[0]+ "))"+myReturn);
-			  for (int i = 1; i < splitAttribute.length; i++){
-			   tmp.append(myTab+myTab+"eval(!$store.checkStore($item, "+"\""+splitAttribute[i]+"\","+"\""+splitOperator[i]+"\","+splitValue[i]+ "))"+myReturn);
+		   tmp.append(myTab+myTab+"$order : Orders()"+myReturn);
+		   tmp.append(myTab+myTab+"$orderE : OrderE()"+myReturn);
+		   
+		     /*tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+"&& (flag.equals(\""+flag+
+			   		"\")))"+myReturn);
+			multiple stores 
+			*/
+		   tmp.append(myTab+myTab+"$product : Product()"+myReturn);
+		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+" \")))"+myReturn);
+		   for (int i = 0; i < splitAttribute.length; i++){
+		   System.out.println("attribute "+i+" "+splitAttribute[i]);
+		   }
+		    
+		   if (splitAttribute[0].equals("Margin"))
+		   {
+			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
+			   
+		   }
+		   else if (splitAttribute[0].equals("Competition"))
+		   {
+			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
+		   }
+		   for (int i = 1; i < splitAttribute.length; i++){
+			   if (splitAttribute[i].equals("Margin"))
+			   {
+				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
+				   
+			   }
+			   else if (splitAttribute[i].equals("Competition"))
+			   {
+				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
+			   }
 
 		   }
 

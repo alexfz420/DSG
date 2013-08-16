@@ -1,4 +1,3 @@
-
 //created on: Jul 4, 2013
 package com.dicks.rules;
 
@@ -80,27 +79,6 @@ rule  "Default Mininum Packagethreshold"
         $i.minPackage();
         $logger.addLog("Rule \"Default Mininum Packagethreshold\"", "Product "+$i.getProdName()+ " separeted into a new package");
     	retract($i);
-end
-
-rule  "Threshold for nike shoes"
-    salience 846
-    when
-        $o : Orders()
-        $orderE : OrderE()
-        $i : Product( ((Length > 3)||( Width > 3)||( Height > 3)||( Weight > 3))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB")))&& (flag.equals("TH-A,ST-A,SP-A")))
-        $logger: EngineLog()
-    then
-        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
-        {
-            $logger.addLog("Threshold for nike shoes","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            PackageE p = new PackageE($o);
-            p.addProduct($i,1);
-            insert (p);
-            $i.minPackage();
-            $logger.addLog("Threshold for nike shoes",p.toString()); 
-        }
-        retract($i);
 end
 
 rule "Insert Package for Remaining Products"

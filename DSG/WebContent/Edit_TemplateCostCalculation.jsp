@@ -234,6 +234,7 @@ function goBack(){
 </script>
 <!-- menu bar ends -->
 
+
 <!-- content starts -->
 <div class="minibar recordable" id="minibar"
 	memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}"
@@ -264,6 +265,7 @@ function goBack(){
 		<!-- Success Message and Error Message -->
 
 		<form action="costcalculation">
+			<input name="ruleId" type="hidden" value="${rule.getRuleId()}"/>
 			<table class="text" style="width: 850px;">
 				<tr>
 					<td style="width: 150px;">Rule Name&#58;</td>

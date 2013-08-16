@@ -6,6 +6,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
  <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
@@ -172,7 +173,14 @@
             <!-- Success Message and Error Message -->
         </div>
 		
-            
+            <div>
+          <div style="float:top; font-size:15px; padding-bottom:10px;">3 Steps to Create a Rule&#58;&nbsp;Step 1</div>
+
+          
+		</div>
+		<div class="progress progress-striped" style="float:top;" >
+          		 <div class="bar" style="width: 30%;"></div>
+          </div>
             <div>
             <form action="gototemplate" method="get">
             <table class="text" style="width:600px;">

@@ -15,6 +15,10 @@ public class CostCalculationAction extends ActionSupport {
 
 	FeeDAO feeDAO = FeeDAO.getInstance();	
 	
+	private String ruleId;
+	private String ruleName;
+
+	private String ruleDescription;
 	private String[] storeFeeName;
 	private String[] storeFeeId;
 	private String[] storeFeeFlag;
@@ -37,6 +41,11 @@ public class CostCalculationAction extends ActionSupport {
 	private String[] vendorFeeValue;
 
 	public String costCalculation() throws Exception {
+		Rule rule = RuleDAO.getInstance().getRuleById(ruleId);
+		rule.setRuleName(this.ruleName);
+		rule.setRuleDescr(this.ruleDescription);
+		RuleDAO.getInstance().update(rule);
+		
 		updateStoreFees();
 		updateWarehouseFees();
 		updateVendorFees();
@@ -364,5 +373,28 @@ public class CostCalculationAction extends ActionSupport {
 
 	public void setVendorFeeValue(String[] vendorFeeValue) {
 		this.vendorFeeValue = vendorFeeValue;
+	}
+
+	public String getRuleId() {
+		return ruleId;
+	}
+
+	public void setRuleId(String ruleId) {
+		this.ruleId = ruleId;
+	}
+	public String getRuleName() {
+		return ruleName;
+	}
+
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
+	}
+
+	public String getRuleDescription() {
+		return ruleDescription;
+	}
+
+	public void setRuleDescription(String ruleDescription) {
+		this.ruleDescription = ruleDescription;
 	}
 }

@@ -261,71 +261,92 @@ public class WriteDrl {
 		return tmp.toString();
 	}
 
-	public String writeWhenStoreRule(String[] splits, String[] splitAttribute, 
-			String[] splitOperator, String[] splitValue,String flag){
+	   public String writeWhenStoreRule(String[] splits, String[] splitAttribute, 
+			   String[] splitOperator, String[] splitValue,String flag){
 
-		//first product, special case it if the input is "all"
-		StringBuffer multiObject = new StringBuffer();
-		if (splits[0].equals("ALL")){
-			multiObject.append(")");
-		}
-		else{
-			multiObject.append("(( sku.equals(\""+splits[0]+"\"))");
+		   //first product, special case it if the input is "all"
+		   StringBuffer multiObject = new StringBuffer();
+		   if (splits[0].equals("ALL")){
+			   multiObject.append(")");
+		   }
+		   else{
+		   multiObject.append("(( storeId =="+splits[0]+"))");
 
-			//combing all the other products
-			//System.out.println("splits.size: " + splits.length);
-			for (int i = 1; i < splits.length; i++){
-				multiObject.append("|| (sku.equals(\""+splits[i]+"\"))");
+		   //combing all the other products
+		   //System.out.println("splits.size: " + splits.length);
+		   for (int i = 1; i < splits.length; i++){
+			   multiObject.append("|| (storeId =="+splits[i]+"))");
 
-			}
+		   }
 
 
-			multiObject.append(")");
-		}
-		/*System.out.println("multi "+multiObject.toString());
+		   multiObject.append(")");
+		   }
+		   /*System.out.println("multi "+multiObject.toString());
 		    split the attribute
 		    System.out.println(attribute);
 		    String[] splitAttribute= attribute.split(",");
 		  	System.out.println("1"+splitsAttribute[0]+"1"+attribute[1]+"2"+attribute[2]);
 		 	System.out.println("attribute legnth"+splitAttribute.length);
-
+		   
 		   split the operator
 		   System.out.println(operator);
 		   String[] splitOperator = operator.split(",");
-
+		   
 		   split the value
 		   System.out.println(values);
 		   String[] splitValue = values.split(",");
-
+		   
 		   first operator (default)*/
-		StringBuffer multiAttribute = new StringBuffer();
-		multiAttribute.append("("+ splitAttribute[0]+mySpace+splitOperator[0]+mySpace+splitValue[0] +")");
+		   
 
-		//combining all the other operations
-		for (int i = 1; i < splitAttribute.length; i++){
-			multiAttribute.append("|| ( "+ splitAttribute[i]+mySpace+splitOperator[i]+mySpace+splitValue[i] + ")");
-		}
+		   //appending the whole "when" part
 
-		//appending the whole "when" part
-
-		StringBuffer tmp = new StringBuffer();
+		   StringBuffer tmp = new StringBuffer();
 
 
-		tmp.append(myTab+"when"+myReturn);
+		   tmp.append(myTab+"when"+myReturn);
+		   tmp.append(myTab+myTab+"$order : Orders()"+myReturn);
+		   tmp.append(myTab+myTab+"$orderE : OrderE()"+myReturn);
+		   
+		     /*tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+"&& (flag.equals(\""+flag+
+			   		"\")))"+myReturn);
+			multiple stores 
+			*/
+		   tmp.append(myTab+myTab+"$product : Product()"+myReturn);
+		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+" \")))"+myReturn);
+		   
+		   for (int i = 0; i < splitAttribute.length; i++){
+			   System.out.println("attribute "+i+" "+splitAttribute[i]);
+			   }
+		   
+		   
+		   if (splitAttribute[0].equals("Margin"))
+		   {
+			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
+			   
+		   }
+		   else if (splitAttribute[0].equals("Competition"))
+		   {
+			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
+		   }
+		   for (int i = 1; i < splitAttribute.length; i++){
+			   if (splitAttribute[i].equals("Margin"))
+			   {
+				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
+				   
+			   }
+			   else if (splitAttribute[i].equals("Competition"))
+			   {
+				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
+			   }
 
+		   }
 
-		tmp.append(myTab+myTab+"$item: Product( "+multiObject.toString()+"&& (flag.equals(\""+flag+" \")))"+myReturn);
-		tmp.append(myTab+myTab+"$store: Store()"+myReturn);
-		tmp.append(myTab+myTab+"eval(!$store.checkStore($item, "+"\""+splitAttribute[0]+"\","+"\""+splitOperator[0]+"\","+splitValue[0]+ "))"+myReturn);
-		for (int i = 1; i < splitAttribute.length; i++){
-			tmp.append(myTab+myTab+"eval(!$store.checkStore($item, "+"\""+splitAttribute[i]+"\","+"\""+splitOperator[i]+"\","+splitValue[i]+ "))"+myReturn);
+		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
 
-		}
-
-		//tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
-
-		return tmp.toString();
-	}
+		   return tmp.toString();
+	   }
 
 
 	public String writeThenStoreRule(String[] action){

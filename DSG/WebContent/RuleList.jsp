@@ -1,4 +1,4 @@
- <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
@@ -94,7 +94,7 @@
             				<td class=""><input type="checkbox" class="case"/></td>
 		                    <td class="">${allRule.ruleId}</td>
 		                    <td class="">${allRule.ruleName.replace("%20"," ")}</td>
-		                    <td class="">${allRule.type}</td>
+		                    <td class="">${allRule.ruleDescr}</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
 									<td> <a class="button toggle" onclick='SubmitForm(${allRule.ruleId},"ables")'>&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
@@ -103,8 +103,6 @@
 									<td> <a class="button toggle disabled" onclick='SubmitForm(${allRule.ruleId},"ables")'>Disabled</a> </td>
 								</c:otherwise>
 							</c:choose>
-		                    
-		                  
 		                    <td class="">
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
@@ -156,4 +154,5 @@
 
     </div>
 </body>
+
 </html>

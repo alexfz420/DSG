@@ -13,6 +13,7 @@ public class PackageE {
 	private boolean forRemain;
 	private boolean allocated;
 	private boolean splitable = true;
+	private PackageTestResult bestResult = null;
 //	private int zoneID;
 	
 	public PackageE(Orders order) {
@@ -117,5 +118,13 @@ public class PackageE {
 	@Override
 	public String toString() {
 		return Arrays.toString(products.toArray());
+	}
+
+	public PackageTestResult getBestResult() {
+		return bestResult;
+	}
+
+	public void setBestResult(PackageTestResult bestResult) {
+		this.bestResult = bestResult;
 	}
 }

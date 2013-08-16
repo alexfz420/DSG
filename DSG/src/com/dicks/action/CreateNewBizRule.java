@@ -189,7 +189,7 @@ public class CreateNewBizRule {
 			des = des.replace(" ","%20");
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
-			return "goToTemplate";
+			return "goToProductThreshold";
 		}
 		else if(templatename.equals("special_route")){
 			try {
@@ -215,37 +215,31 @@ public class CreateNewBizRule {
 			des = des.replace(" ","%20");
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
-			return "goToStore";
+			return "goToStoreThreshold";
 		}
 		return "goToTemplate";
 	}
 
 	public String newrule(){
-		System.out.println("new rule action");
-		System.out.println("inserting position"+priority);
-		
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
 		des = des.replace("%20", " ");
 		
-		System.out.println("input category"+categoryname);
+		System.out.println("cate "+categoryname);
 		String[] categoryList= categoryname.split(",");
-
-
 		int cateLength = 0;
 		for (int j = 0 ; j<categoryList.length;j++){
 			if ((categoryList[j] != null) && (!categoryList[j].equals(" "))){
 				cateLength++;
 			}
 		}
-
 		String [] cateList = new String[cateLength];
 		for (int i = 0; i<cateList.length;i++){
 			cateList[i] = categoryList[i];
 		}
 		String type = null;
 		if (templatename.equalsIgnoreCase("product_threshold")){
-			type = "Threshold";
+			type = "Product Threshold";
 		}
 		String[] product = null;
 
@@ -256,16 +250,14 @@ public class CreateNewBizRule {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("product length is "+ product.length);
-		System.out.println("hahahah first product in the list is "+product[0]);
-		
+		//no available action right now
 		String[] action = new String[1];
 		action[0] = "miniumPackage";
-		System.out.println("actions!!"+actions);
 		
+		//no route needed 
 		String[] route = new String[1];
 		route[0] = "a";
-		
+		/*
 		System.out.println("rulename "+rulename);
 		System.out.println("des "+des);
 		for (int i = 0;i<product.length;i++){
@@ -275,7 +267,7 @@ public class CreateNewBizRule {
 			System.out.println("att "+attribute[i]);
 			System.out.println("oper "+operator[i]);
 			System.out.println("value "+value[i]);
-		}
+		}*/
 		
 		
 		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
@@ -284,10 +276,52 @@ public class CreateNewBizRule {
 		return "newrule";
 	}
 	
-	public String specialRoutes(){
-		System.out.println("prio   "+priority);
+	public String storeThreshold(){
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!"+categoryname);
+		categoryname =categoryname.replace("%20", " ");
+		rulename = rulename.replace("%20", " ");
+		des = des.replace("%20", " ");
 		System.out.println("input category"+categoryname);
 		
+		
+		String[] categoryList= categoryname.split(",");
+		int cateLength = 0;
+		for (int j = 0 ; j<categoryList.length;j++){
+			if ((categoryList[j] != null) && (!categoryList[j].equals(" "))){
+				cateLength++;
+			}
+		}
+		String [] cateList = new String[cateLength];
+		for (int i = 0; i<cateList.length;i++){
+			cateList[i] = categoryList[i];
+		}
+		String type = null;
+		if (templatename.equalsIgnoreCase("store_threshold")){
+			type = "Store Threshold";
+		}
+		String[] product = null;
+
+		//System.out.println("first instance of catelist is "+cateList[0]);
+		try {
+			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//no available action right now
+		String[] action = new String[1];
+		action[0] = "retract";
+		//no route needed 
+		String[] route = new String[1];
+		route[0] = " ";
+		
+		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
+		WriteDrl wdl = new WriteDrl();
+		
+		return "storeThreshold";
+	}
+	
+	public String specialRoutes(){
 		//get sku from category
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
@@ -317,40 +351,23 @@ public class CreateNewBizRule {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("product length is "+ product.length);
-		System.out.println("hahahah first product in the list is "+product[0]);
 		
 		///done
 
 		
+		String[] aa = new String[1];
+		aa[0] = " ";
 		String type = null;
 		if (templatename.equalsIgnoreCase("special_route")){
 			System.out.println("Template is Correct");
 			type = "Special Route";
 		}
 		
-		
-		
-		System.out.println("input category"+categoryname);
-		System.out.println("input rule name"+rulename);
-		System.out.println("input template "+templatename);
-		for (int i = 0; i< productcount.length;i++){
-			System.out.println(i+" "+productcount[i]);
-			System.out.println("operator"+operator[i]);
-			System.out.println("sources"+sources[i]);
-		}
-		
-		//product[1] ="002";
-		 //product[1] = "def234";
-		 //product[2] ="ghi456";
-		 attribute = new String[2];
-		 attribute[0] = "number";
-		 
 		 String[] action = new String[1];
 		 action[0] = "special";
 		 
 		 String flag = "TH-A,ST-A,SP-B";
-		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,productcount,null,sources,action,flag,Integer.parseInt(priority));
+		CreateTemplate test= new CreateTemplate(rulename,des,type,product,aa,operator,productcount," ",sources,action,flag,Integer.parseInt(priority));
 		WriteDrl wdl = new WriteDrl();
 		
 		

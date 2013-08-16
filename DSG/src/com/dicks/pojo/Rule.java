@@ -12,6 +12,7 @@ public class Rule implements java.io.Serializable {
 	// Fields
 
 	private Integer ruleId;
+	
 	private String ruleName;
 	private String ruleUrl;
 	private String ruleDescr;
@@ -37,6 +38,8 @@ public class Rule implements java.io.Serializable {
 	public Rule() {
 	}
 	
+	
+
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
 			Integer priority, String flag, String type, String stage,
 			String object, String attribute, String operator, String value,
@@ -58,6 +61,8 @@ public class Rule implements java.io.Serializable {
 		this.condition = condition;
 		this.isSpecial = isSpecial;
 	}
+
+
 
 	/** minimal constructor */
 	public Rule(String ruleName, String ruleUrl, String ruleDescr,
@@ -144,6 +149,7 @@ public class Rule implements java.io.Serializable {
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
 			this.route = translate(routeBuffer,routes);
+			//no route is needed;
 		}
 		else if (type.equalsIgnoreCase("2")){
 			this.object = translate(objectBuffer, objects);
@@ -151,12 +157,14 @@ public class Rule implements java.io.Serializable {
 			this.operator = translate(operatorBuffer, operators);
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
+			//no route is needed
 			this.route =translate(routeBuffer, routes);
 		}
 		else if (type.equalsIgnoreCase("3")){
 			this.object = translate(objectBuffer, objects);
-			this.attribute = translate(attributeBuffer, attributes);
 			this.operator = translate(operatorBuffer, operators);
+			this.attribute = translate(attributeBuffer, attributes);
+			//no attribute is needed
 			this.value = translate(valueBuffer, values);
 			this.action = translate(actionBuffer, actions);
 			this.route =translate(routeBuffer, routes);
@@ -307,24 +315,30 @@ public class Rule implements java.io.Serializable {
 	}
 
 	public String translate (StringBuffer s1, String[] s2){
-
-		s1.append(s2[0]);
-		for (int i = 1; i < s2.length; i++){
-				s1.append(",");
-				s1.append(s2[i]);
+		if (s2 != null && s2[0] != null){
+			s1.append(s2[0]);
+			for (int i = 1; i < s2.length; i++){
+					s1.append(",");
+					s1.append(s2[i]);
+			}
+			System.out.println("translated"+s1.toString());
+			
+			return s1.toString();
 		}
-		//System.out.println("translated"+s1.toString());
-		return s1.toString();
+		else{
+			return null;
+		}
 
 	}
 
 	public String[] translateBack(String s1){
+		
 		String[] s2 = s1.split(",");
-		//System.out.println("translated back");
+		System.out.println("translated back");
 		for (int i = 0;i<s2.length;i++){
-			//System.out.print(s2[i]);
+			System.out.print(s2[i]);
 		}
-		//System.out.println();
+		System.out.println();
 		return s2;
 	}	
 
@@ -401,9 +415,12 @@ public class Rule implements java.io.Serializable {
 	}
 
 
+
 	public boolean getAble() {
 		return able;
 	}
+
+
 
 	public void setAble(boolean able) {
 		this.able = able;
