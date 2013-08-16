@@ -24,7 +24,6 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		return instance;
 	}
 	
-	
 	public String[] getProdCateNames () throws Exception{
 		ProdCate[] prodCates = getProdCategoryList();
 		String[] names = new String[prodCates.length];
@@ -125,13 +124,25 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 	public void update(ProdCate[] prodCates) throws Exception{
 		String cateId = prodCates[0].getId().getCateProdId()+"";
 		ProdCate[] preview = getProdCategoryListById(cateId);
-		for(ProdCate sc: preview){
-			super.delete(sc);
-		}
-		for(ProdCate sc: prodCates){
-			createCategory(sc);
+		if(preview!=null){
+			for(ProdCate sc: preview){
+				super.delete(sc);
+			}
 		}
 		
+		if(prodCates!=null){
+			for(ProdCate sc: prodCates){
+				createCategory(sc);
+			}
+		}	
+	}
+	
+	public int getCateIdByCateName(String cateName) throws Exception{
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("cateName",cateName);
+		criterions.add(criterion);
+		ProdCate pc = ((List<ProdCate>)super.getList(criterions)).get(0);
+		return pc.getId().getCateProdId();
 	}
 
 	public void deleteCategorys(String[] idArray) throws Exception {

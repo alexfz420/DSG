@@ -3,8 +3,11 @@ package Test;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
@@ -34,19 +37,19 @@ import com.dicks.pojo.Vendor;
 
 public class HibernateTest
 {
-	private static SessionFactory sessionFactory;
+//	private static SessionFactory sessionFactory;
 	
 	
 	public static void main(String[] args) throws Exception
 	{
-		
-		
-//		System.out.println(RuleCateDAO.getInstance().getCateNamesByRuleId("2").length);
-		Rule[] allRule = RuleDAO.getInstance().getAllSortedListFromStageOne();
-		for (Rule rule : allRule) {
-			System.out.println(rule.getRuleName());
-		}
-		
+
+		RuleCateDAO.getInstance().createRuleCate(1, new String[]{"1","2","3"}, true);
+////		System.out.println(RuleCateDAO.getInstance().getCateNamesByRuleId("2").length);
+//		Rule[] allRule = RuleDAO.getInstance().getAllSortedListFromStageOne();
+//		for (Rule rule : allRule) {
+//			System.out.println(rule.getRuleName());
+//		}
+//		
 		
 		
 //		RuleCate cate1 = new RuleCate(new RuleCateId(1, 2), null, true);

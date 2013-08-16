@@ -8,9 +8,7 @@
      <action name="index">
             <result >/index.jsp</result>
       </action>
-	 <action name="gotocreatenew" class="com.dicks.engine.CreateRuleWeb" method="gotocreatenew">
-          <result name="gotocreatenew">/CreateRule.jsp</result>
-      </action>
+
       <action name="cnr" class="com.dicks.engine.CreateRuleWeb" method="cnr">
           <result name="cnr">/CreateRule.jsp</result>
       </action>
