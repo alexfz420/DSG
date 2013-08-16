@@ -128,19 +128,19 @@
             <form name ="myForm" action="updateRule">
             <table class="text" >
                 <tr>
-                    <td>Rule Name&#58;</td>
-                    <td><input style="width:200px;" type="text" name="rulenames" value ="${rulename}" disabled>&nbsp;&nbsp;</td>
+                    <td>Rule Name&#58;</td> 
+                    <td><input style="width:200px;" type="text" name="rulenames" value ='${rulename.replace("%20"," ")}' disabled>&nbsp;&nbsp;</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" disabled>${ruleDess}</textarea></td>
+                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" disabled>${ruleDess.replace("%20"," ")}</textarea></td>
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" disabled>${cates}</textarea>
-                    If not found, <a href="createcategory.html">new Group</a>.
-                    </td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" disabled>${cates.replace("%20"," ")}</textarea>
                     
+                    </td>
+                </tr> 
                 <tr>
                     <td>Stage&#58;</td>
                     <td>Stage 1 - Fulfillment Eligibility</td>

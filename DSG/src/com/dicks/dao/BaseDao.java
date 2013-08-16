@@ -1,6 +1,6 @@
 /**
- * 08-600 
- * Kewei Wang
+ * practicum
+ * Qicheng Mi
  * 08/23/2012
  */
 package com.dicks.dao;

@@ -81,16 +81,10 @@
 	        }
 	      });
 	  });
+     var availableTags;
  	$(function() {
  		
-	    var name = '${prodCate}';
-	    var ch = new Array;
-		 ch = name.split(",");
-		 for(var i=0 ;i<ch.length;i++){
-		  console.log(ch[i]);
-		 }
-	    console.log("a is "+name);
-	    var availableTags = ch;
+	    
 	    
 	    function split( val ) {
 	      return val.split( /,\s*/ );
@@ -131,7 +125,8 @@
 	        }
 	      });
 	  });
-
+      var type;
+      
 	  function textAreaAdjust(o) {
 	      o.style.height = "1px";
 	      o.style.height = (15+o.scrollHeight)+"px";
@@ -143,6 +138,48 @@
 		  
 		 	
 		  
+	  }
+	  
+	  function chooseFormat(type) {
+	  if (type == "product_threshold" ){
+		  type = 1;
+		  var name = '${prodCate}';
+		    var ch = new Array;
+			 ch = name.split(",");
+			 for(var i=0 ;i<ch.length;i++){
+			  console.log(ch[i]);
+			 }
+		    console.log("a is "+name);
+		    console.log("type is "+type);
+		   availableTags = ch;
+	  }
+	  else if (type == "store_threshold" ){
+		  type = 2;
+		  var name = '${storeCate}';
+		    var ch = new Array;
+			 ch = name.split(",");
+			 for(var i=0 ;i<ch.length;i++){
+			  console.log(ch[i]);
+			 }
+		    console.log("a is "+name);
+		    console.log("type is "+type);
+		   availableTags = ch;
+	  }
+	  else if (type == "special_route"){
+		  type = 1;
+		  var name = '${prodCate}';
+		    var ch = new Array;
+			 ch = name.split(",");
+			 for(var i=0 ;i<ch.length;i++){
+			  console.log(ch[i]);
+			 }
+		    console.log("a is "+name);
+		    console.log("type is "+type);
+		   availableTags = ch;
+	  }
+	  console.log("type !!!!!"+type);
+	  
+	  
 	  }
 	  
 	  window.onload =pageOnLoad;
@@ -193,13 +230,9 @@
                     <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
                 </tr>
                 <tr>
-                    <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
-                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
-                </tr>
-                <tr>
                     <td>Rule Template<span class="red">*</span>&#58;</td>
-                    <td><select class="big" name="templatename">
+                    
+                    <td><select class="big" name="templatename" onchange="chooseFormat(this.value)">
                         <option value="product_threshold">Product Threshold</option> 
                         <option value="store_threshold">Store Threshold</option>
                         <option value="special_route">Special Route</option>
@@ -207,6 +240,12 @@
                         <option value="#">Candidate Evaluate</option>-->
                         </select></td>
                 </tr>
+                <tr>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
+                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
+                </tr>
+                
                 <tr></tr>
                 <tr>  
                     <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>

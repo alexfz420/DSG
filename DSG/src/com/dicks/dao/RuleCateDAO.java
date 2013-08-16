@@ -144,23 +144,23 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 	}
 	
 
-	public void applyRule(int[] cateIds, int ruleId) throws Exception{
-		List<Integer> prodCateIds = ProdCateDAO.getInstance().getAllIds();
-		List<Integer> storeCateIds = StoreCateDAO.getInstance().getAllIds();
-		for(int id: cateIds){
-			//product category
-			RuleCateId rcId = new RuleCateId(id, ruleId);
-			RuleCate rc= null;
-			if(prodCateIds.contains(id)){
-				rc = new RuleCate(rcId,null,true);
-			}
-			//store category
-			else if(storeCateIds.contains(id)){
-				rc = new RuleCate(rcId,null,false);
-			}
-			if(rc!=null) super.create(rc);
-		}
-	}
+//	public void applyRule(int[] cateIds, int ruleId) throws Exception{
+//		List<Integer> prodCateIds = ProdCateDAO.getInstance().getAllIds();
+//		List<Integer> storeCateIds = StoreCateDAO.getInstance().getAllIds();
+//		for(int id: cateIds){
+//			//product category
+//			RuleCateId rcId = new RuleCateId(id, ruleId);
+//			RuleCate rc= null;
+//			if(prodCateIds.contains(id)){
+//				rc = new RuleCate(rcId,null,true);
+//			}
+//			//store category
+//			else if(storeCateIds.contains(id)){
+//				rc = new RuleCate(rcId,null,false);
+//			}
+//			if(rc!=null) super.create(rc);
+//		}
+//	}
 
 	/**
 	 * 
@@ -186,5 +186,26 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		return result;
 	}
 
+	
+	public void createRuleCate(int ruleId, String[] cateNames, boolean isProduct) throws Exception{
+		if(cateNames==null || cateNames.length == 0 ) return;
+		
+		int[] cateIds = new int[cateNames.length]; 
+		if(isProduct){
+			for(int i = 0 ; i< cateNames.length ; i++){
+				cateIds[i] = ProdCateDAO.getInstance().getCateIdByCateName(cateNames[i]);
+			}
+		}else{
+			for(int i = 0 ; i< cateNames.length ; i++){
+				cateIds[i] = StoreCateDAO.getInstance().getCateIdByCateName(cateNames[i]);
+			}
+		}
+		
+		for(int id : cateIds){
+			RuleCateId rcId = new RuleCateId(id, ruleId);
+			RuleCate rc = new RuleCate(rcId, null, true);
+			super.create(rc);
+		}
+	}
 	
 }

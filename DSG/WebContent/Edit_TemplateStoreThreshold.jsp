@@ -64,17 +64,19 @@
             <form action="#">
             <table class="text">
                 <tr>
-                    <td>Rule Name&#58;</td>
-                    <td>Set Store Threshold</td>
-                </tr>
+                    <td>Rule Name&#58;</td> 
+                    <td><input style="width:200px;" type="text" name="rulenames" value ='${rulename.replace("%20"," ")}' disabled>&nbsp;&nbsp;</td>
+                </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td>Set store threshold.</td>
+                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" disabled>${ruleDess.replace("%20"," ")}</textarea></td>
                 </tr>
                 <tr>
-                    <td>Group&#58;</td>
-                    <td>Store1&#44;&nbsp;Hub Stores</td>
-                </tr>
+                    <td>Group<span class="red">*</span>&#58;</td>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" disabled>${cates.replace("%20"," ")}</textarea>
+                    
+                    </td>
+                </tr> 
                 <tr>
                     <td>Stage&#58;</td>
                     <td>Stage1 - Fulfillment Eligibility</td>

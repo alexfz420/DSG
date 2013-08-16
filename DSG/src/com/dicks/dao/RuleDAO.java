@@ -41,6 +41,11 @@ public class RuleDAO extends BaseDao<Rule> {
 
 	public Rule[] getAllRuleList() throws Exception{
 		ArrayList<Rule> ruleList = (ArrayList<Rule>) super.getList();
+		Collections.sort(ruleList, new Comparator<Rule>() {
+			public int compare(Rule o1, Rule o2) {
+				return o2.getPriority() - o1.getPriority();
+			}
+		});
 		return (Rule[]) ruleList.toArray(new Rule[ruleList.size()]);
 	}
 	
@@ -80,15 +85,25 @@ public class RuleDAO extends BaseDao<Rule> {
 	}
 	
 	public void updateProdObjForUpdate(String[] skus, List<Rule> rules) throws Exception {
+		if(rules==null||rules.size() == 0) return;
 		for(Rule rule:rules){
-			System.out.println();
 			String newObject = getNewProdObjForUpdate(rule.getObject(),skus);
+			System.out.println("911");
 			rule.setObject(newObject);
 			super.update(rule);
 		}		
 	}
 	
-	private String getNewProdObjForUpdate(String obj, String[] skus){
+	public void updateProdObjForDelete(String[] skus, List<Rule> rules) throws Exception {
+		if(rules==null||rules.size() == 0) return;
+		for(Rule rule:rules){
+			String newObject = getNewProdObjForDelete(rule.getObject(),skus);
+			rule.setObject(newObject);
+			super.update(rule);
+		}		
+	}
+	
+	public String getNewProdObjForUpdate(String obj, String[] skus){
 		if(obj==null||"".equals(obj)){
 			StringBuffer sb = new StringBuffer();
 			for(int i = 0 ; i<skus.length ; i++){
@@ -99,17 +114,20 @@ public class RuleDAO extends BaseDao<Rule> {
 		}
 		
 		String[] objs = obj.split(",");
-		List<String> strArray = (ArrayList<String>)Arrays.asList(objs);
+		List<String> strArray = new ArrayList<String>(Arrays.asList(objs));
 		
 		for(int i = 0 ; i<skus.length ; i++){
 			String sku = skus[i];
 			boolean flag = false;
-			for(int j=0; j<objs.length;j++){
-				if(objs[j].equals(sku)){}
-				flag = true;
-				break;
+			for(int j=0; j<objs.length; j++){
+				if(objs[j].equals(sku)){
+					flag = true;
+					break;
+				}
 			}	
-			if(!flag) strArray.add(sku);
+			if(!flag) {
+				strArray.add(sku);
+			}
 		}
 
 		StringBuffer sb = new StringBuffer();
@@ -117,19 +135,21 @@ public class RuleDAO extends BaseDao<Rule> {
 			sb.append(str).append(",");		
 		}
 		
-		sb.deleteCharAt(sb.length()-1);
+		if(sb.length()>0){
+			sb.deleteCharAt(sb.length()-1);
+		}
 		return sb.toString();
 	}
 	
-	private String getNewProdObjForDelete(String obj, String[] skus) {
-		if(obj==null||"".equals(obj)) return null;
+	public String getNewProdObjForDelete(String obj, String[] skus) {
+		if(obj==null||obj.trim().length() ==0) return null;
 		
 		String[] objs = obj.split(",");
 
 		for(int i=0;i<skus.length;i++){
 			String sku = skus[i];
 			for(int j=0; j<objs.length;j++){
-				if(objs[j].equals(sku)){
+				if(sku.equals(objs[j])){
 					objs[j]=null;
 					break;
 				}
@@ -142,7 +162,12 @@ public class RuleDAO extends BaseDao<Rule> {
 				sb.append(objs[i]).append(",");
 			}
 		}
-		sb.deleteCharAt(sb.length()-1);
+		
+		if(sb.length()>0){
+			sb.deleteCharAt(sb.length()-1);
+		}
+		
+		System.out.println("@@@@@@@@@@@");
 		return sb.toString();		
 	}
 }

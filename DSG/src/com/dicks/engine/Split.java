@@ -86,6 +86,7 @@ public class Split {
 			System.out.println("attribute: " + Util.attribute);
 		}
 
+
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 		kbuilder.add(ResourceFactory.newFileResource(new File("src/com/dicks/rules/evaluate.drl")), ResourceType.DRL);
 
@@ -129,8 +130,10 @@ public class Split {
 
 		ksession.fireAllRules();
 
-		// Remove comment if using logging	
-		newAllocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
+		// Remove comment if using logging
+
+		
+		Collection<PackageTestResult> newAllocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 		
 		logger.close();
 		ksession.dispose();

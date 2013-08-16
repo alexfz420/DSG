@@ -8,17 +8,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
+import com.dicks.dao.PackageDAO;
+import com.dicks.dao.PackageDetailDAO;
 import com.dicks.engine.Allocate;
 import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.EngineLog;
 import com.dicks.engine.PackageE;
 import com.dicks.engine.PackageTestResult;
+import com.dicks.engine.Parcel;
 import com.dicks.engine.ParcelResult;
 import com.dicks.engine.Split;
 import com.dicks.engine.EngineLog.Log;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.PackageDetail;
+import com.dicks.pojo.PackageDetailId;
 import com.dicks.pojo.Packages;
+import com.dicks.pojo.Product;
 import com.dicks.pojo.Store;
 
 public class PlaceOrder {
@@ -117,12 +124,24 @@ public class PlaceOrder {
 		allAllocatedResults.addAll(this.newAllocatedResults);
 		
 		for (PackageTestResult r : allAllocatedResults) {
+			PackageDAO packageDAO = PackageDAO.getInstance();
+			PackageDetailDAO packageDetailDAO = PackageDetailDAO.getInstance();
 			ArrayList<ParcelResult> parcelResults = r.getResults();
 			for (ParcelResult parcelResult : parcelResults) {
 				Packages pack = new Packages(order, order.getCustomer().getCustId(), order.getOrderDate(), 
-						order.getTotAmt(), "", "", 3, parcelResult.getParcel().getWeight());
+						order.getTotAmt(), "", "", 3, parcelResult.getParcel().getWeight(), parcelResult.getSource());
+				packageDAO.createPackage(pack);
+				
+				
+				Parcel parcel = parcelResult.getParcel();
+				HashMap<Product, Integer> map = parcel.getProducts();
+				for (Product product : map.keySet()) {
+					PackageDetail packDetail = new PackageDetail(new PackageDetailId(order.getOrderId(), product.getProdId()),
+																pack, product, parcel.getProductQty(product));
+					packageDetailDAO.createPackageDetail(packDetail);
+				}
 			}
-		
+			
 		}
 		
 		return "success";	
