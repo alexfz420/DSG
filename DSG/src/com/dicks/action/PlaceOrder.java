@@ -92,8 +92,11 @@ public class PlaceOrder {
 		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		
-		Split split = new Split(packages, leftStores, stage2, allocatedResults);
+		this.packages = test.getPackages();
+		this.leftStores = test.getLeftStores();
+		this.allocatedResults = test.getAllocatedResults();
 		
+		Split split = new Split(packages, leftStores, stage2, allocatedResults);		
 		
 		//System.out.println("order id in place order: " + test.getOrderId());
 		this.id = test.getOrderId();
@@ -101,13 +104,7 @@ public class PlaceOrder {
 		this.stage1 = test.getStage1();
 		this.stage2 = test.getStage2();
 		this.stage3 = split.getStage3();
-		this.stage1Logs = stage1.getLogs();
-		
-		this.packages = test.getPackages();
-		this.leftStores = test.getLeftStores();
-		this.allocatedResults = test.getAllocatedResults();
-		
-		
+		this.stage1Logs = stage1.getLogs();	
 		
 		return "success";	
 	}
