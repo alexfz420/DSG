@@ -81,17 +81,10 @@
 	        }
 	      });
 	  });
- 
+     var availableTags;
  	$(function() {
  		
-	    var name = '${prodCate}';
-	    var ch = new Array;
-		 ch = name.split(",");
-		 for(var i=0 ;i<ch.length;i++){
-		  console.log(ch[i]);
-		 }
-	    console.log("a is "+name);
-	    var availableTags = ch;
+	    
 	    
 	    function split( val ) {
 	      return val.split( /,\s*/ );
@@ -149,14 +142,43 @@
 	  
 	  function chooseFormat(type) {
 	  if (type == "product_threshold" ){
-		  
+		  type = 1;
+		  var name = '${prodCate}';
+		    var ch = new Array;
+			 ch = name.split(",");
+			 for(var i=0 ;i<ch.length;i++){
+			  console.log(ch[i]);
+			 }
+		    console.log("a is "+name);
+		    console.log("type is "+type);
+		   availableTags = ch;
 	  }
 	  else if (type == "store_threshold" ){
-		  
+		  type = 2;
+		  var name = '${storeCate}';
+		    var ch = new Array;
+			 ch = name.split(",");
+			 for(var i=0 ;i<ch.length;i++){
+			  console.log(ch[i]);
+			 }
+		    console.log("a is "+name);
+		    console.log("type is "+type);
+		   availableTags = ch;
 	  }
 	  else if (type == "special_route"){
-		  
+		  type = 1;
+		  var name = '${prodCate}';
+		    var ch = new Array;
+			 ch = name.split(",");
+			 for(var i=0 ;i<ch.length;i++){
+			  console.log(ch[i]);
+			 }
+		    console.log("a is "+name);
+		    console.log("type is "+type);
+		   availableTags = ch;
 	  }
+	  console.log("type !!!!!"+type);
+	  
 	  
 	  }
 	  
