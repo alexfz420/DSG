@@ -81,124 +81,25 @@ rule  "Default Mininum Packagethreshold"
     	retract($i);
 end
 
-rule  "rqwer"
-    salience 846
+rule  "Threshold for nikeshoe"
+    salience 848
     when
         $o : Orders()
         $orderE : OrderE()
-        $i : Product( ((Length > 1)||( Width > 2)||( Height > 4)||( Weight > 3))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length > 1)||( Width > 2)||( Height > 3)||( Weight > 4))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB"))|| (sku.equals("NK-CL-KD")))&& (flag.equals("TH-A,ST-A,SP-A")))
         $logger: EngineLog()
     then
         for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
         {
-            $logger.addLog("rqwer","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            $logger.addLog("Threshold for nikeshoe","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             PackageE p = new PackageE($o);
             p.addProduct($i,1);
             insert (p);
             $i.minPackage();
-            $logger.addLog("rqwer",p.toString()); 
+            $logger.addLog("Threshold for nikeshoe",p.toString()); 
         }
         retract($i);
-end
-
-
-rule  "special route for aj"
-    salience 844
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product($id: prodId, sku.equals("NK-SH-AJ"))
-        eval ($orderE.getProductQty($id)>1)
-        $s : Store( storeId == 1)
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        $logger: EngineLog()
-    then
-        $logger.addLog("special route for aj","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        PackageE p = new PackageE($order);
-        p.addProduct($product, $orderE.getProductQty($id));
-        insert (p);
-        p.setAllocated(true); 
-        Parcel parcel = new Parcel(p);
-        parcel.addNumProduct($product, $orderE.getProductQty($id));
-        PackageTest test = new PackageTest(p);
-        test.addParcel(parcel);
-        ParcelResult parcelR = new ParcelResult(parcel);
-        parcelR.setSource($s);
-        PackageTestResult packageR = new PackageTestResult(test);
-        packageR.addResult(parcelR);
-        $logger.addLog("special route for aj",$product + "get inserted into a new package by speical route rule");
-        $logger.addLog("special route for aj",packageR.toString());      
-        System.out.println(packageR);
-        insert(packageR);
-        retract(p);
-        retract($product);
-end
-
-rule  "abcde"
-    salience 842
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product()
-        $s: Store( (( storeId ==NK-SH-AJ))|| (storeId ==NK-SH-KB))|| (storeId ==AD-SH-TM)))&& (flag.equals("TH-A,ST-A,SP-A ")))
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, ">", $orderE.getProductQty($id)))
-    then
-        retract($store);
-end
-
-rule  "fasdfsad"
-    salience 840
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product()
-        $s: Store( (( storeId ==NK-SH-AJ))|| (storeId ==NK-SH-KB))|| (storeId ==NK-CL-KD)))&& (flag.equals("TH-A,ST-A,SP-A ")))
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, ">", $orderE.getProductQty($id)))
-    then
-        retract($store);
-end
-
-rule  "fasdfsad"
-    salience 838
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product()
-        $s: Store( (( storeId ==NK-SH-AJ))|| (storeId ==NK-SH-KB))|| (storeId ==NK-CL-KD)))&& (flag.equals("TH-A,ST-A,SP-A ")))
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, ">", $orderE.getProductQty($id)))
-    then
-        retract($store);
-end
-
-rule  "dASDASdasD"
-    salience 836
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product()
-        $s: Store( (( storeId ==NK-SH-AJ))|| (storeId ==NK-SH-KB))|| (storeId ==NK-CL-KD)))&& (flag.equals("TH-A,ST-A,SP-A ")))
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, ">", $orderE.getProductQty($id)))
-    then
-        retract($store);
-end
-
-rule  "store for nike good"
-    salience 834
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product()
-        $s: Store( (( storeId ==NK-SH-AJ))|| (storeId ==NK-SH-KB))|| (storeId ==NK-CL-KD)))&& (flag.equals("TH-A,ST-A,SP-A ")))
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, ">", $orderE.getProductQty($id)))
-    then
-        retract($store);
 end
 
 rule "Insert Package for Remaining Products"

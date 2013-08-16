@@ -189,7 +189,7 @@
 										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8;">${midRule.ruleDescr}</td>
 									<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8;">${midRule.stage}</td>
 									<c:choose>
-										<c:when test="${ (midule.able == true) }">
+										<c:when test="${ (midRule.able == true) }">
 											<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8;">Active</td>
 										</c:when>
 										<c:otherwise>

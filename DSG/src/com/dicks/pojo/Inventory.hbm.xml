@@ -29,5 +29,8 @@
         <property name="safetyStock" type="java.lang.Integer">
             <column name="safety_stock" not-null="true" />
         </property>
+        <property name="competition" type="java.lang.Double">
+            <column name="competition" not-null="false" />
+        </property>
     </class>
 </hibernate-mapping>

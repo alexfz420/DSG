@@ -153,9 +153,10 @@
       		<result name="success">/EditProdCategory.jsp</result>
       </action> 
 
-       <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
-          <result name="success">/RuleList.jsp</result>
-      </action>      
+      <action name="costcalculation" class="com.dicks.action.CostCalculationAction" method="costCalculation">
+          <result name="success" type="chain">gotorulelist</result>
+      </action>     
+       
        
        <action name="editrule" class="com.dicks.action.EditRuleAction" method="editRule">
           <result name="success">/Edit_TemplateResultRanking.jsp</result>

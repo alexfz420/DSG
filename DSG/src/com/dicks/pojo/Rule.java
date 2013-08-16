@@ -12,6 +12,7 @@ public class Rule implements java.io.Serializable {
 	// Fields
 
 	private Integer ruleId;
+	
 	private String ruleName;
 	private String ruleUrl;
 	private String ruleDescr;
