@@ -138,30 +138,7 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		StoreCate sc = new StoreCate(new StoreCateId(cateid, storeId), null, null, null);
 		super.delete(sc);
 	}
-	
-	public Store[] getStoreByCategory(String[] categoryNameList) throws Exception{
-		List<Store> finalResult = new LinkedList<Store>();
-		for(String categoryName : categoryNameList){
-			List<Criterion> criterions = new ArrayList<Criterion>();
-			Criterion criterion = Restrictions.eq("cateName", categoryName);
-			criterions.add(criterion);
-			List<StoreCate> result =  super.getList(criterions);
-			for(StoreCate sc : result){
-				finalResult.add(sc.getStore());
-			}
-		}
-		Store[] stores = (Store[])finalResult.toArray(new Store[finalResult.size()]);
-		return stores;	
-	}
-	
-	public String[] getStoreNamesByCategory(String[] categoryNameList) throws Exception{
-		Store[] stores = getStoreByCategory(categoryNameList);
-		String[] skuArray = new String[stores.length];
-		for(int i=0;i<stores.length;i++){
-			skuArray[i] = stores[i].getStoreName();
-		}
-		return skuArray;
-	}
+
 	
 	public List<Integer> getAllIds() throws Exception{
 		List<Integer> result = new ArrayList<Integer>();
