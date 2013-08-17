@@ -6,7 +6,6 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
  <jsp:include page="template_top.jsp" />
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
@@ -36,7 +35,7 @@
     </div>
  <script>
  
-     var availableTags ;
+    
  	$(function() {
  		
 	    
@@ -51,7 +50,7 @@
 	    $( "#tags" ) 
 	      // don't navigate away from the field on tab when selecting an item
 	      .bind( "keydown", function( event ) {
-	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	        if ( event.KeyCode === $.ui.keyCode.TAB &&
 	            $( this ).data( "ui-autocomplete" ).menu.active ) {
 	          event.preventDefault();
 	        }
@@ -75,13 +74,18 @@
 	          terms.push( ui.item.value );
 	          // add placeholder to get the comma-and-space at the end
 	          terms.push( "" );
-	          this.value = terms.join( ", " );
+	          this.value = terms.join( "," );
 	          return false;
 	        }
 	      });
 	  });
+ 	
+ 	
+ 	</script>
+ 	
+ 	<script>
       var type = 1;
-      
+      var availableTags ;
 	  function textAreaAdjust(o) {
 	      o.style.height = "1px";
 	      o.style.height = (15+o.scrollHeight)+"px";
@@ -157,31 +161,30 @@
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix">
-            <h1 class="l">New Business Rule</h1><div id="Date" class="date l"></div>
-            <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
-            <br/><br/><div><hr/></div>
+        <div class="title-bar clearfix" >
+					<h1 class="l">Manage Business Rule</h1>
+					<div id="Date" class="date l"></div>
+					<a id='ReportTipIco' class="report-help open l recordable"
+						memo="{id:'ReportTipIco',type:'page-tip',global:0}"
+						href="javascript:void(0);">&nbsp;</a> <br />
+					<br />
+					<div>
+						<hr/>
+					</div>
 
-            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span>
-                <span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
-                <span>New Business Rule</span>
-            </li>
-            
-            <!-- Success Message and Error Message -->
-            <div class="success_area" style="display:none;">successMessage</div>
-            <div class="warning" style="display:none;">errorMessage</div>
-            
-            <!-- Success Message and Error Message -->
-        </div>
-		
-            <div>
-          <div style="float:top; font-size:15px; padding-bottom:10px;">3 Steps to Create a Rule&#58;&nbsp;Step 1</div>
+					<li style="list-style: none;">
+						<span><a href="#">Home</a><span> &gt; </span></span>
+						<span><a href="">Manage Business Rule</a></span><span> &gt; </span>
+						<span>New Business Rule</span>
+					</li>
 
-          
+					<!-- Success Message and Error Message -->
+					<div class="success_area" style="display: none">successMessage</div>
+					<div class="warning" style="display: none">errorMessage</div>
+					<!-- Success Message and Error Message -->
+
 		</div>
-		<div class="progress progress-striped" style="float:top;" >
-          		 <div class="bar" style="width: 30%;"></div>
-          </div>
+         
             <div>
             <form action="gototemplate" method="get">
             <table class="text" style="width:600px;">

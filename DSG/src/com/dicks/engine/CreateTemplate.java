@@ -578,20 +578,21 @@ public class CreateTemplate {
 		   }
 		   else if (splitAttribute[0].equals("Competition"))
 		   {
-			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
-		   }
+			   tmp.append(myTab+myTab+"eval(InventoryDAO.getCompetition($s.getStoreId(), $id) " +splitOperator[0]+" $orderE.getProductQty($id)))"+myReturn);
+			 }
 		   for (int i = 1; i < splitAttribute.length; i++){
 			   if (splitAttribute[i].equals("Margin"))
 			   {
-				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
+				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id))"+myReturn);
 				   
 			   }
 			   else if (splitAttribute[i].equals("Competition"))
 			   {
-				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
+				   tmp.append(myTab+myTab+"eval(InventoryDAO.getCompetition($s.getStoreId(), $id) " +splitOperator[i]+" $orderE.getProductQty($id))"+myReturn);
 			   }
 
 		   }
+		   
 
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
 

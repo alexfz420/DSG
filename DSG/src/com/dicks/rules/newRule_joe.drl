@@ -64,60 +64,6 @@ rule "Filter Stock for Stock whose margin is less than 2"
         retract($store);
 end
 
-rule  "Threshold for nike shoes"
-    salience 923
-    when
-        $o : Orders()
-        $orderE : OrderE()
-        $i : Product( ((Length > 5)||( Width > 5)||( Height > 5)||( Weight > 5))&& (( sku.equals("NK-SH-AJ"))|| (sku.equals("NK-SH-KB")))&& (flag.equals("TH-A,ST-A,SP-A")))
-        $logger: EngineLog()
-    then
-        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
-        {
-            $logger.addLog("Threshold for nike shoes","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            PackageE p = new PackageE($o);
-            p.addProduct($i,1);
-            insert (p);
-            $i.minPackage();
-            $logger.addLog("Threshold for nike shoes",p.toString()); 
-        }
-        retract($i);
-end
-
-rule  "Special route for aj"
-    salience 921
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product($id: prodId, sku.equals("NK-SH-AJ"))
-        eval ($orderE.getProductQty($id)>1)
-        $s : Store( storeId == 1)
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        $logger: EngineLog()
-    then
-        $logger.addLog("Special route for aj","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        PackageE p = new PackageE($order);
-        p.addProduct($product, $orderE.getProductQty($id));
-        insert (p);
-        p.setAllocated(true); 
-        Parcel parcel = new Parcel(p);
-        parcel.addNumProduct($product, $orderE.getProductQty($id));
-        PackageTest test = new PackageTest(p);
-        test.addParcel(parcel);
-        ParcelResult parcelR = new ParcelResult(parcel);
-        parcelR.setSource($s);
-        PackageTestResult packageR = new PackageTestResult(test);
-        packageR.addResult(parcelR);
-        $logger.addLog("Special route for aj",$product + "get inserted into a new package by speical route rule");
-        $logger.addLog("Special route for aj",packageR.toString());      
-        System.out.println(packageR);
-        insert(packageR);
-        retract(p);
-        retract($product);
-end
-
 rule  "Default Mininum Packagethreshold"
 	salience 900
 	//agenda-group "first6"
@@ -133,6 +79,53 @@ rule  "Default Mininum Packagethreshold"
         $i.minPackage();
         $logger.addLog("Default Mininum Packagethreshold", "Product "+$i.getProdName()+ " separeted into a new package");
     	retract($i);
+end
+
+rule  "Special Route for AJ"
+    salience 848
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("NK-SH-AJ"))
+        eval ($orderE.getProductQty($id)>1)
+        $s : Store( storeId == 1)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("Special Route for AJ","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        PackageTestResult packageR = new PackageTestResult(test);
+        packageR.addResult(parcelR);
+        $logger.addLog("Special Route for AJ",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("Special Route for AJ",packageR.toString());      
+        System.out.println(packageR);
+        insert(packageR);
+        retract(p);
+        retract($product);
+end
+
+
+rule  "Store threshold for 1"
+    salience 846
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id :prodId)
+        $s: Store( (( storeName.equals("Pittsburgh Store1"))|| (storeName.equals("Pittsburgh Store2")))&& (flag.equals("TH-A,ST-A,SP-A ")))
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        eval(InventoryDAO.getInstance().getCompetition($s.getStoreId(), $id) > $orderE.getProductQty($id))
+    then
+        retract($s);
 end
 
 rule "Insert Package for Remaining Products"

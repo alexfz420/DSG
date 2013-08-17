@@ -7,10 +7,10 @@
 <hibernate-mapping>
     <class name="com.dicks.pojo.Shipment" table="shipment" catalog="dicks">
         <composite-id name="id" class="com.dicks.pojo.ShipmentId">
-            <key-property name="destinationZip" type="java.lang.Integer">
+            <key-property name="destinationZip" type="java.lang.String">
                 <column name="destination_zip" />
             </key-property>
-            <key-property name="supplyZip" type="java.lang.Integer">
+            <key-property name="supplyZip" type="java.lang.String">
                 <column name="supply_zip" />
             </key-property>
         </composite-id>
@@ -22,6 +22,9 @@
         </property>
         <property name="overWeightRate" type="java.lang.Integer">
             <column name="over_weight_rate" not-null="true" />
+        </property>
+         <property name="distance" type="java.lang.Integer">
+            <column name="distance"/>
         </property>
     </class>
 </hibernate-mapping>

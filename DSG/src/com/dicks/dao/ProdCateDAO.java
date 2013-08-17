@@ -45,7 +45,6 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 				finalResult.add(pc.getProduct());
 			}
 		}
-		//System.out.println("WTF");
 		Product[] products = (Product[])finalResult.toArray(new Product[finalResult.size()]);
 		return products;	
 	}
@@ -79,7 +78,9 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 
 	public int getMaxId() throws Exception{
 		String sql = "select max(cate_prod_id) maxid from prod_cate";
-		return (Integer)HibernateUtil.getSession().createSQLQuery(sql).uniqueResult();
+		Object result = HibernateUtil.getSession().createSQLQuery(sql).uniqueResult();
+		if(null == result) return 0;
+		return (Integer) result;
 		
 	}
 	

@@ -329,7 +329,7 @@ public class CreateNewBizRule {
 		}
 		//System.out.println("first instance of catelist is "+cateList[0]);
 		try {
-			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
+			product = StoreCateDAO.getInstance().getStoreNamesByCategory(cateList);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -342,6 +342,21 @@ public class CreateNewBizRule {
 		//no route needed 
 		String[] route = new String[1];
 		route[0] = " ";
+		
+		
+		System.out.println("rulename "+rulename);
+		
+		System.out.println("des "+des);
+		for (int i = 0;i<product.length;i++){
+			System.out.println("prod "+product[i]);
+		}
+		for (int i = 0; i < attribute.length; i++){
+			System.out.println("att "+attribute[i]);
+			System.out.println("oper "+operator[i]);
+			System.out.println("value "+value[i]);
+		}
+		
+		conditions ="&&";
 		
 		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority),cateList);
 		WriteDrl wdl = new WriteDrl();

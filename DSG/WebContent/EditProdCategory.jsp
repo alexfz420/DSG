@@ -5,7 +5,8 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
 <jsp:include page="template_top.jsp" />
-
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <ul class="nav">
 	<li class=""><a class="recordable open" id="toggleone" href="#"
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -591,11 +592,10 @@
                     </td>
                 </tr>
                 <tr style="height:40px;">
-                    <td></td>
+                    <td><a class="button" onclick="history.go(-1)" onclick="">Back</a></td>
                     <td>
                     	<input type="hidden" name="previousAppliedRuleString" value="${appliedRuleString}"/>
-                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="ViewCategory.html" onclick=""/>Back</a></span>
-                      <span style="margin-left:10px;argin-top:10px;"><input type="submit" value="Update"></span>
+                      	<span><input type="submit" class="button" value="Update"></span>
                     </td>  
                     <td></td>
                 </tr>

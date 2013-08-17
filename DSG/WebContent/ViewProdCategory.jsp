@@ -140,7 +140,7 @@
 
                 <tr style="height:40px;">
                     <td><a class="button" href="categorylist.html" onclick="">Cancel</a></td>
-                    <td><a class="button" href="viewProdCate2EditProdCate.action?categoryId=${categoryId}&categoryName=${categoryId}&categoryDescr=${categoryDescr}&skuString=${skuString}&appliedRuleString=${appliedRuleString}" onclick="">Update</a></td>
+                    <td><a class="button" href="viewProdCate2EditProdCate.action?categoryId=${categoryId}&categoryName=${categoryName}&categoryDescr=${categoryDescr}&skuString=${skuString}&appliedRuleString=${appliedRuleString}" onclick="">Update</a></td>
                     <td></td>
                 </tr>
               </table>   

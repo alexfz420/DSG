@@ -34,7 +34,7 @@
         <div class="login_notice">
 		        <font size="4"><s:actionerror /></font>
 		</div>
-        <div class="login_area_bottom"><div class="login_area_bottom_left"></div>Copyright © 2013 eBusiness Team<div class="login_area_bottom_right"></div></div>
+        <div class="login_area_bottom"><div class="login_area_bottom_left"></div>&copy; 2013 eBusiness Team<div class="login_area_bottom_right"></div></div>
     </div>
 </div>
 </body>

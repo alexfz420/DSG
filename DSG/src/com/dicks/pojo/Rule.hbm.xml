@@ -26,7 +26,7 @@
             <column name="flag" length="45"  />
         </property>
         <property name="type" type="java.lang.String">
-            <column name="type" length="1" />
+            <column name="type" length="45" />
         </property>
         <property name="stage" type="java.lang.String">
             <column name="stage" length="1"  />

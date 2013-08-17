@@ -12,6 +12,7 @@ public class Shipment implements java.io.Serializable {
 	private Integer normalRate;
 	private Integer overSizeRate;
 	private Integer overWeightRate;
+	private Integer distance;
 
 	// Constructors
 
@@ -60,6 +61,14 @@ public class Shipment implements java.io.Serializable {
 
 	public void setOverWeightRate(Integer overWeightRate) {
 		this.overWeightRate = overWeightRate;
+	}
+
+	public Integer getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Integer distance) {
+		this.distance = distance;
 	}
 
 }

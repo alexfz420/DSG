@@ -36,6 +36,15 @@ public class InventoryDAO extends BaseDao<Inventory> {
 	public InventoryDAO() {
 		super(Inventory.class);
 	}
+	
+	public Double getCompetition(int prodId, int storeId) throws Exception {
+		InventoryId id = new InventoryId(prodId, storeId);
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("InventoryId", id);
+		criterions.add(criterion);
+		Inventory inventory  = get(criterions);
+		return inventory.getCompetition();
+	}
 
 	public int getSafetyStock(int prodId, int storeId) throws Exception{
 		InventoryId id = new InventoryId(prodId, storeId);
@@ -45,7 +54,10 @@ public class InventoryDAO extends BaseDao<Inventory> {
 		Inventory inventory  = get(criterions);
 		return inventory.getSafetyStock();
 	}
+	
 
+
+	
 	public void createInventory(Inventory inventory) throws Exception {
 		super.create(inventory);
 	}

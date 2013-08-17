@@ -14,7 +14,7 @@
                 <column name="store_id" />
             </key-property>
         </composite-id>
-        <many-to-one name="store" class="com.dicks.pojo.Store" update="false" insert="false" fetch="select">
+        <many-to-one name="store" class="com.dicks.pojo.Store" update="false" insert="false" fetch="join">
             <column name="store_id" not-null="true" />
         </many-to-one>
         <property name="cateName" type="java.lang.String">

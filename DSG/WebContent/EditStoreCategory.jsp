@@ -41,6 +41,12 @@
     <!-- menu bar ends -->
  <script>
  $(function() {
+	    $( "#tabs" ).tabs({
+	      collapsible: true
+	    });
+	  });
+ 
+ $(function() {
 	    var availableTags = [
 	      "All",
 	      "GSI Warehouse",
@@ -198,7 +204,7 @@
                     <td></td>
                 </tr>
                 
-                 <tr style="height:40px%;">
+                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Fulfillment Methord:<font color="red">*</font>:</div></td>
                     <td style="width:500px;">
                       <textarea id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Dick's Stores&#44;&nbsp;</textarea>
@@ -249,10 +255,10 @@
                 </tr>
 
                 <tr style="height:40px;">
-                    <td></td>
+                    <td><a class="button" onclick="history.go(-1)">Back</a></td>
                     <td>
-                      <span style="margin-left:10px;argin-top:10px;"><a class="button" href="ViewCategory.html" onclick=""/>Back</a></span>
-                      <span style="margin-left:10px;argin-top:10px;"><input type="submit" value="Update"></span>
+                      <input type="hidden" name="previousAppliedRuleString" value="${appliedRuleString}"/>
+                      <span style="margin-left:10px;argin-top:10px;"><input type="submit" class="button" value="Update"></span>
                     </td>  
                     <td></td>
                 </tr>
