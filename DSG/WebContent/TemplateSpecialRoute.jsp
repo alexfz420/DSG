@@ -12,7 +12,7 @@
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
@@ -28,18 +28,10 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>
-        <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
     </ul>
     </div>
  <script>
@@ -213,8 +205,9 @@ function goBack(){
             <br/><br/><div><hr/></div>
           
             <div>
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
+            <li style="list-style:none;">
+            	<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
             </div>
@@ -278,10 +271,8 @@ function goBack(){
                     </td>
                 </tr>
                 <tr id = "buttons">
-                    <td style = "text-align:right"><a class="button"  onclick='show()'>Next</a></td>
-                    <td>
-                    <a class="button" href="#">Cancel</a></td>
-                   
+                    <td style = "text-align:right"><a class="button" href="<%=basePath%>gotorulelist.action"">Cancel</a></td>
+                    <td><a class="button"  onclick='show()'>Continue</a></td>
                 </tr>
             </table>
             
@@ -306,11 +297,11 @@ function goBack(){
                  <c:set var="ruleNum" value="${ruleNum+1}" />   
 				</c:forEach>
 				<tr style="height:30px;background-color:8CEEF5">
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#8CEEF5">Your New Rule</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#75a8d8">Your New Rule</td>
 
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">${rulename.replace("%20"," ")}</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#75a8d8">${rulename.replace("%20"," ")}</td>
 
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#75a8d8">This is your new rule</td>
                 </tr>
                 
             </table>
@@ -332,7 +323,7 @@ function goBack(){
       
     
 
-      <div class="footer"><span>©2013 eBusiness Team</span></div>
+      <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
     <!-- footer ends -->
     
 </body>

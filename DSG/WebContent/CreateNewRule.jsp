@@ -173,8 +173,8 @@
 					</div>
 
 					<li style="list-style: none;">
-						<span><a href="#">Home</a><span> &gt; </span></span>
-						<span><a href="">Manage Business Rule</a></span><span> &gt; </span>
+						<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span> &gt; </span></span>
+						<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a></span><span> &gt; </span>
 						<span>New Business Rule</span>
 					</li>
 
@@ -210,7 +210,7 @@
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
                     <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
-                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
+                    <td class="grey">&nbsp;&nbsp;If not found, <a href="<%=basePath%>gotonewcategory.action">new Group</a>.</td>
                 </tr>
                 
                 <tr></tr>
