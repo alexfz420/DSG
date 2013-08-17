@@ -11,7 +11,7 @@ rule  "Default Mininum Packagethreshold"
     	p.addProduct($i, $orderE.getProductQty($i.getProdId()));
     	insert (p);    
         $i.minPackage();
-        $logger.addLog("Rule \"Default Mininum Packagethreshold\"", "Product "+$i.getProdName()+ " separeted into a new package");
+        $logger.addLog("Default Mininum Packagethreshold", "Product "+$i.getProdName()+ " separeted into a new package");
     	retract($i);
 end
 

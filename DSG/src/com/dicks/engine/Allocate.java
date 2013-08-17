@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringWriter;
 
 
 import javax.print.DocFlavor.URL;
@@ -17,6 +18,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.json.simple.JSONArray;
 import org.kie.api.io.Resource;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
@@ -54,7 +56,7 @@ public class Allocate {
     public static Rule[] ruleFile = new Rule[100];
     public static int ruleInt;
     
-    private String orderId;
+    private Orders order;
     private EngineLog stage1;
     private EngineLog stage2;
 	private EngineLog stage3;
@@ -75,13 +77,13 @@ public class Allocate {
 		System.out.println("shipping zip "+ shippingZipcode);
 		
 		Customer customer = CustomerDAO.getInstance().getById(1);
-		
+		System.out.println("customer: " + customer);
 		Orders order = new Orders(customer, 100, "g", new Timestamp(new Date().getTime()), 
 									shippingAddress, shippingZipcode, "412-622-3748", "");
 		
 		OrdersDAO.getInstance().createOrder(order);
 		
-		this.setOrderId(order.getOrderId() + "");
+		this.order = order;
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		for (int i = 0; i < skus.length; i++) {
 			map.put(skus[i], Integer.parseInt(quantities[i]));
@@ -106,36 +108,11 @@ public class Allocate {
 		//Resource r = ResourceFactory.newClassPathResource("com/dicks/rules/newRule_joe.drl", getClass());
 		Resource r = ResourceFactory.newFileResource(new File("src/com/dicks/rules/newRule_joe.drl"));		
 		
-//		BufferedReader br = null;
-//		
-//		System.out.println("-------------In Rule-------------");
-//		
-//		try {
-//			 
-//			String sCurrentLine = null;
-// 
-//			br = new BufferedReader(r.getReader());
-// 
-//			while ((sCurrentLine = br.readLine()) != null) {
-//				System.out.println(sCurrentLine);
-//			}
-// 
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (br != null)br.close();
-//			} catch (IOException ex) {
-//				ex.printStackTrace();
-//			}
-//		}
-		
 		kbuilder.add(r, ResourceType.DRL);
 		
 //		kbuilder.add(ResourceFactory.newUrlResource( "com/dicks/rules/newRule_joe.drl" ), ResourceType.DRL);
 
 		// Check the builder for errors
-
 		if (kbuilder.hasErrors()) {
 			System.out.println(kbuilder.getErrors().toString());
 			throw new RuntimeException("Unable to compile \"newRule_joe.drl\".");
@@ -146,7 +123,6 @@ public class Allocate {
 		final Collection<KnowledgePackage> pkgs = kbuilder.getKnowledgePackages();
 
 		// add the packages to a KnowledgeBase (deploy the knowledge packages).
-
 		final KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
 
 		kbase.addKnowledgePackages(pkgs);
@@ -187,11 +163,17 @@ public class Allocate {
 
 		this.stage2 = new EngineLog(2);
 		
-		
-		for (PackageE pack : packages) {
-			stage2.addLog("Minimum Packages", pack.toString());
-		}
-		
+//		JSONArray packageJson = new JSONArray();
+//		
+//		for (PackageE pack : packages) {
+//			packageJson.add(pack.getJson());
+//			
+//		}
+//		StringWriter out = new StringWriter();
+//		packageJson.writeJSONString(out);
+//		String jsonText = out.toString();		
+//		stage2.addLog("Wrap up Remaining Products", jsonText);
+//		
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));
@@ -213,14 +195,6 @@ public class Allocate {
 	private static void setUpProduct(Product p, String name, double price) {
 		/*p.setPrice(price);
 		p.setProductName(name);*/
-	}
-
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
 	}
 
 	public EngineLog getStage1() {
@@ -269,6 +243,14 @@ public class Allocate {
 
 	public void setAllocatedResults(Collection<PackageTestResult> allocatedResults) {
 		this.allocatedResults = allocatedResults;
+	}
+
+	public Orders getOrder() {
+		return order;
+	}
+
+	public void setOrder(Orders order) {
+		this.order = order;
 	}
 
 }

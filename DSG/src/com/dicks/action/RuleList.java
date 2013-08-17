@@ -44,7 +44,17 @@ public class RuleList {
 	private String thisOperator;
 	private String cateList ;
 	private Rule rule;
+	public String[] productcount;
 	
+	
+	
+	public void setProductcount(String[] a){
+		this.productcount = a;
+	}
+
+	public String[] getProductcount(){
+		return productcount;
+	}
 	
 	private void setCateList(String cateList){
 		this.cateList = cateList;
@@ -192,36 +202,7 @@ public class RuleList {
 			e1.printStackTrace();
 		}
 
-		for (int i = 0; i<allRule.length;i++){
-			if (allRule[i].getType().equals("n")){
-				if (allRule[i].getPriority()>0){
-					pre++;
-				}
-				else{
-					last++;
-				}
-			}
-		}
-		mid = allRule.length-pre-last;
-		System.out.println("all rule number is "+allRule.length);
-		System.out.println("pre rule number is "+pre);
-		System.out.println("mid rule number is "+mid);
-		System.out.println("last rule number is "+last);
-		preRule = new Rule[pre];
-		midRule = new Rule[mid];
-		lastRule = new Rule[last];
-		for (int i = 0; i<pre;i++){
-			preRule[i] = allRule[i];
-			System.out.println("Pre Rule"+allRule[i].getRuleName());
-		}
-		for (int i = pre,j=0;i<(pre+mid);i++,j++){
-			midRule[j] = allRule[i];
-			System.out.println("Mid Rule"+allRule[i].getRuleName());
-		}
-		for (int i = (pre+mid),j=0; i < allRule.length; i++,j++){
-			lastRule[j] = allRule[i];
-			System.out.println("Last Rule"+allRule[i].getRuleName());
-		}
+		
 
 
 		return "success";
@@ -266,9 +247,9 @@ public class RuleList {
 			}
 			StringBuffer cate = new StringBuffer();
 			String[] cateList = RuleCateDAO.getInstance().getCateNamesByRuleId(thisRule.getRuleId().toString());
-			cate.append(cateList);
+			cate.append(cateList[0]);
 			for (int i = 1;i<cateList.length;i++){
-				System.out.println(cateList[i]);
+				System.out.println(i+" cate is "+cateList[i]);
 				cate.append(","+cateList[i]);
 			}
 			cates = cate.toString();
@@ -301,6 +282,20 @@ public class RuleList {
 			else if (viewEdit.equals("edit")){
 				return "goToEditProductThreshold";
 			}
+			else if (viewEdit.equals("ables")){
+				System.out.println("getting albe!!!");
+				if (thisRule.getAble()  == true)
+				{
+					thisRule.setAble(false);
+				}
+				else
+				{
+					thisRule.setAble(true);
+				}
+				RuleDAO.getInstance().update(thisRule);
+				WriteDrl wdrl = new WriteDrl();
+				return "enableSuccess";
+			}
 		} else if (thisRule.getType().equals("5")) {
 			FeeDAO feeDAO = FeeDAO.getInstance();
 			this.storeFeeList = feeDAO.getByType("store");
@@ -325,13 +320,16 @@ public class RuleList {
 				e.printStackTrace();
 			}
 			StringBuffer cate = new StringBuffer();
-			cate.append(tmp2[0]);
-			for (int i = 1;i<tmp2.length;i++){
-				System.out.println(tmp2[i]);
-				cate.append(","+tmp2[i]);
+			String[] cateList = RuleCateDAO.getInstance().getCateNamesByRuleId(thisRule.getRuleId().toString());
+			cate.append(cateList[0]);
+			for (int i = 1;i<cateList.length;i++){
+				System.out.println(i+" cate is "+cateList[i]);
+				cate.append(","+cateList[i]);
 			}
-
-			prodCate = cate.toString();
+			cates = cate.toString();
+			System.out.println("cate list"+cates);
+			
+			
 
 			System.out.println("WTF"+prodCate);
 			rulename = thisRule.getRuleName();
@@ -483,9 +481,87 @@ public class RuleList {
 		System.out.println("rulename pre "+rulename);
 		System.out.println("rulename after "+rulenames);
 		UpdateTemplate updateTemplate= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A");
-
+		WriteDrl wdl = new WriteDrl();
 		return "success";
 	}
+	
+	public String updateRuleSpecial(){
+
+		categoryname =categoryname.replace("%20", " ");
+		rulename = rulename.replace("%20", " ");
+		des = des.replace("%20", " ");
+		System.out.println("input category"+categoryname);
+		categoryname = categoryname.trim();
+		Rule hahaRule = new Rule();
+		Rule[] ruleList = null;
+
+		try{
+				//hahaRule = RuleDAO.getInstance().getRuleByName(rulename);
+				//System.out.println("this rule Id is !!!!!!!!!"+hahaRule.getRuleId());
+				ruleList =RuleDAO.getInstance().getAllSortedListFromStageOne();
+		}
+		catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		for (int i = 0; i<ruleList.length;i++){
+			System.out.println("!!fsdfjdsakfasdkfjasdlkfjadslkjflkasjflkasdjfl"+ruleList[i].getRuleName()+"  "+rulename);
+			if ((ruleList[i].getRuleName().replace("%20"," ")).equals(rulename)){
+				System.out.println("found it");
+				hahaRule = ruleList[i];
+				break;
+			}
+		}
+		String[] categoryList= categoryname.split(",");
+
+
+		int cateLength = 0;
+		for (int j = 0 ; j<categoryList.length;j++){
+			if ((categoryList[j] != null) && (!categoryList[j].equals(" "))){
+				cateLength++;
+			}
+		}
+
+		String [] cateList = new String[cateLength];
+		for (int i = 0; i<cateList.length;i++){
+			cateList[i] = categoryList[i];
+		}
+		for (int i = 0; i<cateList.length;i++){
+			System.out.println("cate"+i+" "+categoryList[i]);
+			cateList[i] = cateList[i].trim();
+		}
+		String[] product = null;
+
+		//System.out.println("first instance of catelist is "+cateList[0]);
+		try {
+			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("product size is "+product.length);
+		
+		///done
+
+		
+		String[] aa = new String[1];
+		aa[0] = " ";
+		String type = null;
+		
+		 String[] action = new String[1];
+		 action[0] = "special";
+		 
+		 String flag = "TH-A,ST-A,SP-B";
+		System.out.println("rulename "+rulename);
+		System.out.println("rulename!!!"+rulenames);
+		System.out.println("des "+des);
+		System.out.println("operator "+operator[0]);
+		System.out.println("prodcut "+productcount);
+		UpdateTemplate updateTemplate= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,aa,operator,value," ",productcount,action,flag);
+		WriteDrl wdl = new WriteDrl();
+		return "success";
+	}
+	
 	public ArrayList<Fee> getStoreFeeList() {
 		return storeFeeList;
 	}

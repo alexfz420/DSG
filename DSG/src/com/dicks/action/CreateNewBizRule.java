@@ -178,7 +178,7 @@ public class CreateNewBizRule {
 			e.printStackTrace();
 		}
 		StringBuffer cates = new StringBuffer();
-		cate.append(tmp3[0]);
+		cates.append(tmp3[0]);
 		for (int i = 1;i<tmp3.length;i++){
 			//System.out.println(tmp2[i]);
 			cates.append(","+tmp3[i]);
@@ -249,6 +249,7 @@ public class CreateNewBizRule {
 		des = des.replace("%20", " ");
 		
 		System.out.println("cate "+categoryname);
+		categoryname = categoryname.trim();
 		String[] categoryList= categoryname.split(",");
 		int cateLength = 0;
 		for (int j = 0 ; j<categoryList.length;j++){
@@ -293,7 +294,7 @@ public class CreateNewBizRule {
 		}*/
 		
 		
-		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
+		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority),cateList);
 		WriteDrl wdl = new WriteDrl();
 		
 		return "newrule";
@@ -323,7 +324,9 @@ public class CreateNewBizRule {
 			type = "Store Threshold";
 		}
 		String[] product = null;
-
+		for (int i = 0; i<cateList.length;i++){
+			System.out.println("cate"+i+" "+cateList[i]);
+		}
 		//System.out.println("first instance of catelist is "+cateList[0]);
 		try {
 			product = ProdCateDAO.getInstance().getSKUByCategory(cateList);
@@ -331,6 +334,8 @@ public class CreateNewBizRule {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		System.out.println("product size is "+product.length);
 		//no available action right now
 		String[] action = new String[1];
 		action[0] = "retract";
@@ -338,7 +343,7 @@ public class CreateNewBizRule {
 		String[] route = new String[1];
 		route[0] = " ";
 		
-		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority));
+		CreateTemplate test= new CreateTemplate(rulename,des,type,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",Integer.parseInt(priority),cateList);
 		WriteDrl wdl = new WriteDrl();
 		
 		return "storeThreshold";
@@ -350,6 +355,8 @@ public class CreateNewBizRule {
 		rulename = rulename.replace("%20", " ");
 		des = des.replace("%20", " ");
 		System.out.println("input category"+categoryname);
+		categoryname = categoryname.trim();
+		
 		String[] categoryList= categoryname.split(",");
 
 
@@ -364,7 +371,10 @@ public class CreateNewBizRule {
 		for (int i = 0; i<cateList.length;i++){
 			cateList[i] = categoryList[i];
 		}
-		
+		for (int i = 0; i<cateList.length;i++){
+			System.out.println("cate"+i+" "+categoryList[i]);
+			cateList[i] = cateList[i].trim();
+		}
 		String[] product = null;
 
 		//System.out.println("first instance of catelist is "+cateList[0]);
@@ -374,6 +384,7 @@ public class CreateNewBizRule {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		System.out.println("product size is "+product.length);
 		
 		///done
 
@@ -390,7 +401,7 @@ public class CreateNewBizRule {
 		 action[0] = "special";
 		 
 		 String flag = "TH-A,ST-A,SP-B";
-		CreateTemplate test= new CreateTemplate(rulename,des,type,product,aa,operator,productcount," ",sources,action,flag,Integer.parseInt(priority));
+		CreateTemplate test= new CreateTemplate(rulename,des,type,product,aa,operator,productcount," ",sources,action,flag,Integer.parseInt(priority),cateList);
 		WriteDrl wdl = new WriteDrl();
 		
 		

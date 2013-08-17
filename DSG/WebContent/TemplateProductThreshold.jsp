@@ -6,7 +6,7 @@
     %>
  <jsp:include page="template_top.jsp" />
  <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
- 
+
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -136,15 +136,15 @@ function goBack(){
             <table class="text">
                 <tr>
                     <td>Rule Name&#58;</td>
-                    <td>${rulename}</td>
+                    <td>${rulename.replace("%20"," ")}</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td>${des}</td>
+                    <td>${des.replace("%20"," ")}</td>
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
-                    <td>${cates} </td>
+                    <td>${categoryname.replace("%20"," ")} </td>
                     
                 </tr>
                 <tr>

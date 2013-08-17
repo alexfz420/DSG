@@ -20,6 +20,8 @@ public class LogDAO extends BaseDao<Log>
 		super(Log.class);
 	}
 
+
+
 	public static LogDAO getInstance() {
 		return instance;
 	}
@@ -27,10 +29,11 @@ public class LogDAO extends BaseDao<Log>
 	public static void setInstance(LogDAO instance) {
 		LogDAO.instance = instance;
 	}
-	
 
-	public  void create(Log log) throws Exception{
+
+
+	
+	public void createLog(Log log) throws Exception {
 		super.create(log);
 	}
-
 }

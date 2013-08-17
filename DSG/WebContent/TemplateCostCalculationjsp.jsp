@@ -126,7 +126,7 @@ function goBack(){
                 </tr>
                 <tr>
                     <td>Category&#58;</td>
-                    <td>Clothes&#44;&nbsp;Fishing</td>
+                    <td>All</td>
                 </tr>
                 <tr>
                     <td>Stage&#58;</td>
