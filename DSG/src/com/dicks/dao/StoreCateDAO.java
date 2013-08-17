@@ -1,6 +1,7 @@
 package com.dicks.dao;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.criterion.Criterion;
@@ -8,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.dicks.pojo.ProdCate;
 import com.dicks.pojo.Product;
+import com.dicks.pojo.Store;
 import com.dicks.pojo.StoreCate;
 import com.dicks.pojo.StoreCateId;
 
@@ -109,6 +111,30 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 	public void delete(int cateid, int storeId ) throws Exception{
 		StoreCate sc = new StoreCate(new StoreCateId(cateid, storeId), null, null, null);
 		super.delete(sc);
+	}
+	
+	public Store[] getStoreByCategory(String[] categoryNameList) throws Exception{
+		List<Store> finalResult = new LinkedList<Store>();
+		for(String categoryName : categoryNameList){
+			List<Criterion> criterions = new ArrayList<Criterion>();
+			Criterion criterion = Restrictions.eq("cateName", categoryName);
+			criterions.add(criterion);
+			List<StoreCate> result =  super.getList(criterions);
+			for(StoreCate sc : result){
+				finalResult.add(sc.getStore());
+			}
+		}
+		Store[] stores = (Store[])finalResult.toArray(new Store[finalResult.size()]);
+		return stores;	
+	}
+	
+	public String[] getStoreNamesByCategory(String[] categoryNameList) throws Exception{
+		Store[] stores = getStoreByCategory(categoryNameList);
+		String[] skuArray = new String[stores.length];
+		for(int i=0;i<stores.length;i++){
+			skuArray[i] = stores[i].getStoreName();
+		}
+		return skuArray;
 	}
 	
 	public List<Integer> getAllIds() throws Exception{

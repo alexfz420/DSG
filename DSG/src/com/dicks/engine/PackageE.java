@@ -26,6 +26,7 @@ public class PackageE {
 		this.order = order;
 	}
 	
+	
 	public Product getProduct(int index) {
 		if (index > products.size() - 1) return null;
 		return products.get(index);
