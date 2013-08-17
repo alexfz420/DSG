@@ -329,17 +329,17 @@ public class WriteDrl {
 		   }
 		   else if (splitAttribute[0].equals("Competition"))
 		   {
-			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
+			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().getCompetition($s.getStoreId(), $id) " +splitOperator[0]+" $orderE.getProductQty($id))"+myReturn);
 		   }
 		   for (int i = 1; i < splitAttribute.length; i++){
 			   if (splitAttribute[i].equals("Margin"))
 			   {
 				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
-
+				   
 			   }
 			   else if (splitAttribute[i].equals("Competition"))
 			   {
-				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProductCompetition($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
+				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().getCompetition($s.getStoreId(), $id) " +splitOperator[i]+" $orderE.getProductQty($id))"+myReturn);
 			   }
 
 		   }

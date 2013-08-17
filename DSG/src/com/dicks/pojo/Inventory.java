@@ -13,7 +13,7 @@ public class Inventory implements java.io.Serializable {
 	private Integer retailPrice;
 	private Integer inventory;
 	private Integer safetyStock;
-	private Double competition;
+	private Double competition =  0.0;
 
 	// Constructors
 
