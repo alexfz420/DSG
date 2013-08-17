@@ -1,6 +1,7 @@
 package com.dicks.engine;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -59,15 +60,18 @@ public class EngineLog {
 			Rule rule = RuleDAO.getInstance().getRuleByName(name);
 			
 			String[] categories = RuleCateDAO.getInstance().getCateNamesByRuleId(rule.getRuleId()+"");
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < categories.length; i++) {
-				sb.append(categories[i]);
-				if (i != categories.length - 1) {
-					sb.append(", ");
+			if (rule.getType().equals("9")) log.setCategories("All");
+			else {
+				StringBuilder sb = new StringBuilder();
+				for (int i = 0; i < categories.length; i++) {
+					sb.append(categories[i]);
+					if (i != categories.length - 1) {
+						sb.append(", ");
+					}
 				}
-			}
-			log.setCategories(sb.toString());
-			
+				//System.out.println("categories: " + Arrays.toString(categories));
+				log.setCategories(sb.toString());	
+			}				
 			log.setRule(rule);
 			log.setIndex(count++);
 			logs.add(log);

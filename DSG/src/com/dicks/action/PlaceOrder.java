@@ -127,6 +127,7 @@ public class PlaceOrder {
 		ArrayList<LogE> logEs = stage1.getLogs();
 		LogDAO logDAO =  LogDAO.getInstance();
 		
+		// For stage 1
 		for (LogE logE : logEs) {
 			Rule rule = logE.getRule();
 			System.out.println("rule " + logE.getName() + " " + rule);
@@ -134,7 +135,10 @@ public class PlaceOrder {
 			System.out.println("logs: " + logE.getLogs());
 			log.setRecord(Arrays.toString(logE.getLogs().toArray()));
 			logDAO.createLog(log);
-		}
+		}	
+		
+		// For stage 2
+		
 		
 		
 		allAllocatedResults = new ArrayList<PackageTestResult>();
@@ -153,7 +157,7 @@ public class PlaceOrder {
 				Parcel parcel = parcelResult.getParcel();
 				HashMap<Product, Integer> map = parcel.getProducts();
 				for (Product product : map.keySet()) {
-					System.out.println("package id: " + pack.getPackageId());
+					//System.out.println("package id: " + pack.getPackageId());
 					PackageDetail packDetail = new PackageDetail(new PackageDetailId(pack.getPackageId(), product.getProdId()),
 																pack, product, parcel.getProductQty(product));
 					packageDetailDAO.createPackageDetail(packDetail);

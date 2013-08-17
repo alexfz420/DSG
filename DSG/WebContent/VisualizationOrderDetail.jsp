@@ -63,11 +63,14 @@
 		}
 		else{
 			var block = document.getElementsByClassName("block");
+			console.log("class name: " + className);
 			for(var i in block){
 				if(className==block[i].id){
+					console.log("show block id: " + block[i].id);
 					$('#'+block[i].id).show();
 				}
 				else{
+					console.log("hide block id: " + block[i].id);
 					$('#'+block[i].id).hide();
 				}
 	  		}
@@ -137,9 +140,9 @@
                         <h3>Stage 2 - Candidate Determination</h3>
                         <div style="border: 1px solid #aaaaaa;">
                             <ul>
-                                <li style="height:30px;"><a href="VisualizationStage2-1.html">Package 1</a></li>
-                                <li style="height:30px;"><a href="VisualizationStage2-2.html">Package 2</a></li>
-                                <li style="height:30px;"><a href="VisualizationStage2-3.html">Package 3</a></li> 
+	                            <c:forEach var="pack" items="${packages}" varStatus="index">
+	                           		<li style="height:30px;"><a onClick="changeDiv(this)" class="stage2package${index.index}">Package${index.count}</a></li>	         								
+								</c:forEach>
                             </ul>
                         </div>
                     
@@ -302,41 +305,72 @@
 						</c:forEach>                        
 
 
-                        		           
-                        <div id="stage2package1" class="block" style="display:none;padding-left:20px;">
-                         <div name="package" style="height:30px;font-size:18px;margin-top:10px;">
-                            Package 1
-                        </div>
+                        <!-- Add package for stage 2 -->	
+                        
+                        <c:forEach var="pack" items="${packages}" varStatus="index">         		
+                           	
+	                     <div id="stage2package${index.index}" class="block" style="display:none;padding-left:20px;">
+	                         <div name="package" style="height:30px;font-size:18px;margin-top:10px;">
+	                            Package ${index.count}
+	                        </div>
+	
+	                        <div id="included" style="height:40px;">
+	                            <div style="float:left;height:20px;width:110px;font-size:14px;width:120px;">
+	                                Included Items&#58;
+	                            </div>
+	                            
+	                            <div style="float:left;">
+	                            	<div name="items" style="height:20px;font-size:12px;width:200px;">
+			                            <c:forEach var="product" items="${pack.getProducts()}" varStatus="index">
+											${product.getProdName()} - quantity 1
+										</c:forEach>	                            
+	                                </div>
+	                            </div>
+	                        </div>
+	
+	                        <div id="split${index.index}" style="height:100px;">
+	                            
+	                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
+	                                Split 0
+	                            </div>
+	                            <div name="product" style="float:left;height:20px;font-size:14px;width:110px;padding-left:10px;">
+	                                {Kayak}:
+	                            </div>
+	                            
+	                            <div style="float:left;width:200px;">
+	                            	<c:choose>
+										<c:when test="${ (pack.splitNum == 0) }">
+											<div name="failed" style="height:20px;font-size:12px;">
+			                                    Failed&#58; 100/300 stores
+			                                </div>
+			                                <div name="success" style="height:20px;font-size:12px;">
+			                                    Success&#58; 200/300 stores
+			                                </div>
+										</c:when>
+										<c:otherwise>
+				                            <c:forEach begin="0" end="${pack.getSplitNum()}" varStatus="loop">
+				                                <div name="failed" style="height:20px;font-size:12px;">
+				                                    Failed&#58; 100/300 stores
+				                                </div>
+				                                <div name="success" style="height:20px;font-size:12px;">
+				                                    Success&#58; 200/300 stores
+				                                </div>
+											</c:forEach>
+			                                <div name="failed" style="height:20px;font-size:12px;">
+			                                    Failed&#58; 100/300 stores
+			                                </div>
+			                                <div name="success" style="height:20px;font-size:12px;">
+			                                    Success&#58; 200/300 stores
+			                                </div>											
+										</c:otherwise>
+									</c:choose>
+	                            </div>
+	                        </div>
+	                    </div>
+						</c:forEach>
 
-                        <div id="included" style="height:40px;">
-                            <div style="float:left;height:20px;width:110px;font-size:14px;width:120px;">
-                                Included Items&#58;
-                            </div>
-                            
-                            <div style="float:left;">
-                                <div name="items" style="height:20px;font-size:12px;width:200px;">
-                                    Kayak - quantity 1
-                                </div>
-                            </div>
-                        </div>
 
-                        <div id="split" style="height:100px;">
-                            
-                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
-                                Split 0
-                            </div>
-                            <div name="product" style="float:left;height:20px;font-size:14px;width:110px;padding-left:10px;">
-                                {Kayak}:
-                            </div>
-                            <div style="float:left;width:200px;">
-                                <div name="failed" style="height:20px;font-size:12px;">
-                                    Failed&#58; 100/300 stores
-                                </div>
-                                <div name="success" style="height:20px;font-size:12px;">
-                                    Success&#58; 200/300 stores
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
                     <div id="stage3route1" class="block" style="display:none;padding-left:20px;">
