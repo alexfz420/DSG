@@ -163,17 +163,17 @@ public class Allocate {
 
 		this.stage2 = new EngineLog(2);
 		
-		JSONArray packageJson = new JSONArray();
-		
-		for (PackageE pack : packages) {
-			packageJson.add(pack.getJson());
-			
-		}
-		StringWriter out = new StringWriter();
-		packageJson.writeJSONString(out);
-		String jsonText = out.toString();		
-		stage2.addLog("Wrap up Remaining Products", jsonText);
-		
+//		JSONArray packageJson = new JSONArray();
+//		
+//		for (PackageE pack : packages) {
+//			packageJson.add(pack.getJson());
+//			
+//		}
+//		StringWriter out = new StringWriter();
+//		packageJson.writeJSONString(out);
+//		String jsonText = out.toString();		
+//		stage2.addLog("Wrap up Remaining Products", jsonText);
+//		
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
 		System.out.println(Arrays.toString(packages.toArray()));

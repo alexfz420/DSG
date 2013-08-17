@@ -24,7 +24,7 @@
             <column name="stage" not-null="true" />
         </property>
         <property name="record" type="java.lang.String">
-            <column name="record" length="300" />
+            <column name="record" length="60000" />
         </property>
     </class>
 </hibernate-mapping>

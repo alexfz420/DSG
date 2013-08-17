@@ -37,39 +37,38 @@ public class PackageE {
 		return Arrays.toString(products.toArray());
 	}
 	
-	@SuppressWarnings({ "unchecked"})
-	public JSONObject getJson() {
-		HashMap<Product, Integer> map = new HashMap<Product, Integer>();
-		
-		for (Product p : products) {
-			Integer qty = map.get(p);
-			if (qty == null) {
-				map.put(p, 1);
-			} else {
-				map.put(p, qty + 1);
-			}
-		}
-		
-		JSONObject packageE = new JSONObject();
-		packageE.put("splitNum", this.splitNum);
-		JSONArray productList = new JSONArray();
-		for (Product p : map.keySet()) {
-			JSONObject product = new JSONObject();
-			product.put("prodName", p.getProdName());
-			product.put("quantity", map.get(p));
-			productList.add(product);
-		}
-		packageE.put("products", productList);
-//		StringWriter out = new StringWriter();
-//		try {
-//			packageE.writeJSONString(out);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+//	public JSONObject getJson() {
+//		HashMap<Product, Integer> map = new HashMap<Product, Integer>();
+//		
+//		for (Product p : products) {
+//			Integer qty = map.get(p);
+//			if (qty == null) {
+//				map.put(p, 1);
+//			} else {
+//				map.put(p, qty + 1);
+//			}
 //		}
-//		String jsonText = out.toString();		
-		return packageE;
-	}
+//		
+//		JSONObject packageE = new JSONObject();
+//		packageE.put("splitNum", this.splitNum);
+//		JSONArray productList = new JSONArray();
+//		for (Product p : map.keySet()) {
+//			JSONObject product = new JSONObject();
+//			product.put("prodName", p.getProdName());
+//			product.put("quantity", map.get(p));
+//			productList.add(product);
+//		}
+//		packageE.put("products", productList);
+////		StringWriter out = new StringWriter();
+////		try {
+////			packageE.writeJSONString(out);
+////		} catch (IOException e) {
+////			// TODO Auto-generated catch block
+////			e.printStackTrace();
+////		}
+////		String jsonText = out.toString();		
+//		return packageE;
+//	}
 	
 	public boolean isAllocated() {
 		return allocated;

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-
 import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
@@ -22,6 +21,7 @@ public class WriteDrl {
 	public static Product[] product = new Product[3];
 
 	public WriteDrl(){
+
 		try {
 			ruleFiles = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
 		} catch (Exception e1) {

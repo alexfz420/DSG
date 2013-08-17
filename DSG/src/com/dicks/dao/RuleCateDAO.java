@@ -178,6 +178,10 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		}
 	}
 	
+	public void delete(RuleCate rc) throws Exception{
+		super.delete(rc);
+	}
+	
 	public List<RuleCate> getRuleCateListByCateId(int cateId) throws Exception{
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		Criterion criterion = Restrictions.eq("id.categoryId", cateId);

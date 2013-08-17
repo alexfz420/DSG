@@ -1,6 +1,7 @@
 package com.dicks.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
+import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
@@ -38,22 +40,34 @@ public class HibernateUtil {
 //	}
 	
 	public static void main(String[] args) {
-		RuleDAO rdDao = RuleDAO.getInstance();
-		ProdCateDAO pcDao = ProdCateDAO.getInstance();
-		ProductDAO productDao = ProductDAO.getInstance();
-		Rule[] ruleList = null ;
-		Product[] products = null;
+//		RuleDAO rdDao = RuleDAO.getInstance();
+//		ProdCateDAO pcDao = ProdCateDAO.getInstance();
+//		ProductDAO productDao = ProductDAO.getInstance();
+//		Rule[] ruleList = null ;
+//		Product[] products = null;
+//		try {
+//			products = productDao.getProductsBySKUList(new String[]{"aa","bb","cc"});
+//			
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		for(Product product: products ){
+//			System.out.println(product.getProdName());
+//		}
+		
 		try {
-			products = productDao.getProductsBySKUList(new String[]{"aa","bb","cc"});
+			Rule[] rulesForDelete =RuleCateDAO.getInstance().getRuleListByCateId("5");
+			System.out.println(rulesForDelete.length);
+			System.out.println(Arrays.asList(rulesForDelete).size());
 			
 			
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		for(Product product: products ){
-			System.out.println(product.getProdName());
-		}
+
 	}
 //	
 	

@@ -15,6 +15,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.dicks.dao.LogDAO;
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleCateDAO;
@@ -23,6 +24,8 @@ import com.dicks.dao.StoreCateDAO;
 import com.dicks.pojo.Customer;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Inventory;
+import com.dicks.pojo.Log;
+import com.dicks.pojo.LogId;
 import com.dicks.pojo.Orders;
 import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.PackageDetail;
@@ -43,8 +46,13 @@ public class HibernateTest
 	public static void main(String[] args) throws Exception
 	{
 
-		RuleCateDAO.getInstance().createRuleCate(1, new String[]{"1","2","3"}, true);
-////		System.out.println(RuleCateDAO.getInstance().getCateNamesByRuleId("2").length);
+		String str = "hfgdghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
+		System.out.println(str.length());
+//		Log log = new Log(new LogId(2, 1), null, null, null);
+//		log.setRecord(str);
+//		log.setStage(1);
+//		LogDAO.getInstance().getInstance().create(log);
+		////		System.out.println(RuleCateDAO.getInstance().getCateNamesByRuleId("2").length);
 //		Rule[] allRule = RuleDAO.getInstance().getAllSortedListFromStageOne();
 //		for (Rule rule : allRule) {
 //			System.out.println(rule.getRuleName());
