@@ -57,7 +57,17 @@ public class EngineLog {
 		for (String name : map.keySet()) {
 			LogE log = new LogE(name, map.get(name));
 			Rule rule = RuleDAO.getInstance().getRuleByName(name);
-			String[] categories = RuleCateDAO.getInstance().getCateNamesByRuleId(rule.getRuleId());
+			
+			String[] categories = RuleCateDAO.getInstance().getCateNamesByRuleId(rule.getRuleId()+"");
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < categories.length; i++) {
+				sb.append(categories[i]);
+				if (i != categories.length - 1) {
+					sb.append(", ");
+				}
+			}
+			log.setCategories(sb.toString());
+			
 			log.setRule(rule);
 			log.setIndex(count++);
 			logs.add(log);
@@ -74,6 +84,7 @@ public class EngineLog {
 		private String name;
 		private ArrayList<String> logs;
 		private Rule rule;
+		private String categories;
 		
 		public LogE(String name, ArrayList<String> logs) {
 			this.name = name;
@@ -110,6 +121,14 @@ public class EngineLog {
 
 		public void setRule(Rule rule) {
 			this.rule = rule;
+		}
+
+		public String getCategories() {
+			return categories;
+		}
+
+		public void setCategories(String categories) {
+			this.categories = categories;
 		}
 	}
 }

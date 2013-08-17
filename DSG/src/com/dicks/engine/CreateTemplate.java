@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.print.DocFlavor.URL;
 
+import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Vendor;
@@ -23,14 +24,14 @@ public class CreateTemplate {
     public static Rule[] ruleFiles = null;
     public static int ruleInt;
     public String typeString;
-    
+    public boolean isProduct;
     
     public static Product[] product = new Product[3];
     
    
     
 	public CreateTemplate  (String ruleName, String description,String type, String[] objects, String[] attributes, 
-			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ){
+			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ,String[] cateList){
 		System.out.println("route!!"+routes);
 		ruleInt --;
 		String condition = null;
@@ -157,14 +158,17 @@ public class CreateTemplate {
 	      if (type.equalsIgnoreCase("Product Threshold")){
 	    	  type = "1";
 	    	  typeString = "Product Threshold";
+	    	  isProduct = true;
 	      }
 	      if (type.equalsIgnoreCase("Store Threshold")){
 	    	  type = "2";
 	    	  typeString = "Store Threshold";
+	    	  isProduct = false;
 	      }
 	      if (type.equalsIgnoreCase("Special Route")){
 	    	  type = "3";
 	    	  typeString = "Special Route";
+	    	  isProduct = true;
 	      }
 	      if (type.equalsIgnoreCase("Store Threshold")){
 	    	  type = "4";
@@ -172,6 +176,7 @@ public class CreateTemplate {
 	      }
 
 	      if (type.equalsIgnoreCase("1")||type.equalsIgnoreCase("2")){
+	    	  
 	    	  //System.out.println("Heresdlfjsdlkfjsdlfjsdl");
 	    	  //System.out.println("object length "+objects.length);
 	    	  if (ruleInt > 0){
@@ -195,6 +200,7 @@ public class CreateTemplate {
 	    	  
 	      }    
 	      else {
+	    	  
 		      if (ruleInt > 0){
 		    	  System.out.println("type!!!!"+type);
 		    	  if (ruleInt == (ruleFile.length)){
@@ -219,6 +225,9 @@ public class CreateTemplate {
 
 	      try {
 				RuleDAO.getInstance().createRule(ruleFiles[ruleInt]);
+				System.out.println("!!!!"+isProduct);
+				RuleCateDAO.getInstance().createRuleCate(RuleDAO.getInstance().getRuleByName(ruleName).getRuleId(), cateList, isProduct);
+				
 				for (i = 0; i < ruleFiles.length;i++){
 					System.out.println("II"+i);
 					if (ruleFiles[i] == null){

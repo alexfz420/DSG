@@ -279,7 +279,7 @@
 	                            </div>
 	                            <div style="padding-bottom:30px;">
 	                                <div style="float:left; width:150px">Category&#58;</div>
-	                                <div id="orderdate" style="float:left; width:350px">Boat</div>
+	                                <div id="orderdate" style="float:left; width:350px">${log.getCategories()}</div>
 	                            </div>
 	                            <div style="padding-bottom:30px;">
 	                                <div style="float:left; width:150px">Condition&#58;</div>
