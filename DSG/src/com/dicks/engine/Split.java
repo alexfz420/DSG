@@ -2,6 +2,7 @@ package com.dicks.engine;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,6 +11,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 
 import org.drools.compiler.lang.DRL5Expressions.operator_key_return;
+import org.json.simple.JSONArray;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
 import org.kie.internal.KnowledgeBase;
@@ -68,11 +70,11 @@ public class Split {
 	}
 	
 	@SuppressWarnings("restriction")
-	public Split(Collection<PackageE> packages, Collection<Store> stores, EngineLog stage2, Collection<PackageTestResult> allocatedResults) throws Exception {
+	public Split(Collection<PackageE> packages, Collection<Store> stores, Collection<PackageTestResult> allocatedResults) throws Exception {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
 		
-		this.setStage2(stage2);
+		this.stage2 = new EngineLog(2);
 		this.stage3 = new EngineLog(3);
 		
 		ArrayList<Rule> rules = RuleDAO.getInstance().getRuleByType("6");
@@ -146,6 +148,16 @@ public class Split {
 			stage3.addLog("Allocated Results", r.toString());
 		}
 		
+		JSONArray packageJson = new JSONArray();
+		
+		for (PackageE pack : packages) {
+			packageJson.add(pack.getJson());
+		}
+		StringWriter out = new StringWriter();
+		packageJson.writeJSONString(out);
+		String jsonText = out.toString();	
+		System.out.println("packages: " + jsonText);
+		stage2.addLog("Wrap up Remaining Products", jsonText);	
 	}
 
 	public static ArrayList<PackageTest> getTests(PackageE pack) {

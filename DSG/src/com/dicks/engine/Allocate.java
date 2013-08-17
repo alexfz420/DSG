@@ -58,8 +58,8 @@ public class Allocate {
     
     private Orders order;
     private EngineLog stage1;
-    private EngineLog stage2;
-	private EngineLog stage3;
+//    private EngineLog stage2;
+//	private EngineLog stage3;
     
 	private Collection<PackageE> packages;
 	private Collection<Store> leftStores;
@@ -161,18 +161,19 @@ public class Allocate {
 		leftStores = (Collection<Store>) ksession.getObjects( new ClassObjectFilter(Store.class) );
 		allocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 
-		this.stage2 = new EngineLog(2);
+//		this.stage2 = new EngineLog(2);
 		
-		JSONArray packageJson = new JSONArray();
-		
-		for (PackageE pack : packages) {
-			packageJson.add(pack.getJson());
-			
-		}
-		StringWriter out = new StringWriter();
-		packageJson.writeJSONString(out);
-		String jsonText = out.toString();		
-		stage2.addLog("Wrap up Remaining Products", jsonText);
+//		JSONArray packageJson = new JSONArray();
+//		
+//		for (PackageE pack : packages) {
+//			packageJson.add(pack.getJson());
+//			
+//		}
+//		StringWriter out = new StringWriter();
+//		packageJson.writeJSONString(out);
+//		String jsonText = out.toString();		
+//		stage2.addLog("Wrap up Remaining Products", jsonText);
+//		System.out.println("packages: " + jsonText);
 		
 		System.out.println("---------------------------------");
 		System.out.println("package size: " + packages.size());
@@ -186,10 +187,7 @@ public class Allocate {
 
 		// Remove comment if using logging
 		logger.close();
-
 		ksession.dispose();
-		
-
 	}
 
 	private static void setUpProduct(Product p, String name, double price) {
@@ -205,21 +203,21 @@ public class Allocate {
 		this.stage1 = stage1;
 	}
 
-	public EngineLog getStage3() {
-		return stage3;
-	}
-
-	public void setStage3(EngineLog stage3) {
-		this.stage3 = stage3;
-	}
-	
-    public EngineLog getStage2() {
-		return stage2;
-	}
-
-	public void setStage2(EngineLog stage2) {
-		this.stage2 = stage2;
-	}
+//	public EngineLog getStage3() {
+//		return stage3;
+//	}
+//
+//	public void setStage3(EngineLog stage3) {
+//		this.stage3 = stage3;
+//	}
+//	
+//    public EngineLog getStage2() {
+//		return stage2;
+//	}
+//
+//	public void setStage2(EngineLog stage2) {
+//		this.stage2 = stage2;
+//	}
 
 	public Collection<PackageE> getPackages() {
 		return packages;

@@ -114,13 +114,15 @@ public class PlaceOrder {
 		this.leftStores = test.getLeftStores();
 		this.allocatedResults = test.getAllocatedResults();
 		
-		Split split = new Split(packages, leftStores, stage2, allocatedResults);	
+		this.stage1 = test.getStage1();
+		System.out.println();
+
+		Split split = new Split(packages, leftStores, allocatedResults);	
+		
 		this.newAllocatedResults = split.getNewAllocatedResults();
 		
 		//System.out.println("order id in place order: " + test.getOrderId());
-		
-		this.stage1 = test.getStage1();
-		this.stage2 = test.getStage2();
+		this.stage2 = split.getStage2();
 		this.stage3 = split.getStage3();
 		this.stage1Logs = stage1.getLogs();	
 		

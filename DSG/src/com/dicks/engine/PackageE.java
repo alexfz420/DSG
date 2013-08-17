@@ -21,6 +21,7 @@ public class PackageE {
 	private boolean allocated;
 	private boolean splitable = true;
 	private PackageTestResult bestResult = null;
+	private ArrayList<ArrayList<String>> splits = new ArrayList<ArrayList<String>>();
 
 	public PackageE(Orders order) {
 		this.order = order;
@@ -34,6 +35,19 @@ public class PackageE {
 	@Override
 	public String toString() {
 		return Arrays.toString(products.toArray());
+	}
+	
+	public void addSplitText(String text) {
+		ArrayList<String> split;
+		if (splitNum >= splits.size())  {
+			split = new ArrayList<String>();
+			splits.add(split);
+		} else {
+			split = splits.get(splitNum);
+		}
+		split.add(text);
+//		System.out.println("split " + this.splitNum + " text: " + text + " splits: " + Arrays.toString(splits.toArray()));
+
 	}
 	
 	@SuppressWarnings({ "unchecked"})
@@ -59,6 +73,21 @@ public class PackageE {
 			productList.add(product);
 		}
 		packageE.put("products", productList);
+		
+		JSONArray splitsArray = new JSONArray();
+//		System.out.println("splits size: " + splits.size());
+		for (ArrayList<String> splitArray : splits) {
+			JSONArray splitsObjects = new JSONArray();
+			for (String text : splitArray) {
+				JSONObject splitObj = new JSONObject();
+				splitObj.put("text", text);
+				splitsObjects.add(splitObj);
+			}
+			splitsArray.add(splitsObjects);
+		}
+		packageE.put("splits", splitsArray);
+//		System.out.println("json splits: " + splitsArray.toString());
+		
 //		StringWriter out = new StringWriter();
 //		try {
 //			packageE.writeJSONString(out);
@@ -132,7 +161,7 @@ public class PackageE {
 		this.order = order;
 	}
 	
-
+	
 
 	public PackageTestResult getBestResult() {
 		return bestResult;

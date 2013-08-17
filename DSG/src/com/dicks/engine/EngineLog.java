@@ -49,6 +49,7 @@ public class EngineLog {
 	}
 	
 	public ArrayList<String> getLogsByName(String name) {
+		System.out.println("name: " + name);
 		return map.get(name);
 	}
 	
