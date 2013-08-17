@@ -8,8 +8,8 @@ public class ShipmentId implements java.io.Serializable {
 
 	// Fields
 
-	private Integer destinationZip;
-	private Integer supplyZip;
+	private String destinationZip;
+	private String supplyZip;
 
 	// Constructors
 
@@ -18,26 +18,26 @@ public class ShipmentId implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ShipmentId(Integer destinationZip, Integer supplyZip) {
+	public ShipmentId(String destinationZip, String supplyZip) {
 		this.destinationZip = destinationZip;
 		this.supplyZip = supplyZip;
 	}
 
 	// Property accessors
 
-	public Integer getDestinationZip() {
+	public String getDestinationZip() {
 		return this.destinationZip;
 	}
 
-	public void setDestinationZip(Integer destinationZip) {
+	public void setDestinationZip(String destinationZip) {
 		this.destinationZip = destinationZip;
 	}
 
-	public Integer getSupplyZip() {
+	public String getSupplyZip() {
 		return this.supplyZip;
 	}
 
-	public void setSupplyZip(Integer supplyZip) {
+	public void setSupplyZip(String supplyZip) {
 		this.supplyZip = supplyZip;
 	}
 

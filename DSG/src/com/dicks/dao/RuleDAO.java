@@ -203,7 +203,7 @@ public class RuleDAO extends BaseDao<Rule> {
 				sb.append(attributes[i]).append(" ").append(dictionary.get(operators[i])).append(" ").append(values[i]).append(", ");
 			}
 			sb.append("then ");
-			sb.append(dictionary.get(rule))
+			//sb.append(dictionary.get(rule))
 		}
 		
 		return sb.toString();
