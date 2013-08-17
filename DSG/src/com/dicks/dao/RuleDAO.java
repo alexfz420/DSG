@@ -88,18 +88,19 @@ public class RuleDAO extends BaseDao<Rule> {
 		if(rules==null||rules.size() == 0) return;
 		for(Rule rule:rules){
 			String newObject = getNewProdObjForUpdate(rule.getObject(),skus);
-			System.out.println("911");
 			rule.setObject(newObject);
 			super.update(rule);
 		}		
 	}
 	
 	public void updateProdObjForDelete(String[] skus, List<Rule> rules) throws Exception {
+
 		if(rules==null||rules.size() == 0) return;
+		System.out.println("3");
 		for(Rule rule:rules){
 			String newObject = getNewProdObjForDelete(rule.getObject(),skus);
 			rule.setObject(newObject);
-			super.update(rule);
+			super.update(rule);	
 		}		
 	}
 	
@@ -165,9 +166,8 @@ public class RuleDAO extends BaseDao<Rule> {
 		
 		if(sb.length()>0){
 			sb.deleteCharAt(sb.length()-1);
+			return sb.toString();
 		}
-		
-		System.out.println("@@@@@@@@@@@");
-		return sb.toString();		
+		return "";			
 	}
 }

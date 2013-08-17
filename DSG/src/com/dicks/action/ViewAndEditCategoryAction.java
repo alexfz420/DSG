@@ -40,9 +40,7 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 					sb.append(storeCates[i].getId().getStoreId()).append(",");
 				}
 				sb.deleteCharAt(sb.length() - 1);
-				System.out.println("1");
 				getRuleInfo();
-				System.out.println("2");
 				this.setStoreIdString(sb.toString());
 			} catch (Exception e) {
 				System.out.println(e.toString());
@@ -85,8 +83,8 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 			// update applied rules, false means its Store group
 			updateAppliedRules(false, ids);
 
-			// update Category
-			StoreCate[] news = new StoreCate[ids.length];
+			// update Store Category table
+	 		StoreCate[] news = new StoreCate[ids.length];
 			for (int i = 0; i < ids.length; i++) {
 				StoreCateId storeCateId = new StoreCateId(
 						Integer.valueOf(categoryId), Integer.valueOf(ids[i]));
@@ -110,6 +108,7 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 			updateAppliedRules(true, skus);
 
 			// update ProdCate table
+
 			ProdCate[] news = new ProdCate[skus.length];
 			for (int i = 0; i < skus.length; i++) {
 				int prodId = ProductDAO.getInstance().getProductById(skus[i])
@@ -121,7 +120,6 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 				news[i] = prodCate;
 			}
 			
-			System.out.println("^^^^^^^^^^^^^^^^^^^^^");
 			ProdCateDAO.getInstance().update(news);
 		} catch (Exception e) {
 			System.out.println("!!!" + e.toString());
@@ -135,7 +133,7 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 		Rule[] rules = RuleCateDAO.getInstance()
 				.getRuleListByCateId(categoryId);
 		if (rules == null) {
-			setAppliedRuleString("No rule applied.");
+			setAppliedRuleString(null);
 			return;
 		}
 		StringBuffer sb1 = new StringBuffer();
@@ -208,12 +206,23 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 		if (appliedRuleString == null || appliedRuleString.trim().length() == 0) {
 			if (getPreviousAppliedRuleString() != null
 					&& getPreviousAppliedRuleString().trim().length() != 0) {
-				deleteRule(previousAppliedRuleString.split(","),array);
-			}			
+				String[] rules = previousAppliedRuleString.split(",");
+				deleteRule(rules,array);
+				
+				//delete rule cate table
+				for (int i = 0; i < rules.length; i++) {
+					Rule rule = RuleDAO.getInstance().getRuleByName(rules[i]);
+					int ruleId = rule.getRuleId();
+					RuleCateId rcId = new RuleCateId(Integer.valueOf(categoryId),								ruleId);
+					RuleCate rc = new RuleCate(rcId, null, isProductRelated);
+					RuleCateDAO.getInstance().delete(rc);
+				}		
+				return;
+			}
+			else return;			
 		}
+		
 		// update rulecate table
-
-
 		String[] ruleNames = appliedRuleString.split(",");
 		RuleCate[] rcs = new RuleCate[ruleNames.length];
 		List<Rule> rules = new ArrayList<Rule>();
@@ -231,25 +240,25 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 		// update rule table
 		if (isProductRelated) {
 			RuleDAO.getInstance().updateProdObjForUpdate(array, rules);
+		} else {
+			RuleDAO.getInstance().updateProdObjForUpdate(array, rules);
+		}
 
-			if (getPreviousAppliedRuleString() != null
-					&& getPreviousAppliedRuleString().trim().length() != 0) {
-				String[] previousRules = getPreviousAppliedRuleString().split(
-						",");
-				for (int i = 0; i < previousRules.length; i++) {
-					for (Rule rule : rules) {
-						if (rule.getRuleName().equals(previousRules[i])) {
-							previousRules[i] = null;
-							break;
-						}
+		if (getPreviousAppliedRuleString() != null
+				&& getPreviousAppliedRuleString().trim().length() != 0) {
+			String[] previousRules = getPreviousAppliedRuleString().split(
+					",");
+			for (int i = 0; i < previousRules.length; i++) {
+				for (Rule rule : rules) {
+					if (rule.getRuleName().equals(previousRules[i])) {
+						previousRules[i] = null;
+						break;
 					}
 				}
-				deleteRule(previousRules,array);
-
 			}
-		} else {
-			// !!!!!!!!!!!!!!!!!!!!!
+			deleteRule(previousRules,array);
 		}
+	
 
 	}
 
@@ -262,17 +271,16 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 	}
 
 	private void deleteRule(String[] ruleNamesForDelete, String[] array) throws Exception {
+		
 		List<Rule> rulesForDelete = new ArrayList<Rule>();
 		for (int i = 0; i < ruleNamesForDelete.length; i++) {
 			if (ruleNamesForDelete[i] != null) {
 				rulesForDelete.add(RuleDAO.getInstance().getRuleByName(ruleNamesForDelete[i]));
 			}
 		}
-		
 		if(rulesForDelete.size()>0){
 			RuleDAO.getInstance().updateProdObjForDelete(array, rulesForDelete);
 		}
-		
 	}
 
 }

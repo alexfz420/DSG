@@ -251,6 +251,7 @@
                 <tr style="height:40px;">
                     <td></td>
                     <td>
+                      <input type="hidden" name="previousAppliedRuleString" value="${appliedRuleString}"/>
                       <span style="margin-left:10px;argin-top:10px;"><a class="button" href="ViewCategory.html" onclick=""/>Back</a></span>
                       <span style="margin-left:10px;argin-top:10px;"><input type="submit" value="Update"></span>
                     </td>  
