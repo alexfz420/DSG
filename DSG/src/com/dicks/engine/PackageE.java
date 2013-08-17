@@ -1,7 +1,14 @@
 package com.dicks.engine;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
@@ -14,26 +21,53 @@ public class PackageE {
 	private boolean allocated;
 	private boolean splitable = true;
 	private PackageTestResult bestResult = null;
-//	private int zoneID;
-	
+
 	public PackageE(Orders order) {
 		this.order = order;
 	}
 	
-//	public int getZoneID() {
-//		return zoneID;
-//	}
-//
-//	public void setZoneID(int zoneID) {
-//		this.zoneID = zoneID;
-//	}
-	
-	// n is index
 	public Product getProduct(int index) {
-//		System.out.println("index: " + index);
-//		System.out.println("boolean: " + );
 		if (index > products.size() - 1) return null;
 		return products.get(index);
+	}	
+
+	@Override
+	public String toString() {
+		return Arrays.toString(products.toArray());
+	}
+	
+	@SuppressWarnings({ "unchecked"})
+	public JSONObject getJson() {
+		HashMap<Product, Integer> map = new HashMap<Product, Integer>();
+		
+		for (Product p : products) {
+			Integer qty = map.get(p);
+			if (qty == null) {
+				map.put(p, 1);
+			} else {
+				map.put(p, qty + 1);
+			}
+		}
+		
+		JSONObject packageE = new JSONObject();
+		packageE.put("splitNum", this.splitNum);
+		JSONArray productList = new JSONArray();
+		for (Product p : map.keySet()) {
+			JSONObject product = new JSONObject();
+			product.put("prodName", p.getProdName());
+			product.put("quantity", map.get(p));
+			productList.add(product);
+		}
+		packageE.put("products", productList);
+//		StringWriter out = new StringWriter();
+//		try {
+//			packageE.writeJSONString(out);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		String jsonText = out.toString();		
+		return packageE;
 	}
 	
 	public boolean isAllocated() {
@@ -83,15 +117,6 @@ public class PackageE {
 		if (splitNum == this.products.size()) this.splitable = false;
 	}
 	
-//	public void addProduct(Product product) {
-//		Integer qty = products.get(product);
-//		if (qty == null) {
-//			products.put(product, 1);
-//		} else {
-//			products.put(product, qty + 1);
-//		}
-//	}
-	
 	public ArrayList<Product> getProducts() {
 		return products;
 	}
@@ -99,14 +124,6 @@ public class PackageE {
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}
-	
-//	public int getPackageID() {
-//		return packageID;
-//	}
-//
-//	public void setPackageID(int packageID) {
-//		this.packageID = packageID;
-//	}
 
 	public Orders getOrder() {
 		return order;
@@ -115,10 +132,7 @@ public class PackageE {
 		this.order = order;
 	}
 	
-	@Override
-	public String toString() {
-		return Arrays.toString(products.toArray());
-	}
+
 
 	public PackageTestResult getBestResult() {
 		return bestResult;

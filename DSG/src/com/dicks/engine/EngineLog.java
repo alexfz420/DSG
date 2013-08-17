@@ -1,9 +1,12 @@
 package com.dicks.engine;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
+import com.dicks.dao.RuleCateDAO;
+import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Rule;
 
 public class EngineLog {
@@ -49,11 +52,27 @@ public class EngineLog {
 		return map.get(name);
 	}
 	
-	public ArrayList<Log> getLogs() {
-		ArrayList<Log> logs = new ArrayList<Log>();
+	public ArrayList<LogE> getLogs() throws Exception {
+		ArrayList<LogE> logs = new ArrayList<LogE>();
 		int count = 0;
 		for (String name : map.keySet()) {
-			Log log = new Log(name, map.get(name));
+			LogE log = new LogE(name, map.get(name));
+			Rule rule = RuleDAO.getInstance().getRuleByName(name);
+			
+			String[] categories = RuleCateDAO.getInstance().getCateNamesByRuleId(rule.getRuleId()+"");
+			if (rule.getType().equals("9")) log.setCategories("All");
+			else {
+				StringBuilder sb = new StringBuilder();
+				for (int i = 0; i < categories.length; i++) {
+					sb.append(categories[i]);
+					if (i != categories.length - 1) {
+						sb.append(", ");
+					}
+				}
+				//System.out.println("categories: " + Arrays.toString(categories));
+				log.setCategories(sb.toString());	
+			}				
+			log.setRule(rule);
 			log.setIndex(count++);
 			logs.add(log);
 		}
@@ -64,13 +83,14 @@ public class EngineLog {
 		return new ArrayList<String>(map.keySet());
 	}
 	
-	public static class Log {
+	public static class LogE {
 		private int index;
 		private String name;
 		private ArrayList<String> logs;
 		private Rule rule;
+		private String categories;
 		
-		public Log(String name, ArrayList<String> logs) {
+		public LogE(String name, ArrayList<String> logs) {
 			this.name = name;
 			this.logs = logs;
 		}
@@ -105,6 +125,14 @@ public class EngineLog {
 
 		public void setRule(Rule rule) {
 			this.rule = rule;
+		}
+
+		public String getCategories() {
+			return categories;
+		}
+
+		public void setCategories(String categories) {
+			this.categories = categories;
 		}
 	}
 }

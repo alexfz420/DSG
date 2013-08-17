@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+
+import org.json.simple.JSONObject;
 import org.junit.Test;
 
 import com.dicks.dao.CustomerDAO;
@@ -52,13 +54,10 @@ public class TestUtil {
 
 	@Test
 	public void testRule2() throws Exception {
-		Rule[] allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
-		for (Rule rule : allRule) {
-			System.out.println(rule.getRuleName());
-		}
+		JSONObject obj = new JSONObject();
 	}
 	
-//	@Test
+//	@Testå
 	public void testRule() {
 		try {
 			Rule r = RuleDAO.getInstance().getRuleById(1+"");
