@@ -118,7 +118,7 @@
                         <h3>Order Details</h3>
                         <div style="border: 1px solid #aaaaaa;">
                             <ul>
-                                <li class="" style="height:30px;"><a href="VisualizationOrderDetail.html">Order Details</a></li>
+                                 <li style="height:30px;"><a onClick="changeDiv(this)" class="detail">Order Details</a></li>
                             </ul>
                         </div>
 
@@ -128,7 +128,7 @@
                             <li style="height:30px;"><a onClick="changeDiv(this)" class="stage1AllRule">All Rules</a></li>
                             <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
 	                    		<tr>
-	           						<li style="height:30px;"><a onClick="changeDiv(this)" class="stage1rule${index.index}">Rule: ${log.getName()}</a></li>
+	           						<li style="height:30px;"><a onClick="changeDiv(this)" class="stage1rule${index.index}">Rule${index.count}: ${log.getName()}</a></li>
 	                    		</tr>								
 							</c:forEach>
                             </ul>
@@ -235,12 +235,12 @@
 	                                    <div style="float:left; width:100px">Rule ${index.count}:</div>
 	                                    <div id="rule${index.index}" style="float:left; width:350px">${log.getName()}</div>
 	                                </div>
-	                                	<div style="padding-bottom:30px;padding-left:100px;"> 
-	                                		<c:forEach var="logdetail" items="${log.getLogs()} ">
-	                                			${logdetail} 
-	                                			<br/>
-											</c:forEach>
-										</div>
+                                	<div style="padding-bottom:30px;padding-left:100px;"> 
+                                		<c:forEach var="logdetail" items="${log.getLogs()} ">
+                                			${logdetail} 
+                                			<br/>
+										</c:forEach>
+									</div>
 	                            </div>                            									
 							</c:forEach>
                             
@@ -268,30 +268,40 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
+	                        <div id="stage1rule${index.index}" class="block" style="display:none;padding-left:30px;padding-top:30px;">
+	                            <div style="font-size:16px;padding-bottom:30px;">Rule ${index.count}</div>
+	                            <div style="padding-bottom:30px;">
+	                                <div style="float:left; width:150px">Rule Name&#58;</div>
+	                                <div id="orderdate" style="float:left; width:350px">${log.getName()}</div>
+	                            </div>
+	                            <div style="padding-bottom:30px;">
+	                                <div style="float:left; width:150px">Category&#58;</div>
+	                                <div id="orderdate" style="float:left; width:350px">Boat</div>
+	                            </div>
+	                            <div style="padding-bottom:30px;">
+	                                <div style="float:left; width:150px">Condition&#58;</div>
+	                                <div id="orderdate" style="float:left; width:350px">Weight exceeds 20 lbs</div>
+	                            </div>
+	                            <div style="padding-bottom:30px;">
+	                                <div style="float:left; width:150px">Action&#58;</div>
+	                                <div id="orderdate" style="float:left; width:350px">Ship this item in a separate package</div>
+	                            </div>
+	                            <div style="padding-bottom:30px;">
+	                                <div style="float:left; width:150px">Result of this rule&#58;</div>
+	                                <div id="orderdate" style="float:left; width:350px"> 
+                                		<c:forEach var="logdetail" items="${log.getLogs()} ">
+                                			${logdetail} 
+                                			<br/>
+										</c:forEach>
+									</div>
+	                            </div>
+	                        </div>								
+						</c:forEach>                        
 
-                        <div id="stage1rule0" class="block" style="display:none;padding-left:30px;padding-top:30px;">
-                            <div style="font-size:16px;padding-bottom:30px;">Rule 1</div>
-                            <div style="padding-bottom:30px;">
-                                <div style="float:left; width:150px">Rule Name&#58;</div>
-                                <div id="orderdate" style="float:left; width:350px">Product Threshold</div>
-                            </div>
-                            <div style="padding-bottom:30px;">
-                                <div style="float:left; width:150px">Category&#58;</div>
-                                <div id="orderdate" style="float:left; width:350px">Boat</div>
-                            </div>
-                            <div style="padding-bottom:30px;">
-                                <div style="float:left; width:150px">Condition&#58;</div>
-                                <div id="orderdate" style="float:left; width:350px">Weight exceeds 20 lbs</div>
-                            </div>
-                            <div style="padding-bottom:30px;">
-                                <div style="float:left; width:150px">Action&#58;</div>
-                                <div id="orderdate" style="float:left; width:350px">Ship this item in a separate package</div>
-                            </div>
-                            <div style="padding-bottom:30px;">
-                                <div style="float:left; width:150px">Result of this rule&#58;</div>
-                                <div id="orderdate" style="float:left; width:350px">Kayak will be shipped in a separate package</div>
-                            </div>
-                        </div>	
+
                         		           
                         <div id="stage2package1" class="block" style="display:none;padding-left:20px;">
                          <div name="package" style="height:30px;font-size:18px;margin-top:10px;">

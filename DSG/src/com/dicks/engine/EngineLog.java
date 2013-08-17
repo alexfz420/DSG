@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import com.dicks.dao.RuleCateDAO;
+import com.dicks.dao.RuleDAO;
 import com.dicks.pojo.Rule;
 
 public class EngineLog {
@@ -49,11 +51,14 @@ public class EngineLog {
 		return map.get(name);
 	}
 	
-	public ArrayList<Log> getLogs() {
-		ArrayList<Log> logs = new ArrayList<Log>();
+	public ArrayList<LogE> getLogs() throws Exception {
+		ArrayList<LogE> logs = new ArrayList<LogE>();
 		int count = 0;
 		for (String name : map.keySet()) {
-			Log log = new Log(name, map.get(name));
+			LogE log = new LogE(name, map.get(name));
+			Rule rule = RuleDAO.getInstance().getRuleByName(name);
+			String[] categories = RuleCateDAO.getInstance().getCateNamesByRuleId(rule.getRuleId());
+			log.setRule(rule);
 			log.setIndex(count++);
 			logs.add(log);
 		}
@@ -64,13 +69,13 @@ public class EngineLog {
 		return new ArrayList<String>(map.keySet());
 	}
 	
-	public static class Log {
+	public static class LogE {
 		private int index;
 		private String name;
 		private ArrayList<String> logs;
 		private Rule rule;
 		
-		public Log(String name, ArrayList<String> logs) {
+		public LogE(String name, ArrayList<String> logs) {
 			this.name = name;
 			this.logs = logs;
 		}

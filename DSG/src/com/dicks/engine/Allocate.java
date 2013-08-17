@@ -75,7 +75,7 @@ public class Allocate {
 		System.out.println("shipping zip "+ shippingZipcode);
 		
 		Customer customer = CustomerDAO.getInstance().getById(1);
-		
+		System.out.println("customer: " + customer);
 		Orders order = new Orders(customer, 100, "g", new Timestamp(new Date().getTime()), 
 									shippingAddress, shippingZipcode, "412-622-3748", "");
 		

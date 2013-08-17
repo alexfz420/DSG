@@ -133,7 +133,7 @@ public class Split {
 		// Remove comment if using logging
 
 		
-		Collection<PackageTestResult> newAllocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
+		newAllocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 		
 		logger.close();
 		ksession.dispose();
