@@ -6,7 +6,7 @@
     %>
  <jsp:include page="template_top.jsp" />
  <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
- 
+
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>

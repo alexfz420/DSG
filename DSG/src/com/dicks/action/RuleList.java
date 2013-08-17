@@ -284,10 +284,12 @@ public class RuleList {
 			}
 			else if (viewEdit.equals("ables")){
 				System.out.println("getting albe!!!");
-				if (thisRule.getAble()  == true){
+				if (thisRule.getAble()  == true)
+				{
 					thisRule.setAble(false);
 				}
-				else{
+				else
+				{
 					thisRule.setAble(true);
 				}
 				RuleDAO.getInstance().update(thisRule);

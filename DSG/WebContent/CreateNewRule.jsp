@@ -36,7 +36,7 @@
     </div>
  <script>
  
-     var availableTags ;
+    
  	$(function() {
  		
 	    
@@ -51,7 +51,7 @@
 	    $( "#tags" ) 
 	      // don't navigate away from the field on tab when selecting an item
 	      .bind( "keydown", function( event ) {
-	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	        if ( event.KeyCode === $.ui.keyCode.TAB &&
 	            $( this ).data( "ui-autocomplete" ).menu.active ) {
 	          event.preventDefault();
 	        }
@@ -75,13 +75,18 @@
 	          terms.push( ui.item.value );
 	          // add placeholder to get the comma-and-space at the end
 	          terms.push( "" );
-	          this.value = terms.join( ", " );
+	          this.value = terms.join( "," );
 	          return false;
 	        }
 	      });
 	  });
+ 	
+ 	
+ 	</script>
+ 	
+ 	<script>
       var type = 1;
-      
+      var availableTags ;
 	  function textAreaAdjust(o) {
 	      o.style.height = "1px";
 	      o.style.height = (15+o.scrollHeight)+"px";
