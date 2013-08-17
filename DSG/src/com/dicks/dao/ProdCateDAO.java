@@ -45,7 +45,6 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 				finalResult.add(pc.getProduct());
 			}
 		}
-		//System.out.println("WTF");
 		Product[] products = (Product[])finalResult.toArray(new Product[finalResult.size()]);
 		return products;	
 	}

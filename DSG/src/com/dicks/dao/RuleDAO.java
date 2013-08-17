@@ -170,4 +170,8 @@ public class RuleDAO extends BaseDao<Rule> {
 		}
 		return "";			
 	}
+	
+//	public String getConditionByRuleId(int ruleId) throws Exception{
+//		
+//	}
 }
