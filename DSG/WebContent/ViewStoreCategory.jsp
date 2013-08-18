@@ -63,7 +63,7 @@
         </div>
         
             <li style="list-style:none;">
-            	<span><a href="#">Home</a><span> &gt; </span></span>
+            	<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span> &gt; </span></span>
                 <span><a href="<%=basePath%>gotocategorylist.action?act=store">Manage Group</a><span> &gt; </span></span>
                 <span>View Group</span>
             </li>

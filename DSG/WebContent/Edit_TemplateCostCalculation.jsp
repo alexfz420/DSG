@@ -44,14 +44,6 @@
 				class="normal">&nbsp;</span></li>
 
 		</ul></li>
-	<li class=""><a class="recordable open" href="#" id="togglefour"
-		memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-		<ul class="nav-two" id="navtwo">
-			<li class="" id="neworderlist"><a
-				href="<%=basePath%>gotoplaceorder.action">New Order</a><span
-				class="normal">&nbsp;</span></li>
-
-		</ul></li>
 </ul>
 </div>
 
@@ -103,6 +95,7 @@ function addOtherCost(myDiv, storeType) {
   var selectFlag = document.createElement("select");
   selectFlag.name = storeType + "Flag";
   selectFlag.style.width = '120px';
+  selectFlag.style.margin = '5px';
   var option = document.createElement("option");
   option.value = 'p';
   option.innerHTML = "Percentage";
@@ -143,6 +136,7 @@ function addOtherCost(myDiv, storeType) {
   divPercentage.style.width = '200px';
   var selectAttribute = document.createElement("select");
   selectAttribute.style.width = '200px';
+  selectAttribute.style.margin = '5px';
   selectAttribute.name = storeType + "Attribute";
   option = document.createElement("option");
   option.value = 'retailPrice,inventory';
@@ -188,6 +182,8 @@ function addOtherCost(myDiv, storeType) {
   };
   console.log(divIdName);
   a.innerHTML = "Remove";
+  a.style.color = '#2e7bc9';
+  a.style.textDecoration = 'underline';
   newdiv.appendChild(a);
   
   ni.appendChild(newdiv);
@@ -229,7 +225,7 @@ function textAreaAdjust(o) {
 </script>
 <script>
 function goBack(){
-	window.history.go(-1)
+	window.history.go(-1);
 }
 </script>
 <!-- menu bar ends -->
@@ -255,9 +251,11 @@ function goBack(){
 				<hr />
 			</div>
 		</div>
-		<li style="list-style: none;"><span><a href="#">Home</a><span>
-					> </span></span></span> <span><a href="#">Manage Business Rule</a><span> >
-			</span></span> <span> Edit Business Rule</span></li>
+		<li style="list-style: none;">
+			<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span>&gt;</span></span>
+			<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
+			<span> Edit Business Rule</span>
+		</li>
 
 		<!-- Success Message and Error Message -->
 		<div class="success_area" style="display: none">successMessage</div>
@@ -278,7 +276,7 @@ function goBack(){
 				<tr>
 					<td>Group<span class="red">*</span>&#58;</td>
 					<td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" readonly> All </textarea>
-                    If not found, <a href="createcategory.html">new Group</a>.
+                    If not found, <a href="<%=basePath%>gotonewcategory.action">new Group</a>.
                     </td>
 				</tr>
 				<tr>
@@ -290,20 +288,16 @@ function goBack(){
 					<td>Cost Calculate</td>
 				</tr>
 				<tr class="drl-height">
-					<td colspan="2">Rule Editor&#58;</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
+					<td>Rule Editor&#58;</td>
 					<td>
-						<div class="drl">
+						<div class="drl" >
 							<div id="tabs">
 								<ul>
 									<li><a href="#tabs-SFS">Ship from Store</a></li>
 									<li><a href="#tabs-warehouse">Fulfilled by Warehouse</a></li>
 									<li><a href="#tabs-Vendor">Vendor Direct</a></li>
 								</ul>
-								<div id="tabs-SFS" style="min-height: 250px;">
+								<div id="tabs-SFS">
 									<table>
 										<c:forEach var="storeFee" items="${storeFeeList}">
 											<tr id="storeFee${storeFee.costId}">
@@ -311,18 +305,17 @@ function goBack(){
 													name="storeFeeName" value="${storeFee.getCostName()}" /></td>
 												<c:choose>
 													<c:when test="${ (storeFee.flag == 'p') }">
-														<input type="hidden"  name="storeFeeId"
+														&nbsp;<input type="hidden"  name="storeFeeId"
 															value="${storeFee.costId}" />
-														<td style="width:120px;"><select name="storeFeeFlag"
-															onchange="chooseFormat(this.value, 'storeFee', '${storeFee.costId}')">
-																<option selected="selected" value="p">
-																	Percentage</option>
+														<td style="width:120px;">
+															<select name="storeFeeFlag" onchange="chooseFormat(this.value, 'storeFee', '${storeFee.costId}')" style="margin-left:5px;">
+																<option selected="selected" value="p">Percentage</option>
 																<option value="v">Value</option>
-														</select></td>
-														<td  id="storeFeeP${storeFee.costId}"><input style="width:40px;"
-															name="storeFeePercentage" type="text"
-															value="${storeFee.percentage/100.0}" >
-															% of <select style="width:200px;"name="storeFeeAttribute">
+															</select>
+														</td>
+														<td id="storeFeeP${storeFee.costId}"><input style="width:40px; margin-left:10px;"
+															name="storeFeePercentage" type="text" value="${storeFee.percentage/100.0}" > % of 
+															<select style="width:200px; margin:5px;"name="storeFeeAttribute">
 																<option value="retailPrice,inventory"
 																	<c:if test="${storeFee.attribute == 'retailPrice,inventory'}">selected="selected"</c:if>>
 																	Net Merchandise Sales</option>
@@ -335,7 +328,7 @@ function goBack(){
 																<option value="factoryPrice,product"
 																	<c:if test="${storeFee.attribute == 'factoryPrice,product'}">selected="selected"</c:if>>
 																	Product Factory Price</option>
-														</select></td>
+															</select></td>
 														<td hidden="true" style="width: 600px;"
 															id="storeFeeV${storeFee.costId}"><input
 															name="storeFeeValue" type="text" value=""
@@ -352,35 +345,29 @@ function goBack(){
 														<td hidden="true" style="width: 600px;"
 															id="storeFeeP${storeFee.costId}"><input
 															name="storeFeePercentage" type="text" value=""
-															style="width: 40px;"> % of <select
-															name="storeFeeAttribute" style="width:200px;">
-																<option value="retailPrice,inventory">Net
-																	Merchandise Sales</option>
-																<option value="unitPrice,orderDetail">Order
-																	Unit Price</option>
-																<option value="totAmt,order">Order Total Amount
-																</option>
-																<option value="factoryPrice,product">Product
-																	Factory Price</option>
-														</select></td>
+															style="width: 40px;"> % of 
+															<select name="storeFeeAttribute" style="width:200px;">
+																<option value="retailPrice,inventory">Net Merchandise Sales</option>
+																<option value="unitPrice,orderDetail">Order Unit Price</option>
+																<option value="totAmt,order">Order Total Amount</option>
+																<option value="factoryPrice,product">Product Factory Price</option>
+															</select></td>
 														<td style="width: 400px;" id="storeFeeV${storeFee.costId}"><input
 															name="storeFeeValue" type="text"
-															value="${storeFee.value/100.0}" style="width: 50px;">
-															dollar per unit</td>
+															value="${storeFee.value/100.0}" style="width: 50px;"> dollar per unit</td>
 													</c:otherwise>
 												</c:choose>
-												<td> <a href='javascript:;' onclick='removeElement("storeFee${storeFee.costId}")'>Remove</a></td>
+												<td><a href='javascript:;' onclick='removeElement("storeFee${storeFee.costId}")' style="color:#2e7bc9; text-decoration:underline;"> Remove</a></td>
 											</tr>
 										</c:forEach>
 									</table>
 									<div>
-										<input type="hidden" value="0" id="theValue" /> <a
-											class="button" href="javascript:;"
-											onclick="addOtherCost(SFSDiv, 'storeFee');">Add Other Costs</a>
-										<div id="SFSDiv"></div>
+										<input type="hidden" value="0" id="theValue" /> 
+											<a class="button r" href="javascript:;" onclick="addOtherCost(SFSDiv, 'storeFee');">+ Add Cost</a>
+										<div id="SFSDiv"><br/><br/></div>
 									</div>
 								</div>
-								<div id="tabs-warehouse" style="min-height: 250px;">
+								<div id="tabs-warehouse">
 									<table>
 										<c:forEach var="warehouseFee" items="${warehouseFeeList}">
 											<tr id="warehouseFee${warehouseFee.costId}">
@@ -390,15 +377,13 @@ function goBack(){
 													<c:when test="${ (warehouseFee.flag == 'p') }">
 														<input type="hidden"  name="warehouseFeeId" value="${warehouseFee.costId}" />
 														<td><select name="warehouseFeeFlag"
-															onchange="chooseFormat(this.value, 'warehouseFee', '${warehouseFee.costId}')" style="width:120px;">
-																<option selected="selected" value="p">
-																	Percentage</option>
+															onchange="chooseFormat(this.value, 'warehouseFee', '${warehouseFee.costId}')" style="width:120px; margin-left:5px;">
+																<option selected="selected" value="p"> Percentage</option>
 																<option value="v">Value</option>
-														</select></td>
-														<td style="width: 600px;" id="warehouseFeeP${warehouseFee.costId}"><input
-															name="warehouseFeePercentage" type="text"
-															value="${warehouseFee.percentage/100.0}" style="width: 40px;">
-															% of <select style="width:200px;"name="warehouseFeeAttribute">
+															</select></td>
+														<td style="width: 600px;" id="warehouseFeeP${warehouseFee.costId}">
+														<input name="warehouseFeePercentage" type="text" value="${warehouseFee.percentage/100.0}" style="width: 40px; margin-left:10px;">
+															% of <select style="width:200px; margin:5px;"name="warehouseFeeAttribute">
 																<option value="retailPrice,inventory"
 																	<c:if test="${warehouseFee.attribute == 'retailPrice,inventory'}">selected="selected"</c:if>>
 																	Net Merchandise Sales</option>
@@ -430,33 +415,27 @@ function goBack(){
 															name="warehouseFeePercentage" type="text" value=""
 															style="width: 40px;"> % of <select
 															name="warehouseFeeAttribute" style="width: 200px;">
-																<option value="retailPrice,inventory">Net
-																	Merchandise Sales</option>
-																<option value="unitPrice,orderDetail">Order
-																	Unit Price</option>
-																<option value="totAmt,order">Order Total Amount
-																</option>
-																<option value="factoryPrice,product">Product
-																	Factory Price</option>
+																<option value="retailPrice,inventory">Net Merchandise Sales</option>
+																<option value="unitPrice,orderDetail">Order Unit Price</option>
+																<option value="totAmt,order">Order Total Amount </option>
+																<option value="factoryPrice,product">Product Factory Price</option>
 														</select></td>
-														<td style="width: 400px;" id="warehouseFeeV${warehouseFee.costId}"><input
-															name="warehouseFeeValue" type="text"
-															value="${warehouseFee.value/100.0}" style="width: 50px;">
+														<td style="width: 400px;" id="warehouseFeeV${warehouseFee.costId}">
+															<input name="warehouseFeeValue" type="text" value="${warehouseFee.value/100.0}" style="width: 50px;">
 															dollar per unit</td>
 													</c:otherwise>
 												</c:choose>
-												<td> <a href='javascript:;' onclick='removeElement("warehouseFee${warehouseFee.costId}")'>Remove</a></td>
+												<td> <a href='javascript:;' onclick='removeElement("warehouseFee${warehouseFee.costId}")' style="color:#2e7bc9; text-decoration:underline;">Remove</a></td>
 											</tr>
 										</c:forEach>
 									</table>
 									<div>
-										<input type="hidden" value="0" id="theValue" /> <a
-											class="button" href="javascript:;"
-											onclick="addOtherCost(warehouseDiv, 'warehouseFee');">Add Other Costs</a>
-										<div id="warehouseDiv"></div>
+										<input type="hidden" value="0" id="theValue" /> 
+											<a class="button r" href="javascript:;" onclick="addOtherCost(warehouseDiv, 'warehouseFee');">+ Add Cost</a>
+										<div id="warehouseDiv"><br/><br/></div>
 									</div>
 								</div>
-								<div id="tabs-Vendor" style="min-height: 250px;">
+								<div id="tabs-Vendor">
 									<table>
 										<c:forEach var="vendorFee" items="${vendorFeeList}">
 											<tr id="vendorFee${vendorFee.costId}">
@@ -467,15 +446,14 @@ function goBack(){
 														<input type="hidden"  name="vendorFeeId"
 															value="${vendorFee.costId}" />
 														<td><select style="width: 120px;"name="vendorFeeFlag"
-															onchange="chooseFormat(this.value, 'vendorFee', '${vendorFee.costId}')">
-																<option selected="selected" value="p">
-																	Percentage</option>
+															onchange="chooseFormat(this.value, 'vendorFee', '${vendorFee.costId}')" style="margin-left:5px;">
+																<option selected="selected" value="p"> Percentage</option>
 																<option value="v">Value</option>
 														</select></td>
-														<td style="width: 600px;" id="vendorFeeP${vendorFee.costId}"><input
-															name="vendorFeePercentage" type="text"
-															value="${vendorFee.percentage/100.0}" style="width: 40px;">
-															% of <select style="width: 200px;"name="vendorFeeAttribute">
+														<td style="width: 600px;" id="vendorFeeP${vendorFee.costId}">
+															<input name="vendorFeePercentage" type="text"
+															value="${vendorFee.percentage/100.0}" style="width: 40px;"> % of 
+															<select style="width: 200px; margin:5px;"name="vendorFeeAttribute">
 																<option value="retailPrice,inventory"
 																	<c:if test="${vendorFee.attribute == 'retailPrice,inventory'}">selected="selected"</c:if>>
 																	Net Merchandise Sales</option>
@@ -522,15 +500,13 @@ function goBack(){
 															dollar per unit</td>
 													</c:otherwise>
 												</c:choose>
-												<td> <a href='javascript:;' onclick='removeElement("vendorFee${vendorFee.costId}")'>Remove</a></td>
+												<td> <a href='javascript:;' onclick='removeElement("vendorFee${vendorFee.costId}")' style="color:#2e7bc9; text-decoration:underline;">Remove</a></td>
 											</tr>
 										</c:forEach>
 									</table>
 									<div>
-										<input type="hidden" value="0" id="theValue" /> <a
-											class="button" href="javascript:;"
-											onclick="addOtherCost(VendorDiv, 'vendorFee');">Add Other Costs</a>
-										<div id="VendorDiv"></div>
+										<input type="hidden" value="0" id="theValue" /> <a class="button r" href="javascript:;" onclick="addOtherCost(VendorDiv, 'vendorFee');">+ Add Cost</a>
+										<div id="VendorDiv"><br/><br/></div>
 									</div>
 								</div>
 							</div>
@@ -538,9 +514,10 @@ function goBack(){
 					</td>
 				</tr>
 				<tr>
-					<td><input type="submit" class="button"></td>
-					<td><input type="button" value="Back" onclick="goBack()"><a
-						class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
+					<td><input type="button" class="button" value="Back" onclick="goBack()">
+						<a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
+					</td>
+					<td><input type="submit" class="button" value="Update"></td>
 				</tr>
 			</table>
 		</form>

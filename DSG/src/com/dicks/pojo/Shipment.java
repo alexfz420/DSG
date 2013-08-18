@@ -12,7 +12,7 @@ public class Shipment implements java.io.Serializable {
 	private Integer normalRate;
 	private Integer overSizeRate;
 	private Integer overWeightRate;
-	private Integer distance;
+	private Integer distance = 0;
 
 	// Constructors
 
