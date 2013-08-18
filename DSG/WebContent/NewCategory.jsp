@@ -196,7 +196,7 @@
   });
 
   $(function() {
-    var availableTags = [
+	  /* var availableTags = [
       "All",
       "Store01",
       "Store02",
@@ -207,7 +207,12 @@
       "Store07",
       "Store08",
       "Store09"
-    ];
+    ]; */
+	var slist =document.getElementsByClassName("slist");
+	   var availableTags= new Array();
+	   for(var i = 0; i < slist.length; i++){
+	   	availableTags[i]=slist[i].value;
+	}
     function split( val ) {
       return val.split( /,\s*/ );
     }
@@ -445,64 +450,64 @@
   });
 
   function getStoreTypeCheck() {
-        var sPath = "StoreTypeChk.html";
-        strFeatures = "dialogWidth=300px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("storeTypeTags").value + strReturn;
-            document.getElementById("storeTypeTags").value = strReturn;
-        }
-    }
+      var sPath = "<%=basePath%>storetypecheck.action";
+      strFeatures = "dialogWidth=300px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("storeTypeTags").value + strReturn;
+          document.getElementById("storeTypeTags").value = strReturn;
+      }
+  }
 
-  function getRegionCheck() {
-        var sPath = "RegionChk.html";
-        strFeatures = "dialogWidth=400px;dialogHeight=300px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("regionTags").value + strReturn;
-            document.getElementById("regionTags").value = strReturn;
-        }
-    }
+function getRegionCheck() {
+      var sPath = "RegionChk.html";
+      strFeatures = "dialogWidth=400px;dialogHeight=300px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("regionTags").value + strReturn;
+          document.getElementById("regionTags").value = strReturn;
+      }
+  }
 
-  function getStateCheck() {
-        var sPath = "StateChk.html";
-        strFeatures = "dialogWidth=650px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("stateTags").value + strReturn;
-            document.getElementById("stateTags").value = strReturn;
-        }
-    }
+function getStateCheck() {
+      var sPath = "<%=basePath%>statecheck.action";
+      strFeatures = "dialogWidth=650px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("stateTags").value + strReturn;
+          document.getElementById("stateTags").value = strReturn;
+      }
+  }
 
-  function getStoreCheck() {
-        var sPath = "StoreChk.html";
-        strFeatures = "dialogWidth=750px;dialogHeight=550px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("storeTags").value + strReturn;
-            document.getElementById("storeTags").value = strReturn;
-        }
-    }
+function getStoreCheck() {
+      var sPath = "<%=basePath%>storecheck.action";
+      strFeatures = "dialogWidth=750px;dialogHeight=550px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("storeTags").value + strReturn;
+          document.getElementById("storeTags").value = strReturn;
+      }
+  }
 
-  function getTypeCheck() {
-        var sPath = "TypeChk.html";
-        strFeatures = "dialogWidth=500px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("typeTags").value + strReturn;
-            document.getElementById("typeTags").value = strReturn;
-        }
-    }
+function getTypeCheck() {
+      var sPath = "<%=basePath%>typecheck.action";
+      strFeatures = "dialogWidth=500px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("typeTags").value + strReturn;
+          document.getElementById("typeTags").value = strReturn;
+      }
+  }
 
-    function getBrandCheck() {
-        var sPath = "BrandChk.html";
-        strFeatures = "dialogWidth=550px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("brandTags").value + strReturn;
-            document.getElementById("brandTags").value = strReturn;
-        }
-    }
+  function getBrandCheck() {
+      var sPath = "<%=basePath%>brandcheck.action";
+      strFeatures = "dialogWidth=550px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("brandTags").value + strReturn;
+          document.getElementById("brandTags").value = strReturn;
+      }
+  }
  </script>
 
     <!-- menu bar ends -->
@@ -644,6 +649,9 @@
                 </tr>
               </table>   
               </form>
+              <c:forEach items="${storeList}" var="slist">
+             	<input type="hidden" class="slist" value="${slist.storeName}">
+           	  </c:forEach>
               </div>   
             </div>
          
