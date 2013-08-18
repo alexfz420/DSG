@@ -38,7 +38,7 @@ public class Util {
 		int supplyZip = Integer.parseInt(store.getZip());
 		int destinationZip = Integer.parseInt(parcel.getPack().getOrder().getShippingZip());
 		//System.out.println("supply: " + supplyZip + ", destination: " + destinationZip);
-		Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(supplyZip, destinationZip);
+		Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(supplyZip+"", destinationZip+"");
 		if (shipment == null) {
 			//System.out.println("shipment null");
 			return Integer.MAX_VALUE;		

@@ -2575,6 +2575,17 @@ a.button {
 	padding: 3px 8px;
 }
 
+a.buttondisable {
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-bottom-width: 2px;
+	color: #D1CFD0;
+	text-decoration: none;
+	background-color: #fff;
+	padding: 3px 8px;
+	cursor: default;
+}
+
 a.button span,a.button input {
 	background: none;
 	border: none;

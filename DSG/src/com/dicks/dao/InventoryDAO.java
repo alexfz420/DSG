@@ -38,25 +38,27 @@ public class InventoryDAO extends BaseDao<Inventory> {
 	}
 	
 	public Double getCompetition(int prodId, int storeId) throws Exception {
-		InventoryId id = new InventoryId(prodId, storeId);
 		List<Criterion> criterions = new ArrayList<Criterion>();
-		Criterion criterion = Restrictions.eq("InventoryId", id);
-		criterions.add(criterion);
+		Criterion criterion1 = Restrictions.eq("store.id", storeId);
+		Criterion criterion2 = Restrictions.eq("product.id", prodId);
+		criterions.add(criterion1);
+		criterions.add(criterion2);
 		Inventory inventory  = get(criterions);
+		System.out.println("store id " + storeId + " prodId: " + prodId);
+		if (inventory == null) return 1.0;
+		System.out.println("competition" + inventory.getCompetition());
 		return inventory.getCompetition();
 	}
 
 	public int getSafetyStock(int prodId, int storeId) throws Exception{
-		InventoryId id = new InventoryId(prodId, storeId);
 		List<Criterion> criterions = new ArrayList<Criterion>();
-		Criterion criterion = Restrictions.eq("InventoryId", id);
-		criterions.add(criterion);
+		Criterion criterion1 = Restrictions.eq("store.id", storeId);
+		Criterion criterion2 = Restrictions.eq("product.id", prodId);
+		criterions.add(criterion1);
+		criterions.add(criterion2);
 		Inventory inventory  = get(criterions);
 		return inventory.getSafetyStock();
 	}
-	
-
-
 	
 	public void createInventory(Inventory inventory) throws Exception {
 		super.create(inventory);
