@@ -58,8 +58,10 @@ public class EngineLog {
 		int count = 0;
 		for (String name : map.keySet()) {
 			LogE log = new LogE(name, map.get(name));
+
+			System.out.println("rule name:" + name);
 			Rule rule = RuleDAO.getInstance().getRuleByName(name);
-			
+			System.out.println("rule id:" + rule.getRuleId());
 			String[] categories = RuleCateDAO.getInstance().getCateNamesByRuleId(rule.getRuleId()+"");
 			if (rule.getType().equals("9")) log.setCategories("All");
 			else {

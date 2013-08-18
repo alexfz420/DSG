@@ -7,6 +7,65 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
  <jsp:include page="template_top.jsp" />
+ <style>
+
+<style>
+
+/*progressbar*/
+.progressbar {
+     margin-bottom: 30px;
+     overflow: hidden;
+     /*CSS counters to number the steps*/
+     counter-reset: step;
+}
+.progressbar li {
+     list-style-type: none;
+     color: black;
+     text-transform: uppercase;
+     font-size: 12px;
+     width: 33.33%;
+     text-align: center;
+     float: left;
+     position: relative;
+}
+.progressbar li:before {
+     content: counter(step);
+     counter-increment: step;
+     width: 20px;
+     line-height: 20px;
+     display: block;
+     font-size: 10px;
+     text-align: center;
+     color: white;
+     background: #D3D3D3;
+     border-radius: 3px;
+     margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+.progressbar li:after {
+     content: '';
+     width: 100%;
+     height: 2px;
+     background: #D3D3D3;
+     position: absolute;
+     left: -50%;
+     top: 9px;
+     z-index: -1; /*put it behind the numbers*/
+}
+
+.progressbar li:first-child:after {
+     /*connector not needed before the first step*/
+     content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+.progressbar li.active:before,  .progressbar li.active:after{
+     background: #0965B8;
+     color: white;
+}
+</style>
+
+
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -161,20 +220,20 @@
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix" >
+        <div class="title-bar clearfix"style="height:100px;" >
 					<h1 class="l">Manage Business Rule</h1>
 					<div id="Date" class="date l"></div>
 					<a id='ReportTipIco' class="report-help open l recordable"
 						memo="{id:'ReportTipIco',type:'page-tip',global:0}"
-						href="javascript:void(0);">&nbsp;</a> <br />
-					<br />
+						href="javascript:void(0);">&nbsp;</a> 
+						<br/><br/>
 					<div>
 						<hr/>
 					</div>
 
 					<li style="list-style: none;">
-						<span><a href="#">Home</a><span> &gt; </span></span>
-						<span><a href="">Manage Business Rule</a></span><span> &gt; </span>
+						<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span> &gt; </span></span>
+						<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a></span><span> &gt; </span>
 						<span>New Business Rule</span>
 					</li>
 
@@ -184,7 +243,13 @@
 					<!-- Success Message and Error Message -->
 
 		</div>
-         
+          <ul class="progressbar" id="progressbar1" style="height:40px;">
+          	<li class="active">Step 1</li>
+          	<li>Step 2</li>
+          	<li>Step 3</li>
+          </ul>
+
+
             <div>
             <form action="gototemplate" method="get">
             <table class="text" style="width:600px;">
@@ -210,7 +275,7 @@
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
                     <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
-                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
+                    <td class="grey">&nbsp;&nbsp;If not found, <a href="<%=basePath%>gotonewcategory.action">new Group</a>.</td>
                 </tr>
                 
                 <tr></tr>

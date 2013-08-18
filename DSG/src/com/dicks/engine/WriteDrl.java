@@ -140,7 +140,7 @@ public class WriteDrl {
 		StringBuffer newRule = new StringBuffer();
 		newRule.append(writeRuleType(ruleName,priority));
 		newRule.append(writeWhenStoreRule(object,attribute,operator,values,flag));
-		newRule.append(writeThenStoreRule(actions));
+		newRule.append(writeThenStoreRule(actions, ruleName));
 		System.out.println(newRule.toString());
 		return newRule.toString();
 	}
@@ -307,7 +307,7 @@ public class WriteDrl {
 
 
 		   tmp.append(myTab+"when"+myReturn);
-		   tmp.append(myTab+myTab+"$order : Orders()"+myReturn);
+		   tmp.append(myTab+myTab+"$order : Orders($z:shippingZip)"+myReturn);
 		   tmp.append(myTab+myTab+"$orderE : OrderE()"+myReturn);
 
 		     /*tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+"&& (flag.equals(\""+flag+
@@ -315,34 +315,51 @@ public class WriteDrl {
 			multiple stores 
 			*/
 		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
-		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+" \")))"+myReturn);
+		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+"\")))"+myReturn);
 
 		   for (int i = 0; i < splitAttribute.length; i++){
 			   System.out.println("attribute "+i+" "+splitAttribute[i]);
 			   }
 
 
+	        //eval(ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 100)
+		   
+		   
+		     
+		   tmp.append(myTab+myTab+"eval(");
 		   if (splitAttribute[0].equals("Margin"))
 		   {
-			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
+			   tmp.append("(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", "+splitValue[0]+" ))" );
 
 		   }
 		   else if (splitAttribute[0].equals("Competition"))
 		   {
-			   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().getCompetition($s.getStoreId(), $id) " +splitOperator[0]+" $orderE.getProductQty($id))"+myReturn);
+			   tmp.append("(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  " +splitOperator[0]+" "+splitValue[0]+ " )");
 		   }
+		   else if (splitAttribute[0].equals("Distance")){
+			   tmp.append("(ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() "+splitOperator[0]+" "+splitValue[0]+ " )");
+		   }
+		   
 		   for (int i = 1; i < splitAttribute.length; i++){
 			   if (splitAttribute[i].equals("Margin"))
 			   {
-				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", $orderE.getProductQty($id)))"+myReturn);
-				   
+				   tmp.append("||(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", "+splitValue[i]+" ))" );
+
 			   }
 			   else if (splitAttribute[i].equals("Competition"))
 			   {
-				   tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().getCompetition($s.getStoreId(), $id) " +splitOperator[i]+" $orderE.getProductQty($id))"+myReturn);
+				   tmp.append("||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  " +splitOperator[i]+" "+splitValue[i]+ " )");
 			   }
-
+			   else if (splitAttribute[i].equals("Distance")){
+				   tmp.append("||(ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() "+splitOperator[i]+" "+splitValue[i]+ " )");
+			   }
+			          
+			   
 		   }
+		   
+		   tmp.append(")"+myReturn);
+		   tmp.append(myTab+myTab+"$logger: EngineLog()"+myReturn);
+		   
 
 		   //tmp.append(myTab+myTab+"$p : Purchase( customer == $c, $"+attribute.charAt(0)+" : product."+attribute+mySpace+operator+mySpace+values+" )");
 
@@ -350,9 +367,11 @@ public class WriteDrl {
 	   }
 
 
-	public String writeThenStoreRule(String[] action){
+	public String writeThenStoreRule(String[] action, String ruleName){
 		StringBuffer tmp = new StringBuffer();
 		tmp.append(myTab+"then"+myReturn);
+		tmp.append(myTab+myTab+"System.out.println(\"Store \"+$s.getStoreName()+\" is successfully retracted\");"+myReturn);
+		tmp.append(myTab+myTab+"$logger.addLog(\""+ruleName+"\",\"Store \"+$s.getStoreName()+\" is successfully retracted\");"+myReturn);
 		tmp.append(myTab+myTab+"retract($s);"+myReturn);
 		tmp.append("end"+myReturn+myReturn);
 		return tmp.toString();

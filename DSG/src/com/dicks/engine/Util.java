@@ -37,8 +37,7 @@ public class Util {
 	public static long getShippingCosts(Parcel parcel, Store store) throws Exception {
 		String supplyZip = store.getZip();
 		String destinationZip = parcel.getPack().getOrder().getShippingZip();
-		//System.out.println("supply: " + supplyZip + ", destination: " + destinationZip);
-		Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(supplyZip, destinationZip+"");
+		Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(supplyZip, destinationZip);
 		if (shipment == null) {
 			//System.out.println("shipment null");
 			return Integer.MAX_VALUE;		

@@ -7,6 +7,7 @@ import com.dicks.pojo.Product
 import com.dicks.pojo.Store
 import com.dicks.dao.InventoryDAO
 import com.dicks.dao.OrderDetailDAO
+import com.dicks.dao.ShipmentDAO
 import com.dicks.engine.PackageE
 import com.dicks.engine.OrderE
 import com.dicks.engine.Parcel
