@@ -21,7 +21,7 @@ public class PackageE {
 	private boolean allocated;
 	private boolean splitable = true;
 	private PackageTestResult bestResult = null;
-	private ArrayList<ArrayList<String>> splits = new ArrayList<ArrayList<String>>();
+	private JSONArray splits = new JSONArray();
 
 	public PackageE(Orders order) {
 		this.order = order;
@@ -37,17 +37,31 @@ public class PackageE {
 		return Arrays.toString(products.toArray());
 	}
 	
-	public void addSplitText(String text) {
-		ArrayList<String> split;
+	public void addSplitTest(PackageTest test) {
+		JSONArray split;
 		if (splitNum >= splits.size())  {
-			split = new ArrayList<String>();
+			split = new JSONArray();
 			splits.add(split);
 		} else {
-			split = splits.get(splitNum);
+			split = (JSONArray) splits.get(splitNum);
 		}
-		split.add(text);
+		ArrayList<Parcel> parcels = test.getParcels();
+		
+		for (Parcel parcel : parcels) {
+			JSONObject obj = new JSONObject();
+			JSONArray productList = new JSONArray();
+			HashMap<Product, Integer> map = parcel.getProducts();
+			for (Product product : map.keySet()) {
+				JSONObject p = new JSONObject();
+				p.put("prodName", product.getProdName());
+				p.put("quantity", map.get(product));
+				productList.add(p);
+			}
+			obj.put("products", productList);
+			obj.put("storeCount", parcel.getStoreCount());
+			split.add(obj);
+		}
 //		System.out.println("split " + this.splitNum + " text: " + text + " splits: " + Arrays.toString(splits.toArray()));
-
 	}
 	
 	@SuppressWarnings({ "unchecked"})
@@ -73,19 +87,10 @@ public class PackageE {
 			productList.add(product);
 		}
 		packageE.put("products", productList);
-		
-		JSONArray splitsArray = new JSONArray();
+
 //		System.out.println("splits size: " + splits.size());
-		for (ArrayList<String> splitArray : splits) {
-			JSONArray splitsObjects = new JSONArray();
-			for (String text : splitArray) {
-				JSONObject splitObj = new JSONObject();
-				splitObj.put("text", text);
-				splitsObjects.add(splitObj);
-			}
-			splitsArray.add(splitsObjects);
-		}
-		packageE.put("splits", splitsArray);
+		packageE.put("splits", splits);
+		
 //		System.out.println("json splits: " + splitsArray.toString());
 		
 //		StringWriter out = new StringWriter();

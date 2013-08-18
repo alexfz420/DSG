@@ -52,7 +52,6 @@ public class SplitGenerater {
 				}
 				t.addParcel(parcel);
 			}
-			pack.addSplitText(t.getText());
 			results.add(t);
 		}
 		return results;

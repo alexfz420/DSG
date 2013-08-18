@@ -12,6 +12,7 @@ import java.util.LinkedList;
 
 import org.drools.compiler.lang.DRL5Expressions.operator_key_return;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
 import org.kie.internal.KnowledgeBase;
@@ -148,16 +149,20 @@ public class Split {
 			stage3.addLog("Allocated Results", r.toString());
 		}
 		
+		JSONObject stage2Logs = new JSONObject();
 		JSONArray packageJson = new JSONArray();
 		
 		for (PackageE pack : packages) {
 			packageJson.add(pack.getJson());
 		}
+		stage2Logs.put("packages", packageJson);
+		stage2Logs.put("totalStores", stores.size());
+		
 		StringWriter out = new StringWriter();
-		packageJson.writeJSONString(out);
+		stage2Logs.writeJSONString(out);
 		String jsonText = out.toString();	
-		System.out.println("packages: " + jsonText);
-		stage2.addLog("Wrap up Remaining Products", jsonText);	
+		System.out.println("stage2Logs: " + jsonText);
+		stage2.addLog("Cost Calculation", jsonText);	
 	}
 
 	public static ArrayList<PackageTest> getTests(PackageE pack) {

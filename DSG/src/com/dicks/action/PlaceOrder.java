@@ -45,7 +45,9 @@ public class PlaceOrder {
 	private EngineLog stage1;
 	private EngineLog stage2;
 	private EngineLog stage3;
-	private ArrayList<LogE> stage1Logs;
+//	private ArrayList<LogE> stage1Logs;
+	
+	private String stage2Logs;
 	
 	private Collection<PackageE> packages;
 	private Collection<Store> leftStores;
@@ -123,13 +125,13 @@ public class PlaceOrder {
 		
 		//System.out.println("order id in place order: " + test.getOrderId());
 		this.stage2 = split.getStage2();
-		this.stage3 = split.getStage3();
-		this.stage1Logs = stage1.getLogs();	
-		
-		ArrayList<LogE> logEs = stage1.getLogs();
+		this.stage3 = split.getStage3();			
+
 		LogDAO logDAO =  LogDAO.getInstance();
 		
 		// For stage 1
+//		this.stage1Logs = stage1.getLogs();
+		ArrayList<LogE> logEs = stage1.getLogs();
 		for (LogE logE : logEs) {
 			Rule rule = logE.getRule();
 			System.out.println("rule " + logE.getName() + " " + rule);
@@ -140,7 +142,16 @@ public class PlaceOrder {
 		}	
 		
 		// For stage 2
+		for (LogE logE : stage2.getLogs()) {
+			Rule rule = logE.getRule();
+			System.out.println("rule " + logE.getName() + " " + rule);
+			Log log = new Log(new LogId(order.getOrderId(), rule.getRuleId()), rule, order, Integer.parseInt(rule.getStage()));
+			System.out.println("logs: " + logE.getLogs());
+			log.setRecord(Arrays.toString(logE.getLogs().toArray()));
+			logDAO.createLog(log);
+		}	
 		
+		// For stage 3
 		
 		
 		allAllocatedResults = new ArrayList<PackageTestResult>();
@@ -201,13 +212,13 @@ public class PlaceOrder {
 		this.stage3 = stage3;
 	}
 
-	public ArrayList<LogE> getStage1Logs() {
-		return stage1Logs;
-	}
-
-	public void setStage1Logs(ArrayList<LogE> stage1Logs) {
-		this.stage1Logs = stage1Logs;
-	}
+//	public ArrayList<LogE> getStage1Logs() {
+//		return stage1Logs;
+//	}
+//
+//	public void setStage1Logs(ArrayList<LogE> stage1Logs) {
+//		this.stage1Logs = stage1Logs;
+//	}
 
 	public Collection<PackageE> getPackages() {
 		return packages;
@@ -239,6 +250,14 @@ public class PlaceOrder {
 
 	public void setNewAllocatedResults(Collection<PackageTestResult> newAllocatedResults) {
 		this.newAllocatedResults = newAllocatedResults;
+	}
+
+	public String getStage2Logs() {
+		return stage2Logs;
+	}
+
+	public void setStage2Logs(String stage2Logs) {
+		this.stage2Logs = stage2Logs;
 	}
 
 }

@@ -83,11 +83,14 @@ rule "generate test results"
 		if ($stores.size() > 0) {
 			System.out.println("Package test is being tested: " + $test);
 			PackageTestResult testR = getTestResult($test, $stores);
+			$pack.addSplitTest($test);
 			if (testR != null) {
 				insert(testR);
 				modify($pack){ setAllocated(true); }
 				//$logger.addLog("**Test result: " + testR);
 				//System.out.println("test result: " + testR);
+			} else {
+				
 			}		
 			modify($test){ setTested(true); }
 		}
@@ -174,15 +177,18 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 		Parcel p = (Parcel) parcels.get(i);
 		p.shipmentPreparation();
 		ArrayList parcelResults = new ArrayList();
+		int count = 0;
 		for (int j = 0; j < stores.size(); j++) {
 			Store s = (Store) stores.get(j);
 			ParcelResult parcelR = getParcelResult(p, s);
 			if (parcelR != null) {
 				parcelResults.add(parcelR);
 				Util.calculateAttribute(parcelR);
+				count++;
 				//System.out.println("in get test result attribute");
 			}
 		}
+		p.setStoreCount(count);
 		if (parcelResults.size() < 1) {
 			System.out.println("in test result: no result for " + test);
 			return null;

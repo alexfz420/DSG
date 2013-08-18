@@ -44,7 +44,7 @@ public class ShipmentDAO extends BaseDao<Shipment> {
 		return (ArrayList<Shipment>) super.getList(criterions);
 	}
 
-	public Shipment getShipmentBySupplyDesitin(int supplyZip, int destinationZip) throws Exception {
+	public Shipment getShipmentBySupplyDesitin(String supplyZip, String destinationZip) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
         Criterion criterion1 = Restrictions.eq("id.supplyZip", supplyZip);
         Criterion criterion2 = Restrictions.eq("id.destinationZip", destinationZip);
