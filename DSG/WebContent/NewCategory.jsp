@@ -592,7 +592,7 @@
               </div>
 
               <div id="tabs-2">
-              <form action="createCategory.action">
+              <form action="createCategory.action" name="CreateProductGroupForm" onsubmit="return validateProductGroupForm()">
               <table id="category2" border="0" style="margin-left:50px;width:760px;">
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Name<font color="red">*</font>:</div></td>
