@@ -139,36 +139,38 @@
 				<h4 class="grey" style="padding-bottom:10px;">Hint: Please only drag and drop the rules with blue background to sort
 					the rule priority.</h4>
 
-				<div id="haha">
+				<div id="haha" class="table-list">				
+				
+				
 					<c:set var="ruleNum" value="1" />
-					<table class="grid" border="0"
+					<table class="list" border="0" cellspacing="0" cellpadding="0"
 						style="border-collapse: collapse; width:100%; font-size: 12px;">
 						<thead>
-							<tr
+							<tr class="title"
 								style="height: 30px; background-color: #f1f1f1; border-bottom: none;">
-								<th style="text-align: center; color: #666;">Rule#</th>
-								<th style="text-align: left; color: #666;">Rule Name</th>
-								<th style="text-align: left; color: #666;">Rule Description</th>
-								<th style="text-align: left; color: #666;">Stage</th>
-								<th style="text-align: left; color: #666;">Status</th>
+								<th>Rule#</th>
+								<th>Rule Name</th>
+								<th>Rule Description</th>
+								<th>Stage</th>
+								<th>Status</th>
 							</tr>
 						</thead>
 
 						<c:forEach var="preRule" items="${preRule}">
 							<tr style="height: 30px;">
 								<td
-									style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666;">${ruleNum}</td>
+									style="width:15%;">${ruleNum}</td>
 								<td
-									style="width:25%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${preRule.ruleName}</td>
+									style="width:25%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${preRule.ruleName}</div></td>
 								<td
-									style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${preRule.ruleDescr}</td>
-								<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${preRule.stage}</td>
+									style="width:30%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${preRule.ruleDescr}</div></td>
+								<td style="width:15%;">${preRule.stage}</td>
 								<c:choose>
-										<c:when test="${ (preRule.able == true) }">
-											<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">Active</td>
+										<c:when test="${(preRule.able == true)}">
+											<td style="width:15%;">Active</td>
 										</c:when>
 										<c:otherwise>
-											<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">Disabled</td>
+											<td style="width:15%;">Disabled</td>
 										</c:otherwise>
 									</c:choose>
 							</tr>
@@ -178,24 +180,24 @@
 
 
 					</table>
-					<table id="sort" class="grid" border="0"
+					<table id="sort" class="list" border="0"  cellspacing="0" cellpadding="0"
 						style="border-collapse: collapse; width:100%; font-size: 12px;">
 						<tbody>
 							<c:forEach var="midRule" items="${midRule}">
 								<tr style="height: 30px;">
 									<td
-										style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666; background-color: #75a8d8;">${ruleNum}</td>
+										style="width:15%; background-color: #75a8d8;">${ruleNum}</td>
 									<td
-										style="width:25%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8;">${midRule.ruleName}</td>
+										style="width:25%; background-color: #75a8d8;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${midRule.ruleName}</div></td>
 									<td
-										style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8;">${midRule.ruleDescr}</td>
-									<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8;">${midRule.stage}</td>
+										style="width:30%; background-color: #75a8d8;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${midRule.ruleDescr}</div></td>
+									<td style="width:15%; background-color: #75a8d8;">${midRule.stage}</td>
 									<c:choose>
 										<c:when test="${ (midRule.able == true) }">
-											<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8;">Active</td>
+											<td style="width:15%;background-color: #75a8d8;">Active&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
 										</c:when>
 										<c:otherwise>
-											<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666; background-color: #75a8d8;">Disabled</td>
+											<td style="width:15%;background-color: #75a8d8;">Disabled&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
 										</c:otherwise>
 									</c:choose>
 									
@@ -205,23 +207,23 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<table class="grid" border="0"
+					<table class="list" border="0" cellspacing="0" cellpadding="0"
 						style="border-collapse: collapse; width: 100%; font-size: 12px;">
 						<c:forEach var="lastRule" items="${lastRule}">
 							<tr style="height: 30px;">
 								<td
-									style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: center; color: #666;">${ruleNum}</td>
+									style="width:15%;">${ruleNum}</td>
 								<td
-									style="width:25%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleName}</td>
+									style="width:25%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${lastRule.ruleName}</div></td>
 								<td
-									style="width:30%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.ruleDescr}</td>
-								<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">${lastRule.stage}</td>
+									style="width:30%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${lastRule.ruleDescr}</div></td>
+								<td style="width:15%;">${lastRule.stage}</td>
 								<c:choose>
 										<c:when test="${ (lastRule.able == true) }">
-											<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">Active</td>
+											<td style="width:15%;">Active</td>
 										</c:when>
 										<c:otherwise>
-											<td style="width:15%; border-bottom: 1px #E5E5E5 solid; padding: 6px 10px 6px 5px; text-align: left; color: #666;">Disabled</td>
+											<td style="width:15%;">Disabled</td>
 										</c:otherwise>
 									</c:choose>
 							</tr>
