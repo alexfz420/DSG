@@ -10,6 +10,7 @@
  <jsp:include page="template_top.jsp" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="js/validation.js"></script>
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -516,17 +517,17 @@
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
         	
-            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span>
+            <li style="list-style:none;">
+            	<span><a href="#">Home</a><span> &gt; </span></span>
                 <span><a href="<%=basePath%>gotocategorylist.action?act=store">Manage Group</a><span> &gt; </span></span>
                 <span>New Group</span>
             </li>
             
             <!-- Success Message and Error Message -->
-            <div class="success_area" style="display:none">successMessage</div>
-            <div class="warning" style="display:none">errorMessage</div>
+            <div class="success_area" id="successMessage" style="display:none">successMessage</div>
+            <div class="warning" id="errorMessage" style="display:none">errorMessage</div>
             <!-- Success Message and Error Message -->
-        </div>
-        	
+        </div>     	
         <div><br/><br/>
             <div id="tabs">
               <ul>
@@ -534,7 +535,7 @@
                 <li><a href="#tabs-2">Product Group</a></li>
               </ul>
               <div id="tabs-1">
-              <form action="createCategory.action">
+              <form action="createCategory.action" name="creategroupform" onsubmit="return validategroupForm()" >
               <table id="category" border="0" style="margin-left:50px;width:750px;">
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Name<font color="red">*</font>:</div></td>
@@ -544,9 +545,8 @@
                     
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Description:</div></td>
-                    <td style="width:500px;">
-                      <textarea name="categoryDes" placeholder="Type group description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">
-                      </textarea>
+                    <td style="width:500px;"><textarea name="categoryDes" placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
+                      
                     </td>
                     <td></td>
                 </tr>
@@ -557,7 +557,7 @@
                       <textarea name="storeType" id="storeTypeTags" placeholder="Type fulfillment type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreTypeCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreTypeCheck()">See All Options</a>
                     </td>
                 </tr>
 
@@ -567,7 +567,7 @@
                       <textarea name="storeState" id="stateTags" placeholder="Type state to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStateCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStateCheck()">See All Options</a>
                     </td>
                 </tr>
 
@@ -577,12 +577,12 @@
                       <textarea name="storeId" id="storeTags" placeholder="Type fulfillment location to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreCheck()">See All Options</a>
                     </td>
                 </tr>
 
                 <tr style="height:40px;">
-                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick=""/>Cancel</a></td>
+                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick="">Cancel</a></td>
                     <td><input type="submit" value="Create" class="button"><input type="hidden" name="act" value="store"/>
                     </td>  
                     <td></td>
@@ -602,8 +602,7 @@
                     
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Description:</div></td>
-                    <td style="width:500px;">
-                      <textarea name="categoryDes" placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
+                    <td style="width:500px;"><textarea name="categoryDes" placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:30px;"></td>
                 </tr>
@@ -614,7 +613,7 @@
                       <textarea name="productType" id="typeTags" placeholder="Type product category to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getTypeCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getTypeCheck()">See All Options</a>
                     </td>
                 </tr>
 
@@ -624,7 +623,7 @@
                       <textarea name="brand" id="brandTags" placeholder="Type brand name to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getBrandCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getBrandCheck()">See All Options</a>
                     </td>
                 </tr>
 
@@ -636,7 +635,7 @@
                     <td style="width:110px;"></td>
                 </tr>
                 <tr style="height:40px;">
-                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick=""/>Cancel</a></td>
+                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" >Cancel</a></td>
                     <td>
                       <input type="submit" value="Create" class="button"/>
                       <input type="hidden" name="act" value="product"/>
