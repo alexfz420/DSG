@@ -45,8 +45,9 @@ public class HibernateTest
 	
 	public static void main(String[] args) throws Exception
 	{
-		String str = RuleDAO.getInstance().getDescriptionByRuleId(51);
-		System.out.println(str);
+		String[] str = RuleDAO.getInstance().getDescriptionByRuleId(52);
+		System.out.println(str[0]);
+		System.out.println(str[1]);
 //		Log log = new Log(new LogId(2, 1), null, null, null);
 //		log.setRecord(str);
 //		log.setStage(1);

@@ -204,10 +204,10 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 				cateIds[i] = StoreCateDAO.getInstance().getCateIdByCateName(cateNames[i]);
 			}
 		}
-		
+
 		for(int id : cateIds){
 			RuleCateId rcId = new RuleCateId(id, ruleId);
-			RuleCate rc = new RuleCate(rcId, null, true);
+			RuleCate rc = new RuleCate(rcId, null, isProduct);
 			super.create(rc);
 		}
 	}
