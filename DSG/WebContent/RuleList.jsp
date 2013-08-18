@@ -100,15 +100,15 @@
 		                    <td class="">Default</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
-									<td> <a class="button toggle disabled">&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+									<td> <a class="buttondisable">&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
 								</c:when>
 								<c:otherwise>
-									<td> <a class="button toggle disabled">Disabled</a> </td>
+									<td> <a class="buttondisable">Disabled</a> </td>
 								</c:otherwise>
 							</c:choose>
 		                    <td class="">
-		                    <a class="button toggle disabled" >View</a> 
-		                    <a class="button toggle disabled" >Edit</a>
+		                    <a class="buttondisable" >View</a> 
+		                    <a class="buttondisable" >Edit</a>
 						</c:if>
 						<c:if test="${allRule.type == '1'}">
 		                    <td class="">Product Threshold</td>
@@ -158,10 +158,10 @@
 		                    <td class="">Cost Calculation</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
-									<td> <a class="button toggle disabled" >&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+									<td> <a class="buttondisable" >&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
 								</c:when>
 								<c:otherwise>
-									<td> <a class="button toggle disabled">Disabled</a> </td>
+									<td> <a class="buttondisable">Disabled</a> </td>
 								</c:otherwise>
 							</c:choose>
 		                    <td class="">
@@ -173,10 +173,10 @@
 		                    <td class="">Evaluation</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
-									<td> <a class="button toggle disabled">&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+									<td> <a class="buttondisable">&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
 								</c:when>
 								<c:otherwise>
-									<td> <a class="button toggle disabled">Disabled</a> </td>
+									<td> <a class="buttondisable">Disabled</a> </td>
 								</c:otherwise>
 							</c:choose>
 		                    <td class="">
