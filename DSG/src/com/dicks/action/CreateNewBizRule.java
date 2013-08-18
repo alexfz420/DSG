@@ -415,7 +415,7 @@ public class CreateNewBizRule {
 		 String[] action = new String[1];
 		 action[0] = "special";
 		 
-		 String flag = "TH-A,ST-A,SP-B";
+		 String flag = "TH-A,ST-A,SP-A";
 		CreateTemplate test= new CreateTemplate(rulename,des,type,product,aa,operator,productcount," ",sources,action,flag,Integer.parseInt(priority),cateList);
 		WriteDrl wdl = new WriteDrl();
 		

@@ -5,7 +5,10 @@ rule "Default Filter Stock"
     	$item : Product()
     	$store : Store()
     	eval(!InventoryDAO.getInstance().containProduct($store, $item))
+    	$logger : EngineLog()
     then
+    	$logger.addLog("Default Filter Stock", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	
     	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
         retract($store);
 end

@@ -188,9 +188,9 @@
 									<td
 										style="width:15%; background-color: #75a8d8;">${ruleNum}</td>
 									<td
-										style="width:25%; background-color: #75a8d8;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${midRule.ruleName}</div></td>
+										style="width:25%; background-color: #75a8d8;">${midRule.ruleName}</div></td>
 									<td
-										style="width:30%; background-color: #75a8d8;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${midRule.ruleDescr}</div></td>
+										style="width:30%; background-color: #75a8d8;">${midRule.ruleDescr}</div></td>
 									<td style="width:15%; background-color: #75a8d8;">${midRule.stage}</td>
 									<c:choose>
 										<c:when test="${ (midRule.able == true) }">
