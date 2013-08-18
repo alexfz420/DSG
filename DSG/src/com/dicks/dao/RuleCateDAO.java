@@ -207,13 +207,9 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		}
 
 		for(int id : cateIds){
-			System.out.println("----------------------");
-			System.out.println(id);
-			System.out.println(ruleId);
-			System.out.println("----------------------");
 			RuleCateId rcId = new RuleCateId(id, ruleId);			
 			RuleCate rc = new RuleCate(rcId, null, isProduct);
-		if(!contain(rc)){
+			if(!contain(rc)){
 				super.create(rc);
 			}
 		}
@@ -229,5 +225,6 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		if(result == null) return false;
 		return true;
 	}
+
 	
 }

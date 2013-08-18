@@ -168,7 +168,6 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 			ruleNames = RuleDAO.getInstance().getRuleNamesForStore();
 			if(ruleNames==null||ruleNames.size()==0){}
 			else{
-				System.out.println("!!!!"+ruleNames.size());
 				this.setRuleList(getRuleListString(ruleNames));
 			}
 		} catch (Exception e) {
