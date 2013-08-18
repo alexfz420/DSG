@@ -96,7 +96,22 @@
             				<td style="width:10px;"class="">${ruleNum}</td>
 		                    <td class="">${allRule.ruleName.replace("%20"," ")}</td>
 		                    <td class="">${allRule.ruleDescr}</td>
-		                    <td class="" >${allRule.type}</td>
+		                    <c:if test="${allRule.type == '9'}">
+		                    <td class="">Default</td>
+		                    <c:choose>
+								<c:when test="${ (allRule.able == true) }">
+									<td> <a class="buttondisable">&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+								</c:when>
+								<c:otherwise>
+									<td> <a class="buttondisable">Disabled</a> </td>
+								</c:otherwise>
+							</c:choose>
+		                    <td class="">
+		                    <a class="buttondisable" >View</a> 
+		                    <a class="buttondisable" >Edit</a>
+						</c:if>
+						<c:if test="${allRule.type == '1'}">
+		                    <td class="">Product Threshold</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
 									<td> <a class="button toggle" onclick='SubmitForm(${allRule.ruleId},"ables")'>&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
@@ -108,7 +123,67 @@
 		                    <td class="">
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
 		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
-
+						</c:if>
+						<c:if test="${allRule.type == '2'}">
+		                    <td class="">Store Threshold</td>
+		                    <c:choose>
+								<c:when test="${ (allRule.able == true) }">
+									<td> <a class="button toggle" onclick='SubmitForm(${allRule.ruleId},"ables")'>&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+								</c:when>
+								<c:otherwise>
+									<td> <a class="button toggle disabled" onclick='SubmitForm(${allRule.ruleId},"ables")'>Disabled</a> </td>
+								</c:otherwise>
+							</c:choose>
+		                    <td class="">
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
+						</c:if>
+						<c:if test="${allRule.type == '3'}">
+		                    <td class="">Special Route</td>
+		                    <c:choose>
+								<c:when test="${ (allRule.able == true) }">
+									<td> <a class="button toggle" onclick='SubmitForm(${allRule.ruleId},"ables")'>&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+								</c:when>
+								<c:otherwise>
+									<td> <a class="button toggle disabled" onclick='SubmitForm(${allRule.ruleId},"ables")'>Disabled</a> </td>
+								</c:otherwise>
+							</c:choose>
+		                    <td class="">
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
+		                    </td>
+						</c:if>
+						
+						<c:if test="${allRule.type == '5'}">
+		                    <td class="">Cost Calculation</td>
+		                    <c:choose>
+								<c:when test="${ (allRule.able == true) }">
+									<td> <a class="buttondisable" >&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+								</c:when>
+								<c:otherwise>
+									<td> <a class="buttondisable">Disabled</a> </td>
+								</c:otherwise>
+							</c:choose>
+		                    <td class="">
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
+		                    </td>
+						</c:if>
+						<c:if test="${allRule.type == '6'}">
+		                    <td class="">Evaluation</td>
+		                    <c:choose>
+								<c:when test="${ (allRule.able == true) }">
+									<td> <a class="buttondisable">&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
+								</c:when>
+								<c:otherwise>
+									<td> <a class="buttondisable">Disabled</a> </td>
+								</c:otherwise>
+							</c:choose>
+		                    <td class="">
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"view")'>View</a> 
+		                    <a class="button" onclick='SubmitForm(${allRule.ruleId},"edit")'>Edit</a>
+		                    </td>
+						</c:if>
 		            	 </tr>
                 <c:set var="ruleNum" value="${ruleNum+1}" />
 				</c:forEach>

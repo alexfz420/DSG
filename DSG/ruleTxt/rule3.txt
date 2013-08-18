@@ -3,6 +3,6 @@ salience -5
     when
         store : Store()
     then
-        System.out.println(store.getZoneID());
+        System.out.println(store.getZoneId());
 end
 

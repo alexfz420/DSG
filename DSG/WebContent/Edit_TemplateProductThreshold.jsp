@@ -244,7 +244,8 @@
                         </div>
 
                         <br/> 
-                        <div>Perform the following action&#58;
+                        <div>Perform the following action&#58;</div><br/>
+                        <div>
                             <select>
                                 <option value="#">Ship this product separately</option>
                                 <option value="#">Inform the vendor to ship this product</option>

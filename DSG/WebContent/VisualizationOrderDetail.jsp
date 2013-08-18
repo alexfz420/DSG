@@ -86,6 +86,10 @@
         active: 0,
     });
   });
+  
+  $(function() {
+	$('.ui-widget-content').css("height","310px"); 
+  });
   </script>
 
     <!-- menu bar ends -->
@@ -105,7 +109,7 @@
                 <span><a href="#">Home</a><span> &gt; </span></span>
                 <span><a href="#">Visualization Dashboard</a><span> &gt; </span></span>
                 <span><a href="#">Order List</a><span> &gt; </span></span>                
-                <span>Order Routing Visualization<span>   
+                <span>Order Routing Visualization</span>   
             </li>
 
             <!-- Success Message and Error Message -->
@@ -137,7 +141,7 @@
                             </ul>
                         </div>
                         
-                        <h3>Stage 2 - Candidate Determination</h3>
+                        <h3>Stage 2 - Delivery Option</h3>
                         <div style="border: 1px solid #aaaaaa;">
                             <ul>
 	                            <c:forEach var="pack" items="${packages}" varStatus="index">
@@ -146,7 +150,7 @@
                             </ul>
                         </div>
                     
-                        <h3>Stage 3 - Evaluation</h3>
+                        <h3>Stage 3 - Allocation Optimization</h3>
                         <div style="border: 1px solid #aaaaaa;">
                             <ul>
                                 <li class="" style="height:30px;"><a href="VisualizationStage3-1.html">Route 1</a></li>
@@ -601,7 +605,7 @@
     <!-- content ends -->        
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>Â©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 

@@ -40,6 +40,7 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		List<RuleCate> result =  super.getList(criterions);
 		List<Category> categorys = new ArrayList<Category>();
 		for(RuleCate rc : result){
+			if (rc == null) return null;
 			if(rc.getIsProductRelated()){
 				ProdCate prodCate = ProdCateDAO.getInstance().getProdCategoryListById(rc.getId().getCategoryId()+"")[0];
 				categorys.add(prodCate);

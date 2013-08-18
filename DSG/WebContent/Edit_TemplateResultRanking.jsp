@@ -49,9 +49,10 @@
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
-            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span>
-                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
-                <span><a href="#">Business Rule List</a><span> &gt; </span></span>
+            <li style="list-style:none;">
+            	<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span> &gt; </span></span>
                 <span>Edit Business Rule</span>
             </li>
             
@@ -121,8 +122,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><a class="button" href="rulelist.html">Cancel</a></td>  
-                    <td><input type="submit" class="button" />Update</td>
+                    <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
+                    <td><input type="submit" class="button" value="Update" /></td>
                 </tr>
             </table>   
             </form>

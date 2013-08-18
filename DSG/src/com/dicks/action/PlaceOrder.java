@@ -14,6 +14,7 @@ import java.util.HashMap;
 import com.dicks.dao.LogDAO;
 import com.dicks.dao.PackageDAO;
 import com.dicks.dao.PackageDetailDAO;
+import com.dicks.dao.ShipmentDAO;
 import com.dicks.engine.Allocate;
 import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.EngineLog;
@@ -31,6 +32,7 @@ import com.dicks.pojo.PackageDetailId;
 import com.dicks.pojo.Packages;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
+import com.dicks.pojo.Shipment;
 import com.dicks.pojo.Store;
 
 public class PlaceOrder {
@@ -103,6 +105,12 @@ public class PlaceOrder {
 			System.out.println("quantity :"+quantity[i]);
 			System.out.println("product :"+product[i]);
 		}
+		
+		
+		Shipment ss = new Shipment();
+		ss = ShipmentDAO.getInstance().getShipmentBySupplyDesitin("15217", "15213");
+		System.out.println("distance "+ss.getDistance());
+		
 		System.out.println("product length: " + product.length);
 		System.out.println("quantity length: " + quantity.length);		
 		

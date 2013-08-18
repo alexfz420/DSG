@@ -7,6 +7,12 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
  <jsp:include page="template_top.jsp" />
+<script src="js/validation.js" type="text/javascript"></script>
+<style>
+
+</style>
+
+
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -34,12 +40,9 @@
     </ul>
     </div>
  <script>
- 
-    
+
  	$(function() {
- 		
-	    
-	    
+
 	    function split( val ) {
 	      return val.split( /,\s*/ );
 	    }
@@ -161,39 +164,45 @@
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix" >
+        <div class="title-bar clearfix" style="height:auto;" >
 					<h1 class="l">Manage Business Rule</h1>
 					<div id="Date" class="date l"></div>
 					<a id='ReportTipIco' class="report-help open l recordable"
 						memo="{id:'ReportTipIco',type:'page-tip',global:0}"
-						href="javascript:void(0);">&nbsp;</a> <br />
-					<br />
+						href="javascript:void(0);">&nbsp;</a> 
+						<br/><br/>
 					<div>
 						<hr/>
 					</div>
 
 					<li style="list-style: none;">
-						<span><a href="#">Home</a><span> &gt; </span></span>
-						<span><a href="">Manage Business Rule</a></span><span> &gt; </span>
+						<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span> &gt; </span></span>
+						<span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a></span><span> &gt; </span>
 						<span>New Business Rule</span>
 					</li>
-
+					<br/>
+					<ul class="progressbar" id="progressbar1">
+			        	<li class="active">Step 1</li>
+			        	<li>Step 2</li>
+			        	<li>Step 3</li>
+			        </ul>
+			        
+			        <!-- Success Message and Error Message -->
+					<div class="success_area" id="successMessage" style="display:none;">Success</div>
+					<div class="warning" id="errorMessage" style="display:none;" >Error</div>
 					<!-- Success Message and Error Message -->
-					<div class="success_area" style="display: none">successMessage</div>
-					<div class="warning" style="display: none">errorMessage</div>
-					<!-- Success Message and Error Message -->
-
+	
 		</div>
-         
             <div>
-            <form action="gototemplate" method="get">
+            
+            <form action="gototemplate" method="get" name="createruleform" onsubmit="return validateForm()">
             <table class="text" style="width:600px;">
                 <tr>
                     <td style="width:200px;">Rule Name<span class="red">*</span>&#58;</td>
-                    <td><input type="text"  name="rulename" style="width:200px;"></td>
+                    <td><input type="text"  name="rulename" style="width:200px;" id="a"></td>
                 </tr>   
                 <tr>
-                    <td>Rule Description&#58;</td>
+                    <td>Rule Description&#58;<span class="red">*</span></td>
                     <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" ></textarea></td>
                 </tr>
                 <tr>
@@ -210,7 +219,7 @@
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
                     <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:20px;" onkeyup="textAreaAdjust(this)" placeholder="Group name"></textarea></td>
-                    <td class="grey">&nbsp;&nbsp;If not found, <a href="createcategory.html">new Group</a>.</td>
+                    <td class="grey">&nbsp;&nbsp;If not found, <a href="<%=basePath%>gotonewcategory.action">new Group</a>.</td>
                 </tr>
                 
                 <tr></tr>
@@ -232,7 +241,7 @@
 
                 
     <!-- footer starts -->
-        </div>
+        <div>
             <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
