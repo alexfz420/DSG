@@ -25,6 +25,7 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 	private String skuString;
 	private String appliedRuleString;
 	private String previousAppliedRuleString;
+	private String ruleList;
 
 	public String viewStoreCategory() {
 		if (categoryId != null) {
@@ -147,7 +148,31 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 		setAppliedRuleString(sb1.toString());
 	}
 
-	public String viewCate2EditCate() {
+	public String viewCate2EditProdCate() {
+		List<String> ruleNames;
+		try {
+			ruleNames = RuleDAO.getInstance().getRuleNamesForProduct();
+			if(ruleNames!=null){
+				this.setRuleList(getRuleListString(ruleNames));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	public String viewCate2EditStoreCate() {
+		List<String> ruleNames;
+		try {
+			ruleNames = RuleDAO.getInstance().getRuleNamesForStore();
+			if(ruleNames!=null){
+				this.setRuleList(getRuleListString(ruleNames));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 
@@ -197,8 +222,33 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 
 	public void setAppliedRuleString(String appliedRuleString) {
 		this.appliedRuleString = appliedRuleString;
+	
 	}
 
+	private String getRuleListString(List<String> ruleNames){
+		StringBuffer sb = new StringBuffer();
+		for(String str : ruleNames){
+			sb.append(str).append(",");
+		}
+		sb.deleteCharAt(sb.length()-1);
+		return sb.toString();
+	}
+	
+	private void deleteRule(String[] ruleNamesForDelete, String[] array) throws Exception {
+		
+		List<Rule> rulesForDelete = new ArrayList<Rule>();
+		for (int i = 0; i < ruleNamesForDelete.length; i++) {
+			if (ruleNamesForDelete[i] != null) {
+				rulesForDelete.add(RuleDAO.getInstance().getRuleByName(ruleNamesForDelete[i]));
+			}
+		}
+		if(rulesForDelete.size()>0){
+			RuleDAO.getInstance().updateProdObjForDelete(array, rulesForDelete);
+		}
+	}
+
+	
+	
 	// array is skus
 	private void updateAppliedRules(boolean isProductRelated, String[] array)
 			throws Exception {
@@ -270,17 +320,13 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 		this.previousAppliedRuleString = previousAppliedRuleString;
 	}
 
-	private void deleteRule(String[] ruleNamesForDelete, String[] array) throws Exception {
-		
-		List<Rule> rulesForDelete = new ArrayList<Rule>();
-		for (int i = 0; i < ruleNamesForDelete.length; i++) {
-			if (ruleNamesForDelete[i] != null) {
-				rulesForDelete.add(RuleDAO.getInstance().getRuleByName(ruleNamesForDelete[i]));
-			}
-		}
-		if(rulesForDelete.size()>0){
-			RuleDAO.getInstance().updateProdObjForDelete(array, rulesForDelete);
-		}
+	
+	public String getRuleList() {
+		return ruleList;
+	}
+
+	public void setRuleList(String ruleList) {
+		this.ruleList = ruleList;
 	}
 
 }

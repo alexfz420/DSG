@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
 
 import com.dicks.pojo.Rule;
@@ -237,6 +238,38 @@ public class RuleDAO extends BaseDao<Rule> {
 		dictionary.put("retract","this item will be filted out");
 		dictionary.put("special", "this item will be directly shipped from");
 		dictionary.put("miniumPackage", "this item will be filted out");
+	}
+	
+	public List<String> getRuleNamesForProduct() throws Exception{
+		List<Criterion> criterion = new ArrayList<Criterion>();
+		Disjunction disjunctions = Restrictions.disjunction();
+		disjunctions.add(Restrictions.eq("type", "1" ));
+		disjunctions.add(Restrictions.eq("type", "3" ));
+		criterion.add(disjunctions);
+		List<Rule> list= (ArrayList<Rule>) super.getList(criterion);
+		if(list ==null) return null;
+		
+		List<String> result = new ArrayList<String>();		
+		for(Rule rule: list){
+			result.add(rule.getRuleName());
+		}
+		return result;
+	}
+	
+	public List<String> getRuleNamesForStore() throws Exception{
+		List<Criterion> criterion = new ArrayList<Criterion>();
+		Disjunction disjunctions = Restrictions.disjunction();
+		disjunctions.add(Restrictions.eq("type", "2" ));
+		disjunctions.add(Restrictions.eq("type", "4" ));
+		criterion.add(disjunctions);
+		List<Rule> list= (ArrayList<Rule>) super.getList(criterion);
+		if(list ==null) return null;
+		
+		List<String> result = new ArrayList<String>();		
+		for(Rule rule: list){
+			result.add(rule.getRuleName());
+		}
+		return result;
 	}
 
 	

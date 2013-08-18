@@ -150,11 +150,11 @@
       		<param name="act">product</param>
       </action> 
 
-       <action name="viewStoreCate2EditStoreCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
+       <action name="viewStoreCate2EditStoreCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditStoreCate">
       		<result name="success">/EditStoreCategory.jsp</result>
       </action> 
 
-        <action name="viewProdCate2EditProdCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
+        <action name="viewProdCate2EditProdCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditProdCate">
       		<result name="success">/EditProdCategory.jsp</result>
       </action> 
 
