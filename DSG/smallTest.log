@@ -3,24 +3,24 @@
   <type>4</type>
   <activationId>Explode Package [1]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>for splitable packages [1]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>add splits [1]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>1</factId>
-  <objectToString>[AJ13, AJ13]</objectToString>
+  <objectToString>[Kobe3]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
@@ -49,161 +49,161 @@
   <type>4</type>
   <activationId>Explode Package [3]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>for splitable packages [3]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>add splits [3]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>3</factId>
-  <objectToString>[Kobe3]</objectToString>
+  <objectToString>[AJ13, AJ13]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>Explode Package [4]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>for splitable packages [4]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>add splits [4]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>4</factId>
-  <objectToString>[Kobe3]</objectToString>
+  <objectToString>[Kayak1]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>Explode Package [5]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>for splitable packages [5]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>add splits [5]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>5</factId>
-  <objectToString>[Kayak1]</objectToString>
+  <objectToString>[Kobe3]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>6</factId>
-  <objectToString>Store: 1</objectToString>
+  <objectToString>store: 3</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>7</factId>
-  <objectToString>store: 3</objectToString>
+  <objectToString>Store: 1</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>Explode Package [5]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>Explode Package [5]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>for splitable packages [5]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>generate test results [8, 5, 9]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](9); $test=Package test: [[Parcel: [Kayak1 (1) ]]](8); $pack=[Kayak1](5)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](9); $test=Package test: [[Parcel: [Kobe3 (1) ]]](8); $pack=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>8</factId>
-  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>for splitable packages [5]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>for splitable packages [4]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>generate test results [10, 4, 11]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](11); $test=Package test: [[Parcel: [Kobe3 (1) ]]](10); $pack=[Kobe3](4)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](11); $test=Package test: [[Parcel: [Kayak1 (1) ]]](10); $pack=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>10</factId>
-  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>for splitable packages [4]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>for splitable packages [3]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>generate test results [12, 3, 13]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](13); $test=Package test: [[Parcel: [Kobe3 (1) ]]](12); $pack=[Kobe3](3)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](13); $test=Package test: [[Parcel: [AJ13 (2) ]]](12); $pack=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>12</factId>
-  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [AJ13 (2) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>for splitable packages [3]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
@@ -215,7 +215,7 @@
   <type>4</type>
   <activationId>generate test results [14, 2, 15]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
@@ -232,75 +232,75 @@
   <type>6</type>
   <activationId>for splitable packages [1]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>generate test results [16, 1, 17]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](17); $test=Package test: [[Parcel: [AJ13 (2) ]]](16); $pack=[AJ13, AJ13](1)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](17); $test=Package test: [[Parcel: [Kobe3 (1) ]]](16); $pack=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>16</factId>
-  <objectToString>Package test: [[Parcel: [AJ13 (2) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>for splitable packages [1]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>generate test results [16, 1, 17]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](17); $test=Package test: [[Parcel: [AJ13 (2) ]]](16); $pack=[AJ13, AJ13](1)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](17); $test=Package test: [[Parcel: [Kobe3 (1) ]]](16); $pack=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>18</factId>
-  <objectToString>Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67</objectToString>
+  <objectToString>Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>5</type>
   <activationId>add splits [1]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>get to evaluate [1]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>evaluate package results [1, 19]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](19); $p=[AJ13, AJ13](1)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](19); $p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>1</factId>
-  <objectToString>[AJ13, AJ13]</objectToString>
+  <objectToString>[Kobe3]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>16</factId>
-  <objectToString>Package test: [[Parcel: [AJ13 (2) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>generate test results [16, 1, 17]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](17); $test=Package test: [[Parcel: [AJ13 (2) ]]](16); $pack=[AJ13, AJ13](1)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](17); $test=Package test: [[Parcel: [Kobe3 (1) ]]](16); $pack=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>generate test results [14, 2, 15]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
@@ -339,208 +339,208 @@
   <type>7</type>
   <activationId>generate test results [14, 2, 15]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>generate test results [12, 3, 13]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](13); $test=Package test: [[Parcel: [Kobe3 (1) ]]](12); $pack=[Kobe3](3)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](13); $test=Package test: [[Parcel: [AJ13 (2) ]]](12); $pack=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>22</factId>
-  <objectToString>Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61</objectToString>
+  <objectToString>Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>5</type>
   <activationId>add splits [3]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>get to evaluate [3]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>evaluate package results [3, 23]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](23); $p=[Kobe3](3)</declarations>
+  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](23); $p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>3</factId>
-  <objectToString>[Kobe3]</objectToString>
+  <objectToString>[AJ13, AJ13]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>12</factId>
-  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [AJ13 (2) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>generate test results [12, 3, 13]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](13); $test=Package test: [[Parcel: [Kobe3 (1) ]]](12); $pack=[Kobe3](3)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](13); $test=Package test: [[Parcel: [AJ13 (2) ]]](12); $pack=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>generate test results [10, 4, 11]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](11); $test=Package test: [[Parcel: [Kobe3 (1) ]]](10); $pack=[Kobe3](4)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](11); $test=Package test: [[Parcel: [Kayak1 (1) ]]](10); $pack=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>24</factId>
-  <objectToString>Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61</objectToString>
+  <objectToString>Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>5</type>
   <activationId>add splits [4]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>get to evaluate [4]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>evaluate package results [4, 25]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](25); $p=[Kobe3](4)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](25); $p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>4</factId>
-  <objectToString>[Kobe3]</objectToString>
+  <objectToString>[Kayak1]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>10</factId>
-  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>generate test results [10, 4, 11]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](11); $test=Package test: [[Parcel: [Kobe3 (1) ]]](10); $pack=[Kobe3](4)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](11); $test=Package test: [[Parcel: [Kayak1 (1) ]]](10); $pack=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>generate test results [8, 5, 9]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](9); $test=Package test: [[Parcel: [Kayak1 (1) ]]](8); $pack=[Kayak1](5)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](9); $test=Package test: [[Parcel: [Kobe3 (1) ]]](8); $pack=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>26</factId>
-  <objectToString>Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8</objectToString>
+  <objectToString>Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>Explode Package [5]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>5</type>
   <activationId>add splits [5]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>get to evaluate [5]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>evaluate package results [5, 27]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](27); $p=[Kayak1](5)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](27); $p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>5</factId>
-  <objectToString>[Kayak1]</objectToString>
+  <objectToString>[Kobe3]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>8</factId>
-  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>generate test results [8, 5, 9]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](9); $test=Package test: [[Parcel: [Kayak1 (1) ]]](8); $pack=[Kayak1](5)</declarations>
+  <declarations>$stores=[store: 3, Store: 1](9); $test=Package test: [[Parcel: [Kobe3 (1) ]]](8); $pack=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>Explode Package [5]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>Explode Package [5]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>get to evaluate [5]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>get to evaluate [5]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
+  <declarations>$p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>evaluate package results [5, 27]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](27); $p=[Kayak1](5)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](27); $p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>evaluate package results [5, 27]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](27); $p=[Kayak1](5)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](27); $p=[Kobe3](5)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>evaluate package results [4, 25]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](25); $p=[Kobe3](4)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](25); $p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>evaluate package results [4, 25]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](25); $p=[Kobe3](4)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](25); $p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>evaluate package results [3, 23]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](23); $p=[Kobe3](3)</declarations>
+  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](23); $p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>evaluate package results [3, 23]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](23); $p=[Kobe3](3)</declarations>
+  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](23); $p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
@@ -558,37 +558,37 @@
   <type>6</type>
   <activationId>evaluate package results [1, 19]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](19); $p=[AJ13, AJ13](1)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](19); $p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>evaluate package results [1, 19]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](19); $p=[AJ13, AJ13](1)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](19); $p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>get to evaluate [4]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>get to evaluate [4]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>get to evaluate [3]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>get to evaluate [3]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
@@ -606,37 +606,37 @@
   <type>6</type>
   <activationId>get to evaluate [1]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>get to evaluate [1]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>Explode Package [4]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>Explode Package [4]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$p=[Kayak1](4)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>Explode Package [3]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>Explode Package [3]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[AJ13, AJ13](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
@@ -654,12 +654,12 @@
   <type>6</type>
   <activationId>Explode Package [1]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>Explode Package [1]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kobe3](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 </object-stream>

@@ -88,6 +88,27 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
+rule  "Threshold for TMAC"
+    salience 848
+    when
+        $o : Orders()
+        $orderE : OrderE()
+        $i : Product( ((Length > 5)||( Width > 5)||( Height > 5)||( Weight > 5))&& (( sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $logger: EngineLog()
+    then
+        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Threshold for TMAC","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("Threshold for TMAC",p.toString()); 
+        }
+        retract($i);
+end
+
 rule "Insert Package for Remaining Products"
 	salience -5
 	//agenda-group "first7"
