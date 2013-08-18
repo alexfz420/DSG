@@ -45,7 +45,8 @@
       <action name="goToEdit" class="com.dicks.action.RuleList" method="goToEdit">
            <result name="goToEditProductThreshold" type="dispatcher">/Edit_TemplateProductThreshold.jsp</result>
            <result name="goToViewProductThreshold" type="dispatcher">/View_TemplateProductThreshold.jsp</result>
-           <result name="goToEditStoreThreshold" type="dispatcher">/TemplateSpecialRoute.jsp</result>
+           <result name="goToEditStoreThreshold" type="dispatcher">/Edit_TemplateStoreThreshold.jsp</result>
+           <result name="goToViewStoreThreshold" type="dispatcher">/View_TemplateStoreThreshold.jsp</result>
            <result name="goToEditSpecialRoute" type="dispatcher">/Edit_TemplateSpecialRoute.jsp</result>
            <result name="goToViewSpecialRoute" type="dispatcher">/View_TemplateSpecialRoute.jsp</result>
            <result name="goToCostCalculation" type="dispatcher">/Edit_TemplateCostCalculation.jsp</result>
@@ -61,6 +62,11 @@
       </action>
       <action name="updateRuleSpecial" class="com.dicks.action.RuleList" method="updateRuleSpecial">
           <result name="success" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
+      </action>
+      <action name="updateStoreThreshold" class="com.dicks.action.RuleList" method="updateStoreThreshold">
+          <result name="updateStoreThreshold" type="chain">
             <param name="actionName">gotorulelist</param>
           </result> 
       </action>
@@ -85,13 +91,20 @@
            <result name="goToStoreThreshold" type="dispatcher">/TemplateStoreThreshold.jsp</result>
       </action>
        <action name="newrule" class="com.dicks.action.CreateNewBizRule" method="newrule">
-          <result name="newrule" type="dispatcher">/CreateNewRule.jsp</result>
+          <result name="newrule" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
+          
       </action>
       <action name="storeThreshold" class="com.dicks.action.CreateNewBizRule" method="storeThreshold">
-          <result name="storeThreshold" type="dispatcher">/CreateNewRule.jsp</result>
+          <result name="storeThreshold" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
       </action>
       <action name="specialRoutes" class="com.dicks.action.CreateNewBizRule" method="specialRoutes">
-          <result name="specialRoutes" type="dispatcher">/CreateNewRule.jsp</result>
+          <result name="specialRoutes" type="chain">
+            <param name="actionName">gotorulelist</param>
+          </result> 
       </action>
       <action name="newrulePriority" class="com.dicks.action.CreateNewBizRule" method="ranking">
           <result name="newrulePriority" type="dispatcher">/RuleList.jsp</result>
@@ -150,11 +163,11 @@
       		<param name="act">product</param>
       </action> 
 
-       <action name="viewStoreCate2EditStoreCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
+       <action name="viewStoreCate2EditStoreCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditStoreCate">
       		<result name="success">/EditStoreCategory.jsp</result>
       </action> 
 
-        <action name="viewProdCate2EditProdCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditCate">
+        <action name="viewProdCate2EditProdCate" class="com.dicks.action.ViewAndEditCategoryAction" method="viewCate2EditProdCate">
       		<result name="success">/EditProdCategory.jsp</result>
       </action> 
 
@@ -177,6 +190,21 @@
           <param name="act">${act}</param>
           </result>
       </action>
-      
+      <action name="storecheck" class="com.dicks.action.CheckAction" method="storeCheck">
+          <result name="success">/StoreCheck.jsp</result>
+      </action>
+      <action name="statecheck" class="com.dicks.action.CheckAction" method="stateCheck">
+          <result name="success">/StateCheck.jsp</result>
+      </action>
+      <action name="storetypecheck" class="com.dicks.action.CheckAction" method="storeTypeCheck">
+          <result name="success">/StoreTypeCheck.jsp</result>
+      </action>
+      <action name="brandcheck" class="com.dicks.action.CheckAction" method="brandCheck">
+          <result name="success">/BrandCheck.jsp</result>
+      </action>
+      <action name="typecheck" class="com.dicks.action.CheckAction" method="typeCheck">
+          <result name="success">/TypeCheck.jsp</result>
+      </action>
+            
    </package>
 </struts>

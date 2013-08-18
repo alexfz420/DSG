@@ -10,6 +10,7 @@
  <jsp:include page="template_top.jsp" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="js/validation.js"></script>
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -195,7 +196,7 @@
   });
 
   $(function() {
-    var availableTags = [
+	  /* var availableTags = [
       "All",
       "Store01",
       "Store02",
@@ -206,7 +207,12 @@
       "Store07",
       "Store08",
       "Store09"
-    ];
+    ]; */
+	var slist =document.getElementsByClassName("slist");
+	   var availableTags= new Array();
+	   for(var i = 0; i < slist.length; i++){
+	   	availableTags[i]=slist[i].value;
+	}
     function split( val ) {
       return val.split( /,\s*/ );
     }
@@ -444,64 +450,64 @@
   });
 
   function getStoreTypeCheck() {
-        var sPath = "StoreTypeChk.html";
-        strFeatures = "dialogWidth=300px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("storeTypeTags").value + strReturn;
-            document.getElementById("storeTypeTags").value = strReturn;
-        }
-    }
+      var sPath = "<%=basePath%>storetypecheck.action";
+      strFeatures = "dialogWidth=300px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("storeTypeTags").value + strReturn;
+          document.getElementById("storeTypeTags").value = strReturn;
+      }
+  }
 
-  function getRegionCheck() {
-        var sPath = "RegionChk.html";
-        strFeatures = "dialogWidth=400px;dialogHeight=300px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("regionTags").value + strReturn;
-            document.getElementById("regionTags").value = strReturn;
-        }
-    }
+function getRegionCheck() {
+      var sPath = "RegionChk.html";
+      strFeatures = "dialogWidth=400px;dialogHeight=300px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("regionTags").value + strReturn;
+          document.getElementById("regionTags").value = strReturn;
+      }
+  }
 
-  function getStateCheck() {
-        var sPath = "StateChk.html";
-        strFeatures = "dialogWidth=650px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("stateTags").value + strReturn;
-            document.getElementById("stateTags").value = strReturn;
-        }
-    }
+function getStateCheck() {
+      var sPath = "<%=basePath%>statecheck.action";
+      strFeatures = "dialogWidth=650px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("stateTags").value + strReturn;
+          document.getElementById("stateTags").value = strReturn;
+      }
+  }
 
-  function getStoreCheck() {
-        var sPath = "StoreChk.html";
-        strFeatures = "dialogWidth=750px;dialogHeight=550px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("storeTags").value + strReturn;
-            document.getElementById("storeTags").value = strReturn;
-        }
-    }
+function getStoreCheck() {
+      var sPath = "<%=basePath%>storecheck.action";
+      strFeatures = "dialogWidth=750px;dialogHeight=550px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("storeTags").value + strReturn;
+          document.getElementById("storeTags").value = strReturn;
+      }
+  }
 
-  function getTypeCheck() {
-        var sPath = "TypeChk.html";
-        strFeatures = "dialogWidth=500px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("typeTags").value + strReturn;
-            document.getElementById("typeTags").value = strReturn;
-        }
-    }
+function getTypeCheck() {
+      var sPath = "<%=basePath%>typecheck.action";
+      strFeatures = "dialogWidth=500px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("typeTags").value + strReturn;
+          document.getElementById("typeTags").value = strReturn;
+      }
+  }
 
-    function getBrandCheck() {
-        var sPath = "BrandChk.html";
-        strFeatures = "dialogWidth=550px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
-        var strReturn = showModalDialog(sPath, "", strFeatures);
-        if (strReturn != null) {
-            strReturn = document.getElementById("brandTags").value + strReturn;
-            document.getElementById("brandTags").value = strReturn;
-        }
-    }
+  function getBrandCheck() {
+      var sPath = "<%=basePath%>brandcheck.action";
+      strFeatures = "dialogWidth=550px;dialogHeight=400px;center=yes;help=no;directories=no;status=no;scrollbars=no;resizable=1;menubar=no";
+      var strReturn = showModalDialog(sPath, "", strFeatures);
+      if (strReturn != null) {
+          strReturn = document.getElementById("brandTags").value + strReturn;
+          document.getElementById("brandTags").value = strReturn;
+      }
+  }
  </script>
 
     <!-- menu bar ends -->
@@ -516,17 +522,17 @@
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
         	
-            <li style="list-style:none;"><span><a href="#">Home</a><span> &gt; </span></span>
+            <li style="list-style:none;">
+            	<span><a href="#">Home</a><span> &gt; </span></span>
                 <span><a href="<%=basePath%>gotocategorylist.action?act=store">Manage Group</a><span> &gt; </span></span>
                 <span>New Group</span>
             </li>
             
             <!-- Success Message and Error Message -->
-            <div class="success_area" style="display:none">successMessage</div>
-            <div class="warning" style="display:none">errorMessage</div>
+            <div class="success_area" id="successMessage" style="display:none">successMessage</div>
+            <div class="warning" id="errorMessage" style="display:none">errorMessage</div>
             <!-- Success Message and Error Message -->
-        </div>
-        	
+        </div>     	
         <div><br/><br/>
             <div id="tabs">
               <ul>
@@ -534,7 +540,7 @@
                 <li><a href="#tabs-2">Product Group</a></li>
               </ul>
               <div id="tabs-1">
-              <form action="createCategory.action">
+              <form action="createCategory.action" name="creategroupform" onsubmit="return validategroupForm()" >
               <table id="category" border="0" style="margin-left:50px;width:750px;">
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Name<font color="red">*</font>:</div></td>
@@ -544,9 +550,8 @@
                     
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Description:</div></td>
-                    <td style="width:500px;">
-                      <textarea name="categoryDes" placeholder="Type group description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">
-                      </textarea>
+                    <td style="width:500px;"><textarea name="categoryDes" placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
+                      
                     </td>
                     <td></td>
                 </tr>
@@ -557,7 +562,7 @@
                       <textarea name="storeType" id="storeTypeTags" placeholder="Type fulfillment type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreTypeCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreTypeCheck()">See All Options</a>
                     </td>
                 </tr>
 
@@ -567,7 +572,7 @@
                       <textarea name="storeState" id="stateTags" placeholder="Type state to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStateCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStateCheck()">See All Options</a>
                     </td>
                 </tr>
 
@@ -577,12 +582,12 @@
                       <textarea name="storeId" id="storeTags" placeholder="Type fulfillment location to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreCheck()">See All Options</a>
                     </td>
                 </tr>
 
                 <tr style="height:40px;">
-                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick=""/>Cancel</a></td>
+                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick="">Cancel</a></td>
                     <td><input type="submit" value="Create" class="button"><input type="hidden" name="act" value="store"/>
                     </td>  
                     <td></td>
@@ -592,7 +597,7 @@
               </div>
 
               <div id="tabs-2">
-              <form action="createCategory.action">
+              <form action="createCategory.action" name="CreateProductGroupForm" onsubmit="return validateProductGroupForm()">
               <table id="category2" border="0" style="margin-left:50px;width:760px;">
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Name<font color="red">*</font>:</div></td>
@@ -602,8 +607,7 @@
                     
                 <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Group Description:</div></td>
-                    <td style="width:500px;">
-                      <textarea name="categoryDes" placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
+                    <td style="width:500px;"><textarea name="categoryDes" placeholder="Type category description&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:30px;"></td>
                 </tr>
@@ -614,7 +618,7 @@
                       <textarea name="productType" id="typeTags" placeholder="Type product category to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getTypeCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getTypeCheck()">See All Options</a>
                     </td>
                 </tr>
 
@@ -624,7 +628,7 @@
                       <textarea name="brand" id="brandTags" placeholder="Type brand name to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
-                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getBrandCheck()"/>See All Options</a>
+                      <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getBrandCheck()">See All Options</a>
                     </td>
                 </tr>
 
@@ -636,7 +640,7 @@
                     <td style="width:110px;"></td>
                 </tr>
                 <tr style="height:40px;">
-                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" onclick=""/>Cancel</a></td>
+                    <td><a class="button" href="<%=basePath%>gotocategorylist.action" >Cancel</a></td>
                     <td>
                       <input type="submit" value="Create" class="button"/>
                       <input type="hidden" name="act" value="product"/>
@@ -645,6 +649,9 @@
                 </tr>
               </table>   
               </form>
+              <c:forEach items="${storeList}" var="slist">
+             	<input type="hidden" class="slist" value="${slist.storeName}">
+           	  </c:forEach>
               </div>   
             </div>
          

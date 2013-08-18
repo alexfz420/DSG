@@ -532,7 +532,7 @@ function goBack(){
 <!-- footer starts -->
 
 <div class="footer">
-	<span>©2013 eBusiness Team</span>
+	<span>&copy;2013 eBusiness Team</span>
 </div>
 <!-- footer ends -->
 </body>

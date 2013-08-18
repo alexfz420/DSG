@@ -9,12 +9,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
 
 import com.dicks.pojo.Rule;
 
 public class RuleDAO extends BaseDao<Rule> {
 	private static RuleDAO instance = new RuleDAO();
+	private static Map<String, String> dictionary = null;
 
 	public RuleDAO() {
 		super(Rule.class);
@@ -173,9 +175,60 @@ public class RuleDAO extends BaseDao<Rule> {
 		return "";			
 	}
 	
-	public String getDescriptionByRuleId(int ruleId) throws Exception{
+	public String[] getDescriptionByRuleId(int ruleId) throws Exception{
 		//map
-		Map<String, String> dictionary = new HashMap<String, String>();
+		buildDictionary();
+
+		
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("ruleId", ruleId);
+		criterions.add(criterion);
+		Rule rule  =  super.get(criterions);
+		String type = rule.getType();
+		
+		StringBuffer sbWhen = new StringBuffer();
+		StringBuffer sbThen = new StringBuffer();
+		String[] result = new String[2];
+
+		
+		String[] attributes = rule.getAttributes();
+		String[] operators =  rule.getOperators();
+		String condition = dictionary.get(rule.getCondition());
+		String[] values = rule.getValues();
+		String[] actions = rule.getActions();
+		String route = rule.getRoute();
+		
+		
+		if("1".equals(type)){
+			sbWhen.append("when ");
+			for(int i = 0 ; i<attributes.length ; i ++){
+				sbWhen.append(attributes[i]).append(" ").append(dictionary.get(operators[i])).append(" ").append(values[i]).append(", ").append(condition).append(" ");
+			}
+			sbWhen.delete(sbWhen.length()-5,sbWhen.length()-1) ;
+			
+			sbThen.append("then ");
+			for(int i = 0; i<actions.length ; i++){
+				sbThen.append(dictionary.get(actions[i])).append(", ");
+			}
+			sbThen.delete(sbThen.length()-2,sbThen.length()-1) ;
+		}if("3".equals(type)){
+			sbWhen.append("when this item's quantity ");
+			sbWhen.append(dictionary.get(operators[0])).append(" ").append(values[0]);
+			sbThen.append("then ").append(dictionary.get(actions[0])).append(" Store ").append(route);
+			
+		}
+		if("3".equals(type)){
+			
+		}
+		
+		result[0] = sbWhen.toString();
+		result[1] = sbThen.toString();
+		return result;
+	}
+	
+	private static void buildDictionary(){
+		if(dictionary!=null) return;
+		dictionary = new HashMap<String, String>();
 		dictionary.put(">","is bigger than");
 		dictionary.put("<","is less than");
 		dictionary.put("<","equals to");
@@ -183,30 +236,41 @@ public class RuleDAO extends BaseDao<Rule> {
 		dictionary.put("||","or");
 		dictionary.put("&&","and");
 		dictionary.put("retract","this item will be filted out");
-		dictionary.put("special", "this item will be shipped from");
-
-		List<Criterion> criterions = new ArrayList<Criterion>();
-		Criterion criterion = Restrictions.eq("ruleId", ruleId);
-		criterions.add(criterion);
-		Rule rule  =  super.get(criterions);
-		String type = rule.getType();
-		
-		StringBuffer sb = new StringBuffer();
-		if("1".equals(type)){
-			String[] attributes = rule.getAttributes();
-			String[] operators =  rule.getOperators();
-			String condition = dictionary.get(rule.getCondition());
-			String[] values = rule.getValues();
-			String[] actions = rule.getActions();
-			sb.append("when ");
-			for(int i = 0 ; i<attributes.length ; i ++){
-				sb.append(attributes[i]).append(" ").append(dictionary.get(operators[i])).append(" ").append(values[i]).append(", ");
-			}
-			sb.append("then ");
-			//sb.append(dictionary.get(rule))
-		}
-		
-		return sb.toString();
-		
+		dictionary.put("special", "this item will be directly shipped from");
+		dictionary.put("miniumPackage", "this item will be filted out");
 	}
+	
+	public List<String> getRuleNamesForProduct() throws Exception{
+		List<Criterion> criterion = new ArrayList<Criterion>();
+		Disjunction disjunctions = Restrictions.disjunction();
+		disjunctions.add(Restrictions.eq("type", "1" ));
+		disjunctions.add(Restrictions.eq("type", "3" ));
+		criterion.add(disjunctions);
+		List<Rule> list= (ArrayList<Rule>) super.getList(criterion);
+		if(list ==null) return null;
+		
+		List<String> result = new ArrayList<String>();		
+		for(Rule rule: list){
+			result.add(rule.getRuleName());
+		}
+		return result;
+	}
+	
+	public List<String> getRuleNamesForStore() throws Exception{
+		List<Criterion> criterion = new ArrayList<Criterion>();
+		Disjunction disjunctions = Restrictions.disjunction();
+		disjunctions.add(Restrictions.eq("type", "2" ));
+		disjunctions.add(Restrictions.eq("type", "4" ));
+		criterion.add(disjunctions);
+		List<Rule> list= (ArrayList<Rule>) super.getList(criterion);
+		if(list ==null) return null;
+		
+		List<String> result = new ArrayList<String>();		
+		for(Rule rule: list){
+			result.add(rule.getRuleName());
+		}
+		return result;
+	}
+
+	
 }

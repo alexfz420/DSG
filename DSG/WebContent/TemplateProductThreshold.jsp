@@ -6,61 +6,6 @@
     %>
  <jsp:include page="template_top.jsp" />
 
-<style>
-
-/*progressbar*/
-.progressbar {
-     margin-bottom: 30px;
-     overflow: hidden;
-     /*CSS counters to number the steps*/
-     counter-reset: step;
-}
-.progressbar li {
-     list-style-type: none;
-     color: black;
-     text-transform: uppercase;
-     font-size: 12px;
-     width: 33.33%;
-     text-align: center;
-     float: left;
-     position: relative;
-}
-.progressbar li:before {
-     content: counter(step);
-     counter-increment: step;
-     width: 20px;
-     line-height: 20px;
-     display: block;
-     font-size: 10px;
-     text-align: center;
-     color: white;
-     background: #D3D3D3;
-     border-radius: 3px;
-     margin: 0 auto 5px auto;
-}
-/*progressbar connectors*/
-.progressbar li:after {
-     content: '';
-     width: 100%;
-     height: 2px;
-     background: #D3D3D3;
-     position: absolute;
-     left: -50%;
-     top: 9px;
-     z-index: -1; /*put it behind the numbers*/
-}
-
-.progressbar li:first-child:after {
-     /*connector not needed before the first step*/
-     content: none;
-}
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-.progressbar li.active:before,  .progressbar li.active:after{
-     background: #0965B8;
-     color: white;
-}
-</style>
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -155,7 +100,7 @@ function goBack(){
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix" style="height:100px;">
+        <div class="title-bar clearfix" style="height:auto;">
             <h1 class="l">New Business Rule</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
@@ -165,25 +110,25 @@ function goBack(){
                 <span><a href="<%=basePath%>gotorulelist.actio">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
+            <br/>
+            <ul class="progressbar" id="progressbar2">
+		    	<li class="active">Step 1</li>
+		    	<li class="active">Step 2</li>
+		    	<li>Step 3</li>
+		    </ul>
+		    <ul class="progressbar" id="progressbar3">
+		        <li class="active">Step 1</li>
+		        <li class="active">Step 2</li>
+		        <li class="active">Step 3</li>
+    		</ul>
             
             <!-- Success Message and Error Message -->
             <div class="success_area" style="display:none;">successMessage</div>
             <div class="warning" style="display:none;">errorMessage</div>
             <!-- Success Message and Error Message -->
         </div>
-        
-     <ul class="progressbar" id="progressbar2">
-          <li class="active">Step 1</li>
-          <li class="active">Step 2</li>
-          <li>Step 3</li>
-     </ul>
 
-
-     <ul class="progressbar" id="progressbar3">
-          <li class="active">Step 1</li>
-          <li class="active">Step 2</li>
-          <li class="active">Step 3</li>
-     </ul>
+     
 			
             <form name ="myForm" action="newrule">
             
@@ -309,7 +254,7 @@ function goBack(){
                     </div>
                 </tr>
                 <tr id = "buttons">
-                    <td style = "text-align:right"><a class="button" onclick="window.history.go(-1)">Cancel</a>&nbsp;&nbsp;</td>
+                    <td style = "text-align:right"><a class="button" href="<%=basePath%>gotorulelist.action" >Cancel</a>&nbsp;&nbsp;</td>
                     <td><a class="button"  onclick='show()'>Continue</a></td>
                     
                 <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />

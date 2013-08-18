@@ -29,12 +29,12 @@ public class WriteDrl {
 			e1.printStackTrace();
 		}
 
-		System.out.println("Rules to be Printed");
+		//System.out.println("Rules to be Printed");
 		int i = 0;
 		for (i = 0; i<ruleFiles.length;i++){
-			System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
+			//System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
 		}
-		System.out.println("----------------------------------------------------------");
+		//System.out.println("----------------------------------------------------------");
 		//ruleFile[i+1] = new Rule();
 
 		//ruleInt = 1;
@@ -60,10 +60,10 @@ public class WriteDrl {
 	            	 }*/
 
 				if (ruleFiles[i].getAble() == false){
-					System.out.println("rule "+i+" "+ruleFiles[i].getAble());
+					//System.out.println("rule "+i+" "+ruleFiles[i].getAble());
 					continue;
 				}
-				System.out.println("printing file "+i);
+				//System.out.println("printing file "+i);
 				if (ruleFiles[i].getType().equals("9")){
 					//System.out.println("read file");
 					fis = new FileInputStream(new File(ruleFiles[i].getRuleUrl()));
@@ -76,44 +76,44 @@ public class WriteDrl {
 				} else{
 					//conditon added
 					if (ruleFiles[i].getType().equalsIgnoreCase("1")){
-						System.out.println("This is the new Threshold rule created by the system");
+						//System.out.println("This is the new Threshold rule created by the system");
 						byte[] contentInBytes = createThreshold(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 								ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
 								ruleFiles[i].getCondition(),ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
 						fos.write(contentInBytes);
 					}
 					else if (ruleFiles[i].getType().equalsIgnoreCase("2")){
-						System.out.println("This is the new Store Filter rule created by the system!!!!");
+						//System.out.println("This is the new Store Filter rule created by the system!!!!");
 						byte[] contentInBytes = createStoreRule(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 								ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
 								ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
 						fos.write(contentInBytes);
 					}
 					else if (ruleFiles[i].getType().equalsIgnoreCase("3")){
-						System.out.println("This is the new Special route rule created by the system!!!!");
+						//System.out.println("This is the new Special route rule created by the system!!!!");
 						byte[] contentInBytes = createSpecialRoute(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 								ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues()
 								,ruleFiles[i].getActions(),ruleFiles[i].getRoutes()[0],ruleFiles[i].getFlag()).getBytes();
 						fos.write(contentInBytes);
 					}
-					System.out.println("----------------------------------------------------------");
-					System.out.println("Done");
+					//System.out.println("----------------------------------------------------------");
+					//System.out.println("Done");
 				}
 			}
 			fos.write((" ").getBytes());
 			fos.flush();
 			fos.close();
 			fis.close();
-			System.out.println("New drl file is created!");
+			//System.out.println("New drl file is created!");
 		} catch(Exception e){
 			System.out.println("error: " + e);
 		} 
 
 		//threshold abc = new threshold("hold");
-		System.out.println("Rules after editing");
+		//System.out.println("Rules after editing");
 
 		for (i = 0; i<ruleFiles.length;i++){
-			System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
+			//System.out.println ("Rule :"+i+"  "+ ruleFiles[i].getRuleName()+" Priority: "+ruleFiles[i].getPriority());
 		}
 	}
 
@@ -131,7 +131,7 @@ public class WriteDrl {
 		newRule.append(writeRuleType(ruleName,priority));
 		newRule.append(writeWhenThreshold(object,attribute,operator,values,condition,flag));
 		newRule.append(writeThenThreshold(actions,ruleName));
-		System.out.println(newRule.toString());
+		//System.out.println(newRule.toString());
 		return newRule.toString();
 	}
 
@@ -141,7 +141,7 @@ public class WriteDrl {
 		newRule.append(writeRuleType(ruleName,priority));
 		newRule.append(writeWhenStoreRule(object,attribute,operator,values,flag));
 		newRule.append(writeThenStoreRule(actions, ruleName));
-		System.out.println(newRule.toString());
+		//System.out.println(newRule.toString());
 		return newRule.toString();
 	}
 
@@ -160,9 +160,9 @@ public class WriteDrl {
 			String[] operator, String[] values,String[] actions,String routes,String flag){
 		StringBuffer newRule = new StringBuffer();
 		newRule.append(writeRuleType(ruleName,priority));
-		System.out.println("rule title"+newRule.toString());
+		//System.out.println("rule title"+newRule.toString());
 		newRule.append(writeWhenSpecialRoute(object,attribute,operator,values,routes,flag));
-		System.out.println("when"+newRule.toString());
+		//System.out.println("when"+newRule.toString());
 		newRule.append(writeThenSpecialRoute(actions,routes,ruleName));
 		return newRule.toString();
 	}
@@ -318,7 +318,7 @@ public class WriteDrl {
 		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+"\")))"+myReturn);
 
 		   for (int i = 0; i < splitAttribute.length; i++){
-			   System.out.println("attribute "+i+" "+splitAttribute[i]);
+			   //System.out.println("attribute "+i+" "+splitAttribute[i]);
 			   }
 
 
@@ -527,16 +527,16 @@ public class WriteDrl {
 
 	public void reRank (int rank){
 		if (ruleFiles[3] == null){
-			System.out.println("cao111");
+			//System.out.println("cao111");
 		}
 
-		System.out.println("shifting!!!!  "+rank);
+		//System.out.println("shifting!!!!  "+rank);
 		Rule tmp = ruleFiles[rank];
 		Rule tmp2 = new Rule();
-		System.out.println("Start insertion at " +rank);
-		System.out.println("Shifting rule"+ruleFiles[rank].getRuleDescr());
-		System.out.println("Re-Ranking ......Done");
-		System.out.println("----------------------------------------------------------");
+		//System.out.println("Start insertion at " +rank);
+		//System.out.println("Shifting rule"+ruleFiles[rank].getRuleDescr());
+		//System.out.println("Re-Ranking ......Done");
+		//System.out.println("----------------------------------------------------------");
 		while (ruleFiles[rank+1] != null){
 			System.out.println("getting!!!!! "+rank);
 
@@ -555,7 +555,7 @@ public class WriteDrl {
 
 			rank ++;
 			if (ruleFiles[rank+1] == null){
-				System.out.println("fsajfldskafj");
+				//System.out.println("fsajfldskafj");
 			}
 
 		}
@@ -567,7 +567,7 @@ public class WriteDrl {
 	public void checkFlag(String type, String[] objects, String flag){
 		String[] flagLevel = flag.split("-");
 		char flagTemp = flagLevel[1].charAt(0);
-		System.out.println("product length"+product.length);
+		//System.out.println("product length"+product.length);
 		for (int j = 0; j < objects.length;j++)
 		{
 			for (int i = 0; i < product.length;i++)
@@ -576,7 +576,7 @@ public class WriteDrl {
 
 				if (product[i].getSku().equalsIgnoreCase(objects[j]))
 				{
-					System.out.println("checking product "+product[i].getProdId());
+					//System.out.println("checking product "+product[i].getProdId());
 					String[] splitFlag = product[i].getFlag().split(",");
 					String flagTmp = null;
 					if (type.equalsIgnoreCase("Threshold")){
@@ -589,8 +589,8 @@ public class WriteDrl {
 						flagTmp = splitFlag[2];
 					}
 					flagLevel = flagTmp.split("-");
-					System.out.println("inserting flag is "+flag);
-					System.out.println("old flag is for product "+product[i].getProdId()+" is "+product[i].getFlag());
+					//System.out.println("inserting flag is "+flag);
+					//System.out.println("old flag is for product "+product[i].getProdId()+" is "+product[i].getFlag());
 					if ((flagLevel[1].charAt(0) - flagTemp) < 0){
 
 						StringBuffer newFlag = new StringBuffer();
@@ -616,8 +616,8 @@ public class WriteDrl {
 							newFlag.append(","+flag);
 							product[i].setFlag(newFlag.toString());
 						}
-						System.out.println("new Flag is "+newFlag.toString());
-						System.out.println();
+						//System.out.println("new Flag is "+newFlag.toString());
+						//System.out.println();
 					}
 
 				}
