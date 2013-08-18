@@ -190,6 +190,21 @@
           <param name="act">${act}</param>
           </result>
       </action>
-      
+      <action name="storecheck" class="com.dicks.action.CheckAction" method="storeCheck">
+          <result name="success">/StoreCheck.jsp</result>
+      </action>
+      <action name="statecheck" class="com.dicks.action.CheckAction" method="stateCheck">
+          <result name="success">/StateCheck.jsp</result>
+      </action>
+      <action name="storetypecheck" class="com.dicks.action.CheckAction" method="storeTypeCheck">
+          <result name="success">/StoreTypeCheck.jsp</result>
+      </action>
+      <action name="brandcheck" class="com.dicks.action.CheckAction" method="brandCheck">
+          <result name="success">/BrandCheck.jsp</result>
+      </action>
+      <action name="typecheck" class="com.dicks.action.CheckAction" method="typeCheck">
+          <result name="success">/TypeCheck.jsp</result>
+      </action>
+            
    </package>
 </struts>

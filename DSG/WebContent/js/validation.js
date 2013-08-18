@@ -66,3 +66,26 @@ function validategroupForm(){
 	  return false;
 	}
 }
+
+
+function validateProductGroupForm(){
+	var e=document.forms["CreateProductGroupForm"]["categoryName"].value;
+	if (e==null || e==""){
+	  $('#errorMessage').css("display","block");
+	  document.getElementById('errorMessage').innerHTML = "Group name is required.";
+	  return false;
+	}
+	var f=document.forms["CreateProductGroupForm"]["typeTags"].value;
+	if (f==null || f==""){
+	  $('#errorMessage').css("display","block");
+	  document.getElementById('errorMessage').innerHTML = "Product Categories is required.";
+	  return false;
+	}
+	var g=document.forms["CreateProductGroupForm"]["brandTags"].value;
+	if (g==null || g==""){
+	  $('#errorMessage').css("display","block");
+	  document.getElementById('errorMessage').innerHTML = "Brand is required.";
+	  return false;
+	}
+	
+}

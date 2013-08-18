@@ -1,10 +1,14 @@
 package com.dicks.action;
 
+import java.util.ArrayList;
+
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.StoreCateDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.ProdCate;
 import com.dicks.pojo.ProdCateId;
+import com.dicks.pojo.Store;
 import com.dicks.pojo.StoreCate;
 import com.dicks.pojo.StoreCateId;
 import com.opensymphony.xwork2.ActionSupport;
@@ -22,8 +26,19 @@ public class CreateCategoryAction extends ActionSupport {
 	private String act;
 
 	private static final long serialVersionUID = 1L;
+	private ArrayList<Store> storeList;
 	
-	public String goToNewCategory(){
+	public ArrayList<Store> getStoreList() {
+		return storeList;
+	}
+
+	public void setStoreList(ArrayList<Store> storeList) {
+		this.storeList = storeList;
+	}
+	
+	public String goToNewCategory() throws Exception{
+		storeList = new ArrayList<Store>();
+		storeList = StoreDAO.getInstance().getAllStores();
 		return SUCCESS;
 	}
 	
