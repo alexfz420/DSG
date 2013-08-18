@@ -206,11 +206,26 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 			}
 		}
 		
+
 		for(int id : cateIds){
-			RuleCateId rcId = new RuleCateId(id, ruleId);
+			RuleCateId rcId = new RuleCateId(id, ruleId);			
 			RuleCate rc = new RuleCate(rcId, null, isProduct);
-			super.create(rc);
+			if(!contain(rc)){
+				super.create(rc);
+			}
 		}
 	}
+
+	public boolean contain(RuleCate rc) throws Exception {
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion1 = Restrictions.eq("id.categoryId", rc.getId().getCategoryId());
+		Criterion criterion2 = Restrictions.eq("id.ruleId", rc.getId().getRuleId());
+		criterions.add(criterion1);
+		criterions.add(criterion2);
+		RuleCate result =  super.get(criterions);	
+		if(result == null) return false;
+		return true;
+	}
+	
 	
 }

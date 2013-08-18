@@ -260,7 +260,7 @@
                     <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
                     <td><input type="submit" value="Update" class="button"></td>
                      <input type="hidden" id="prodCate" name="prodCate"> 
-                      <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
+                     <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
                 
                 </tr>
             </table>   
