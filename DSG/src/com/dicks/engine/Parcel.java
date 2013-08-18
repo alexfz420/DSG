@@ -12,7 +12,16 @@ public class Parcel {
 	private double girth;
 	private boolean overSize;
 	private boolean overWeight;
+	private int storeCount = -1;
 	
+	public int getStoreCount() {
+		return storeCount;
+	}
+
+	public void setStoreCount(int storeCount) {
+		this.storeCount = storeCount;
+	}
+
 	public Parcel(PackageE pack) {
 		this.setPack(pack);
 	}

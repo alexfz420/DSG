@@ -205,7 +205,6 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 				cateIds[i] = StoreCateDAO.getInstance().getCateIdByCateName(cateNames[i]);
 			}
 		}
-		
 
 		for(int id : cateIds){
 			RuleCateId rcId = new RuleCateId(id, ruleId);			
@@ -226,6 +225,6 @@ public class RuleCateDAO extends BaseDao<RuleCate> {
 		if(result == null) return false;
 		return true;
 	}
-	
+
 	
 }
