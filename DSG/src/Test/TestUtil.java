@@ -54,7 +54,7 @@ public class TestUtil {
 
 	@Test
 	public void testRule2() throws Exception {
-		JSONObject obj = new JSONObject();
+		//System.out.println(InventoryDAO.getInstance().(1, 1));
 	}
 	
 //	@Testå

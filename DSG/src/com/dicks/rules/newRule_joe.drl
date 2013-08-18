@@ -7,6 +7,7 @@ import com.dicks.pojo.Product
 import com.dicks.pojo.Store
 import com.dicks.dao.InventoryDAO
 import com.dicks.dao.OrderDetailDAO
+import com.dicks.dao.ShipmentDAO
 import com.dicks.engine.PackageE
 import com.dicks.engine.OrderE
 import com.dicks.engine.Parcel
@@ -48,7 +49,7 @@ rule "Default Filter Stock"
         retract($store);
 end
 
-rule "Filter Stock for Stock whose margin is less than 2"
+rule "Filter Stock 2"
 	salience 925
 	//agenda-group "first2"
     when
@@ -59,12 +60,12 @@ rule "Filter Stock for Stock whose margin is less than 2"
         eval(InventoryDAO.getInstance().checkProduct($store, $item,"<",2))
         $logger : EngineLog() 
     then
-    	$logger.addLog("Rule \"Filter Stock2\"", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
     	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
         retract($store);
 end
 
-rule  "Default Mininum Packagethreshold"
+rule  "Default Default Minimum Package Threshold"
 	salience 900
 	//agenda-group "first6"
     when
@@ -73,59 +74,54 @@ rule  "Default Mininum Packagethreshold"
 		$i : Product( ((weight > 10)|| ( length > 10) || (width > 10) || (height >10)))
 		 $logger : EngineLog()
     then     
-    	PackageE p = new PackageE($o);
-    	p.addProduct($i, $orderE.getProductQty($i.getProdId()));
-    	insert (p);    
-        $i.minPackage();
-        $logger.addLog("Default Mininum Packagethreshold", "Product "+$i.getProdName()+ " separeted into a new package");
-    	retract($i);
+    	
+    	for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Default Minimum Package Threshold","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("Default Minimum Package Threshold",p.toString()); 
+        }
+        retract($i);
 end
 
-rule  "Special Route for AJ"
+rule  "store3"
     salience 848
     when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product($id: prodId, sku.equals("NK-SH-AJ"))
-        eval ($orderE.getProductQty($id)>1)
-        $s : Store( storeId == 1)
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        $logger: EngineLog()
-    then
-        $logger.addLog("Special Route for AJ","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        PackageE p = new PackageE($order);
-        p.addProduct($product, $orderE.getProductQty($id));
-        insert (p);
-        p.setAllocated(true); 
-        Parcel parcel = new Parcel(p);
-        parcel.addNumProduct($product, $orderE.getProductQty($id));
-        PackageTest test = new PackageTest(p);
-        test.addParcel(parcel);
-        ParcelResult parcelR = new ParcelResult(parcel);
-        parcelR.setSource($s);
-        PackageTestResult packageR = new PackageTestResult(test);
-        packageR.addResult(parcelR);
-        $logger.addLog("Special Route for AJ",$product + "get inserted into a new package by speical route rule");
-        $logger.addLog("Special Route for AJ",packageR.toString());      
-        System.out.println(packageR);
-        insert(packageR);
-        retract(p);
-        retract($product);
-end
-
-
-rule  "Store threshold for 1"
-    salience 846
-    when
-        $order : Orders()
+        $order : Orders($z:shippingZip)
         $orderE : OrderE()
         $product : Product($id :prodId)
-        $s: Store( (( storeName.equals("Pittsburgh Store1"))|| (storeName.equals("Pittsburgh Store2")))&& (flag.equals("TH-A,ST-A,SP-A ")))
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        eval(InventoryDAO.getInstance().getCompetition($s.getStoreId(), $id) > $orderE.getProductQty($id))
+        $s: Store( (( storeName.equals("Pittsburgh Store1"))|| (storeName.equals("Pittsburgh Store2")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 100 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 5 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.5 ))
+        $logger: EngineLog()
     then
+        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("store3","Store "+$s.getStoreName()+" is successfully retracted");
         retract($s);
+end
+
+rule  "Threshold for Tmac"
+    salience 846
+    when
+        $o : Orders()
+        $orderE : OrderE()
+        $i : Product( ((Length > 1)||( Width > 2)||( Height > 3)||( Weight > 4))&& (( sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $logger: EngineLog()
+    then
+        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Threshold for Tmac","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("Threshold for Tmac",p.toString()); 
+        }
+        retract($i);
 end
 
 rule "Insert Package for Remaining Products"

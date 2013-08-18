@@ -170,10 +170,7 @@ public class CreateTemplate {
 	    	  typeString = "Special Route";
 	    	  isProduct = true;
 	      }
-	      if (type.equalsIgnoreCase("Store Threshold")){
-	    	  type = "4";
-	    	  typeString = "Store Threshold";
-	      }
+	      
 
 	      if (type.equalsIgnoreCase("1")||type.equalsIgnoreCase("2")){
 	    	  

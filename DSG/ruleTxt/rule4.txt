@@ -1,4 +1,4 @@
-rule  "Default Mininum Packagethreshold"
+rule  "Default Default Minimum Package Threshold"
 	salience 900
 	//agenda-group "first6"
     when
@@ -7,11 +7,17 @@ rule  "Default Mininum Packagethreshold"
 		$i : Product( ((weight > 10)|| ( length > 10) || (width > 10) || (height >10)))
 		 $logger : EngineLog()
     then     
-    	PackageE p = new PackageE($o);
-    	p.addProduct($i, $orderE.getProductQty($i.getProdId()));
-    	insert (p);    
-        $i.minPackage();
-        $logger.addLog("Default Mininum Packagethreshold", "Product "+$i.getProdName()+ " separeted into a new package");
-    	retract($i);
+    	
+    	for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Default Minimum Package Threshold","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("Default Minimum Package Threshold",p.toString()); 
+        }
+        retract($i);
 end
 
