@@ -43,8 +43,11 @@ public class DeleteCategoryAction extends ActionSupport {
 			}
 			Rule[] rulesForDelete = RuleCateDAO.getInstance()
 					.getRuleListByCateId(str);
-			RuleDAO.getInstance().updateProdObjForDelete(array,
+			if(rulesForDelete!=null){
+				RuleDAO.getInstance().updateProdObjForDelete(array,
 					Arrays.asList(rulesForDelete));
+			}
+			
 
 		// delete prodcate table or storecate table
 		if ("store".equals(act)) {

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
@@ -171,7 +173,40 @@ public class RuleDAO extends BaseDao<Rule> {
 		return "";			
 	}
 	
-//	public String getConditionByRuleId(int ruleId) throws Exception{
-//		
-//	}
+	public String getDescriptionByRuleId(int ruleId) throws Exception{
+		//map
+		Map<String, String> dictionary = new HashMap<String, String>();
+		dictionary.put(">","is bigger than");
+		dictionary.put("<","is less than");
+		dictionary.put("<","equals to");
+		dictionary.put("miniumPackage","this package will be splitted");
+		dictionary.put("||","or");
+		dictionary.put("&&","and");
+		dictionary.put("retract","this item will be filted out");
+		dictionary.put("special", "this item will be shipped from");
+
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion = Restrictions.eq("ruleId", ruleId);
+		criterions.add(criterion);
+		Rule rule  =  super.get(criterions);
+		String type = rule.getType();
+		
+		StringBuffer sb = new StringBuffer();
+		if("1".equals(type)){
+			String[] attributes = rule.getAttributes();
+			String[] operators =  rule.getOperators();
+			String condition = dictionary.get(rule.getCondition());
+			String[] values = rule.getValues();
+			String[] actions = rule.getActions();
+			sb.append("when ");
+			for(int i = 0 ; i<attributes.length ; i ++){
+				sb.append(attributes[i]).append(" ").append(dictionary.get(operators[i])).append(" ").append(values[i]).append(", ");
+			}
+			sb.append("then ");
+			//sb.append(dictionary.get(rule))
+		}
+		
+		return sb.toString();
+		
+	}
 }

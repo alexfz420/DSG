@@ -128,7 +128,7 @@
 					<div class="warning" style="display: none">errorMessage</div>
 					<!-- Success Message and Error Message -->
 
-					</div>
+				</div>
 
 					<div id="Outline" class="table-list">
 						<form action="">
@@ -213,11 +213,8 @@
 							<div class="paging clearfix">
 								<div class="page-size">Items per page:10</div>
 								<div class="page-number">
-									<a class="number selected" href="javascript:void(0);" data="1">1</a><a
-										class="number" href="javascript:void(0);" data="2">2</a><a
-										class="number" href="javascript:void(0);" data="3">3</a>...<a
-										class="number" href="javascript:void(0);" data="5">5</a><a
-										href="javascript:void(0);" class="next" data="2">Next&gt;</a>Page
+									<a class="number selected" href="javascript:void(0);" data="1">1</a>
+									<a href="javascript:void(0);" class="next" data="2">Next&gt;</a>Page
 									<input class="text" type="text"> <a
 										href="javascript:void(0)" class="button"><span>Go</span></a>
 								</div>

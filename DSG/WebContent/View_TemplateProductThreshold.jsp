@@ -13,7 +13,7 @@
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
 		<ul class="nav-two" id="navone">
 			<li class="" id="#$catelist"><a
-				href="<%=basePath%>gotocategorylist.action">Group List</a><span class="normal">&nbsp;</span></li>
+				href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
 			<li class="" id="newcatelist"><a
 				href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>
 		</ul>
@@ -106,14 +106,14 @@
     <div class="content clearfix">
                 
        <div class="title-bar clearfix">
-            <h1 class="l">Edit Business Rule</h1><div id="Date" class="date l"></div>
+            <h1 class="l">View Business Rule</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
     
             <li style="list-style:none;">
             	<span><a href="#">Home</a><span> &gt; </span></span>
-                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
-                <span><a href="#">Business Rule List</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span> &gt; </span></span>
                 <span>Edit Rule</span>
             </li>
             
@@ -245,7 +245,7 @@
 
                         <br/> 
                         <div>Perform the following action&#58;
-                            <select>
+                            <select disabled>
                                 <option value="#">Ship this product separately</option>
                                 <option value="#">Inform the vendor to ship this product</option>
                                 <option value="#">Route the product to warehouse</option>
@@ -256,8 +256,8 @@
                 <br/>
                 </tr>
                 <tr>
-                    <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
-                    <td><input type="submit" value="Update" class="button"></td>
+                    <td><a class="button" href="<%=basePath%>gotorulelist.action">Back</a></td>  
+                    <td></td>
                      
                 
                 </tr>

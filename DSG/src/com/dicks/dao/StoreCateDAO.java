@@ -138,7 +138,7 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		StoreCate sc = new StoreCate(new StoreCateId(cateid, storeId), null, null, null);
 		super.delete(sc);
 	}
-	
+
 
 	
 	public List<Integer> getAllIds() throws Exception{

@@ -25,18 +25,10 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
         </li>
-        <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
     </ul>
     </div>
   <script>
@@ -103,20 +95,22 @@ function goBack(){
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
-        <div class="title-bar clearfix"></div>
+        <div class="title-bar clearfix">
             <h1 class="l">New Business Rule</h1><div id="Date" class="date l"></div>
             <a id='ReportTipIco' class="report-help open l recordable" memo="{id:'ReportTipIco',type:'page-tip',global:0}" href="javascript:void(0);">&nbsp;</a>
             <br/><br/><div><hr/></div>
 
-            <li style="list-style:none;"><span><a href="#">Home</a><span> > </span></span></span>
-                <span><a href="#">Manage Business Rule</a><span> > </span></span>
+            <li style="list-style:none;">
+            	<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotorulelist.actio">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
             
             <!-- Success Message and Error Message -->
-            <div class="success_area">successMessage</div>
-            <div class="warning">errorMessage</div>
+            <div class="success_area" style="display:none;">successMessage</div>
+            <div class="warning" style="display:none;">errorMessage</div>
             <!-- Success Message and Error Message -->
+        </div>
 
             <form name ="myForm" action="storeThreshold">
             
@@ -143,14 +137,10 @@ function goBack(){
                     <td>${templatename }</td>
                 </tr>
                 <tr class="drl-height">
-                    <td colspan="2" >Rule Editor&#58;</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
+                    <td>Rule Editor&#58;</td>
                     <td>
                     <div id ="firstStep" class="drl"> 
-                         <div style="padding-left:100px">
+                         <div style="padding-left:20px">
                          <div> If
                             <select style="width:50px;" name="conditions">
                                 <option value="all">All</option> 
@@ -221,9 +211,8 @@ function goBack(){
                     </div>
                 </tr>
                 <tr id = "buttons">
-                    <td style = "text-align:right"><a class="button"  onclick='show()'>Next</a></td>
-                    <td>
-                    <a class="button" href="#">Cancel</a></td>
+                    <td style = "text-align:right"><a class="button"  onclick='show()'>Continue</a></td>
+                    <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
                     
                 <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
                 <input type="hidden" name="templatename"  value=<%=request.getAttribute("templatename")%> />
@@ -256,11 +245,11 @@ function goBack(){
                  <c:set var="ruleNum" value="${ruleNum+1}" />   
 				</c:forEach>
 				<tr style="height:30px;background-color:8CEEF5">
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#8CEEF5">Your New Rule</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#75a8d8">Your New Rule</td>
 
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">${rulename.replace("%20"," ")}</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#75a8d8">${rulename.replace("%20"," ")}</td>
 
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
+                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#75a8d8">Please drag and drop the rule</td>
                 </tr>
                 
             </table>
@@ -282,7 +271,7 @@ function goBack(){
                 
     <!-- footer starts -->
  
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         
     <!-- footer ends -->
 

@@ -5,8 +5,7 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
 <jsp:include page="template_top.jsp" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 <ul class="nav">
 	<li class=""><a class="recordable open" id="toggleone" href="#"
 		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -95,7 +94,7 @@
                     <td></td>
                 </tr>
 
-                <tr style="height:40px%;">
+                <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Fulfillment Method<span class="red">*</span>:</div></td>
                     <td style="width:500px;">
                       <textarea id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;" disabled>Dick's Stores&#44;&nbsp;</textarea>
@@ -147,7 +146,7 @@
 
                 <tr style="height:40px;">
                     <td><a class="button" href="categorylist.html" onclick="">Cancel</a></td>
-                    <td><a class="button" href="viewStoreCate2EditStoreCate.action?categoryId=${categoryId}&categoryName=${categoryName}&categoryDescr=${categoryDescr}&StoreIdString=${StoreIdString}&appliedRuleString=${appliedRuleString}" onclick="">Update</a></td>
+                    <td><a class="button" href="viewStoreCate2EditStoreCate.action?categoryId=${categoryId}&categoryName=${categoryName}&categoryDescr=${categoryDescr}&StoreIdString=${StoreIdString}&appliedRuleString=${appliedRuleString}" onclick="">&nbsp; Edit &nbsp; </a></td>
                     <td></td>
                 </tr>
               </table>   

@@ -130,8 +130,8 @@ function goBack(){
         
         <div>
             <li style="list-style:none;">
-            	<span><a href="#">Home</a><span> &gt; </span></span>
-                <span><a href="#">Manage Business Rule</a><span> &gt; </span></span>
+            	<span><a href="<%=basePath%>gotoorderlist.action">Home</a><span> &gt; </span></span>
+                <span><a href="<%=basePath%>gotorulelist.action">Manage Business Rule</a><span> &gt; </span></span>
                 <span>New Business Rule</span>
             </li>
         </div>
