@@ -151,7 +151,8 @@ function goBack(){
                                 <option value="all">All</option> 
                                 <option value="any">Any</option>
                             </select> of the following conditions are met&#58;
-                        </div>  
+                        </div> 
+                        <br/> 
                         <div>
                             <select style="width:100px;" name="attribute">
                                 <option value="Length">Length</option> 
@@ -170,6 +171,7 @@ function goBack(){
                                 <option value="#">lbs</option>
                             </select>
                         </div>
+                        <br/>
                         <div>
                             <select style="width:100px;" name="attribute">
                                 <option value="Width">Width</option>
@@ -189,6 +191,7 @@ function goBack(){
                                 <option value="#">lbs</option>
                             </select>
                         </div>
+                        <br/>
                         <div>
                             <select style="width:100px;" name="attribute">
                            		<option value="Height">Height</option>
@@ -208,6 +211,7 @@ function goBack(){
                                 <option value="#">lbs</option>
                             </select>
                         </div>
+                        <br/>
                          <div>
                             <select style="width:100px;" name="attribute">
                             	<option value="Weight">Weight</option>
@@ -226,7 +230,9 @@ function goBack(){
                                 <option value="#">feet</option>
                             </select>
                         </div>
+                        <br/>
                         <div>Perform the following action&#58;</div>
+                        <br/>
                         <div><select name="actions">
                                 <option value="miniumPackage">Ship this product separately</option>
                                 <option value="diffpackage">Separate the product into different packages</option>
