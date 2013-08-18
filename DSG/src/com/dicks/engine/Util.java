@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 import org.apache.commons.lang3.text.WordUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.dicks.dao.FeeDAO;
 import com.dicks.dao.FeeDAO;
@@ -32,6 +34,95 @@ public class Util {
 	
 	public static double getShippingDays() {
 		return r.nextInt(7);
+	}
+	
+	public static JSONArray getJsonCosts(ParcelResult r) {
+		JSONArray costsJ = new JSONArray();
+		
+		Parcel parcel = r.getParcel();
+		Store store = r.getSource();
+		Set<Product> products = parcel.getProducts().keySet();		
+		FeeDAO feeDao = FeeDAO.getInstance();
+		try {
+			ArrayList<Fee> fees = feeDao.getByType(store.getStoreType());		
+			Integer[] costs = new Integer[fees.size()];
+			for (Fee fee : fees) {
+				JSONObject feeJ = new JSONObject();
+				feeJ.put("name", fee.getCostName());
+
+				long singleCost = 0;
+				
+				if (fee.getFlag().equals("v")) {
+					singleCost = fee.getValue() * parcel.getProductList().size();
+//					System.out.println(fee.getCostName() + ": " + ((double) fee.getValue()) / 100.0);
+				} else if (fee.getFlag().equals("p")) {
+					String attributeName = fee.getAttribute();
+					int attributeValue = 0;
+					String[] names = attributeName.split(",");
+//					System.out.println("names: " + Arrays.toString(names));
+					if (names[1].equals("cost")) {
+						for (int i = 0; i < fees.size(); i++) {
+							if (fees.get(i).getCostName().equals(names[0])) {
+								attributeValue = costs[i];
+							}
+						}
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+					} else if (names[1].equals("product")) {
+						for (Product p : products) {
+							attributeValue += getAttribute(p, Product.class, names[0]) * parcel.getProductQty(p);
+//							System.out.println("product: " + p.getProdName());
+						}	
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+					} else if (names[1].equals("store")) {
+						attributeValue = getAttribute(store, Store.class, names[0]);
+					} else if (names[1].equals("orderDetail")) {	
+						
+						ArrayList<OrderDetail> details = OrderDetailDAO.getInstance().getDetailsByParcel(parcel);
+						
+						//System.out.println("details size: " + details.size());						
+						for (OrderDetail detail : details) {
+							int attribute = getAttribute(detail, OrderDetail.class, names[0]);
+							int qty =  parcel.getProductQty(detail.getProduct());
+//							System.out.println(names[1] + "-" + names[0] + ": " + attribute + " " + qty);
+
+							attributeValue += attribute * qty;
+						}
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+					} else if (names[1].equals("inventory")) {
+						ArrayList<Inventory> inventories = InventoryDAO.getInstance().getInventoryByParcelStore(parcel, store);
+						//System.out.println("inventory size: " + inventories.size());
+						for (Inventory inventory : inventories) {
+							attributeValue += getAttribute(inventory, Inventory.class, names[0]) * parcel.getProductQty(inventory.getProduct());
+							System.out.println("product: " + inventory.getProduct().getProdName() + ", price: " + inventory.getRetailPrice());
+						}					
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+					} else if (names[1].equals("order")) {
+						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
+						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+					}
+					singleCost = attributeValue * fee.getPercentage() / 10000;
+//					System.out.println("total costs: " + totalCosts);					
+				}
+				feeJ.put("value", (double) singleCost / 100.0);
+				System.out.println("feeJ: " + feeJ);
+				costsJ.add(feeJ);
+				System.out.println("costJ: " + costsJ);
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		JSONObject shippingCost = new JSONObject();
+		shippingCost.put("name", "Shipping Cost");
+		shippingCost.put("value", r.getShippingCost());
+		costsJ.add(shippingCost);
+		
+		JSONObject totalCost = new JSONObject();
+		totalCost.put("name", "Total Cost");
+		totalCost.put("value", r.getCost());
+		costsJ.add(totalCost);
+		
+		return costsJ;
 	}
 	
 	public static long getShippingCosts(Parcel parcel, Store store) throws Exception {
@@ -116,7 +207,7 @@ public class Util {
 			Integer[] costs = new Integer[fees.size()];
 			for (Fee fee : fees) {
 				if (fee.getFlag().equals("v")) {
-					totalCosts += fee.getValue();
+					totalCosts += fee.getValue() * parcel.getProductList().size();
 //					System.out.println(fee.getCostName() + ": " + ((double) fee.getValue()) / 100.0);
 				} else if (fee.getFlag().equals("p")) {
 					String attributeName = fee.getAttribute();

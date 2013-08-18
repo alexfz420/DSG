@@ -146,6 +146,7 @@ rule "evaluate package results"
 		$results : ArrayList() from collect( PackageTestResult(getTest().getPack() == $p))
 		//$logger : EngineLog()
 	then
+		//System.out.println("results size: " + $results.size());
 		PackageTestResult r = getBestResult($results);
 		//$logger.addLog("**For package: " + $p);
 		//$logger.addLog("**Evaluate Result: " + r);
@@ -165,7 +166,7 @@ function PackageTestResult getBestResult(ArrayList results) {
 	});
 	
 	PackageTestResult r = (PackageTestResult) results.get(0);
-	r.getTest().getPack().setBestResult(r);
+	r.getTest().getPack().recordBestResults(results);
 	return r;
 }
 

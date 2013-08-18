@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
-   <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.json.simple.parser.JSONParser;"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    %>
+%>
+
  <jsp:include page="template_top.jsp" />
  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
@@ -90,7 +94,17 @@
   $(function() {
 	$('.ui-widget-content').css("height","310px"); 
   });
-  </script>
+  
+  // Add javascript
+  $(function() {
+		var str = '${stage2Logs}';
+		var myObject = eval('(' + str + ')');
+		console.log(myObject);
+		
+		
+  });
+
+</script>  
 
     <!-- menu bar ends -->
 
@@ -142,7 +156,7 @@
                         </div>
                         
                         <h3>Stage 2 - Delivery Option</h3>
-                        <div style="border: 1px solid #aaaaaa;">
+                        <div style="border: 1px solid #aaaaaa;" id="stage2Header">
                             <ul>
 	                            <c:forEach var="pack" items="${packages}" varStatus="index">
 	                           		<li style="height:30px;"><a onClick="changeDiv(this)" class="stage2package${index.index}">Package${index.count}</a></li>	         								
@@ -153,15 +167,14 @@
                         <h3>Stage 3 - Allocation Optimization</h3>
                         <div style="border: 1px solid #aaaaaa;">
                             <ul>
-                                <li class="" style="height:30px;"><a href="VisualizationStage3-1.html">Route 1</a></li>
-                                <li class="" style="height:30px;"><a href="VisualizationStage3-2.html">Route 2</a></li>
-                                <li class="" style="height:30px;"><a href="VisualizationStage3-3.html">Route 3</a></li>
-                            </ul>
+                     			<c:forEach var="pack" items="${packages}" varStatus="index">
+                             	    <li style="height:30px;"><a onClick="changeDiv(this)" class="stage3route${index.index}"> Package${index.count} </a></li>                     			
+								</c:forEach>
+                     		</ul>
                         </div>
                     </div>
                 
                 <div id="block2" style="float:left;height:465px;width:600px;border:1px solid #ccc;border-radius:5px;overflow-y:scroll;">
-
                         <div style="padding-left:30px;padding-top:30px;" id="detail" class="block">
                             <div style="padding-bottom:30px;">
                                 <div style="float:left; width:150px">Order Date:</div>
@@ -263,11 +276,11 @@
                                             <th style="width:100px;">Quantity</th>
                                         </tr>
                                         <c:forEach var="pack" items="${packages}" varStatus="index">
-                                        	<c:forEach var="product" items="${pack.getProducts()}">
+                                        	<c:forEach var="product" items='${pack.get("products")}'>
 	                                            <tr>
 		                                            <td>${index.count}</td>
-		                                            <td>${product.getProdName()}</td>
-		                                            <td>1</td>
+		                                            <td>${product.get("prodName")}</td>
+		                                            <td>${product.get("quantity")}</td>
 		                                        </tr>								
 											</c:forEach>								
 										</c:forEach>
@@ -309,75 +322,208 @@
 						</c:forEach>                        
 
 
-                        <!-- Add package for stage 2 -->	
-                        
+                        <!-- Add package for stage 2 -->	                        
                         <c:forEach var="pack" items="${packages}" varStatus="index">         		
                            	
 	                     <div id="stage2package${index.index}" class="block" style="display:none;padding-left:20px;">
 	                         <div name="package" style="height:30px;font-size:18px;margin-top:10px;">
 	                            Package ${index.count}
 	                        </div>
-	
+
 	                        <div id="included" style="height:40px;">
 	                            <div style="float:left;height:20px;width:110px;font-size:14px;width:120px;">
 	                                Included Items&#58;
 	                            </div>
-	                            
+
 	                            <div style="float:left;">
 	                            	<div name="items" style="height:20px;font-size:12px;width:200px;">
-			                            <c:forEach var="product" items="${pack.getProducts()}" varStatus="index">
-											${product.getProdName()} - quantity 1
+			                            <c:forEach var="product" items='${pack.get("products")}' varStatus="index">
+											${product.get("prodName")} - quantity ${product.get("quantity")}
 										</c:forEach>	                            
 	                                </div>
 	                            </div>
 	                        </div>
-	
+	                        
+	                        ${pack.get("splits")}
+	                        
 	                        <div id="split${index.index}" style="height:100px;">
-	                            
-	                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
-	                                Split 0
-	                            </div>
-	                            <div name="product" style="float:left;height:20px;font-size:14px;width:110px;padding-left:10px;">
-	                                {Kayak}:
-	                            </div>
-	                            
-	                            <div style="float:left;width:200px;">
-	                            	<c:choose>
-										<c:when test="${ (pack.splitNum == 0) }">
-											<div name="failed" style="height:20px;font-size:12px;">
-			                                    Failed&#58; 100/300 stores
-			                                </div>
-			                                <div name="success" style="height:20px;font-size:12px;">
-			                                    Success&#58; 200/300 stores
-			                                </div>
-										</c:when>
-										<c:otherwise>
-				                            <c:forEach begin="0" end="${pack.getSplitNum()}" varStatus="loop">
-				                                <div name="failed" style="height:20px;font-size:12px;">
-				                                    Failed&#58; 100/300 stores
-				                                </div>
-				                                <div name="success" style="height:20px;font-size:12px;">
-				                                    Success&#58; 200/300 stores
-				                                </div>
-											</c:forEach>
-			                                <div name="failed" style="height:20px;font-size:12px;">
-			                                    Failed&#58; 100/300 stores
-			                                </div>
-			                                <div name="success" style="height:20px;font-size:12px;">
-			                                    Success&#58; 200/300 stores
-			                                </div>											
-										</c:otherwise>
-									</c:choose>
-	                            </div>
-	                        </div>
+                           
+                            <c:forEach var="split" items='${pack.get("splits")}' varStatus="splitIndex">
+                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
+                                Split ${splitIndex.index}
+                            </div>
+							                          
+								
+							</c:forEach>
+ 
+                        </div>
+	                       
 	                    </div>
-						</c:forEach>
+	                   
+						</c:forEach>                
 
+					<!-- Add route for stage 3 -->
+					<c:forEach var="pack" items="${packages}" varStatus="index">   
+						
+						<div id="stage3route${index.index}" class="block" style="display:none;padding-left:20px;">
+	                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+	                            Route ${index.count}
+	                        </div>	
+	                        
+                        <div id="route_detail" style="height:30px;">
+                            <div style="height:20px;">
+                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+                                    From:
+                                </div>
+                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
+                                    Store 010
+                                </div>
+                            </div>
+                            <div style="height:20px;">
+                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+                                    To:
+                                </div>
+                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
+                                    5000 Forbes Ave, Pitsburgh, PA 15213
+                                </div>
+                            </div>
+                        </div>	                        
+	                     
+                        <div id="included" style="height:60px;margin-top:30px;">
+                            <div style="height:20px;font-size:14px;">
+                                Included Packages:
+                            </div>
+                            
+                            <div>
+                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
+                                <div name="items" style="float:left;">
+                                	<c:forEach var="product" items='${pack.get("products")}'>
+                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
+									</c:forEach>	
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <c:forEach var="product" items='${pack.get("products")}'>
+                             <div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
+						</c:forEach>                        
+                     
+                         <div id="rank" style="height:100px;margin-top:20px;">
+                            <div class="title" name="splitNo" style="height:20px;font-size:14px;padding-bottom:10px;">
+                                Top Ranking Route&#58;
+                            </div>
+	                        <c:forEach var="testResults" items='${stage3Arrays.get(index.index)}'>
+		                        <c:forEach var="testResult" items='${testResults}'>
+		                        	${testResult}	                        	
+		                        <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
+	                                Rank #2 Route&#58;
+	                                <table cellspacing="0" cellpadding="0" class="list">
+	                                    <tr class="title">
+	                                        <th>Store ID</th>
+	                                        <th>Product ID</th>
+	                                        <th>Total Cost</th>
+	                                    </tr>
+	                                    <tr>
+	                                        <td> </td>
+	                                        <td>Kayak</td>
+	                                        <td>$18.0</td>
+	                                    </tr>
+	                                </table>
+	                            </div>
+	                            <div style="float:left;margin-top:20px;margin-left:5px;">
+	                                <input id="input2" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+	                            </div>
+	                        
 
+	                        
+								</c:forEach>                         
+							</c:forEach>                             
 
-                    </div>
+                            <div style="float:left;margin-top:20px;margin-left:5px;">
+                                <input id="input1" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+                            </div>
 
-                    <div id="stage3route1" class="block" style="display:none;padding-left:20px;">
+                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
+                                Rank #2 Route&#58;
+                                <table cellspacing="0" cellpadding="0" class="list">
+                                    <tr class="title">
+                                        <th>Store ID</th>
+                                        <th>Product ID</th>
+                                        <th>Total Cost</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Store 021</td>
+                                        <td>Kayak</td>
+                                        <td>$18.0</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="float:left;margin-top:20px;margin-left:5px;">
+                                <input id="input2" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+                            </div>
+
+                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
+                                Rank #3 Route&#58;
+                                <table cellspacing="0" cellpadding="0" class="list">
+                                    <tr class="title">
+                                        <th>Store ID</th>
+                                        <th>Product ID</th>
+                                        <th>Total Cost</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Store 032</td>
+                                        <td>Kayak</td>
+                                        <td>$21.0</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="float:left;margin-top:20px;margin-left:5px;">
+                                <input id="input3" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+                            </div>
+
+                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
+                                Rank #4 Route&#58;
+                                <table cellspacing="0" cellpadding="0" class="list">
+                                    <tr class="title">
+                                        <th>Store ID</th>
+                                        <th>Product ID</th>
+                                        <th>Total Cost</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Store 053</td>
+                                        <td>Kayak</td>
+                                        <td>$23.2</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="float:left;margin-top:20px;margin-left:5px;">
+                                <input id="input4" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+                            </div>
+
+                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
+                                Rank #5 Route&#58;
+                                <table cellspacing="0" cellpadding="0" class="list">
+                                    <tr class="title">
+                                        <th>Store ID</th>
+                                        <th>Product ID</th>
+                                        <th>Total Cost</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Store 013</td>
+                                        <td>Kayak</td>
+                                        <td>$24.0</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="float:left;margin-top:20px;margin-left:5px;">
+                                <input id="input5" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+                            </div>
+                        </div>                        	                    
+	                        						
+						</div>
+						
+					</c:forEach>
+                    <div id="stage3route100" class="block" style="display:none;padding-left:20px;">
                         <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
                             Route 1
                         </div>
@@ -589,9 +735,9 @@
                             </div>
                         </div>
                     </div>
-                    </form>
+
                 </div>
-            </div>
+       
 
             </div>
      

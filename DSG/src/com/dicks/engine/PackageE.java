@@ -20,7 +20,7 @@ public class PackageE {
 	private boolean forRemain;
 	private boolean allocated;
 	private boolean splitable = true;
-	private PackageTestResult bestResult = null;
+	private ArrayList<PackageTestResult> bestResults = new ArrayList<PackageTestResult>();
 	private JSONArray splits = new JSONArray();
 
 	public PackageE(Orders order) {
@@ -91,17 +91,48 @@ public class PackageE {
 //		System.out.println("splits size: " + splits.size());
 		packageE.put("splits", splits);
 		
-//		System.out.println("json splits: " + splitsArray.toString());
-		
-//		StringWriter out = new StringWriter();
-//		try {
-//			packageE.writeJSONString(out);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		String jsonText = out.toString();		
+//		System.out.println("json splits: " + splitsArray.toString());	
 		return packageE;
+	}
+	
+	public JSONArray getStage3Json() {
+		JSONArray array = new JSONArray();
+		
+		for (PackageTestResult r : this.bestResults) {
+			JSONObject rJ = new JSONObject();
+			JSONArray resultsJ = new JSONArray();
+			for (ParcelResult parcelR : r.getResults()) {
+				JSONObject parcelRJ = new JSONObject();
+				
+				//products
+				JSONArray productsJ = new JSONArray();
+				HashMap<Product, Integer> map = parcelR.getParcel().getProducts();
+				for (Product p : map.keySet()) {
+					JSONObject pJ = new JSONObject();
+					pJ.put("prodName", p.getProdName());
+					pJ.put("quantity", map.get(p));
+					productsJ.add(pJ);
+				}
+				parcelRJ.put("products", productsJ);
+				
+				parcelRJ.put("source", parcelR.getSource().toString());
+				
+				//costs
+				parcelRJ.put("costs", Util.getJsonCosts(parcelR));
+				
+				resultsJ.add(parcelRJ);
+			}
+			
+			rJ.put("results", resultsJ);
+			rJ.put("totalCost", r.getCost());
+			rJ.put("attribute", r.getAttribute());
+			
+			array.add(rJ);
+		}
+		
+		System.out.println("array: " + array);
+		
+		return array;
 	}
 	
 	public boolean isAllocated() {
@@ -166,13 +197,24 @@ public class PackageE {
 		this.order = order;
 	}
 	
-	
-
-	public PackageTestResult getBestResult() {
-		return bestResult;
+	public ArrayList<PackageTestResult> getBestResults() {
+		return bestResults;
 	}
 
-	public void setBestResult(PackageTestResult bestResult) {
-		this.bestResult = bestResult;
+	public void setBestResults(ArrayList<PackageTestResult> bestResults) {
+		this.bestResults = bestResults;
+	}
+	
+	public void recordBestResults(ArrayList<PackageTestResult> bestResults) {
+		int num = 0;
+		if (bestResults.size() > 5) {
+			num = 5;
+		} else {
+			num = bestResults.size();
+		}
+		
+		for (int i = 0; i < num; i++) {
+			this.bestResults.add(bestResults.get(i));
+		}
 	}
 }

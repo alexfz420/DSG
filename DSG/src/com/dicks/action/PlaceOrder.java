@@ -11,6 +11,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import com.dicks.dao.LogDAO;
 import com.dicks.dao.PackageDAO;
 import com.dicks.dao.PackageDetailDAO;
@@ -50,55 +54,16 @@ public class PlaceOrder {
 //	private ArrayList<LogE> stage1Logs;
 	
 	private String stage2Logs;
+	private String stage3Logs;
+	private JSONObject stage2Obj;
+	private JSONArray packages;
+	private JSONArray stage3Arrays;
 	
-	private Collection<PackageE> packages;
+	private Collection<PackageE> minPackage;
 	private Collection<Store> leftStores;
 	private Collection<PackageTestResult> allocatedResults;
 	private Collection<PackageTestResult> newAllocatedResults;
 	private Collection<PackageTestResult> allAllocatedResults;
-	
-	public String[] getQuantity(){
-		return quantity;
-	}
-	
-	public String[] getProduct(){
-		return product;
-	}
-	
-	public void setQuantity(String[] a){
-		this.quantity = a;
-		
-	}
-	
-	public void setProduct(String[] a){
-		this.product = a;
-		
-	}
-	
-	
-	public String getShippingaddress() {
-		return shippingaddress;
-	}
-
-	public void setShippingaddress(String shippingaddress) {
-		this.shippingaddress = shippingaddress;
-	}
-
-	public String getShippingzipcode() {
-		return shippingzipcode;
-	}
-
-	public void setShippingzipcode(String shippingzipcode) {
-		this.shippingzipcode = shippingzipcode;
-	}
-	
-	public String getShippingtype() {
-		return shippingtype;
-	}
-
-	public void setShippingtype(String shippingtype) {
-		this.shippingtype = shippingtype;
-	}
 	
 	public String placeorder() throws Exception{
 		for(int i=0;i<quantity.length;i++){
@@ -120,20 +85,18 @@ public class PlaceOrder {
 		
 		Orders order = test.getOrder();
 		this.id = order.getOrderId() + "";
-		this.packages = test.getPackages();
 		this.leftStores = test.getLeftStores();
+		this.minPackage = test.getPackages();
 		this.allocatedResults = test.getAllocatedResults();
 		
 		this.stage1 = test.getStage1();
 		System.out.println();
 
-		Split split = new Split(packages, leftStores, allocatedResults);	
+		Split split = new Split(minPackage, leftStores, allocatedResults);	
 		
 		this.newAllocatedResults = split.getNewAllocatedResults();
 		
-		//System.out.println("order id in place order: " + test.getOrderId());
-		this.stage2 = split.getStage2();
-		this.stage3 = split.getStage3();			
+		//System.out.println("order id in place order: " + test.getOrderId());			
 
 		LogDAO logDAO =  LogDAO.getInstance();
 		
@@ -150,6 +113,7 @@ public class PlaceOrder {
 		}	
 		
 		// For stage 2
+		this.stage2 = split.getStage2();
 		for (LogE logE : stage2.getLogs()) {
 			Rule rule = logE.getRule();
 			System.out.println("rule " + logE.getName() + " " + rule);
@@ -158,10 +122,24 @@ public class PlaceOrder {
 			log.setRecord(Arrays.toString(logE.getLogs().toArray()));
 			logDAO.createLog(log);
 		}	
+		this.stage2Logs = stage2.getLogsByName("Cost Calculation").get(0);
+		JSONParser parser = new JSONParser();
+		stage2Obj = (JSONObject) parser.parse(stage2Logs);
+		packages = (JSONArray) stage2Obj.get("packages");		
 		
 		// For stage 3
-		
-		
+		this.stage3 = split.getStage3();	
+		for (LogE logE : stage3.getLogs()) {
+			Rule rule = logE.getRule();
+			System.out.println("rule " + logE.getName() + " " + rule);
+			Log log = new Log(new LogId(order.getOrderId(), rule.getRuleId()), rule, order, Integer.parseInt(rule.getStage()));
+			System.out.println("logs: " + logE.getLogs());
+			log.setRecord(Arrays.toString(logE.getLogs().toArray()));
+			logDAO.createLog(log);
+		}	
+		this.setStage3Logs(stage3.getLogsByName("Evaluation").get(0));
+		this.stage3Arrays = (JSONArray) parser.parse(this.stage3Logs);
+
 		allAllocatedResults = new ArrayList<PackageTestResult>();
 		allAllocatedResults.addAll(this.allocatedResults);
 		allAllocatedResults.addAll(this.newAllocatedResults);
@@ -228,12 +206,12 @@ public class PlaceOrder {
 //		this.stage1Logs = stage1Logs;
 //	}
 
-	public Collection<PackageE> getPackages() {
-		return packages;
+	public Collection<PackageE> getMinPackages() {
+		return this.minPackage;
 	}
 
 	public void setPackages(Collection<PackageE> packages) {
-		this.packages = packages;
+		this.minPackage = packages;
 	}
 
 	public Collection<Store> getLeftStores() {
@@ -266,6 +244,73 @@ public class PlaceOrder {
 
 	public void setStage2Logs(String stage2Logs) {
 		this.stage2Logs = stage2Logs;
+	}
+
+	public String getStage3Logs() {
+		return stage3Logs;
+	}
+
+	public void setStage3Logs(String stage3Logs) {
+		this.stage3Logs = stage3Logs;
+	}
+
+	public JSONArray getStage3Arrays() {
+		return stage3Arrays;
+	}
+
+	public void setStage3Arrays(JSONArray stage3Arrays) {
+		this.stage3Arrays = stage3Arrays;
+	}
+
+	
+	public String[] getQuantity(){
+		return quantity;
+	}
+	
+	public String[] getProduct(){
+		return product;
+	}
+	
+	public void setQuantity(String[] a){
+		this.quantity = a;
+		
+	}
+	
+	public void setProduct(String[] a){
+		this.product = a;
+		
+	}	
+	
+	public String getShippingaddress() {
+		return shippingaddress;
+	}
+
+	public void setShippingaddress(String shippingaddress) {
+		this.shippingaddress = shippingaddress;
+	}
+
+	public String getShippingzipcode() {
+		return shippingzipcode;
+	}
+
+	public void setShippingzipcode(String shippingzipcode) {
+		this.shippingzipcode = shippingzipcode;
+	}
+	
+	public String getShippingtype() {
+		return shippingtype;
+	}
+
+	public void setShippingtype(String shippingtype) {
+		this.shippingtype = shippingtype;
+	}
+	
+	public JSONArray getPackages() {
+		return packages;
+	}
+
+	public void setPackages(JSONArray packages) {
+		this.packages = packages;
 	}
 
 }
