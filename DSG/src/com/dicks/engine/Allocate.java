@@ -1,24 +1,13 @@
 package com.dicks.engine;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringWriter;
-
-
-import javax.print.DocFlavor.URL;
-
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.json.simple.JSONArray;
 import org.kie.api.io.Resource;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
@@ -40,12 +29,10 @@ import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Customer;
 import com.dicks.pojo.OrderDetail;
 import com.dicks.pojo.OrderDetailId;
-import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
-import com.dicks.pojo.Store;
+import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
-import com.dicks.engine.OrderE;
-import java.sql.Timestamp;
+import com.dicks.pojo.Store;
 
 public class Allocate {
     public String myTab ="    ";

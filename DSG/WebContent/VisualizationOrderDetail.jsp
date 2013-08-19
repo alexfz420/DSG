@@ -94,11 +94,7 @@
   });
   
   // Add javascript
-  $(function() {
-		var str = '${stage2Logs}';
-		var myObject = eval('(' + str + ')');
-		console.log(myObject);		
-  });
+
 
 </script>  
 
@@ -197,48 +193,6 @@
                   						</c:forEach>
                                     </table>
                                 </div>
-                                <div style="display: block; width: 500px">
-                                	
-                                	<h1><b> Stage 1 </b></h1>
-                                	<c:forEach var="name" items="${stage1.getRuleNames()}">
-										<div> 
-											<h1> ${name} </h1>
-											<c:forEach var="logdetail" items="${stage1.getLogsByName(name)} ">
-												<p> 
-													${logdetail}
-												</p>
-											</c:forEach>
-											<br/>
-									    </div>
-									</c:forEach>
-									
-									<h1><b> Stage 2 </b></h1>
-									<c:forEach var="name" items="${stage2.getRuleNames()}">				
-										<div> 
-											<h1> ${name} </h1>
-											<c:forEach var="logdetail" items="${stage2.getLogsByName(name)} ">
-												<p> 
-													${logdetail}
-												</p>
-											</c:forEach>
-											<br/>
-									    </div>
-									</c:forEach>
-									
-									<h1><b> Stage 3 </b></h1>
-									<c:forEach var="name" items="${stage3.getRuleNames()}">				
-										<div> 
-											<h1> ${name} </h1>
-											<c:forEach var="logdetail" items="${stage3.getLogsByName(name)} ">
-												<p> 
-													${logdetail}
-												</p>
-											</c:forEach>
-											<br/>
-									    </div>
-									</c:forEach>
-									
-                                </div>
                             </div>
                         </div>
 						
@@ -306,6 +260,7 @@
 	                            <div style="padding-bottom:30px;">
 	                                <div style="float:left; width:150px">Result of this rule&#58;</div>
 	                                <div id="orderdate" style="float:left; width:350px"> 
+	                                
                                 		<c:forEach var="logdetail" items="${log.getLogs()} ">
                                 			${logdetail} 
                                 			<br/>

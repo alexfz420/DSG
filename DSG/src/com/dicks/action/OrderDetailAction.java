@@ -27,13 +27,12 @@ public class OrderDetailAction {
 	private Orders order;
 	private ArrayList<String> logs;
 	
-//	private ArrayList<LogE> stage1Logs;
-//	private String stage2Logs;
-//	private String stage3Logs;
-//	private JSONObject stage2Obj;
-//
-//	private JSONArray packages;
-//	private JSONArray stage3Arrays;
+	private EngineLog stage1;
+	
+	private ArrayList<LogE> stage1Logs;
+	private JSONObject stage2Obj;
+	private JSONArray packages;
+	private JSONArray stage3Arrays;
 	
 	public Orders getOrder() {
 		return order;
@@ -97,8 +96,22 @@ public class OrderDetailAction {
 		order = OrdersDAO.getInstance().getById(Integer.parseInt(id));
 		details = new ArrayList<OrderDetail>();
 		details= OrderDetailDAO.getInstance().getOrderDetailsByOrder(order);
-		
+	
 		LogDAO logDAO =  LogDAO.getInstance();
+		
+		Log stage2Log = logDAO.getLogByOrderStage(order.getOrderId(), 2).get(0);
+		String stage2Record = stage2Log.getRecord();
+		JSONParser parser = new JSONParser();
+		//System.out.println("order detail stage2 record: " + stage2Record);
+		JSONArray array = (JSONArray) parser.parse(stage2Record);
+		stage2Obj = (JSONObject) array.get(0);
+		packages = (JSONArray) stage2Obj.get("packages");
+		
+		Log stage3Log = logDAO.getLogByOrderStage(order.getOrderId(), 3).get(0);
+		String stage3Record = stage3Log.getRecord();
+		//System.out.println("order detail stage3 record: " + stage3Record);
+		array = (JSONArray) parser.parse(stage3Record);
+		this.stage3Arrays = (JSONArray) array.get(0);
 		
 //		stage2Logs = logDAO.getLogByOrderStage(order.getOrderId(), 2).get(0).getRecord();
 //		stage3Logs = logDAO.getLogByOrderStage(order.getOrderId(), 3).get(0).getRecord();
@@ -110,8 +123,9 @@ public class OrderDetailAction {
 //		packages = (JSONArray) stage2Obj.get("packages");
 //		stage3Arrays = (JSONArray) parser.parse(this.stage3Logs);
 
-//		ArrayList<Log> stage1Logs = LogDAO.getInstance().getLogByOrderStage(order.getOrderId(), 1);
-//		this.stage1Logs = new EngineLog(stage1Logs).getLogs();
+		ArrayList<Log> stage1Logs = LogDAO.getInstance().getLogByOrderStage(order.getOrderId(), 1);
+		stage1 = new EngineLog(stage1Logs);
+		this.stage1Logs = stage1.getLogs();
 		
 		return "success";
 	}
@@ -124,51 +138,43 @@ public class OrderDetailAction {
 		this.logs = logs;
 	}
 
-//	public String getStage2Logs() {
-//		return stage2Logs;
-//	}
-//
-//	public void setStage2Logs(String stage2Logs) {
-//		this.stage2Logs = stage2Logs;
-//	}
+	public JSONObject getStage2Obj() {
+		return stage2Obj;
+	}
 
-//	public String getStage3Logs() {
-//		return stage3Logs;
-//	}
-//
-//	public void setStage3Logs(String stage3Logs) {
-//		this.stage3Logs = stage3Logs;
-//	}
+	public void setStage2Obj(JSONObject stage2Obj) {
+		this.stage2Obj = stage2Obj;
+	}
 
-//	public JSONObject getStage2Obj() {
-//		return stage2Obj;
-//	}
-//
-//	public void setStage2Obj(JSONObject stage2Obj) {
-//		this.stage2Obj = stage2Obj;
-//	}
-//
-//	public JSONArray getPackages() {
-//		return packages;
-//	}
-//
-//	public void setPackages(JSONArray packages) {
-//		this.packages = packages;
-//	}
+	public JSONArray getPackages() {
+		return packages;
+	}
 
-//	public JSONArray getStage3Arrays() {
-//		return stage3Arrays;
-//	}
-//
-//	public void setStage3Arrays(JSONArray stage3Arrays) {
-//		this.stage3Arrays = stage3Arrays;
-//	}
-//
-//	public ArrayList<LogE> getStage1Logs() {
-//		return stage1Logs;
-//	}
-//
-//	public void setStage1Logs(ArrayList<LogE> stage1Logs) {
-//		this.stage1Logs = stage1Logs;
-//	}
+	public void setPackages(JSONArray packages) {
+		this.packages = packages;
+	}
+
+	public JSONArray getStage3Arrays() {
+		return stage3Arrays;
+	}
+
+	public void setStage3Arrays(JSONArray stage3Arrays) {
+		this.stage3Arrays = stage3Arrays;
+	}
+
+	public ArrayList<LogE> getStage1Logs() {
+		return stage1Logs;
+	}
+
+	public void setStage1Logs(ArrayList<LogE> stage1Logs) {
+		this.stage1Logs = stage1Logs;
+	}
+
+	public EngineLog getStage1() {
+		return stage1;
+	}
+
+	public void setStage1(EngineLog stage1) {
+		this.stage1 = stage1;
+	}
 }

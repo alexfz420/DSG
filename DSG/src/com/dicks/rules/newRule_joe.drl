@@ -61,9 +61,9 @@ rule "Filter Stock 2"
     	$store : Store()
         //eval($store.checkStore($item, $o,"zone","<",2))
         eval(InventoryDAO.getInstance().checkProduct($store, $item,"<",2))
-        $logger : EngineLog() 
+        //$logger : EngineLog() 
     then
-    	$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	//$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
     	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
         retract($store);
 end
@@ -91,77 +91,23 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
-rule  "Special Route for rbrb"
-    salience 846
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product($id: prodId, sku.equals("RB-SH-AI"))
-        eval ($orderE.getProductQty($id)>1)
-        $s : Store( storeId == 1)
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        $logger: EngineLog()
-    then
-        $logger.addLog("Special Route for rbrb","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        PackageE p = new PackageE($order);
-        p.addProduct($product, $orderE.getProductQty($id));
-        insert (p);
-        p.setAllocated(true); 
-        Parcel parcel = new Parcel(p);
-        parcel.addNumProduct($product, $orderE.getProductQty($id));
-        PackageTest test = new PackageTest(p);
-        test.addParcel(parcel);
-        ParcelResult parcelR = new ParcelResult(parcel);
-        parcelR.setSource($s);
-        PackageTestResult packageR = new PackageTestResult(test);
-        packageR.addResult(parcelR);
-        $logger.addLog("Special Route for rbrb",$product + "get inserted into a new package by speical route rule");
-        $logger.addLog("Special Route for rbrb",packageR.toString());      
-        System.out.println(packageR);
-        insert(packageR);
-        retract(p);
-        retract($product);
-end
-
-rule  "Threshold for aj"
-    salience 844
+rule  "Threshold for Tmac"
+    salience 848
     when
         $o : Orders()
         $orderE : OrderE()
-        $i : Product( ((Length > 4)||( Width > 4)||( Height > 4)||( Weight > 4))&& (( sku.equals("NK-SH-AJ")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length > 1)||( Width > 2)||( Height > 3)||( Weight > 4))&& (( sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
         $logger: EngineLog()
     then
         for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
         {
-            $logger.addLog("Threshold for aj","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            $logger.addLog("Threshold for Tmac","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             PackageE p = new PackageE($o);
             p.addProduct($i,1);
             insert (p);
             $i.minPackage();
-            $logger.addLog("Threshold for aj",p.toString()); 
-        }
-        retract($i);
-end
-
-rule  "Threshold for TMAC"
-    salience 842
-    when
-        $o : Orders()
-        $orderE : OrderE()
-        $i : Product(((Length > 3)||( Width > 3)||( Height > 3)||( Weight > 3))&& (( sku.equals("AD-SH-TM"))|| (sku.equals("RB-SH-AI")))&& (flag.equals("TH-A,ST-A,SP-A")))
-        $logger: EngineLog()
-    then
-        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
-        {
-            $logger.addLog("Threshold for TMAC","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            PackageE p = new PackageE($o);
-            p.addProduct($i,1);
-            insert (p);
-            $i.minPackage();
-            $logger.addLog("Threshold for TMAC",p.toString()); 
+            $logger.addLog("Threshold for Tmac",p.toString()); 
         }
         retract($i);
 end

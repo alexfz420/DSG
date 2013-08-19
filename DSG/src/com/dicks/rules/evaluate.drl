@@ -104,7 +104,7 @@ rule "add splits"
 		//$logger : EngineLog()
 	then
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
-		stage2.addLog("Split Packages", "--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
+		//stage2.addLog("Split Packages", "--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 		//System.out.println("Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 end
 

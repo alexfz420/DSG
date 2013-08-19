@@ -48,15 +48,14 @@ public class PlaceOrder {
 	private String shippingzipcode;	
 	
 	private String id;
-	private EngineLog stage1;
+//	private EngineLog stage1;
 	private EngineLog stage2;
 	private EngineLog stage3;
-	private ArrayList<LogE> stage1Logs;
+//	private ArrayList<LogE> stage1Logs;
 	
 	private String stage2Logs;
 	private String stage3Logs;
 	private JSONObject stage2Obj;
-
 	private JSONArray packages;
 	private JSONArray stage3Arrays;
 	
@@ -90,8 +89,7 @@ public class PlaceOrder {
 		this.minPackage = test.getPackages();
 		this.allocatedResults = test.getAllocatedResults();
 		
-		this.stage1 = test.getStage1();
-
+	    EngineLog stage1 = test.getStage1();
 		Split split = new Split(minPackage, leftStores, allocatedResults);	
 		
 		this.newAllocatedResults = split.getNewAllocatedResults();	
@@ -100,7 +98,7 @@ public class PlaceOrder {
 		LogDAO logDAO =  LogDAO.getInstance();
 		
 		// For stage 1
-		this.stage1Logs = stage1.getLogs();
+//		this.stage1Logs = stage1.getLogs();
 		ArrayList<LogE> logEs = stage1.getLogs();
 		for (LogE logE : logEs) {
 			Rule rule = logE.getRule();
@@ -112,8 +110,7 @@ public class PlaceOrder {
 			for (String s : logE.getLogs()) {
 				sb.append(s);
 				sb.append(",");
-			}
-			
+			}			
 			log.setRecord(sb.toString());
 			logDAO.createLog(log);
 		}	
@@ -184,14 +181,6 @@ public class PlaceOrder {
 		this.id = id;
 	}
 
-	public EngineLog getStage1() {
-		return stage1;
-	}
-
-	public void setStage1(EngineLog stage1) {
-		this.stage1 = stage1;
-	}
-
 	public EngineLog getStage2() {
 		return stage2;
 	}
@@ -208,13 +197,13 @@ public class PlaceOrder {
 		this.stage3 = stage3;
 	}
 
-	public ArrayList<LogE> getStage1Logs() {
-		return stage1Logs;
-	}
-
-	public void setStage1Logs(ArrayList<LogE> stage1Logs) {
-		this.stage1Logs = stage1Logs;
-	}
+//	public ArrayList<LogE> getStage1Logs() {
+//		return stage1Logs;
+//	}
+//
+//	public void setStage1Logs(ArrayList<LogE> stage1Logs) {
+//		this.stage1Logs = stage1Logs;
+//	}
 
 	public Collection<PackageE> getMinPackages() {
 		return this.minPackage;
