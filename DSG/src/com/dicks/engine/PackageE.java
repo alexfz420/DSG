@@ -116,6 +116,7 @@ public class PackageE {
 				parcelRJ.put("products", productsJ);
 				
 				parcelRJ.put("source", parcelR.getSource().toString());
+				parcelRJ.put("totalCost", parcelR.getCost());
 				
 				//costs
 				parcelRJ.put("costs", Util.getJsonCosts(parcelR));
