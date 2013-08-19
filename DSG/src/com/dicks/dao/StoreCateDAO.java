@@ -1,8 +1,10 @@
 package com.dicks.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
@@ -34,10 +36,13 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 
 	public String[] getStoreCateNames() throws Exception{
 		StoreCate[] storeCates = getStoreCategoryList();
+		
+		System.out.println("---------");
 		String[] names = new String[storeCates.length];
 		
 		for(int i = 0 ; i<names.length ;i++){
 			names[i]=storeCates[i].getCateName();
+			System.out.println("store!!"+names[i]);
 		}
 		return names;
 	}
@@ -77,8 +82,10 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		
 	}
 	
-	private StoreCate[] filterCate(StoreCate[] storeCates){
-		
+	/*private StoreCate[] filterCate(StoreCate[] storeCates){
+		for (int i = 0;i<storeCates.length;i++){
+			System.out.println("before filter "+i+" "+storeCates[i].getCateName());
+		}
 		if(storeCates==null) return null;
 		List<StoreCate> storeCates1 = new ArrayList<StoreCate>();
 		int id = 0;
@@ -93,8 +100,60 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 			}
 		}
 		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
+		 for (int i = 0;i<result.length;i++){
+				System.out.println("after filter "+i+" "+result[i].getCateName());
+			}
+		 return result;
+	}*/
+	
+	private StoreCate[] filterCate(StoreCate[] storeCates){
+		if(storeCates==null) return null;
+		Set<Integer> cateIds = new HashSet<Integer>();
+		List<StoreCate> storeCates1 = new ArrayList<StoreCate>();
+		for(int i=0; i<storeCates.length ; i++){
+			if(!cateIds.contains(storeCates[i].getId().getCateStoreId())){
+				storeCates1.add(storeCates[i]);
+				cateIds.add(storeCates[i].getId().getCateStoreId());
+			}
+		}
+		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
 		 return result;
 	}
+	
+	
+	/*private StoreCate[] filterCate(StoreCate[] storeCates){
+		for (int i = 0;i<storeCates.length;i++){
+			System.out.println("before filter "+i+" "+storeCates[i].getCateName());
+		}
+		if(storeCates==null) return null;
+		int l = storeCates.length;
+		System.out.println("length "+l);
+		for (int i = 0 ; i < storeCates.length;i++){
+			for (int j = i+1; j< storeCates.length;j++ ){
+				if (storeCates[i].getCateName().equals(storeCates[j].getCateName())){
+				  l--;	
+				}
+			}
+		}
+		System.out.println("the real length is "+l);
+		
+		List<StoreCate> storeCates1 = new ArrayList<StoreCate>();
+		int id = 0;
+		for(int i=0; i<storeCates.length ; i++){
+			if(i==0){
+				id=	storeCates[i].getId().getCateStoreId();
+				storeCates1.add(storeCates[i]);
+			}
+			if(storeCates[i].getId().getCateStoreId()!=id){
+				storeCates1.add(storeCates[i]);
+				id =storeCates[i].getId().getCateStoreId();
+			}
+		}
+		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
+		 
+		 return result;
+	}*/
+	
 
 	public Store[] getStoreByCategory(String[] categoryNameList) throws Exception{
 		List<Store> finalResult = new LinkedList<Store>();

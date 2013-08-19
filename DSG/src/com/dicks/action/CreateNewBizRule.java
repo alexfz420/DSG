@@ -184,7 +184,9 @@ public class CreateNewBizRule {
 			cates.append(","+tmp3[i]);
 		}
 		storeCate = cates.toString();
+		System.out.println("store cate!!!"+storeCate);
 		prodCate = cate.toString();
+		System.out.println("prod cate!!!"+prodCate);
 		return "success";
 	}
 
