@@ -12,7 +12,7 @@
 
  <jsp:include page="template_top.jsp" />
  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
  <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -42,27 +42,26 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
             <ul class="nav-two" id="navtwo">
                 <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
             </ul>
 		</li>   
     </ul>
     </div>
 <script >
   function changeDiv(obj) {
-		var className= obj.className;
+		var className = obj.className;
+		var name = obj.name;
 		if(className=="button"){
-			var button = document.getElementsByClassName("button");
-			for(var j=1;j<=button.length;j++){
-				if(obj.id=="input"+j.toString()){
-					$("#cost"+j.toString()).show();
+			var block = document.getElementsByClassName("block");
+			console.log("name: " + name);
+			for(var i in block){
+				if(name==block[i].id){
+					console.log("show block id: " + block[i].id);
+					$('#'+block[i].id).show();
 				}
 				else{
-					$("#cost"+j.toString()).hide();
+					console.log("hide block id: " + block[i].id);
+					$('#'+block[i].id).hide();
 				}
-			}
-			var block = document.getElementsByClassName("block");
-			for(var i in block){
-				$('#'+block[i].id).hide();
 	  		}
 		}
 		else{
@@ -78,7 +77,6 @@
 					$('#'+block[i].id).hide();
 				}
 	  		}
-			$("#cost1").hide();
 		}
   }
 </script>    
@@ -99,9 +97,7 @@
   $(function() {
 		var str = '${stage2Logs}';
 		var myObject = eval('(' + str + ')');
-		console.log(myObject);
-		
-		
+		console.log(myObject);		
   });
 
 </script>  
@@ -263,7 +259,6 @@
 									</div>
 	                            </div>                            									
 							</c:forEach>
-                            
 
                             <div style="padding-bottom:30px;">
                                 <div style="float:left; width:100px">Result:</div>
@@ -288,8 +283,7 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        
+               
                         <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
 	                        <div id="stage1rule${index.index}" class="block" style="display:none;padding-left:30px;padding-top:30px;">
 	                            <div style="font-size:16px;padding-bottom:30px;">Rule ${index.count}</div>
@@ -326,416 +320,184 @@
                         <c:forEach var="pack" items="${packages}" varStatus="index">         		
                            	
 	                     <div id="stage2package${index.index}" class="block" style="display:none;padding-left:20px;">
-	                         <div name="package" style="height:30px;font-size:18px;margin-top:10px;">
-	                            Package ${index.count}
-	                        </div>
-
-	                        <div id="included" style="height:40px;">
-	                            <div style="float:left;height:20px;width:110px;font-size:14px;width:120px;">
-	                                Included Items&#58;
-	                            </div>
-
-	                            <div style="float:left;">
-	                            	<div name="items" style="height:20px;font-size:12px;width:200px;">
-			                            <c:forEach var="product" items='${pack.get("products")}' varStatus="index">
-											${product.get("prodName")} - quantity ${product.get("quantity")}
-										</c:forEach>	                            
-	                                </div>
-	                            </div>
-	                        </div>
-	                        
-	                        ${pack.get("splits")}
-	                        
-	                        <div id="split${index.index}" style="height:100px;">
-                           
-                            <c:forEach var="split" items='${pack.get("splits")}' varStatus="splitIndex">
-                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
-                                Split ${splitIndex.index}
-                            </div>
-							                          
-								
-							</c:forEach>
- 
-                        </div>
-	                       
-	                    </div>
-	                   
-						</c:forEach>                
-
+		                        <div name="package" style="height:30px;font-size:18px;margin-top:10px;">
+		                            Package ${index.count}
+		                        </div>
+	
+		                        <div id="included" style="height:40px;">
+		                            <div style="float:left;height:20px;width:110px;font-size:14px;width:120px;">
+		                                Included Items&#58;
+		                            </div>
+	
+		                            <div style="float:left;">
+		                            	<div name="items" style="height:20px;font-size:12px;width:200px;">
+				                            <c:forEach var="product" items='${pack.get("products")}' varStatus="index">
+												${product.get("prodName")} - quantity ${product.get("quantity")}
+											</c:forEach>	                            
+		                                </div>
+		                            </div>
+		                        </div>
+		                        
+	                            <c:forEach var="split" items='${pack.get("splits")}' varStatus="splitIndex">
+		                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
+		                                Split ${splitIndex.index}
+		                            </div>	                            
+		                            <c:forEach var="obj" items='${split}'>	
+			                            <div name="product" style="float:left;height:20px;font-size:14px;width:110px;padding-left:10px;">
+				                            {<c:forEach var="p" items='${obj.get("products")}' varStatus="index">
+												${p.get("prodName")} (${p.get("quantity")}) 
+											</c:forEach>}
+			                            </div>	                            
+			                            <div style="float:left;width:200px;">
+			                                <div name="failed" style="height:20px;font-size:12px;">
+			                                    Failed&#58; ${stage2Obj.get("totalStores") - obj.get("storeCount")}/${stage2Obj.get("totalStores")} stores
+			                                </div>
+			                                <div name="success" style="height:20px;font-size:12px;">
+			                                    Success&#58; ${obj.get("storeCount")}/${stage2Obj.get("totalStores")} stores
+			                                </div>
+			                            </div>											
+									</c:forEach>
+								</c:forEach>	
+                        	</div>             
+						</c:forEach>
+						
 					<!-- Add route for stage 3 -->
-					<c:forEach var="pack" items="${packages}" varStatus="index">   
-						
-						<div id="stage3route${index.index}" class="block" style="display:none;padding-left:20px;">
-	                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
-	                            Route ${index.count}
-	                        </div>	
-	                        
-                        <div id="route_detail" style="height:30px;">
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    From:
-                                </div>
-                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-                                    Store 010
-                                </div>
-                            </div>
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    To:
-                                </div>
-                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
-                                    5000 Forbes Ave, Pitsburgh, PA 15213
-                                </div>
-                            </div>
-                        </div>	                        
+						<c:forEach var="pack" items="${packages}" varStatus="index">   	
+							<div id="stage3route${index.index}" class="block" style="display:none;padding-left:20px;">
+		                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+		                            Route ${index.count}
+		                        </div>	
+		                        
+		                        <div id="route_detail" style="height:30px;">
+		                            <div style="height:20px;">
+		                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+		                                    From:
+		                                </div>
+		                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
+		                                    Store 010
+		                                </div>
+		                            </div>
+		                            <div style="height:20px;">
+		                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+		                                    To:
+		                                </div>
+		                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
+		                                    5000 Forbes Ave, Pitsburgh, PA 15213
+		                                </div>
+		                            </div>
+		                        </div>	                        
+			                     
+		                        <div id="included" style="height:60px;margin-top:30px;">
+		                            <div style="height:20px;font-size:14px;">
+		                                Included Packages:
+		                            </div>
+		                            
+		                            <div>
+		                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
+		                                <div name="items" style="float:left;">
+		                                	<c:forEach var="product" items='${pack.get("products")}'>
+		                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
+											</c:forEach>	
+		                                </div>
+		                            </div>
+		                        </div>
 	                     
-                        <div id="included" style="height:60px;margin-top:30px;">
-                            <div style="height:20px;font-size:14px;">
-                                Included Packages:
-                            </div>
-                            
-                            <div>
-                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
-                                <div name="items" style="float:left;">
-                                	<c:forEach var="product" items='${pack.get("products")}'>
-                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
-									</c:forEach>	
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <c:forEach var="product" items='${pack.get("products")}'>
-                             <div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
-						</c:forEach>                        
-                     
-                         <div id="rank" style="height:100px;margin-top:20px;">
-                            <div class="title" name="splitNo" style="height:20px;font-size:14px;padding-bottom:10px;">
-                                Top Ranking Route&#58;
-                            </div>
-	                        <c:forEach var="testResults" items='${stage3Arrays.get(index.index)}'>
-		                        <c:forEach var="testResult" items='${testResults}'>
-		                        	${testResult}	                        	
-		                        <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-	                                Rank #2 Route&#58;
-	                                <table cellspacing="0" cellpadding="0" class="list">
-	                                    <tr class="title">
-	                                        <th>Store ID</th>
-	                                        <th>Product ID</th>
-	                                        <th>Total Cost</th>
-	                                    </tr>
-	                                    <tr>
-	                                        <td> </td>
-	                                        <td>Kayak</td>
-	                                        <td>$18.0</td>
-	                                    </tr>
-	                                </table>
-	                            </div>
-	                            <div style="float:left;margin-top:20px;margin-left:5px;">
-	                                <input id="input2" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-	                            </div>
-	                        
-
-	                        
-								</c:forEach>                         
-							</c:forEach>                             
-
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input1" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #2 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 021</td>
-                                        <td>Kayak</td>
-                                        <td>$18.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input2" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #3 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 032</td>
-                                        <td>Kayak</td>
-                                        <td>$21.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input3" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #4 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 053</td>
-                                        <td>Kayak</td>
-                                        <td>$23.2</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input4" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #5 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 013</td>
-                                        <td>Kayak</td>
-                                        <td>$24.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input5" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-                        </div>                        	                    
-	                        						
-						</div>
+		                         <div id="rank" style="height:100px;margin-top:20px;">
+		                            <div class="title" name="splitNo" style="height:20px;font-size:14px;padding-bottom:10px;">
+		                                Top Ranking Route&#58;
+		                            </div>
+			                        <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+				                        <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
+			                                Rank # ${testIndex.count} Route&#58;
+			                                <table cellspacing="0" cellpadding="0" class="list">
+			                                    <tr class="title">
+			                                        <th>Store ID</th>
+			                                        <th>Product</th>
+			                                        <th>Total Cost</th>
+			                                    </tr>
+			                                    <c:forEach var="parcelR" items='${testResult.get("results")}' >
+				                                    <tr>
+				                                        <td> ${parcelR.get("source")} </td>
+				                                        <td>
+				                                        	<c:forEach var="parcelP" items='${parcelR.get("products")}' > 
+				                                        		${parcelP.get("prodName")} (${parcelP.get("quantity")}) 
+				                                        	</c:forEach>
+				                                        </td>
+				                                        <td> ${parcelR.get("totalCost")} </td>
+				                                    </tr>
+			                                    </c:forEach>
+			                                </table>
+			                            </div>
+			                            <div style="float:left;margin-top:20px;margin-left:5px;">
+			                            	
+			                                <input name="cost${index.index}${testIndex.index}" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+			                            </div>			
+									</c:forEach>                         						
+								</div>						
+						    </div>
 						
-					</c:forEach>
-                    <div id="stage3route100" class="block" style="display:none;padding-left:20px;">
-                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
-                            Route 1
-                        </div>
-                        
-                        <div id="route_detail" style="height:30px;">
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    From:
-                                </div>
-                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-                                    Store 010
-                                </div>
-                            </div>
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    To:
-                                </div>
-                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
-                                    5000 Forbes Ave, Pitsburgh, PA 15213
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="included" style="height:60px;margin-top:30px;">
-                            <div style="height:20px;font-size:14px;">
-                                Included Packages:
-                            </div>
-                            
-                            <div>
-                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package 1: </div>
-                                <div name="items" style="float:left;">
-                                    <div name="item" style="padding-left:30px;height:20px;font-size:12px;">Kayak - quantity 1</div>
-                                </div>
-                            </div>
-                        </div>
-                         <div id="rank" style="height:100px;margin-top:20px;">
-                            <div class="title" name="splitNo" style="height:20px;font-size:14px;padding-bottom:10px;">
-                                Top Ranking Route&#58;
-                            </div>
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #1 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 010</td>
-                                        <td>Kayak</td>
-                                        <td>$16.7</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input1" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #2 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 021</td>
-                                        <td>Kayak</td>
-                                        <td>$18.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input2" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #3 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 032</td>
-                                        <td>Kayak</td>
-                                        <td>$21.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input3" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #4 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 053</td>
-                                        <td>Kayak</td>
-                                        <td>$23.2</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input4" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #5 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 013</td>
-                                        <td>Kayak</td>
-                                        <td>$24.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input5" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="cost1" style="padding-left:20px;display:none;" >
-                                                <div id="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
-                            Route 1
-                        </div>
-                        
-                        <div id="route_detail" style="height:30px;">
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    From:
-                                </div>
-                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-                                    Store 010
-                                </div>
-                            </div>
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    To:
-                                </div>
-                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
-                                    5000 Forbes Ave, Pitsburgh, PA 15213
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="included" style="height:60px;margin-top:30px;">
-                            <div style="height:20px;font-size:14px;">
-                                Included Packages:
-                            </div>
-                            
-                            <div>
-                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package 1: </div>
-                                <div name="items" style="float:left;">
-                                    <div name="item" style="padding-left:30px;height:20px;font-size:12px;">Kayak - quantity 1</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="height:100px;margin-top:20px;">
-                            <div style="float:left;height:20px;font-size:14px;">
-                                Cost Detail:
-                            </div>
-                            <div style="float:left; width:350px; padding-left:10px;" class="table-list">
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Cost</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Transaction Fees</td>
-                                        <td>$2.0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Freight In to Store Cost</td>
-                                        <td>$3.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Distribution Center Cost</td>
-                                        <td>$3.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Packaging Cost</td>
-                                        <td>$3.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Labor Cost</td>
-                                        <td>$4.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total Cost</td>
-                                        <td>$16.7</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
+							<c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+			                    <div id="cost${index.index}${testIndex.index}" style="padding-left:20px;display:none;" class="block">
+			                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+			                            Route ${index.count}
+			                        </div>	
+			                        <div id="route_detail" style="height:30px;">
+			                            <div style="height:20px;">
+			                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+			                                    From:
+			                                </div>
+			                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
+			                                    Store 010
+			                                </div>
+			                            </div>
+			                            <div style="height:20px;">
+			                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+			                                    To:
+			                                </div>
+			                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
+			                                    5000 Forbes Ave, Pitsburgh, PA 15213
+			                                </div>
+			                            </div>
+			                        </div>	                        
+			                        <div id="included" style="height:60px;margin-top:30px;">
+			                            <div style="height:20px;font-size:14px;">
+			                                Included Packages:
+			                            </div>
+			                            <div>
+			                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
+			                                <div name="items" style="float:left;">
+			                                	<c:forEach var="product" items='${pack.get("products")}'>
+			                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
+												</c:forEach>	
+			                                </div>
+			                            </div>
+			                        </div>
+			
+				                    <c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+				                        <div style="height:100px;margin-top:20px;">
+				                            <div style="float:left;height:20px;font-size:14px;">
+				                                Cost Detail:
+				                            </div>
+				                            <div style="float:left; width:350px; padding-left:10px;" class="table-list">
+				                                <table cellspacing="0" cellpadding="0" class="list">
+				                                    <tr class="title">
+				                                        <th>Cost</th>
+				                                        <th>Amount</th>
+				                                    </tr>
+				                                    <c:forEach var="cost" items='${parcelR.get("costs")}'>
+					                                    <tr>
+					                                        <td> ${cost.get("name")} </td>
+					                                        <td> ${cost.get("value")}  </td>
+					                                    </tr>
+				                          			</c:forEach>
+				                                </table>
+				                            </div>
+				                        </div>
+			                        </c:forEach>
+			                     </div>
+		                    </c:forEach>               
+						</c:forEach>
+					</div>
                 </div>
        
 

@@ -7,11 +7,24 @@ import java.util.Set;
 
 import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
+import com.dicks.pojo.Log;
 import com.dicks.pojo.Rule;
 
 public class EngineLog {
 	private HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();	
 	private int stage;
+	
+	public EngineLog(ArrayList<Log> logs) throws Exception {
+		RuleDAO ruleDAO = RuleDAO.getInstance();
+		
+		for (Log log : logs) {
+			Rule rule = ruleDAO.getRuleById(log.getRule().getRuleId()+ "");
+			String[] strings = log.getRecord().split(",");
+			for (String string : strings) {
+				this.addLog(rule.getRuleName(), string);
+			}
+		}
+	}
 	
 	public EngineLog(int stage) {
 		this.stage = stage;

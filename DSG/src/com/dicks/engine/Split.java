@@ -48,13 +48,6 @@ public class Split {
 		this.stage3 = stage3;
 	}
 
-	public static void main(String[] args) {					
-//		ArrayList<PackageTestResult> results = getTestResult(p1, order);
-//		
-//		for (PackageTestResult r : results) {
-//			System.out.println(r);
-//		}		
-	}
 	
 	@SuppressWarnings("restriction")
 	public Split(Collection<PackageE> packages, Collection<Store> stores, Collection<PackageTestResult> allocatedResults) throws Exception {
