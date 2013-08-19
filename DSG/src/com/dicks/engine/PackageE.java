@@ -1,7 +1,5 @@
 package com.dicks.engine;
 
-import java.io.IOException;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -35,6 +33,56 @@ public class PackageE {
 	@Override
 	public String toString() {
 		return Arrays.toString(products.toArray());
+	}
+	
+	public void calculateTops() {
+		for (PackageTestResult r : this.bestResults) {
+			double cost = 0;
+			double attribute = 0;
+			double shippingCost = 0;
+			ArrayList<ParcelResult> parcelResults = r.getResults();
+			for (int i = 0; i < parcelResults.size(); i++) {
+				cost += ((ParcelResult) parcelResults.get(i)).getCost();
+				attribute += ((ParcelResult) parcelResults.get(i)).getAttribute();
+				shippingCost += ((ParcelResult) parcelResults.get(i)).getShippingCost();
+			}
+			r.setCost(cost);
+			r.setAttribute(attribute);
+			r.setShippingCost(shippingCost);
+		}
+	}
+	
+	public void addTops(ArrayList parcelResults, PackageTest test) {
+		for (PackageTestResult testResult : bestResults) {
+			testResult.addResult((ParcelResult) parcelResults.get(0));
+		}
+		
+		ArrayList<PackageTestResult> newList = new ArrayList<PackageTestResult>();
+		newList.addAll(this.bestResults);
+		
+		if (newList.size() > 0) {
+			for (int i = 1; i < parcelResults.size() && newList.size() < 5; i++) {
+				ParcelResult newParcelR = (ParcelResult) parcelResults.get(i);
+				for (int j = 0; j < bestResults.size() && newList.size() < 5; j++) {
+					PackageTestResult oldTestResult = bestResults.get(j);
+					PackageTestResult newTestResult = new PackageTestResult(oldTestResult.getTest());
+					ArrayList<ParcelResult> parcelRs = oldTestResult.getResults();
+					for (int k = 0; k < parcelRs.size() - 1; k++) {
+						newTestResult.addResult(parcelRs.get(k));
+					}
+					newTestResult.addResult(newParcelR);
+					newList.add(newTestResult);
+				}
+			}
+		} else {
+			for (int i = 0; i < parcelResults.size() && newList.size() < 5; i++) {
+				PackageTestResult testResult = new PackageTestResult(test);
+				testResult.addResult((ParcelResult) parcelResults.get(i));
+				newList.add(testResult);
+			}
+		}
+
+		this.bestResults = newList;
 	}
 	
 	public void addSplitTest(PackageTest test) {
@@ -204,18 +252,5 @@ public class PackageE {
 
 	public void setBestResults(ArrayList<PackageTestResult> bestResults) {
 		this.bestResults = bestResults;
-	}
-	
-	public void recordBestResults(ArrayList<PackageTestResult> bestResults) {
-		int num = 0;
-		if (bestResults.size() > 5) {
-			num = 5;
-		} else {
-			num = bestResults.size();
-		}
-		
-		for (int i = 0; i < num; i++) {
-			this.bestResults.add(bestResults.get(i));
-		}
 	}
 }

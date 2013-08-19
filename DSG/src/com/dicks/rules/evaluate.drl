@@ -166,7 +166,6 @@ function PackageTestResult getBestResult(ArrayList results) {
 	});
 	
 	PackageTestResult r = (PackageTestResult) results.get(0);
-	r.getTest().getPack().recordBestResults(results);
 	return r;
 }
 
@@ -174,6 +173,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	PackageTestResult r = new PackageTestResult(test);
 	ArrayList parcels = test.getParcels();
 	//System.out.println("in get test result");
+	int tops = 0;	
 	for (int i = 0; i < parcels.size(); i++) {
 		Parcel p = (Parcel) parcels.get(i);
 		p.shipmentPreparation();
@@ -193,13 +193,14 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 		if (parcelResults.size() < 1) {
 			System.out.println("in test result: no result for " + test);
 			return null;
-		}
+		}		
 		Collections.sort(parcelResults, new Comparator<ParcelResult>() {
 			@Override
 			public int compare(ParcelResult arg0, ParcelResult arg1) {
 				return Util.compareParcelResult(arg0, arg1); 
 			}			
 		});
+		test.getPack().addTops(parcelResults, test);
 		r.addResult((ParcelResult) parcelResults.get(0));
 	}
 	
@@ -215,6 +216,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	r.setCost(cost);
 	r.setAttribute(attribute);
 	r.setShippingCost(shippingCost);
+	test.getPack().calculateTops();
 	return r;
 }
 

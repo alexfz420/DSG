@@ -362,141 +362,142 @@
 						</c:forEach>
 						
 					<!-- Add route for stage 3 -->
-					<c:forEach var="pack" items="${packages}" varStatus="index">   	
-						<div id="stage3route${index.index}" class="block" style="display:none;padding-left:20px;">
-	                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
-	                            Route ${index.count}
-	                        </div>	
-	                        
-                        <div id="route_detail" style="height:30px;">
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    From:
-                                </div>
-                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-                                    Store 010
-                                </div>
-                            </div>
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    To:
-                                </div>
-                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
-                                    5000 Forbes Ave, Pitsburgh, PA 15213
-                                </div>
-                            </div>
-                        </div>	                        
+						<c:forEach var="pack" items="${packages}" varStatus="index">   	
+							<div id="stage3route${index.index}" class="block" style="display:none;padding-left:20px;">
+		                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+		                            Route ${index.count}
+		                        </div>	
+		                        
+		                        <div id="route_detail" style="height:30px;">
+		                            <div style="height:20px;">
+		                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+		                                    From:
+		                                </div>
+		                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
+		                                    Store 010
+		                                </div>
+		                            </div>
+		                            <div style="height:20px;">
+		                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+		                                    To:
+		                                </div>
+		                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
+		                                    5000 Forbes Ave, Pitsburgh, PA 15213
+		                                </div>
+		                            </div>
+		                        </div>	                        
+			                     
+		                        <div id="included" style="height:60px;margin-top:30px;">
+		                            <div style="height:20px;font-size:14px;">
+		                                Included Packages:
+		                            </div>
+		                            
+		                            <div>
+		                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
+		                                <div name="items" style="float:left;">
+		                                	<c:forEach var="product" items='${pack.get("products")}'>
+		                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
+											</c:forEach>	
+		                                </div>
+		                            </div>
+		                        </div>
 	                     
-                        <div id="included" style="height:60px;margin-top:30px;">
-                            <div style="height:20px;font-size:14px;">
-                                Included Packages:
-                            </div>
-                            
-                            <div>
-                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
-                                <div name="items" style="float:left;">
-                                	<c:forEach var="product" items='${pack.get("products")}'>
-                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
-									</c:forEach>	
-                                </div>
-                            </div>
-                        </div>
-                     
-                         <div id="rank" style="height:100px;margin-top:20px;">
-                            <div class="title" name="splitNo" style="height:20px;font-size:14px;padding-bottom:10px;">
-                                Top Ranking Route&#58;
-                            </div>
-	                        <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
-		                        <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-	                                Rank # ${testIndex.count} Route&#58;
-	                                <table cellspacing="0" cellpadding="0" class="list">
-	                                    <tr class="title">
-	                                        <th>Store ID</th>
-	                                        <th>Product</th>
-	                                        <th>Total Cost</th>
-	                                    </tr>
-	                                    <c:forEach var="parcelR" items='${testResult.get("results")}' >
-		                                    <tr>
-		                                        <td> ${parcelR.get("source")} </td>
-		                                        <td>
-		                                        	<c:forEach var="parcelP" items='${parcelR.get("products")}' > 
-		                                        		${parcelP.get("prodName")} (${parcelP.get("quantity")}) 
-		                                        	</c:forEach>
-		                                        </td>
-		                                        <td> ${parcelR.get("totalCost")} </td>
-		                                    </tr>
-	                                    </c:forEach>
-	                                </table>
-	                            </div>
-	                            <div style="float:left;margin-top:20px;margin-left:5px;">
-	                            	
-	                                <input name="cost${index.index}${testIndex.index}" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-	                            </div>			
-							</c:forEach>                         						
-						</div>						
+		                         <div id="rank" style="height:100px;margin-top:20px;">
+		                            <div class="title" name="splitNo" style="height:20px;font-size:14px;padding-bottom:10px;">
+		                                Top Ranking Route&#58;
+		                            </div>
+			                        <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+				                        <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
+			                                Rank # ${testIndex.count} Route&#58;
+			                                <table cellspacing="0" cellpadding="0" class="list">
+			                                    <tr class="title">
+			                                        <th>Store ID</th>
+			                                        <th>Product</th>
+			                                        <th>Total Cost</th>
+			                                    </tr>
+			                                    <c:forEach var="parcelR" items='${testResult.get("results")}' >
+				                                    <tr>
+				                                        <td> ${parcelR.get("source")} </td>
+				                                        <td>
+				                                        	<c:forEach var="parcelP" items='${parcelR.get("products")}' > 
+				                                        		${parcelP.get("prodName")} (${parcelP.get("quantity")}) 
+				                                        	</c:forEach>
+				                                        </td>
+				                                        <td> ${parcelR.get("totalCost")} </td>
+				                                    </tr>
+			                                    </c:forEach>
+			                                </table>
+			                            </div>
+			                            <div style="float:left;margin-top:20px;margin-left:5px;">
+			                            	
+			                                <input name="cost${index.index}${testIndex.index}" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+			                            </div>			
+									</c:forEach>                         						
+								</div>						
+						    </div>
+						
+							<c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+			                    <div id="cost${index.index}${testIndex.index}" style="padding-left:20px;display:none;" class="block">
+			                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+			                            Route ${index.count}
+			                        </div>	
+			                        <div id="route_detail" style="height:30px;">
+			                            <div style="height:20px;">
+			                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+			                                    From:
+			                                </div>
+			                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
+			                                    Store 010
+			                                </div>
+			                            </div>
+			                            <div style="height:20px;">
+			                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+			                                    To:
+			                                </div>
+			                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
+			                                    5000 Forbes Ave, Pitsburgh, PA 15213
+			                                </div>
+			                            </div>
+			                        </div>	                        
+			                        <div id="included" style="height:60px;margin-top:30px;">
+			                            <div style="height:20px;font-size:14px;">
+			                                Included Packages:
+			                            </div>
+			                            <div>
+			                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
+			                                <div name="items" style="float:left;">
+			                                	<c:forEach var="product" items='${pack.get("products")}'>
+			                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
+												</c:forEach>	
+			                                </div>
+			                            </div>
+			                        </div>
+			
+				                    <c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+				                        <div style="height:100px;margin-top:20px;">
+				                            <div style="float:left;height:20px;font-size:14px;">
+				                                Cost Detail:
+				                            </div>
+				                            <div style="float:left; width:350px; padding-left:10px;" class="table-list">
+				                                <table cellspacing="0" cellpadding="0" class="list">
+				                                    <tr class="title">
+				                                        <th>Cost</th>
+				                                        <th>Amount</th>
+				                                    </tr>
+				                                    <c:forEach var="cost" items='${parcelR.get("costs")}'>
+					                                    <tr>
+					                                        <td> ${cost.get("name")} </td>
+					                                        <td> ${cost.get("value")}  </td>
+					                                    </tr>
+				                          			</c:forEach>
+				                                </table>
+				                            </div>
+				                        </div>
+			                        </c:forEach>
+			                     </div>
+		                    </c:forEach>               
+						</c:forEach>
 					</div>
-					
-					<c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
-                    <div id="cost${index.index}${testIndex.index}" style="padding-left:20px;display:none;" class="block">
-                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
-                            Route ${index.count}
-                        </div>	
-                        <div id="route_detail" style="height:30px;">
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    From:
-                                </div>
-                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-                                    Store 010
-                                </div>
-                            </div>
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    To:
-                                </div>
-                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
-                                    5000 Forbes Ave, Pitsburgh, PA 15213
-                                </div>
-                            </div>
-                        </div>	                        
-                        <div id="included" style="height:60px;margin-top:30px;">
-                            <div style="height:20px;font-size:14px;">
-                                Included Packages:
-                            </div>
-                            <div>
-                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
-                                <div name="items" style="float:left;">
-                                	<c:forEach var="product" items='${pack.get("products")}'>
-                                    	<div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
-									</c:forEach>	
-                                </div>
-                            </div>
-                        </div>
-
-	                    <c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
-                        <div style="height:100px;margin-top:20px;">
-                            <div style="float:left;height:20px;font-size:14px;">
-                                Cost Detail:
-                            </div>
-                            <div style="float:left; width:350px; padding-left:10px;" class="table-list">
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Cost</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                    <c:forEach var="cost" items='${parcelR.get("costs")}'>
-	                                    <tr>
-	                                        <td> ${cost.get("name")} </td>
-	                                        <td> ${cost.get("value")}  </td>
-	                                    </tr>
-                          			</c:forEach>
-                                </table>
-                            </div>
-                        </div>
-                        </c:forEach>
-                        </c:forEach>
-                    </div>
-					</c:forEach>
                 </div>
        
 
