@@ -55,7 +55,9 @@ public class TestUtil {
 	@Test
 	public void testRule2() throws Exception {
 		//System.out.println(InventoryDAO.getInstance().(1, 1));
-		System.out.println(RuleDAO.getInstance().getRuleByName("Default Minimum Package Threshold"));
+		Rule rule = RuleDAO.getInstance().getRuleByName("Default Filter Stock");
+		
+		System.out.println(RuleDAO.getInstance().getDescriptionByRule(rule)[0]);
 	}
 	
 //	@Test

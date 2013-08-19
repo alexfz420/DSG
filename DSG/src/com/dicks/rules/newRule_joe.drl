@@ -41,9 +41,9 @@ rule "Default Filter Stock"
 	salience 950
 	//agenda-group "first"
     when    	
-    	$item : Product()
+    	$order : Orders()
     	$store : Store()
-    	eval(!InventoryDAO.getInstance().containProduct($store, $item))
+    	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
     	$logger : EngineLog()
     then
     	$logger.addLog("Default Filter Stock", "store "+$store.getStoreId()+ " retracted by rule filter stock2");

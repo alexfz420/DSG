@@ -168,8 +168,7 @@ public class PlaceOrder {
 		}	
 		
 		// Add logs to database
-		
-		
+				
 		return "success";	
 	}
 

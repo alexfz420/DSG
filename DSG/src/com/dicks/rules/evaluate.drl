@@ -89,9 +89,7 @@ rule "generate test results"
 				modify($pack){ setAllocated(true); }
 				//$logger.addLog("**Test result: " + testR);
 				//System.out.println("test result: " + testR);
-			} else {
-				
-			}		
+			} 	
 			modify($test){ setTested(true); }
 		}
 end
@@ -116,21 +114,16 @@ rule "for not splitable packages"
 		$p : PackageE((!$p.isSplitable()) && !isAllocated())
 		//$logger : EngineLog()
 	then
-//		System.out.println("split num: " + $p.getSplitNum());
-//		System.out.println("product size: " + $p.getProducts().size());
-//		System.out.println("eval: " + (($p.getSplitNum() == $p.getProducts().size()&& !$p.isAllocated())));
-		//$logger.addLog("--Unable to handle this package " + $p + ", handed to vendor");
 		System.out.println("Unable to handle this package " + $p + ", handed to vendor");
+		modify ($p) {setUnable(true);}
 		modify ($p) {setAllocated(true);}
-//		System.out.println("handle this package " + $p);
-//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
 end
 
 rule "get to evaluate"
 	salience -1
 	agenda-group "split"
 	when
-		$p : PackageE(isAllocated())
+		$p : PackageE(isAllocated() || isUnable())
 		//$logger : EngineLog()
 	then
 		//$logger.addLog("**" + $p + " has been allocated.");
