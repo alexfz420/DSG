@@ -88,6 +88,12 @@ public class EngineLog {
 				//System.out.println("categories: " + Arrays.toString(categories));
 				log.setCategories(sb.toString());	
 			}				
+			String[] strings = RuleDAO.getInstance().getDescriptionByRule(rule);
+			System.out.println("conditions: " + strings[0]);
+			System.out.println("actions: " + strings[1]);
+			log.setConditions(strings[0]);
+			log.setActions(strings[1]);
+			
 			log.setRule(rule);
 			log.setIndex(count++);
 			logs.add(log);
@@ -105,6 +111,8 @@ public class EngineLog {
 		private ArrayList<String> logs;
 		private Rule rule;
 		private String categories;
+		private String conditions;
+		private String actions;
 		
 		public LogE(String name, ArrayList<String> logs) {
 			this.name = name;
@@ -149,6 +157,22 @@ public class EngineLog {
 
 		public void setCategories(String categories) {
 			this.categories = categories;
+		}
+
+		public String getConditions() {
+			return conditions;
+		}
+
+		public void setConditions(String conditions) {
+			this.conditions = conditions;
+		}
+
+		public String getActions() {
+			return actions;
+		}
+
+		public void setActions(String actions) {
+			this.actions = actions;
 		}
 	}
 }

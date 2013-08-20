@@ -333,8 +333,7 @@ public class Rule implements java.io.Serializable {
 
 	}
 
-	public String[] translateBack(String s1){
-		
+	public String[] translateBack(String s1){		
 		s1 = s1.replace("=", "==");
 		String[] s2 = s1.split(",");
 		System.out.println("translated back");

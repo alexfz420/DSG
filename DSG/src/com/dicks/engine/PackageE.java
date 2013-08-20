@@ -18,6 +18,7 @@ public class PackageE {
 	private boolean forRemain;
 	private boolean allocated;
 	private boolean splitable = true;
+	private boolean unable = false;
 	private ArrayList<PackageTestResult> bestResults = new ArrayList<PackageTestResult>();
 	private JSONArray splits = new JSONArray();
 
@@ -127,6 +128,7 @@ public class PackageE {
 		
 		JSONObject packageE = new JSONObject();
 		packageE.put("splitNum", this.splitNum);
+		packageE.put("unable", this.isUnable());
 		JSONArray productList = new JSONArray();
 		for (Product p : map.keySet()) {
 			JSONObject product = new JSONObject();
@@ -252,5 +254,13 @@ public class PackageE {
 
 	public void setBestResults(ArrayList<PackageTestResult> bestResults) {
 		this.bestResults = bestResults;
+	}
+
+	public boolean isUnable() {
+		return unable;
+	}
+
+	public void setUnable(boolean unable) {
+		this.unable = unable;
 	}
 }
