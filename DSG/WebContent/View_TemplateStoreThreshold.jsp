@@ -205,6 +205,8 @@ function goBack(){
                                 <option value="all">All</option> 
                                 <option value="any">Any</option>
                             </select> of the following conditions are met&#58;
+                            <textarea id="tags" name = "storeProduct" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in product category;" disabled>${prodd}</textarea>
+                    	
                         </div>  
                         <br/>
                        <div>

@@ -23,6 +23,16 @@ public class ProductDAO extends BaseDao<Product> {
 	public void createProduct(Product product) throws Exception {
 		super.create(product);
 	}
+	
+	
+	public String[] getAllNames() throws Exception{
+		List<Product> list = (ArrayList<Product>)super.getList();
+		String[] names = new String[list.size()];
+		for(int i = 0; i<list.size() ;i++){
+			names[i] = list.get(i).getProdName()+"";
+		}
+		return names;
+	}
 
 	public Product getById(Integer id) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();

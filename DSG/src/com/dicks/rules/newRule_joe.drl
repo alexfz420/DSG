@@ -91,25 +91,19 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
-rule  "Threshold for Tmac"
-    salience 848
+rule  "Pilly and Kobe"
+    salience 846
     when
-        $o : Orders()
+        $order : Orders($z:shippingZip)
         $orderE : OrderE()
-        $i : Product( ((Length > 1)||( Width > 2)||( Height > 3)||( Weight > 4))&& (( sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $product : Product((( prodName.equals("Kobe3"))), $id :prodId)
+        $s: Store( (( storeName.equals("Pilly Store1")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 1 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 1 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.5 ))
         $logger: EngineLog()
     then
-        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
-        {
-            $logger.addLog("Threshold for Tmac","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            PackageE p = new PackageE($o);
-            p.addProduct($i,1);
-            insert (p);
-            $i.minPackage();
-            $logger.addLog("Threshold for Tmac",p.toString()); 
-        }
-        retract($i);
+        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("Pilly and Kobe","Store "+$s.getStoreName()+" is successfully retracted");
+        retract($s);
 end
 
 rule "Insert Package for Remaining Products"
@@ -141,4 +135,3 @@ rule "Wrap up Remaining Products"
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end
 
- 

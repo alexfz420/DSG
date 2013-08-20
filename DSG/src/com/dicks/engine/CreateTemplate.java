@@ -186,6 +186,9 @@ public class CreateTemplate {
 	    		  	 }
 	    		  	 else
 	    		  	 {
+	    		  		 for (int x = 0; x<routes.length;x++){
+	    		  			 System.out.println("this route !!!!"+routes[x]);
+	    		  		 }
 	    		  		 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,
 							 					attributes,operators,values,condition, routes,actions,flag, "1",false);
 	    		  	 }

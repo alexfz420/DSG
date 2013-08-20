@@ -86,7 +86,7 @@ public class WriteDrl {
 						//System.out.println("This is the new Store Filter rule created by the system!!!!");
 						byte[] contentInBytes = createStoreRule(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 								ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
-								ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
+								ruleFiles[i].getActions(),ruleFiles[i].getRoutes(),ruleFiles[i].getFlag()).getBytes();
 						fos.write(contentInBytes);
 					}
 					else if (ruleFiles[i].getType().equalsIgnoreCase("3")){
@@ -100,13 +100,12 @@ public class WriteDrl {
 					//System.out.println("Done");
 				}
 			}
-			fos.write((" ").getBytes());
 			fos.flush();
 			fos.close();
 			fis.close();
 			//System.out.println("New drl file is created!");
 		} catch(Exception e){
-			System.out.println("error: " + e);
+			System.out.println("error writing drl: " + e);
 		} 
 
 		//threshold abc = new threshold("hold");
@@ -136,12 +135,15 @@ public class WriteDrl {
 	}
 
 	public String createStoreRule(String ruleName,String type, int priority, String[] object, String[] attribute, 
-			String[] operator, String[] values,String[] actions,String flag){
+			String[] operator, String[] values,String[] actions,String[] routes,String flag){
 		StringBuffer newRule = new StringBuffer();
 		newRule.append(writeRuleType(ruleName,priority));
-		newRule.append(writeWhenStoreRule(object,attribute,operator,values,flag));
+		
+		newRule.append(writeWhenStoreRule(object,attribute,operator,values,routes,flag));
+		System.out.println("when"+newRule.toString());
+		
 		newRule.append(writeThenStoreRule(actions, ruleName));
-		//System.out.println(newRule.toString());
+		System.out.println(newRule.toString());
 		return newRule.toString();
 	}
 
@@ -262,7 +264,7 @@ public class WriteDrl {
 	}
 
 	   public String writeWhenStoreRule(String[] splits, String[] splitAttribute, 
-			   String[] splitOperator, String[] splitValue,String flag){
+			   String[] splitOperator, String[] splitValue,String[] product, String flag){
 
 		   //first product, special case it if the input is "all"
 		   StringBuffer multiObject = new StringBuffer();
@@ -280,7 +282,25 @@ public class WriteDrl {
 				}
 				multiObject.append(")");
 			}
+			
+			StringBuffer multiProduct = new StringBuffer();
+			
+			if (product[0].equals("ALL")){
+				multiProduct.append("");
+			}
+			else{
+				multiProduct.append("(( prodName.equals(\""+product[0]+"\"))");
 
+				//combing all the other products
+				//sS System.out.println("splits.size: " + splits.length);
+				for (int i = 1; i < product.length; i++){
+					multiProduct.append("|| (prodName.equals(\""+product[i]+"\"))");
+					//System.out.println("add second product");
+				}
+				multiProduct.append(")");
+			}
+			
+			System.out.println("sku"+multiProduct.toString());
 
 
 		   /*System.out.println("multi "+multiObject.toString());
@@ -314,7 +334,8 @@ public class WriteDrl {
 			   		"\")))"+myReturn);
 			multiple stores 
 			*/
-		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
+		   
+		   tmp.append(myTab+myTab+"$product : Product("+multiProduct.toString()+", $id :prodId)"+myReturn);
 		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+"\")))"+myReturn);
 
 		   for (int i = 0; i < splitAttribute.length; i++){

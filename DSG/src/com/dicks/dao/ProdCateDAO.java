@@ -109,6 +109,7 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		
 		ProdCate[] result = (ProdCate[])storeCates1.toArray(new ProdCate[storeCates1.size()]); 
 		 return result;
+		
 	}
 
 	public ProdCate[] getProdCategoryListById(String id) throws Exception {
