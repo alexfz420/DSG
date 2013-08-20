@@ -293,11 +293,12 @@
 		                        </div>
 		                        
 	                            <c:forEach var="split" items='${pack.get("splits")}' varStatus="splitIndex">
+	                            <div>
 		                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
 		                                Split ${splitIndex.index}
 		                            </div>	                            
 		                            <c:forEach var="obj" items='${split}'>	
-			                            <div name="product" style="float:left;height:20px;font-size:14px;width:110px;padding-left:10px;">
+			                            <div name="product" style="float:left;height:auto;font-size:14px;width:110px;padding-left:10px;">
 				                            {<c:forEach var="p" items='${obj.get("products")}' varStatus="index">
 												${p.get("prodName")} (${p.get("quantity")}) 
 											</c:forEach>}
@@ -311,12 +312,14 @@
 			                                </div>
 			                            </div>											
 									</c:forEach>
+									</div>
 								</c:forEach>
 								<c:if test="${pack.unable == true}" >
 								  <div style="height:20px;font-size:14px;width:250px;">
 								  	<h2> Unable to handle this package. </h2>
 								  </div>
-								</c:if> 	
+								</c:if> 
+									
                         	</div>             
 						</c:forEach>
 						
@@ -329,7 +332,7 @@
 		                        
 		                        <div id="route_detail" style="height:30px;">
 		                            <div style="height:20px;">
-		                                <div style="float:left;height:10px;width:50px;font-size:12px;">
+		                                <div style="float:left;height:auto;width:50px;font-size:12px;">
 		                                    From:
 		                                </div>
 		                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
@@ -422,9 +425,9 @@
 			                                    From:
 			                                </div>
 			                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-			                                	<c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+			                                	<c:forEach var="testResult1" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
 			                                		<c:if test="${testIndex.index == 0}" >
-				                                		<c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+				                                		<c:forEach var="parcelR" items='${testResult1.get("results")}' varStatus="parcelIndex">
 				                                    		${parcelR.get("source")}
 				                                    	</c:forEach>
 			                                    	</c:if>

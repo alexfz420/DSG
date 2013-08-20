@@ -105,7 +105,7 @@ $( "#datepickerend" ).datepicker();
             <div>
             <span>Start Date: <input type="text" id="datepickerstart" /></span>&nbsp;&nbsp;
             <span>End Date: <input type="text" id="datepickerend" /></span>&nbsp;&nbsp;
-            <span>Order Status: 
+            <br/><span>Order Status: 
             <select class="search"><option>All</option><option>Received</option><option>In Process</option><option>Allocated</option><option>Reallocated</option>
             </select></span>&nbsp;&nbsp;
             <span>Order #: <input type="text" class="text"/></span>

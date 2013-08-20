@@ -228,7 +228,7 @@ public class RuleDAO extends BaseDao<Rule> {
 	private static void buildDictionary(){
 		if(dictionary!=null) return;
 		dictionary = new HashMap<String, String>();
-		dictionary.put(">","is bigger than");
+		dictionary.put(">","is larger than");
 		dictionary.put("<","is less than");
 		dictionary.put("<","equals to");
 		dictionary.put("miniumPackage","this package will be splitted");

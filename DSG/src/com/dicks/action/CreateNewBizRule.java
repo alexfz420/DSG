@@ -32,6 +32,18 @@ public class CreateNewBizRule {
 	public String prodCate;
 	public String storeCate;
 	public String storeProduct;
+	public String storeName;
+	public Rule[] preRule;
+	public Rule[] midRule;
+	public Rule[] lastRule;
+	
+	public void setStoreName(String s){
+		this.storeName = s;
+	}
+	
+	public String getStoreName(){
+		return storeName;
+	}
 	
 	public void setStoreProduct(String s){
 		this.storeProduct = s;
@@ -202,7 +214,22 @@ public class CreateNewBizRule {
 	public String gototemplate(){
 		String[] tmp2 = null;
 		String[] tmp3 = null;
-		
+		String[] tmp4 = null;
+		//get all storeNames
+		try {
+			tmp4 = StoreDAO.getInstance().getAllNames();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		StringBuffer storeNames = new StringBuffer();
+		storeNames.append(tmp4[0]);
+		for (int i = 1;i<tmp4.length;i++){
+			//System.out.println(tmp2[i]);
+			storeNames.append(","+tmp4[i]);
+		}
+		storeName = storeNames.toString();
+		//get all product Names
 		try {
 			tmp2 = ProductDAO.getInstance().getAllNames();
 		} catch (Exception e) {
@@ -215,6 +242,7 @@ public class CreateNewBizRule {
 			//System.out.println(tmp2[i]);
 			cate.append(","+tmp2[i]);
 		}
+		//Get all store category names
 		try {
 			tmp3 = StoreCateDAO.getInstance().getStoreCateNames();
 		} catch (Exception e) {
@@ -236,15 +264,52 @@ public class CreateNewBizRule {
 		System.out.println(rulename);
 		System.out.println(templatename);
 		System.out.println(categoryname);
+		//getting 3 tables;
+		int pre = 0;
+		int mid = 0;
+		int last = 0;
+		try {
+			allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
+		//System.out.println("rule Length!!!"+allRule.length);
+		
+		for (int i = 0; i<allRule.length;i++){
+			if (allRule[i].getType().equals("9")){
+				if (allRule[i].getPriority()>0){
+					pre++;
+				}
+				else{
+					last++;
+				}
+			}
+		}
+		mid = allRule.length-pre-last;
+		//System.out.println("all rule number is "+allRule.length);
+		//System.out.println("pre rule number is "+pre);
+		//System.out.println("mid rule number is "+mid);
+		//System.out.println("last rule number is "+last);
+		preRule = new Rule[pre];
+		midRule = new Rule[mid];
+		lastRule = new Rule[last];
+		for (int i = 0; i<pre;i++){
+			preRule[i] = allRule[i];
+			//System.out.println("Pre Rule"+allRule[i].getRuleName());
+		}
+		for (int i = pre,j=0;i<(pre+mid);i++,j++){
+			midRule[j] = allRule[i];
+			//System.out.println("Mid Rule"+allRule[i].getRuleName());
+		}
+		for (int i = (pre+mid),j=0; i < allRule.length; i++,j++){
+			lastRule[j] = allRule[i];
+			//System.out.println("Last Rule"+allRule[i].getRuleName());
+		}
 		if(templatename.equals("product_threshold")){
 			
-			try {
-				allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			
 			
 			//setAllRule(allRule);
 			/*for (int i = 0 ;  i < allRule.length; i++){
@@ -258,26 +323,14 @@ public class CreateNewBizRule {
 			return "goToProductThreshold";
 		}
 		else if(templatename.equals("special_route")){
-			try {
-				allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			setAllRule(allRule);
+			
 			des = des.replace(" ","%20");
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
 			return "goToSpecial";
 		}
 		else if(templatename.equals("store_threshold")){
-			try {
-				allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			setAllRule(allRule);
+			
 			des = des.replace(" ","%20");
 			rulename = rulename.replace(" ","%20");
 			categoryname = categoryname.replace(" ","%20");
