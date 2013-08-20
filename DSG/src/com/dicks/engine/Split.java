@@ -1,15 +1,14 @@
 package com.dicks.engine;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
 
-import org.drools.compiler.lang.DRL5Expressions.operator_key_return;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ClassObjectFilter;
 import org.kie.internal.KnowledgeBase;
@@ -22,20 +21,10 @@ import org.kie.internal.logger.KnowledgeRuntimeLogger;
 import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
-import com.dicks.pojo.Orders;
-import com.dicks.pojo.Rule;
-import com.dicks.dao.InventoryDAO;
-import com.dicks.dao.OrdersDAO;
-import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleDAO;
-import com.dicks.dao.StoreDAO;
-import com.dicks.engine.PackageTest;
-import com.dicks.engine.PackageTestResult;
-import com.dicks.engine.Parcel;
 import com.dicks.pojo.Product;
-import com.dicks.engine.PackageE;
+import com.dicks.pojo.Rule;
 import com.dicks.pojo.Store;
-import com.dicks.engine.Util;
 
 public class Split {
 	private EngineLog stage2;
@@ -59,20 +48,13 @@ public class Split {
 		this.stage3 = stage3;
 	}
 
-	public static void main(String[] args) {					
-//		ArrayList<PackageTestResult> results = getTestResult(p1, order);
-//		
-//		for (PackageTestResult r : results) {
-//			System.out.println(r);
-//		}		
-	}
 	
 	@SuppressWarnings("restriction")
-	public Split(Collection<PackageE> packages, Collection<Store> stores, EngineLog stage2, Collection<PackageTestResult> allocatedResults) throws Exception {
+	public Split(Collection<PackageE> packages, Collection<Store> stores, Collection<PackageTestResult> allocatedResults) throws Exception {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
 		
-		this.setStage2(stage2);
+		this.stage2 = new EngineLog(2);
 		this.stage3 = new EngineLog(3);
 		
 		ArrayList<Rule> rules = RuleDAO.getInstance().getRuleByType("6");
@@ -85,7 +67,6 @@ public class Split {
 			Util.attribute = rule.getAttribute();
 			System.out.println("attribute: " + Util.attribute);
 		}
-
 
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 		kbuilder.add(ResourceFactory.newFileResource(new File("src/com/dicks/rules/evaluate.drl")), ResourceType.DRL);
@@ -138,14 +119,39 @@ public class Split {
 		logger.close();
 		ksession.dispose();
 		
-		for (PackageTestResult r : allocatedResults) {
-			stage3.addLog("Allocated Results", r.toString());
+//		for (PackageTestResult r : allocatedResults) {
+//			stage3.addLog("Allocated Results", r.toString());
+//		}
+//		
+//		for (PackageTestResult r : newAllocatedResults) {
+//			stage3.addLog("Allocated Results", r.toString());
+//		}
+		
+		JSONObject stage2Logs = new JSONObject();
+		JSONArray packageJson = new JSONArray();
+		
+		for (PackageE pack : packages) {
+			packageJson.add(pack.getJson());
+		}
+		stage2Logs.put("packages", packageJson);
+		stage2Logs.put("totalStores", stores.size());
+		
+		StringWriter out = new StringWriter();
+		stage2Logs.writeJSONString(out);
+		String jsonText = out.toString();	
+		System.out.println("stage2Logs: " + jsonText);
+		stage2.addLog("Cost Calculation", jsonText);	
+		
+		JSONArray packageJson3 = new JSONArray();
+		for (PackageE pack : packages) {
+			packageJson3.add(pack.getStage3Json());
 		}
 		
-		for (PackageTestResult r : newAllocatedResults) {
-			stage3.addLog("Allocated Results", r.toString());
-		}
-		
+		out = new StringWriter();
+		packageJson3.writeJSONString(out);
+		jsonText = out.toString();	
+		System.out.println("stage3Logs: " + jsonText);
+		stage3.addLog("Evaluation", jsonText);
 	}
 
 	public static ArrayList<PackageTest> getTests(PackageE pack) {

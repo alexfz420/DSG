@@ -22,48 +22,6 @@ public class SplitGenerater {
 	public static void main(String[] args) {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
-
-		// System.out.println(Spilt.getCombinations(10, 4));
-//		Item[] items = new Item[5];
-//		items[0] = new Item(0);
-//		items[1] = new Item(1);
-//		items[2] = new Item(2);
-//		items[3] = new Item(3);
-//		items[4] = new Item(4);
-//		System.out.println(SplitGenerater.getCombinations(5, 2));
-//		Combination[] combinations = SplitGenerater
-//				.getCombinations(5, 2, items);
-//		System.out.println(combinations[0].getPakages()[0].getItems()[3]
-//				.getIndex());
-//
-//		Product shoes = new Product(1 + "", "shoes", 50, 10, 2);
-//
-//		Product hat = new Product(2 + "", "hat", 10, 4, 2);
-//		Product shirt = new Product(3 + "", "shirt", 20, 8, 5);
-//
-//		Orders order = null;
-//		try {
-//			order = OrdersDAO.getInstance().getById(2);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		PackageE p1 = new PackageE(order);
-//		p1.addProduct(shoes);
-//		PackageE p2 = new PackageE(order);
-//		p2.addProduct(hat);
-//		p2.addProduct(shirt);
-//		p2.addProduct(shoes);
-//		p2.setSplitNum(1);
-//
-//		ArrayList<PackageTest> tests = getTests(p2);
-//
-//		// System.out.println("size: " + tests.size());
-//
-//		for (PackageTest t : tests) {
-//			System.out.println(t);
-//		}
 	}
 
 	public static ArrayList<PackageTest> getTests(PackageE pack) {
@@ -96,23 +54,6 @@ public class SplitGenerater {
 			}
 			results.add(t);
 		}
-
-		// Combination[] combinations = new Combination[methods.length];
-		// for(int k=0;k<methods.length;k++){
-		// combinations[k] = new Combination();
-		// String[] packageMethod = methods[k].split("/");
-		// Package_M[] packages = new Package_M[packageMethod.length];
-		// combinations[k] .setPakages(packages);
-		// for(int l = 0;l<packageMethod.length ;l++){
-		// packages[l] = new Package_M();
-		// String[] itemMethod = packageMethod[l].split(",");
-		// Item[] items1 = new Item[itemMethod.length];
-		// packages[l].setItems(items1);
-		// for(int m=0; m<itemMethod.length;m++){
-		// items1[m] = items[Integer.valueOf(itemMethod[m])];
-		// }
-		// }
-		// }
 		return results;
 	}
 

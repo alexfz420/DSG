@@ -3,663 +3,2037 @@
   <type>4</type>
   <activationId>Explode Package [1]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>for splitable packages [1]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>add splits [1]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>1</factId>
-  <objectToString>[AJ13, AJ13]</objectToString>
+  <objectToString>[Kayak1]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>Explode Package [2]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>for splitable packages [2]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>add splits [2]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>2</factId>
-  <objectToString>[Kayak1]</objectToString>
+  <objectToString>[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>Explode Package [3]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>for splitable packages [3]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>add splits [3]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>3</factId>
-  <objectToString>[Kobe3]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>Explode Package [4]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>for splitable packages [4]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>add splits [4]</activationId>
-  <rule>add splits</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>4</factId>
-  <objectToString>[Kobe3]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>Explode Package [5]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>for splitable packages [5]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>add splits [5]</activationId>
-  <rule>add splits</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>5</factId>
   <objectToString>[Kayak1]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
-  <factId>6</factId>
+  <factId>4</factId>
   <objectToString>Store: 1</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>Explode Package [3]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>Explode Package [3]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [3]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [5, 3, 6]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](6); $test=Package test: [[Parcel: [Kayak1 (1) ]]](5); $pack=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>5</factId>
+  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>for splitable packages [3]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [7, 2, 8]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](8); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (3) ]]](7); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>7</factId>
-  <objectToString>store: 3</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>Explode Package [5]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>Explode Package [5]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>for splitable packages [5]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>generate test results [8, 5, 9]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](9); $test=Package test: [[Parcel: [Kayak1 (1) ]]](8); $pack=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>8</factId>
-  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>for splitable packages [5]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>for splitable packages [4]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>generate test results [10, 4, 11]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](11); $test=Package test: [[Parcel: [Kobe3 (1) ]]](10); $pack=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>10</factId>
-  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>for splitable packages [4]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>for splitable packages [3]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>generate test results [12, 3, 13]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](13); $test=Package test: [[Parcel: [Kobe3 (1) ]]](12); $pack=[Kobe3](3)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>12</factId>
-  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>for splitable packages [3]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>for splitable packages [2]</activationId>
-  <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>generate test results [14, 2, 15]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>14</factId>
-  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (3) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>for splitable packages [2]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>for splitable packages [1]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>generate test results [16, 1, 17]</activationId>
+  <activationId>generate test results [9, 1, 10]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](17); $test=Package test: [[Parcel: [AJ13 (2) ]]](16); $pack=[AJ13, AJ13](1)</declarations>
+  <declarations>$stores=[Store: 1](10); $test=Package test: [[Parcel: [Kayak1 (1) ]]](9); $pack=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
-  <factId>16</factId>
-  <objectToString>Package test: [[Parcel: [AJ13 (2) ]]]</objectToString>
+  <factId>9</factId>
+  <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>for splitable packages [1]</activationId>
   <rule>for splitable packages</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>generate test results [16, 1, 17]</activationId>
+  <activationId>generate test results [9, 1, 10]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](17); $test=Package test: [[Parcel: [AJ13 (2) ]]](16); $pack=[AJ13, AJ13](1)</declarations>
+  <declarations>$stores=[Store: 1](10); $test=Package test: [[Parcel: [Kayak1 (1) ]]](9); $pack=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
-  <factId>18</factId>
-  <objectToString>Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67</objectToString>
+  <factId>11</factId>
+  <objectToString>Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>5</type>
   <activationId>add splits [1]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>get to evaluate [1]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>evaluate package results [1, 19]</activationId>
+  <activationId>evaluate package results [1, 12]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](19); $p=[AJ13, AJ13](1)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](12); $p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>1</factId>
-  <objectToString>[AJ13, AJ13]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>2</type>
-  <factId>16</factId>
-  <objectToString>Package test: [[Parcel: [AJ13 (2) ]]]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>generate test results [16, 1, 17]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](17); $test=Package test: [[Parcel: [AJ13 (2) ]]](16); $pack=[AJ13, AJ13](1)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>generate test results [14, 2, 15]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>20</factId>
-  <objectToString>Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>5</type>
-  <activationId>add splits [2]</activationId>
-  <rule>add splits</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>get to evaluate [2]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>evaluate package results [2, 21]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](21); $p=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>2</type>
-  <factId>2</factId>
   <objectToString>[Kayak1]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
-  <factId>14</factId>
+  <factId>9</factId>
   <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>generate test results [14, 2, 15]</activationId>
+  <activationId>generate test results [9, 1, 10]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](15); $test=Package test: [[Parcel: [Kayak1 (1) ]]](14); $pack=[Kayak1](2)</declarations>
+  <declarations>$stores=[Store: 1](10); $test=Package test: [[Parcel: [Kayak1 (1) ]]](9); $pack=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>generate test results [12, 3, 13]</activationId>
+  <activationId>generate test results [7, 2, 8]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](13); $test=Package test: [[Parcel: [Kobe3 (1) ]]](12); $pack=[Kobe3](3)</declarations>
+  <declarations>$stores=[Store: 1](8); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (3) ]]](7); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>7</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [7, 2, 8]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](8); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (3) ]]](7); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [5, 3, 6]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](6); $test=Package test: [[Parcel: [Kayak1 (1) ]]](5); $pack=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>1</type>
-  <factId>22</factId>
-  <objectToString>Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61</objectToString>
+  <factId>13</factId>
+  <objectToString>Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>Explode Package [3]</activationId>
+  <rule>Explode Package</rule>
+  <declarations>$p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>5</type>
   <activationId>add splits [3]</activationId>
   <rule>add splits</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
   <activationId>get to evaluate [3]</activationId>
   <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>evaluate package results [3, 23]</activationId>
+  <activationId>evaluate package results [3, 14]</activationId>
   <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](23); $p=[Kobe3](3)</declarations>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](14); $p=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
   <factId>3</factId>
-  <objectToString>[Kobe3]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>2</type>
-  <factId>12</factId>
-  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>generate test results [12, 3, 13]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](13); $test=Package test: [[Parcel: [Kobe3 (1) ]]](12); $pack=[Kobe3](3)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>generate test results [10, 4, 11]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](11); $test=Package test: [[Parcel: [Kobe3 (1) ]]](10); $pack=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>24</factId>
-  <objectToString>Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>5</type>
-  <activationId>add splits [4]</activationId>
-  <rule>add splits</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>get to evaluate [4]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>evaluate package results [4, 25]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](25); $p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>2</type>
-  <factId>4</factId>
-  <objectToString>[Kobe3]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>2</type>
-  <factId>10</factId>
-  <objectToString>Package test: [[Parcel: [Kobe3 (1) ]]]</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>generate test results [10, 4, 11]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](11); $test=Package test: [[Parcel: [Kobe3 (1) ]]](10); $pack=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>generate test results [8, 5, 9]</activationId>
-  <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](9); $test=Package test: [[Parcel: [Kayak1 (1) ]]](8); $pack=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>1</type>
-  <factId>26</factId>
-  <objectToString>Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8</objectToString>
-</org.drools.core.audit.event.ObjectLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>Explode Package [5]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>5</type>
-  <activationId>add splits [5]</activationId>
-  <rule>add splits</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>get to evaluate [5]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>evaluate package results [5, 27]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](27); $p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ObjectLogEvent>
-  <type>2</type>
-  <factId>5</factId>
   <objectToString>[Kayak1]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ObjectLogEvent>
   <type>2</type>
-  <factId>8</factId>
+  <factId>5</factId>
   <objectToString>Package test: [[Parcel: [Kayak1 (1) ]]]</objectToString>
 </org.drools.core.audit.event.ObjectLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>generate test results [8, 5, 9]</activationId>
+  <activationId>generate test results [5, 3, 6]</activationId>
   <rule>generate test results</rule>
-  <declarations>$stores=[Store: 1, store: 3](9); $test=Package test: [[Parcel: [Kayak1 (1) ]]](8); $pack=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>Explode Package [5]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>Explode Package [5]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>get to evaluate [5]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>get to evaluate [5]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>evaluate package results [5, 27]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](27); $p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>evaluate package results [5, 27]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](27); $p=[Kayak1](5)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>evaluate package results [4, 25]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](25); $p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>evaluate package results [4, 25]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](25); $p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>evaluate package results [3, 23]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](23); $p=[Kobe3](3)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>evaluate package results [3, 23]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kobe3 (1) ], source: Store: 1, shippingCosts: 0.61, cost: 0.61], Total cost: 0.61](23); $p=[Kobe3](3)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>evaluate package results [2, 21]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](21); $p=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>evaluate package results [2, 21]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](21); $p=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>evaluate package results [1, 19]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](19); $p=[AJ13, AJ13](1)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>evaluate package results [1, 19]</activationId>
-  <rule>evaluate package results</rule>
-  <declarations>$results=[Package result: [Parcel: [AJ13 (2) ], source: Store: 1, shippingCosts: 0.67, cost: 0.67], Total cost: 0.67](19); $p=[AJ13, AJ13](1)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>get to evaluate [4]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>get to evaluate [4]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>get to evaluate [3]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>get to evaluate [3]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>get to evaluate [2]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>get to evaluate [2]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>get to evaluate [1]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>get to evaluate [1]</activationId>
-  <rule>get to evaluate</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>6</type>
-  <activationId>Explode Package [4]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
-</org.drools.core.audit.event.ActivationLogEvent>
-<org.drools.core.audit.event.ActivationLogEvent>
-  <type>7</type>
-  <activationId>Explode Package [4]</activationId>
-  <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](4)</declarations>
+  <declarations>$stores=[Store: 1](6); $test=Package test: [[Parcel: [Kayak1 (1) ]]](5); $pack=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>Explode Package [3]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[Kayak1](3)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>Explode Package [3]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kobe3](3)</declarations>
+  <declarations>$p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>2</factId>
+  <objectToString>[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [15, 2, 16]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](16); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](15); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>15</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [17, 2, 18]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](18); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]](17); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>17</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [19, 2, 20]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](20); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](19); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>19</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [21, 2, 22]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](22); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](21); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>21</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [23, 2, 24]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](24); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]](23); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>23</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [25, 2, 26]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](26); $test=Package test: [[Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]](25); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>25</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [27, 2, 28]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](28); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (3) ]]](27); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>27</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [29, 2, 30]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](30); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](29); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>29</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [31, 2, 32]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](32); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](31); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>31</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [33, 2, 34]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](34); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](33); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>33</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [35, 2, 36]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](36); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]](35); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>35</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [37, 2, 38]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](38); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](37); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>37</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [39, 2, 40]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](40); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](39); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>39</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [41, 2, 42]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](42); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](41); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>41</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [43, 2, 44]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](44); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]](43); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>43</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [43, 2, 44]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](44); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]](43); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>43</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [43, 2, 44]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](44); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]](43); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [41, 2, 42]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](42); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](41); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>41</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [41, 2, 42]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](42); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](41); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [39, 2, 40]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](40); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](39); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>39</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [39, 2, 40]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](40); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](39); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [37, 2, 38]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](38); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](37); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>37</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [37, 2, 38]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](38); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](37); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [35, 2, 36]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](36); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]](35); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>35</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [35, 2, 36]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](36); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (3) ]]](35); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [33, 2, 34]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](34); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](33); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>33</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [33, 2, 34]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](34); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](33); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [31, 2, 32]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](32); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](31); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>31</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [31, 2, 32]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](32); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](31); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [29, 2, 30]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](30); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](29); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>29</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [29, 2, 30]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](30); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](29); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [27, 2, 28]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](28); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (3) ]]](27); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>27</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [27, 2, 28]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](28); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (3) ]]](27); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [25, 2, 26]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](26); $test=Package test: [[Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]](25); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>25</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [25, 2, 26]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](26); $test=Package test: [[Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]](25); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [23, 2, 24]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](24); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]](23); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>23</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [23, 2, 24]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](24); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]](23); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [21, 2, 22]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](22); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](21); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>21</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [21, 2, 22]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](22); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](21); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [19, 2, 20]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](20); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](19); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>19</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [19, 2, 20]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](20); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](19); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [17, 2, 18]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](18); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]](17); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>17</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [17, 2, 18]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](18); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ]]](17); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [15, 2, 16]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](16); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](15); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>15</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [15, 2, 16]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](16); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](15); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>2</factId>
+  <objectToString>[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [45, 2, 46]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](46); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](45); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>45</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [47, 2, 48]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](48); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](47); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>47</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [49, 2, 50]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](50); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](49); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>49</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [51, 2, 52]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](52); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](51); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>51</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [53, 2, 54]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](54); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](53); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>53</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [55, 2, 56]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](56); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](55); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>55</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [57, 2, 58]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](58); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](57); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>57</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [59, 2, 60]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](60); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]](59); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>59</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [61, 2, 62]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](62); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](61); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>61</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [63, 2, 64]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](64); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](63); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>63</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [65, 2, 66]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](66); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](65); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>65</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [67, 2, 68]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](68); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](67); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>67</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [69, 2, 70]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](70); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](69); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>69</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [71, 2, 72]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](72); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](71); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>71</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [73, 2, 74]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](74); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](73); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>73</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [75, 2, 76]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](76); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](75); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>75</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [77, 2, 78]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](78); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](77); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>77</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [79, 2, 80]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](80); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](79); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>79</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [81, 2, 82]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](82); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](81); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>81</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [83, 2, 84]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](84); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](83); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>83</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [85, 2, 86]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](86); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](85); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>85</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [87, 2, 88]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](88); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](87); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>87</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [89, 2, 90]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](90); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](89); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>89</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [91, 2, 92]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](92); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](91); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>91</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [93, 2, 94]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](94); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (3) ]]](93); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>93</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [93, 2, 94]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](94); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (3) ]]](93); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>93</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (3) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [93, 2, 94]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](94); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (3) ]]](93); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [91, 2, 92]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](92); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](91); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>91</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [91, 2, 92]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](92); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](91); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [89, 2, 90]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](90); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](89); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>89</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [89, 2, 90]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](90); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](89); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [87, 2, 88]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](88); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](87); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>87</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [87, 2, 88]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](88); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](87); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [85, 2, 86]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](86); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](85); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>85</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [85, 2, 86]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](86); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](85); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [83, 2, 84]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](84); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](83); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>83</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [83, 2, 84]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](84); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](83); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [81, 2, 82]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](82); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](81); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>81</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [81, 2, 82]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](82); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](81); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [79, 2, 80]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](80); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](79); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>79</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [79, 2, 80]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](80); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](79); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [77, 2, 78]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](78); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](77); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>77</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [77, 2, 78]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](78); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](77); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [75, 2, 76]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](76); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](75); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>75</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [75, 2, 76]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](76); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](75); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [73, 2, 74]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](74); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](73); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>73</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [73, 2, 74]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](74); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](73); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [71, 2, 72]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](72); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](71); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>71</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [71, 2, 72]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](72); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](71); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [69, 2, 70]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](70); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](69); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>69</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [69, 2, 70]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](70); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](69); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [67, 2, 68]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](68); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](67); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>67</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [67, 2, 68]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](68); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ]]](67); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [65, 2, 66]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](66); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](65); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>65</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [65, 2, 66]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](66); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](65); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [63, 2, 64]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](64); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](63); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>63</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [63, 2, 64]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](64); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](63); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [61, 2, 62]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](62); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](61); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>61</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [61, 2, 62]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](62); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](61); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [59, 2, 60]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](60); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]](59); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>59</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [59, 2, 60]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](60); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ]]](59); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [57, 2, 58]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](58); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](57); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>57</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [57, 2, 58]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](58); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](57); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [55, 2, 56]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](56); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](55); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>55</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [55, 2, 56]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](56); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](55); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [53, 2, 54]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](54); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](53); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>53</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [53, 2, 54]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](54); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](53); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [51, 2, 52]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](52); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](51); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>51</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [51, 2, 52]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](52); $test=Package test: [[Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](51); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [49, 2, 50]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](50); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](49); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>49</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [49, 2, 50]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](50); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](49); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [47, 2, 48]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](48); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](47); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>47</factId>
+  <objectToString>Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [47, 2, 48]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](48); $test=Package test: [[Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](47); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [45, 2, 46]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](46); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](45); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>45</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [45, 2, 46]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](46); $test=Package test: [[Parcel: [Addidas Wet Suit (2) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](45); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>2</factId>
+  <objectToString>[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [95, 2, 96]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](96); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](95); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>95</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [97, 2, 98]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](98); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](97); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>97</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [99, 2, 100]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](100); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](99); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>99</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [101, 2, 102]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](102); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](101); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>101</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [103, 2, 104]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](104); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](103); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>103</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [105, 2, 106]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](106); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](105); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>105</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [107, 2, 108]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](108); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](107); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>107</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [109, 2, 110]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](110); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](109); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>109</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [111, 2, 112]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](112); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](111); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>111</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [113, 2, 114]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](114); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](113); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>113</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [113, 2, 114]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](114); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](113); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>113</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [113, 2, 114]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](114); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](113); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [111, 2, 112]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](112); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](111); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>111</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [111, 2, 112]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](112); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (2) ]]](111); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [109, 2, 110]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](110); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](109); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>109</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [109, 2, 110]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](110); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](109); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [107, 2, 108]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](108); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](107); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>107</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [107, 2, 108]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](108); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ]]](107); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [105, 2, 106]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](106); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](105); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>105</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [105, 2, 106]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](106); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (2) ], Parcel: [Nike Swimming Mask (1) ]]](105); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [103, 2, 104]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](104); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](103); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>103</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [103, 2, 104]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](104); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](103); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [101, 2, 102]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](102); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](101); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>101</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [101, 2, 102]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](102); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](101); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [99, 2, 100]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](100); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](99); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>99</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [99, 2, 100]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](100); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](99); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [97, 2, 98]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](98); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](97); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>97</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [97, 2, 98]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](98); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](97); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [95, 2, 96]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](96); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](95); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>95</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [95, 2, 96]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](96); $test=Package test: [[Parcel: [Addidas Wet Suit (2) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](95); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>2</factId>
+  <objectToString>[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>generate test results [115, 2, 116]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](116); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](115); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>115</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>for splitable packages [2]</activationId>
+  <rule>for splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>generate test results [115, 2, 116]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](116); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](115); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>115</factId>
+  <objectToString>Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>generate test results [115, 2, 116]</activationId>
+  <rule>generate test results</rule>
+  <declarations>$stores=[Store: 1](116); $test=Package test: [[Parcel: [Addidas Wet Suit (1) ], Parcel: [Addidas Wet Suit (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ], Parcel: [Nike Swimming Mask (1) ]]](115); $pack=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>for not splitable packages [2]</activationId>
+  <rule>for not splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>2</factId>
+  <objectToString>[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>add splits [2]</activationId>
+  <rule>add splits</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>for not splitable packages [2]</activationId>
+  <rule>for not splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>for not splitable packages [2]</activationId>
+  <rule>for not splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>get to evaluate [2]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>2</factId>
+  <objectToString>[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>5</type>
+  <activationId>for not splitable packages [2]</activationId>
+  <rule>for not splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>evaluate package results [2, 117]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[](117); $p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>2</factId>
+  <objectToString>[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask]</objectToString>
+</org.drools.core.audit.event.ObjectLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>for not splitable packages [2]</activationId>
+  <rule>for not splitable packages</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>get to evaluate [2]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>get to evaluate [2]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>evaluate package results [2, 117]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[](117); $p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>evaluate package results [2, 117]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[](117); $p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>evaluate package results [3, 14]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](14); $p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>evaluate package results [3, 14]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](14); $p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>evaluate package results [1, 12]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](12); $p=[Kayak1](1)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>evaluate package results [1, 12]</activationId>
+  <rule>evaluate package results</rule>
+  <declarations>$results=[Package result: [Parcel: [Kayak1 (1) ], source: Store: 1, shippingCosts: 67.8, cost: 67.8], Total cost: 67.8](12); $p=[Kayak1](1)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>get to evaluate [3]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>get to evaluate [3]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Kayak1](3)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>get to evaluate [1]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Kayak1](1)</declarations>
+</org.drools.core.audit.event.ActivationLogEvent>
+<org.drools.core.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>get to evaluate [1]</activationId>
+  <rule>get to evaluate</rule>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>Explode Package [2]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>Explode Package [2]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[Kayak1](2)</declarations>
+  <declarations>$p=[Addidas Wet Suit, Addidas Wet Suit, Nike Swimming Mask, Nike Swimming Mask, Nike Swimming Mask](2)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>6</type>
   <activationId>Explode Package [1]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>7</type>
   <activationId>Explode Package [1]</activationId>
   <rule>Explode Package</rule>
-  <declarations>$p=[AJ13, AJ13](1)</declarations>
+  <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 </object-stream>

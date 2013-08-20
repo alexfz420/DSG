@@ -45,17 +45,14 @@ public class ShipmentDAO extends BaseDao<Shipment> {
 	}
 
 	public Shipment getShipmentBySupplyDesitin(String supplyZip, String destinationZip) throws Exception {
-		//System.out.println("in get shippment");
 		List<Criterion> criterions = new ArrayList<Criterion>();
         Criterion criterion1 = Restrictions.eq("id.supplyZip", supplyZip);
         Criterion criterion2 = Restrictions.eq("id.destinationZip", destinationZip);
         criterions.add(criterion1);
         criterions.add(criterion2);
-        if (super.get(criterions) == null){
-        	System.out.println("null");
-        }
         return super.get(criterions);
 	}
+
 	
 	/*public Shipment getShipmentBySupplyDesitin(int supplyZip, int destinationZip) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
@@ -89,4 +86,5 @@ public class ShipmentDAO extends BaseDao<Shipment> {
 		if(shipment1==null) return false;
 		return true;
 	}
+
 }

@@ -55,9 +55,12 @@ public class TestUtil {
 	@Test
 	public void testRule2() throws Exception {
 		//System.out.println(InventoryDAO.getInstance().(1, 1));
+		Rule rule = RuleDAO.getInstance().getRuleByName("Default Filter Stock");
+		
+		System.out.println(RuleDAO.getInstance().getDescriptionByRule(rule)[0]);
 	}
 	
-//	@Testå
+//	@Test
 	public void testRule() {
 		try {
 			Rule r = RuleDAO.getInstance().getRuleById(1+"");

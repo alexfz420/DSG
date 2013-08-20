@@ -2,26 +2,19 @@ package com.dicks.engine;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import com.dicks.engine.PackageE;
+import com.dicks.pojo.Product;
 
 public class PackageTest {
 	private boolean tested;
 	private ArrayList<Parcel> parcels = new ArrayList<Parcel>();
 	private PackageE pack;
-//	private int zoneID;
 	
 	public PackageTest(PackageE pack) {
 		this.pack = pack;
 	}
-	
-//	public int getZoneID() {
-//		return zoneID;
-//	}
-//
-//	public void setZoneID(int zoneID) {
-//		this.zoneID = zoneID;
-//	}
 	
 	public boolean isTested() {
 		return tested;
@@ -31,7 +24,6 @@ public class PackageTest {
 		this.tested = tested;
 	}
 
-	
 	public ArrayList<Parcel> getParcels() {
 		return parcels;
 	}
@@ -50,6 +42,24 @@ public class PackageTest {
 	
 	public void addParcel(Parcel parcel) {
 		parcels.add(parcel);
+	}
+	
+	public String getText() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < parcels.size(); i++) {
+			Parcel parcel = parcels.get(i);
+			sb.append("{");
+			HashMap<Product, Integer> map = parcel.getProducts();
+			for (Product p : map.keySet()) {
+				sb.append(p.getProdName());
+				sb.append("(" + map.get(p) + ")");
+			}
+			sb.append("}");
+			if (i != parcels.size() - 1) {
+				sb.append(",");
+			}
+		}
+		return sb.toString();
 	}
 	
 	@Override

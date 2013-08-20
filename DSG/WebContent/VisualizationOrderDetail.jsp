@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
-   <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.json.simple.parser.JSONParser;"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    %>
+%>
+
  <jsp:include page="template_top.jsp" />
  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
- <ul class="nav">
+<ul class="nav">
+
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
@@ -28,54 +34,68 @@
         <li class=""><a class="recordable open" href="#" id="togglethree"
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
-                <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="routelist"><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
+                <li class="selected" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
                 <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
-                
+
             </ul>
+
+
         </li>
         <li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Place New Order</a>
+            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
             <ul class="nav-two" id="navtwo">
                 <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
             </ul>
-		</li>   
+        </li>   
     </ul>
     </div>
+<style>
+    div.title{font-size:16px;padding-bottom:30px;}
+    div.left{float:left; width:150px}
+    div.right{float:left; width:350px}
+    div.include{float:left;height:auto;width:210px;font-size:14px;padding-bottom:15px;"}
+    div.item{height:auto;font-size:12px;width:230px;padding-left:10px;padding-bottom:5px;}
+    div.split{height:auto;font-size:14px;width:120px;padding-bottom:15px;}
+    div.product{float:left;height:auto;font-size:14px;width:210px;padding-left:10px;padding-bottom:5px;}
+    div.message{height:auto;font-size:12px;padding-bottom:5px;}
+    div.address{float:left;height:auto;width:500px;font-size:12px;padding-bottom:10px;}
+    div.source{float:left;height:auto;width:50px;font-size:12px;padding-bottom:10px;}
+    div.package{float:left;padding-left:20px;height:auto;font-size:12px;padding-bottom:5px;}
+    div.item2{padding-left:30px;height:auto;font-size:12px;padding-bottom:5px;width:450px;}
+    div.subtitle{height:auto;font-size:14px;padding-bottom:15px;}
+</style>
 <script >
   function changeDiv(obj) {
-		var className= obj.className;
-		if(className=="button"){
-			var button = document.getElementsByClassName("button");
-			for(var j=1;j<=button.length;j++){
-				if(obj.id=="input"+j.toString()){
-					$("#cost"+j.toString()).show();
-				}
-				else{
-					$("#cost"+j.toString()).hide();
-				}
-			}
-			var block = document.getElementsByClassName("block");
-			for(var i in block){
-				$('#'+block[i].id).hide();
-	  		}
-		}
-		else{
-			var block = document.getElementsByClassName("block");
-			console.log("class name: " + className);
-			for(var i in block){
-				if(className==block[i].id){
-					console.log("show block id: " + block[i].id);
-					$('#'+block[i].id).show();
-				}
-				else{
-					console.log("hide block id: " + block[i].id);
-					$('#'+block[i].id).hide();
-				}
-	  		}
-			$("#cost1").hide();
-		}
+        var className = obj.className;
+        var name = obj.name;
+        if(className=="button"){
+            var block = document.getElementsByClassName("block");
+            console.log("name: " + name);
+            for(var i in block){
+                if(name==block[i].id){
+                    console.log("show block id: " + block[i].id);
+                    $('#'+block[i].id).show();
+                }
+                else{
+                    console.log("hide block id: " + block[i].id);
+                    $('#'+block[i].id).hide();
+                }
+            }
+        }
+        else{
+            var block = document.getElementsByClassName("block");
+            console.log("class name: " + className);
+            for(var i in block){
+                if(className==block[i].id){
+                    console.log("show block id: " + block[i].id);
+                    $('#'+block[i].id).show();
+                }
+                else{
+                    console.log("hide block id: " + block[i].id);
+                    $('#'+block[i].id).hide();
+                }
+            }
+        }
   }
 </script>    
 
@@ -88,9 +108,13 @@
   });
   
   $(function() {
-	$('.ui-widget-content').css("height","310px"); 
+    $('.ui-widget-content').css("height","310px"); 
   });
-  </script>
+  
+  // Add javascript
+
+
+</script>  
 
     <!-- menu bar ends -->
 
@@ -134,45 +158,42 @@
                             <ul>
                             <li style="height:30px;"><a onClick="changeDiv(this)" class="stage1AllRule">All Rules</a></li>
                             <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
-	                    		<tr>
-	           						<li style="height:30px;"><a onClick="changeDiv(this)" class="stage1rule${index.index}">Rule${index.count}: ${log.getName()}</a></li>
-	                    		</tr>								
-							</c:forEach>
+                            	<li style="height:30px;padding-bottom:10px;"><a onClick="changeDiv(this)" class="stage1rule${index.index}">Rule${index.count}: ${log.getName()}</a></li>                                </tr>                               
+                            </c:forEach>
                             </ul>
                         </div>
                         
                         <h3>Stage 2 - Delivery Option</h3>
-                        <div style="border: 1px solid #aaaaaa;">
+                        <div style="border: 1px solid #aaaaaa;" id="stage2Header">
                             <ul>
-	                            <c:forEach var="pack" items="${packages}" varStatus="index">
-	                           		<li style="height:30px;"><a onClick="changeDiv(this)" class="stage2package${index.index}">Package${index.count}</a></li>	         								
-								</c:forEach>
+                                <c:forEach var="pack" items="${packages}" varStatus="index">
+                                    <li style="height:30px;"><a onClick="changeDiv(this)" class="stage2package${index.index}">Package${index.count}</a></li>                                            
+                                </c:forEach>
                             </ul>
                         </div>
                     
                         <h3>Stage 3 - Allocation Optimization</h3>
                         <div style="border: 1px solid #aaaaaa;">
                             <ul>
-                                <li class="" style="height:30px;"><a href="VisualizationStage3-1.html">Route 1</a></li>
-                                <li class="" style="height:30px;"><a href="VisualizationStage3-2.html">Route 2</a></li>
-                                <li class="" style="height:30px;"><a href="VisualizationStage3-3.html">Route 3</a></li>
+                                <c:forEach var="pack" items="${packages}" varStatus="index">
+                                    <li style="height:30px;"><a onClick="changeDiv(this)" class="stage3route${index.index}"> Package${index.count} </a></li>                                
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
                 
                 <div id="block2" style="float:left;height:465px;width:600px;border:1px solid #ccc;border-radius:5px;overflow-y:scroll;">
-
                         <div style="padding-left:30px;padding-top:30px;" id="detail" class="block">
                             <div style="padding-bottom:30px;">
-                                <div style="float:left; width:150px">Order Date:</div>
-                                <div id="orderdate" style="float:left; width:350px">${order.orderDate}</div>
+                                <div class="left">Order Date:</div>
+                                <div id="orderdate" class="right">${order.orderDate}</div>
                             </div>
                             <div style="padding-bottom:30px;">
-                                <div style="float:left; width:150px">Shipping Address:</div>
-                                <div id="address" style="float:left; width:350px">${order.shippingAddr}</div>
+                                <div class="left">Shipping Address:</div>
+                                <div id="address" class="right">${order.shippingAddr}</div>
                             </div>
                             <div style="padding-bottom:30px;">
-                                <div style="float:left; width:150px">Order Details:</div>
+                                <div class="left">Order Details:</div>
                                 <div id="products" style="float:left; width:350px" class="table-list">
                                     <br/>
                                     <table cellspacing="0" cellpadding="0" class="list">
@@ -181,79 +202,36 @@
                                             <th>Quantity</th>
                                         </tr>
                                         <c:forEach items="${details}" var="orderdetail">
-                    						<tr>
-                        						<td>${orderdetail.getProduct().getProdName()}</td>
-                        						<td>${orderdetail.qty}</td>
-                    						</tr>
-                  						</c:forEach>
+                                            <tr>
+                                                <td>${orderdetail.getProduct().getProdName()}</td>
+                                                <td>${orderdetail.qty}</td>
+                                            </tr>
+                                        </c:forEach>
                                     </table>
-                                </div>
-                                <div style="display: block; width: 500px">
-                                	
-                                	<h1><b> Stage 1 </b></h1>
-                                	<c:forEach var="name" items="${stage1.getRuleNames()}">
-										<div> 
-											<h1> ${name} </h1>
-											<c:forEach var="logdetail" items="${stage1.getLogsByName(name)} ">
-												<p> 
-													${logdetail}
-												</p>
-											</c:forEach>
-											<br/>
-									    </div>
-									</c:forEach>
-									
-									<h1><b> Stage 2 </b></h1>
-									<c:forEach var="name" items="${stage2.getRuleNames()}">				
-										<div> 
-											<h1> ${name} </h1>
-											<c:forEach var="logdetail" items="${stage2.getLogsByName(name)} ">
-												<p> 
-													${logdetail}
-												</p>
-											</c:forEach>
-											<br/>
-									    </div>
-									</c:forEach>
-									
-									<h1><b> Stage 3 </b></h1>
-									<c:forEach var="name" items="${stage3.getRuleNames()}">				
-										<div> 
-											<h1> ${name} </h1>
-											<c:forEach var="logdetail" items="${stage3.getLogsByName(name)} ">
-												<p> 
-													${logdetail}
-												</p>
-											</c:forEach>
-											<br/>
-									    </div>
-									</c:forEach>
-									
                                 </div>
                             </div>
                         </div>
-						
-						<!-- Add block for stage 1 -->
+                        
+                        <!-- Add block for stage 1 -->
                         <div id="stage1AllRule" class="block" style="display:none;padding-left:30px;padding-top:30px;">
-                            <div style="font-size:16px;padding-bottom:30px;">All Rules</div>
+                            <div class="title">All Rules</div>
                             <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
-	                            <div id="rule${log.getIndex()}">
-	                                <div style="padding-bottom:30px;">
-	                                    <div style="float:left; width:100px">Rule ${index.count}:</div>
-	                                    <div id="rule${index.index}" style="float:left; width:350px">${log.getName()}</div>
-	                                </div>
-                                	<div style="padding-bottom:30px;padding-left:100px;"> 
-                                		<c:forEach var="logdetail" items="${log.getLogs()} ">
-                                			${logdetail} 
-                                			<br/>
-										</c:forEach>
-									</div>
-	                            </div>                            									
-							</c:forEach>
-                            
+                                <div id="rule${log.getIndex()}">
+                                    <div style="padding-bottom:30px;">
+                                        <div style="float:left; width:100px;">Rule ${index.count}:</div>
+                                        <div id="rule${index.index}" class="right">${log.getName()}</div>
+                                    </div>
+                                    <div style="padding-bottom:30px;padding-left:100px;"> 
+                                        <c:forEach var="logdetail" items="${log.getLogs()} ">
+                                            ${logdetail} 
+                                            <br/>
+                                        </c:forEach>
+                                    </div>
+                                </div>                                                              
+                            </c:forEach>
 
                             <div style="padding-bottom:30px;">
-                                <div style="float:left; width:100px">Result:</div>
+                                <div style="float:left; width:100px;">Result:</div>
                                 <div style="float:left; width:350px" class="table-list">
                                     <br/>
                                     <table cellspacing="0" cellpadding="0" class="list">
@@ -263,342 +241,271 @@
                                             <th style="width:100px;">Quantity</th>
                                         </tr>
                                         <c:forEach var="pack" items="${packages}" varStatus="index">
-                                        	<c:forEach var="product" items="${pack.getProducts()}">
-	                                            <tr>
-		                                            <td>${index.count}</td>
-		                                            <td>${product.getProdName()}</td>
-		                                            <td>1</td>
-		                                        </tr>								
-											</c:forEach>								
-										</c:forEach>
+                                            <c:forEach var="product" items='${pack.get("products")}'>
+                                                <tr>
+                                                    <td>${index.count}</td>
+                                                    <td>${product.get("prodName")}</td>
+                                                    <td>${product.get("quantity")}</td>
+                                                </tr>                               
+                                            </c:forEach>                                
+                                        </c:forEach>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        
-                        
+               
                         <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
-	                        <div id="stage1rule${index.index}" class="block" style="display:none;padding-left:30px;padding-top:30px;">
-	                            <div style="font-size:16px;padding-bottom:30px;">Rule ${index.count}</div>
-	                            <div style="padding-bottom:30px;">
-	                                <div style="float:left; width:150px">Rule Name&#58;</div>
-	                                <div id="orderdate" style="float:left; width:350px">${log.getName()}</div>
-	                            </div>
-	                            <div style="padding-bottom:30px;">
-	                                <div style="float:left; width:150px">Category&#58;</div>
-	                                <div id="orderdate" style="float:left; width:350px">${log.getCategories()}</div>
-	                            </div>
-	                            <div style="padding-bottom:30px;">
-	                                <div style="float:left; width:150px">Condition&#58;</div>
-	                                <div id="orderdate" style="float:left; width:350px">Weight exceeds 20 lbs</div>
-	                            </div>
-	                            <div style="padding-bottom:30px;">
-	                                <div style="float:left; width:150px">Action&#58;</div>
-	                                <div id="orderdate" style="float:left; width:350px">Ship this item in a separate package</div>
-	                            </div>
-	                            <div style="padding-bottom:30px;">
-	                                <div style="float:left; width:150px">Result of this rule&#58;</div>
-	                                <div id="orderdate" style="float:left; width:350px"> 
-                                		<c:forEach var="logdetail" items="${log.getLogs()} ">
-                                			${logdetail} 
-                                			<br/>
-										</c:forEach>
-									</div>
-	                            </div>
-	                        </div>								
-						</c:forEach>                        
-
-
-                        <!-- Add package for stage 2 -->	
-                        
-                        <c:forEach var="pack" items="${packages}" varStatus="index">         		
-                           	
-	                     <div id="stage2package${index.index}" class="block" style="display:none;padding-left:20px;">
-	                         <div name="package" style="height:30px;font-size:18px;margin-top:10px;">
-	                            Package ${index.count}
-	                        </div>
-	
-	                        <div id="included" style="height:40px;">
-	                            <div style="float:left;height:20px;width:110px;font-size:14px;width:120px;">
-	                                Included Items&#58;
-	                            </div>
-	                            
-	                            <div style="float:left;">
-	                            	<div name="items" style="height:20px;font-size:12px;width:200px;">
-			                            <c:forEach var="product" items="${pack.getProducts()}" varStatus="index">
-											${product.getProdName()} - quantity 1
-										</c:forEach>	                            
-	                                </div>
-	                            </div>
-	                        </div>
-	
-	                        <div id="split${index.index}" style="height:100px;">
-	                            
-	                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
-	                                Split 0
-	                            </div>
-	                            <div name="product" style="float:left;height:20px;font-size:14px;width:110px;padding-left:10px;">
-	                                {Kayak}:
-	                            </div>
-	                            
-	                            <div style="float:left;width:200px;">
-	                            	<c:choose>
-										<c:when test="${ (pack.splitNum == 0) }">
-											<div name="failed" style="height:20px;font-size:12px;">
-			                                    Failed&#58; 100/300 stores
-			                                </div>
-			                                <div name="success" style="height:20px;font-size:12px;">
-			                                    Success&#58; 200/300 stores
-			                                </div>
-										</c:when>
-										<c:otherwise>
-				                            <c:forEach begin="0" end="${pack.getSplitNum()}" varStatus="loop">
-				                                <div name="failed" style="height:20px;font-size:12px;">
-				                                    Failed&#58; 100/300 stores
-				                                </div>
-				                                <div name="success" style="height:20px;font-size:12px;">
-				                                    Success&#58; 200/300 stores
-				                                </div>
-											</c:forEach>
-			                                <div name="failed" style="height:20px;font-size:12px;">
-			                                    Failed&#58; 100/300 stores
-			                                </div>
-			                                <div name="success" style="height:20px;font-size:12px;">
-			                                    Success&#58; 200/300 stores
-			                                </div>											
-										</c:otherwise>
-									</c:choose>
-	                            </div>
-	                        </div>
-	                    </div>
-						</c:forEach>
-
-
-
-                    </div>
-
-                    <div id="stage3route1" class="block" style="display:none;padding-left:20px;">
-                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
-                            Route 1
-                        </div>
-                        
-                        <div id="route_detail" style="height:30px;">
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    From:
+                            <div id="stage1rule${index.index}" class="block" style="display:none;padding-left:30px;padding-top:30px;">
+                                <div class="title">Rule ${index.count}</div>
+                                <div style="padding-bottom:30px;">
+                                    <div class="left">Rule Name&#58;</div>
+                                    <div id="orderdate" class="right">${log.getName()}</div>
                                 </div>
-                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-                                    Store 010
+                                <div style="padding-bottom:30px;">
+                                    <div class="left">Category&#58;</div>
+                                    <div id="orderdate" class="right">${log.getCategories()}</div>
                                 </div>
-                            </div>
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    To:
+                                <div style="padding-bottom:30px;">
+                                    <div class="left">Condition&#58;</div>
+                                    <div id="orderdate" class="right">${log.getConditions()}</div>
                                 </div>
-                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
-                                    5000 Forbes Ave, Pitsburgh, PA 15213
+                                <div style="padding-bottom:30px;">
+                                    <div class="left">Action&#58;</div>
+                                    <div id="orderdate" class="right">${log.getActions()}</div>
                                 </div>
-                            </div>
-                        </div>
+                                <div style="padding-bottom:30px;">
+                                    <div class="left">Result of this rule&#58;</div>
+                                    <div id="orderdate" class="right"> 
+                                        <c:forEach var="logdetail" items="${log.getLogs()} ">
+                                            ${logdetail} 
+                                            <br/>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                            </div>                              
+                        </c:forEach>                        
 
-                        <div id="included" style="height:60px;margin-top:30px;">
-                            <div style="height:20px;font-size:14px;">
-                                Included Packages:
-                            </div>
+
+                        <!-- Add package for stage 2 -->                            
+                        <c:forEach var="pack" items="${packages}" varStatus="index">                
                             
-                            <div>
-                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package 1: </div>
-                                <div name="items" style="float:left;">
-                                    <div name="item" style="padding-left:30px;height:20px;font-size:12px;">Kayak - quantity 1</div>
+                         <div id="stage2package${index.index}" class="block" style="display:none;padding-left:30px;padding-top:30px;">
+                                <div name="package" class="title">
+                                    Package ${index.count}
                                 </div>
-                            </div>
-                        </div>
-                         <div id="rank" style="height:100px;margin-top:20px;">
-                            <div class="title" name="splitNo" style="height:20px;font-size:14px;padding-bottom:10px;">
-                                Top Ranking Route&#58;
-                            </div>
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #1 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 010</td>
-                                        <td>Kayak</td>
-                                        <td>$16.7</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input1" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #2 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 021</td>
-                                        <td>Kayak</td>
-                                        <td>$18.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input2" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #3 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 032</td>
-                                        <td>Kayak</td>
-                                        <td>$21.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input3" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #4 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 053</td>
-                                        <td>Kayak</td>
-                                        <td>$23.2</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input4" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-
-                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-                                Rank #5 Route&#58;
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Store ID</th>
-                                        <th>Product ID</th>
-                                        <th>Total Cost</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Store 013</td>
-                                        <td>Kayak</td>
-                                        <td>$24.0</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="float:left;margin-top:20px;margin-left:5px;">
-                                <input id="input5" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="cost1" style="padding-left:20px;display:none;" >
-                                                <div id="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
-                            Route 1
-                        </div>
+    
+                                <div id="included" style="height:40px;">
+                                    <div class="include">
+                                        Included Items&#58;
+                                    </div>
+    
+                                    <div style="float:left;">   
+                                       <c:forEach var="product" items='${pack.get("products")}' varStatus="index">
+                                            <div name="items" class="item">
+                                                ${product.get("prodName")} - quantity ${product.get("quantity")}                                
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                                
+                                <c:forEach var="split" items='${pack.get("splits")}' varStatus="splitIndex">
+                                    <div name="splitNo" class="split">
+                                        Split ${splitIndex.index}
+                                    </div>                              
+                                    <c:forEach var="obj" items='${split}'>  
+                                        <div name="product" class="product">
+                                            {<c:forEach var="p" items='${obj.get("products")}' varStatus="index">
+                                                ${p.get("prodName")} (${p.get("quantity")}) 
+                                            </c:forEach>}
+                                        </div>                              
+                                        <div style="float:left;width:200px;">
+                                            <div name="failed" class="message">
+                                                Failed&#58; ${stage2Obj.get("totalStores") - obj.get("storeCount")}/${stage2Obj.get("totalStores")} stores
+                                            </div>
+                                            <div name="success" class="message">
+                                                Success&#58; ${obj.get("storeCount")}/${stage2Obj.get("totalStores")} stores
+                                            </div>
+                                        </div>                                          
+                                    </c:forEach>
+                                </c:forEach>
+                                <c:if test="${pack.unable == true}" >
+                                  <div style="height:20px;font-size:14px;width:250px;">
+                                    <h2> Unable to handle this package. </h2>
+                                  </div>
+                                </c:if>     
+                            </div>             
+                        </c:forEach>
                         
-                        <div id="route_detail" style="height:30px;">
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    From:
-                                </div>
-                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-                                    Store 010
-                                </div>
-                            </div>
-                            <div style="height:20px;">
-                                <div style="float:left;height:10px;width:50px;font-size:12px;">
-                                    To:
-                                </div>
-                                <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
-                                    5000 Forbes Ave, Pitsburgh, PA 15213
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Add route for stage 3 -->
+                        <c:forEach var="pack" items="${packages}" varStatus="index">    
+                            <div id="stage3route${index.index}" class="block" style="display:none;padding-left:30px;padding-top:30px;">
+                                <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+                                    Route ${index.count}
+                                </div>  
+                                
+                                <div id="route_detail" style="height:30px;">
+                                    <div style="height:20px;">
+                                        <div class="source">
+                                            From:
+                                        </div>
+                                        <div id="source" class="address">
+                                            <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+                                                <c:if test="${testIndex.index == 0}" >
+                                                    <c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+                                                        ${parcelR.get("source")}
+                                                    </c:forEach>
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <div style="height:20px;">
+                                        <div class="source">
+                                            To:
+                                        </div>
+                                        <div id="destination" class="address">
+                                            ${order.shippingAddr}
+                                        </div>
+                                    </div>
+                                </div>                          
+                                 
+                                <div id="included" style="height:60px;margin-top:30px;">
+                                    <div class="subtitle">
+                                        Included Packages:
+                                    </div>
+                                    
+                                    <div>
+                                        <div name="packages" class="package">Package ${index.count}: </div>
+                                        <div name="items" style="float:left;">
+                                            <c:forEach var="product" items='${pack.get("products")}'>
+                                                <div name="item" class="item2">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
+                                            </c:forEach>    
+                                        </div>
+                                    </div>
 
-                        <div id="included" style="height:60px;margin-top:30px;">
-                            <div style="height:20px;font-size:14px;">
-                                Included Packages:
-                            </div>
-                            
-                            <div>
-                                <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package 1: </div>
-                                <div name="items" style="float:left;">
-                                    <div name="item" style="padding-left:30px;height:20px;font-size:12px;">Kayak - quantity 1</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="height:100px;margin-top:20px;">
-                            <div style="float:left;height:20px;font-size:14px;">
-                                Cost Detail:
-                            </div>
-                            <div style="float:left; width:350px; padding-left:10px;" class="table-list">
-                                <table cellspacing="0" cellpadding="0" class="list">
-                                    <tr class="title">
-                                        <th>Cost</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Transaction Fees</td>
-                                        <td>$2.0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Freight In to Store Cost</td>
-                                        <td>$3.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Distribution Center Cost</td>
-                                        <td>$3.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Packaging Cost</td>
-                                        <td>$3.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Labor Cost</td>
-                                        <td>$4.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total Cost</td>
-                                        <td>$16.7</td>
-                                    </tr>
-                                </table>
+                                <c:choose>
+                                    <c:when test='${pack.get("unable") == true}'>
+                                      <br/>
+                                      <div style="height:20px;font-size:14px;width:250px;">
+                                        <h2> Unable to handle this package. </h2>
+                                      </div>                                       
+                                    </c:when>
+                                    <c:otherwise>
+                                
+                                     <div id="rank" style="height:auto;margin-top:20px;">
+                                        <div name="splitNo" class="subtitle">
+                                            Top Ranking Route&#58;
+                                        </div>
+                                        <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+                                            <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
+                                                Rank # ${testIndex.count} Route&#58;
+                                                <table cellspacing="0" cellpadding="0" class="list">
+                                                    <tr class="title">
+                                                        <th>Store ID</th>
+                                                        <th>Product</th>
+                                                        <th>Total Cost</th>
+                                                    </tr>
+                                                    <c:forEach var="parcelR" items='${testResult.get("results")}' >
+                                                        <tr>
+                                                            <td> ${parcelR.get("source")} </td>
+                                                            <td>
+                                                                <c:forEach var="parcelP" items='${parcelR.get("products")}' > 
+                                                                    ${parcelP.get("prodName")} (${parcelP.get("quantity")}) 
+                                                                </c:forEach>
+                                                            </td>
+                                                            <td> ${parcelR.get("totalCost")} </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </table>
+                                            </div>
+                                            <div style="float:left;margin-top:20px;margin-left:5px;">
+                                                
+                                                <input name="cost${index.index}${testIndex.index}" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
+                                            </div>          
+                                        </c:forEach>                                                
+                                    </div>  
+                                    </c:otherwise>
+                                </c:choose>                 
                             </div>
                         </div>
+                            <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+                                <div id="cost${index.index}${testIndex.index}" style="padding-left:20px;display:none;" class="block">
+                                    <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+                                        Route ${index.count}
+                                    </div>  
+                                    <div id="route_detail" style="height:30px;">
+                                        <div style="height:20px;">
+                                            <div style="float:left;height:10px;width:50px;font-size:12px;">
+                                                From:
+                                            </div>
+                                            <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
+                                                <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+                                                    <c:if test="${testIndex.index == 0}" >
+                                                        <c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+                                                            ${parcelR.get("source")}
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                        <div style="height:20px;">
+                                            <div style="float:left;height:10px;width:50px;font-size:12px;">
+                                                To:
+                                            </div>
+                                            <div id="destination" style="float:left;height:10px;width:300px;font-size:12px;">
+                                                5000 Forbes Ave, Pitsburgh, PA 15213
+                                            </div>
+                                        </div>
+                                    </div>                          
+                                    <div id="included" style="height:60px;margin-top:30px;">
+                                        <div style="height:20px;font-size:14px;">
+                                            Included Packages:
+                                        </div>
+                                        <div>
+                                            <div name="packages" style="float:left;padding-left:20px;height:20px;font-size:12px;">Package ${index.count}: </div>
+                                            <div name="items" style="float:left;">
+                                                <c:forEach var="product" items='${pack.get("products")}'>
+                                                    <div name="item" style="padding-left:30px;height:20px;font-size:12px;">${product.get("prodName")} - quantity ${product.get("quantity")}</div>
+                                                </c:forEach>    
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+                                        <div style="height:100px;margin-top:20px;">
+                                            <div style="float:left;height:20px;font-size:14px;">
+                                                Cost Detail:
+                                            </div>
+                                            <div style="float:left; width:350px; padding-left:10px;" class="table-list">
+                                                <table cellspacing="0" cellpadding="0" class="list">
+                                                    <tr class="title">
+                                                        <th>Cost</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                    <c:forEach var="cost" items='${parcelR.get("costs")}'>
+                                                        <tr>
+                                                            <td> ${cost.get("name")} </td>
+                                                            <td> ${cost.get("value")}  </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                 </div>
+                            </c:forEach>               
+                        
+                        </c:forEach>
+                        
                     </div>
-                    </form>
                 </div>
-            </div>
+       
 
             </div>
      
             <!-- form ends -->
             <!-- form ends -->
 
-        	</div>
+            </div>
 
         </div>
     

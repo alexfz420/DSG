@@ -1,15 +1,16 @@
 package com.dicks.action;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Store;
 
 public class CheckAction {
 	
-	private ArrayList<Store> storeList;
+	private List<Store> storeList;
 	
-	public ArrayList<Store> getStoreList() {
+	public List<Store> getStoreList() {
 		return storeList;
 	}
 

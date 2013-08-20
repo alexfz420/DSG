@@ -83,12 +83,13 @@ rule "generate test results"
 		if ($stores.size() > 0) {
 			System.out.println("Package test is being tested: " + $test);
 			PackageTestResult testR = getTestResult($test, $stores);
+			$pack.addSplitTest($test);
 			if (testR != null) {
 				insert(testR);
 				modify($pack){ setAllocated(true); }
 				//$logger.addLog("**Test result: " + testR);
 				//System.out.println("test result: " + testR);
-			}		
+			} 	
 			modify($test){ setTested(true); }
 		}
 end
@@ -101,7 +102,7 @@ rule "add splits"
 		//$logger : EngineLog()
 	then
 		modify ($p) { setSplitNum($p.getSplitNum() + 1) }
-		stage2.addLog("Split Packages", "--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
+		//stage2.addLog("Split Packages", "--Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 		//System.out.println("Package: " + $p + " unable to solve, so split num++: " + $p.getSplitNum());
 end
 
@@ -113,21 +114,16 @@ rule "for not splitable packages"
 		$p : PackageE((!$p.isSplitable()) && !isAllocated())
 		//$logger : EngineLog()
 	then
-//		System.out.println("split num: " + $p.getSplitNum());
-//		System.out.println("product size: " + $p.getProducts().size());
-//		System.out.println("eval: " + (($p.getSplitNum() == $p.getProducts().size()&& !$p.isAllocated())));
-		//$logger.addLog("--Unable to handle this package " + $p + ", handed to vendor");
 		System.out.println("Unable to handle this package " + $p + ", handed to vendor");
+		modify ($p) {setUnable(true);}
 		modify ($p) {setAllocated(true);}
-//		System.out.println("handle this package " + $p);
-//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "report" ).setFocus();
 end
 
 rule "get to evaluate"
 	salience -1
 	agenda-group "split"
 	when
-		$p : PackageE(isAllocated())
+		$p : PackageE(isAllocated() || isUnable())
 		//$logger : EngineLog()
 	then
 		//$logger.addLog("**" + $p + " has been allocated.");
@@ -143,6 +139,7 @@ rule "evaluate package results"
 		$results : ArrayList() from collect( PackageTestResult(getTest().getPack() == $p))
 		//$logger : EngineLog()
 	then
+		//System.out.println("results size: " + $results.size());
 		PackageTestResult r = getBestResult($results);
 		//$logger.addLog("**For package: " + $p);
 		//$logger.addLog("**Evaluate Result: " + r);
@@ -162,7 +159,6 @@ function PackageTestResult getBestResult(ArrayList results) {
 	});
 	
 	PackageTestResult r = (PackageTestResult) results.get(0);
-	r.getTest().getPack().setBestResult(r);
 	return r;
 }
 
@@ -170,29 +166,34 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	PackageTestResult r = new PackageTestResult(test);
 	ArrayList parcels = test.getParcels();
 	//System.out.println("in get test result");
+	int tops = 0;	
 	for (int i = 0; i < parcels.size(); i++) {
 		Parcel p = (Parcel) parcels.get(i);
 		p.shipmentPreparation();
 		ArrayList parcelResults = new ArrayList();
+		int count = 0;
 		for (int j = 0; j < stores.size(); j++) {
 			Store s = (Store) stores.get(j);
 			ParcelResult parcelR = getParcelResult(p, s);
 			if (parcelR != null) {
 				parcelResults.add(parcelR);
 				Util.calculateAttribute(parcelR);
+				count++;
 				//System.out.println("in get test result attribute");
 			}
 		}
+		p.setStoreCount(count);
 		if (parcelResults.size() < 1) {
 			System.out.println("in test result: no result for " + test);
 			return null;
-		}
+		}		
 		Collections.sort(parcelResults, new Comparator<ParcelResult>() {
 			@Override
 			public int compare(ParcelResult arg0, ParcelResult arg1) {
 				return Util.compareParcelResult(arg0, arg1); 
 			}			
 		});
+		test.getPack().addTops(parcelResults, test);
 		r.addResult((ParcelResult) parcelResults.get(0));
 	}
 	
@@ -208,6 +209,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 	r.setCost(cost);
 	r.setAttribute(attribute);
 	r.setShippingCost(shippingCost);
+	test.getPack().calculateTops();
 	return r;
 }
 

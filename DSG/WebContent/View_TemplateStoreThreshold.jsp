@@ -189,15 +189,15 @@ function goBack(){
             <table class="text">
                 <tr>
                     <td>Rule Name&#58;</td> 
-                    <td><input style="width:200px;" type="text" name="rulenames" value ='${rulename.replace("%20"," ")}' >&nbsp;&nbsp;</td>
+                    <td><input style="width:200px;" type="text" name="rulenames" value ='${rulename.replace("%20"," ")}' disabled>&nbsp;&nbsp;</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" >${ruleDess.replace("%20"," ")}</textarea></td>
+                    <td style="width:200px;"><textarea name ="des" style="overflow:hidden;max-width:200px;width:200px;height:50px;" disabled>${ruleDess.replace("%20"," ")}</textarea></td>
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>	
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates.replace("%20"," ")}</textarea>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" disabled>${cates.replace("%20"," ")}</textarea>
                     
                     </td>
                 </tr> 
@@ -210,26 +210,26 @@ function goBack(){
                     <td style="width:500px;">
                     <div class="drl">
                          <div> If
-                            <select style="width:50px;" name="conditions">
+                            <select style="width:50px;" name="conditions" disabled>
                                 <option value="all">All</option> 
                                 <option value="any">Any</option>
                             </select> of the following conditions are met&#58;
                         </div>  
                         <br/>
                        <div>
-                            <select style="width:70px;"name="attribute">
+                            <select style="width:70px;"name="attribute" disabled>
                                 <option value="Length" <c:if test="${attribute[0] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
                                 <option value="Width" <c:if test="${attribute[0] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
                                 <option value="Height" <c:if test="${attribute[0] == 'Competition'}">selected="selected"</c:if>>Competition</option>
                                 
                             </select>&nbsp;&nbsp;
-                            <select style="width:40px;" name="operator">
+                            <select style="width:40px;" name="operator" disabled>
                             	<option value="&gt" <c:if test="${operator[0] == '>'}">selected="selected"</c:if>>&gt;</option> 
                                 <option value="=" <c:if test="${operator[0] == '='}">selected="selected"</c:if>>=</option>
                                 <option value="&lt;" <c:if test="${operator[0] == '<'}">selected="selected"</c:if>>&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value" value ="${value[0]}">&nbsp;&nbsp;
-                            <select style="width:70px;">
+                            <input style="width:50px;" type="text" name="value" value ="${value[0]}" disabled>&nbsp;&nbsp;
+                            <select style="width:70px;" disabled>
                                 <option value="#"<c:if test="${attribute[0] == 'Distance'}">selected="selected"</c:if>>Miles</option>
                                 <option value="#"<c:if test="${attribute[0] == 'Margin'}">selected="selected"</c:if>>Quantity</option>
                                 <option value="#"<c:if test="${attribute[0] == 'Competition'}">selected="selected"</c:if>>Rate</option> 
@@ -238,19 +238,19 @@ function goBack(){
                         </div>
                         <br/>
                         <div>
-                            <select style="width:70px;"name="attribute">
+                            <select style="width:70px;"name="attribute" disabled>
                                 <option value="Length" <c:if test="${attribute[0] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
                                 <option value="Width" <c:if test="${attribute[0] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
                                 <option value="Height" <c:if test="${attribute[0] == 'Competition'}">selected="selected"</c:if>>Competition</option>
                                 
                             </select>&nbsp;&nbsp;
-                            <select style="width:40px;" name="operator">
+                            <select style="width:40px;" name="operator" disabled>
                             	<option value="&gt" <c:if test="${operator[1] == '>'}">selected="selected"</c:if>>&gt;</option> 
                                 <option value="=" <c:if test="${operator[1] == '='}">selected="selected"</c:if>>=</option>
                                 <option value="&lt;" <c:if test="${operator[1] == '<'}">selected="selected"</c:if>>&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value" value ="${value[1]}">&nbsp;&nbsp;
-                            <select style="width:70px;">
+                            <input style="width:50px;" type="text" name="value" value ="${value[1]}" disabled>&nbsp;&nbsp;
+                            <select style="width:70px;" disabled>
                                 <option value="#"<c:if test="${attribute[1] == 'Distance'}">selected="selected"</c:if>>Miles</option>
                                 <option value="#"<c:if test="${attribute[1] == 'Margin'}">selected="selected"</c:if>>Quantity</option>
                                 <option value="#"<c:if test="${attribute[1] == 'Competition'}">selected="selected"</c:if>>Rate</option> 
@@ -258,19 +258,19 @@ function goBack(){
                         </div>
                         <br/>
                         <div>
-                            <select style="width:70px;"name="attribute">
+                            <select style="width:70px;"name="attribute" disabled>
                                 <option value="Length" <c:if test="${attribute[2] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
                                 <option value="Width" <c:if test="${attribute[2] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
                                 <option value="Height" <c:if test="${attribute[2] == 'Competition'}">selected="selected"</c:if>>Competition</option>
                                 
                             </select>&nbsp;&nbsp;
-                            <select style="width:40px;" name="operator">
+                            <select style="width:40px;" name="operator" disabled>
                             	<option value="&gt" <c:if test="${operator[2] == '>'}">selected="selected"</c:if>>&gt;</option> 
                                 <option value="=" <c:if test="${operator[2] == '='}">selected="selected"</c:if>>=</option>
                                 <option value="&lt;" <c:if test="${operator[2] == '<'}">selected="selected"</c:if>>&lt;</option>
                             </select>&nbsp;&nbsp;
-                            <input style="width:50px;" type="text" name="value" value ="${value[2]}">&nbsp;&nbsp;
-                            <select style="width:70px;">
+                            <input style="width:50px;" type="text" name="value" value ="${value[2]}" disabled>&nbsp;&nbsp;
+                            <select style="width:70px;" disabled>
                                 <option value="#"<c:if test="${attribute[2] == 'Distance'}">selected="selected"</c:if>>Miles</option>
                                 <option value="#"<c:if test="${attribute[2] == 'Margin'}">selected="selected"</c:if>>Quantity</option>
                                 <option value="#"<c:if test="${attribute[2] == 'Competition'}">selected="selected"</c:if>>Rate</option> 
@@ -280,7 +280,7 @@ function goBack(){
                         <div>Perform the following action&#58;</div>
                         <br/>
                         <div>
-                            <select>
+                            <select disabled>
                                 <option value="#">Ship this product separately</option>
                                 <option value="#">Inform the vendor to ship this product</option>
                                 <option value="#">Route the product to warehouse</option>
