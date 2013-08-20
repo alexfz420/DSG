@@ -7,7 +7,20 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
     %>
     
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+ <title>DSG - Statistics</title>
+
+ <link href="css/common.css" rel="stylesheet" type="text/css" />
+ <link href="css/overview.css" rel="stylesheet" type="text/css" />
+ <script src="js/jquery.min.js" type="text/javascript"> </script>
+ <script src="js/animation.js" type="text/javascript"></script>
+ <script src="js/pop.js" type="text/javascript"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
  <script src="http://code.highcharts.com/highcharts.js"></script>
  <script src="http://code.highcharts.com/highcharts.js"></script>
  <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -88,9 +101,32 @@
 
     }
  </script>
- <jsp:include page="template_top.jsp" />
- 
- <ul class="nav">
+</head>
+
+<body>
+    <div class="header">
+    <div class="header-content">
+        <div class="logo">
+            <a href="orderlist.html"><img src="image/logo.png" /></a></div>
+        <div class="top-nav">
+            <a href="#" target="_blank" class="trackable">
+            <span class="nav-icon help-icon"></span>Help</a>|
+            <a href="#" target="_blank" class="trackable">Account</a>|
+            <a href="#">Log out</a>
+        </div>
+    </div>
+    </div>
+    
+   
+    <div class="body clearfix">
+    
+    <!-- menu bar starts -->
+    <div class="aside" id="aside-menu">
+    <div class="title"><h1></h1>
+       <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
+        -->
+    </div>
+    <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
@@ -110,7 +146,7 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-				<li class="selected" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+				<li class="selected" id="statlist"><a href="<%=basePath %>statistics.action">Statistics</a><span class="normal">&nbsp;</span></li>
 
 			</ul>
 
@@ -125,12 +161,10 @@
 		</li>   
     </ul>
 </div>
-
-   <!-- menu bar ends -->
-
+    <!-- menu bar ends -->
 
     <!-- content starts -->
-     <div class="minibar recordable" id="minibar" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}" style="display:none;"><a id="menu-untoggle" href="javascript:void(0)" class="unfold" ></a></div> 
+    <div class="minibar recordable" id="minibar" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}" style="display:none;"><a id="menu-untoggle" href="javascript:void(0)" class="unfold" ></a></div> 
     <div class="main"  id="main-body">
         <div class="content clearfix">
                 
