@@ -25,14 +25,6 @@ public class ProductDAO extends BaseDao<Product> {
 	}
 	
 	
-	public String[] getAllNames() throws Exception{
-		List<Product> list = (ArrayList<Product>)super.getList();
-		String[] names = new String[list.size()];
-		for(int i = 0; i<list.size() ;i++){
-			names[i] = list.get(i).getProdName()+"";
-		}
-		return names;
-	}
 
 	public Product getById(Integer id) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
@@ -89,6 +81,14 @@ public class ProductDAO extends BaseDao<Product> {
 		return super.get(criterions);
 	}
 	
+	public String[] getAllNames() throws Exception{
+		List<Product> list = (ArrayList<Product>)super.getList();
+		String[] names = new String[list.size()];
+		for(int i = 0; i<list.size() ;i++){
+			names[i] = list.get(i).getProdName()+"";
+		}
+		return names;
+	}
 	
 	
 }

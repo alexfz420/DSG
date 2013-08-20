@@ -35,7 +35,7 @@ public class StoreDAO extends BaseDao<Store> {
 		return super.get(criterions);
 	}
 	
-	public ArrayList<Store> getAllStores() throws Exception{
+	public List<Store> getAllStores() throws Exception{
 		return (ArrayList<Store>) super.getList();
 	}
 	
@@ -48,4 +48,5 @@ public class StoreDAO extends BaseDao<Store> {
 		return names;
 	}
 	
+
 }

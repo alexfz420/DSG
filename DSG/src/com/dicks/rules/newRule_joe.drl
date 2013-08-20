@@ -295,6 +295,39 @@ rule  "Threshold for nikeshoe"
         retract($i);
 end
 
+rule  "Special Route"
+    salience 846
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("1"))
+        eval ($orderE.getProductQty($id)>1)
+        $s : Store( storeId == 1)
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("Special Route","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        PackageTestResult packageR = new PackageTestResult(test);
+        packageR.addResult(parcelR);
+        $logger.addLog("Special Route",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("Special Route",packageR.toString());      
+        System.out.println(packageR);
+        insert(packageR);
+        retract(p);
+        retract($product);
+end
+
 rule "Insert Package for Remaining Products"
 	salience -5
 	//agenda-group "first7"

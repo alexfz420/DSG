@@ -16,7 +16,8 @@ import com.dicks.pojo.Rule;
 
 public class RuleDAO extends BaseDao<Rule> {
 	private static RuleDAO instance = new RuleDAO();
-	private static Map<String, String> dictionary = null;
+	private static Map<String, String> dictionary= null;
+ 
 
 	public RuleDAO() {
 		super(Rule.class);

@@ -1,6 +1,5 @@
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>>=refs/remotes/origin/master
+
+
 eclipse.preferences.version=1
 encoding//WebContent/CategoryList.jsp=UTF-8
 encoding//WebContent/CreateNewRule.jsp=UTF-8
@@ -11,6 +10,7 @@ encoding//WebContent/OrderDetail.jsp=UTF-8
 encoding//WebContent/OrderList.jsp=UTF-8
 encoding//WebContent/PrioritizeRule.jsp=UTF-8
 encoding//WebContent/RuleList.jsp=UTF-8
+encoding//WebContent/SimulationOrder.jsp=UTF-8
 encoding//WebContent/TemplateProductThreshold.jsp=UTF-8
 encoding//WebContent/TemplateSpecialRoute.jsp=UTF-8
 encoding//WebContent/TemplateStoreCapacity.jsp=UTF-8
@@ -18,3 +18,5 @@ encoding//WebContent/VisualizationOrderDetail.jsp=UTF-8
 encoding//WebContent/VisualizationStage2.jsp=UTF-8
 encoding//WebContent/VisualizationStage3.jsp=UTF-8
 encoding//WebContent/css/common.css=UTF-8
+encoding//WebContent/placeOrder.jsp=UTF-8
+encoding//WebContent/statistics.jsp=UTF-8

@@ -62,7 +62,7 @@
      color: white;
 }
 </style>
- <ul class="nav">
+<ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
@@ -82,12 +82,21 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+				<li class="" id="statlist"><a href="<%=basePath %>statistics.action">Statistics</a><span class="normal">&nbsp;</span></li>
+
+			</ul>
+
+
+        </li>
+		<li class=""><a class="recordable open" href="#" id="togglefour"
+            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
-        </li>
+		</li>   
     </ul>
-    </div>
+</div>
  <script>
  
 

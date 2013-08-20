@@ -18,6 +18,9 @@ public class Store implements java.io.Serializable {
 	private String flag;
 	private String storeType;
 	private Integer capacity;
+	private String state;
+	private String city;
+	private String region;
 	private Set inventories = new HashSet(0);
 	private Set storeCates = new HashSet(0);
 	private Set packageses = new HashSet(0);
@@ -136,5 +139,29 @@ public class Store implements java.io.Serializable {
 
 	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 }

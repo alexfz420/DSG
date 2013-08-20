@@ -1,15 +1,11 @@
 package com.dicks.action;
-
-import java.util.ArrayList;
-
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
 import com.dicks.dao.StoreCateDAO;
-import com.dicks.dao.StoreDAO;
 import com.dicks.dao.RuleDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.WriteDrl;
-import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
 
 public class CreateNewBizRule {

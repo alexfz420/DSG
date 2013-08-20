@@ -205,6 +205,9 @@
       <action name="typecheck" class="com.dicks.action.CheckAction" method="typeCheck">
           <result name="success">/TypeCheck.jsp</result>
       </action>
+      <action name="statistics" class="com.dicks.action.Redirect" method="goToStatistic">
+          <result name="success">/statistics.jsp</result>
+      </action>   
             
    </package>
 </struts>

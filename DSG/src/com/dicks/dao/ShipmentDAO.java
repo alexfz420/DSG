@@ -52,4 +52,39 @@ public class ShipmentDAO extends BaseDao<Shipment> {
         criterions.add(criterion2);
         return super.get(criterions);
 	}
+
+	
+	/*public Shipment getShipmentBySupplyDesitin(int supplyZip, int destinationZip) throws Exception {
+		List<Criterion> criterions = new ArrayList<Criterion>();
+        Criterion criterion1 = Restrictions.eq("id.supplyZip", supplyZip);
+        Criterion criterion2 = Restrictions.eq("id.destinationZip", destinationZip);
+        criterions.add(criterion1);
+        criterions.add(criterion2);
+        return super.get(criterions);
+	}*/
+	
+	
+	public void deleteAll() throws Exception{
+		List<Shipment> shipments =(List<Shipment>)super.getList();
+		for(Shipment s : shipments){
+			super.delete(s);
+		}
+	}
+	
+	public void create(Shipment shipment) throws Exception{
+		if(!contain(shipment))
+		super.create(shipment);
+	}
+	
+	public boolean contain(Shipment shipment) throws Exception{
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		Criterion criterion1 = Restrictions.eq("id.destinationZip", shipment.getId().getDestinationZip());
+		Criterion criterion2 = Restrictions.eq("id.supplyZip", shipment.getId().getSupplyZip());
+		criterions.add(criterion1);
+		criterions.add(criterion2);
+		Shipment shipment1 =(Shipment) super.get(criterions);
+		if(shipment1==null) return false;
+		return true;
+	}
+
 }
