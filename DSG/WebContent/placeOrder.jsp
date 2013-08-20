@@ -1,68 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+    pageEncoding="US-ASCII"%>
+
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    %>
+ <jsp:include page="template_top.jsp" />
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
- <title>DSG-Place Order</title>
- <link href="css/common.css" rel="stylesheet" type="text/css" />
- <link href="css/overview.css" rel="stylesheet" type="text/css" /> 
- <link href="css/pop.css" rel="stylesheet" type="text/css" href=""/>
- <script src="js/jquery.min.js" type="text/javascript"> </script>
- <script src="js/animation.js" type="text/javascript"></script>
- <script src="js/pop.js" type="text/javascript"></script>
-</head>
-
-<body>
-    <div class="header">
-    <div class="header-content">
-        <div class="logo">
-            <a href="OrderList.jsp"><img src="image/logo.png" /></a></div>
-        <div class="top-nav">
-            <a href="#" target="_blank" class="trackable">
-            <span class="nav-icon help-icon"></span>Help</a>|
-            <a href="#" target="_blank" class="trackable">Account</a>|
-            <a href="#">Log out</a>
-        </div>
-    </div>
-    </div>
-    
-   
-    <div class="body clearfix">
-    
-    <!-- menu bar starts -->
-    <div class="aside" id="aside-menu">
-    <div class="title"><h1>My Tool</h1>
-       <!-- <a href="javascript:void(0)" class="fold recordable" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;0&quot;}" id="menu-toggle"></a>
-        -->
-    </div>
-    <ul class="nav">
+  
+   <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
-            memo="{id:'21',type:'menu',global:1,status:''}">Manage Category</a>
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
             <ul class="nav-two" id="navone">
-                <li class=""><a href="categorylist.jsp">Category List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="#">New Category</a><span class="normal">&nbsp;</span></li>  
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
             </ul>
         </li>
         <li class=""><a class="recordable open" href="#" id="toggletwo"
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
             <ul class="nav-two" id="navtwo">
-                <li class="selected"><a href="rulelist.jsp">Business Rule List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="newrule.jsp">New Business Rule</a><span class="normal">&nbsp;</span></li>
-                
+                <li class="" id="bizrulelist"><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newbizrulelist"><a href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="ruleprioritylist"><a href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li> 
             </ul>
         </li>   
         <li class=""><a class="recordable open" href="#" id="togglethree"
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
-                <li class=""><a href="orderlist.jsp">Order List</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="#">Routing visualization</a><span class="normal">&nbsp;</span></li>
-                <li class=""><a href="statistics.jsp">Statistics</a><span class="normal">&nbsp;</span></li>
+                <li class="selected" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+				<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+
+			</ul>
+
+
+        </li>
+		<li class=""><a class="recordable open" href="#" id="togglefour"
+            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
                 
             </ul>
-        </li>   
+		</li>   
     </ul>
-    </div>
+</div>
     <!-- menu bar ends -->
 
 
@@ -160,7 +143,7 @@
     <!-- content ends -->        
     <!-- footer starts -->
         </div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>Â©2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 
