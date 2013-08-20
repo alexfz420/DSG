@@ -57,6 +57,21 @@ public class PackageTestResult {
 		this.source = source;
 	}
 
+	public void calculate() {
+		double cost = 0;
+		double attribute = 0;
+		double shippingCost = 0;
+		ArrayList<ParcelResult> parcelResults = getResults();
+		for (int i = 0; i < parcelResults.size(); i++) {
+			cost += ((ParcelResult) parcelResults.get(i)).getCost();
+			attribute += ((ParcelResult) parcelResults.get(i)).getAttribute();
+			shippingCost += ((ParcelResult) parcelResults.get(i)).getShippingCost();
+		}
+		setCost(cost);
+		setAttribute(attribute);
+		setShippingCost(shippingCost);
+	}
+	
 	@Override
 	public String toString() {		
 		return "Package result: " + Arrays.toString(results.toArray()) + ", Total cost: " + this.cost;

@@ -167,6 +167,7 @@
                     </div>
                 
                 <div id="block2" style="float:left;height:465px;width:600px;border:1px solid #ccc;border-radius:5px;overflow-y:scroll;">
+   						<!-- Add order detail and summary -->
                         <div style="padding-left:30px;padding-top:30px;" id="detail" class="block">
                             <div style="padding-bottom:30px;">
                                 <div style="float:left; width:150px">Order Date:</div>
@@ -194,6 +195,51 @@
                                     </table>
                                 </div>
                             </div>
+                            <!-- summary -->
+                            <div style="padding-bottom:30px;">
+							    <table cellspacing="0" cellpadding="0" class="list">
+			                                    <tr class="title">
+			                                        <th>Store ID</th>
+			                                        <th>Product</th>
+			                                        <th>Total Cost</th>
+			                                    </tr>
+							    	<c:forEach var="pack" items="${stage3Arrays}" varStatus="index">
+							    	<c:if test='${packages.get(index.index).get("unable") == false}'>
+                                	<c:forEach var="testResult" items='${pack}' varStatus="testIndex">
+                                		<c:if test="${testIndex.index == 0}" >
+                                			
+	                                		<c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+	                                    		<tr>
+	                                    			<td>${parcelR.get("source")}</td>
+	                                    			<td>
+	                                    				<c:forEach var="product" items='${parcelR.get("products")}' >
+	                                    					${product.get("prodName")} (${product.get("quantity")})
+	                                    				</c:forEach>
+	                                    			</td>
+	                                    			<td>
+	                                    				${parcelR.get("totalCost")}
+	                                    			</td>
+	                                    		</tr>
+	                                    	</c:forEach>
+                                    	</c:if>
+                                    </c:forEach>
+                                    </c:if>	
+                                    </c:forEach>	
+                                </table>						    							    
+
+							    <c:forEach var="pack" items="${stage3Arrays}" varStatus="index">
+							    	<c:if test='${packages.get(index.index).get("unable") == true}'>
+								        <br/>
+									    <div>
+									  	<br/>
+									  		<h2> Unable to handle package. </h2>
+											{<c:forEach var="product" items='${packages.get(index.index).get("products")}' >
+	                                    		${product.get("prodName")} (${product.get("quantity")})
+		                                    </c:forEach>}
+									  	</div>								       
+							    	</c:if>
+							    </c:forEach>
+	                       </div>
                         </div>
 						
 						<!-- Add block for stage 1 -->
@@ -292,8 +338,20 @@
 		                            </div>
 		                        </div>
 		                        
+								<c:if test='${pack.get("special") == true}' >
+									<div>
+										This is a special package. The products will be shipped from ${pack.get("source")}.
+									</div>
+								</c:if>		                        
+		                        
+								<c:if test="${pack.unable == true}" >
+								  <div style="height:20px;font-size:14px;width:250px;">
+								  	<h2> Unable to handle this package. </h2>
+								  </div>
+								</c:if> 			                        
+		                        
 	                            <c:forEach var="split" items='${pack.get("splits")}' varStatus="splitIndex">
-		                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;">
+		                            <div name="splitNo" style="height:20px;font-size:14px;width:120px;" >
 		                                Split ${splitIndex.index}
 		                            </div>	                            
 		                            <c:forEach var="obj" items='${split}'>	
@@ -312,11 +370,6 @@
 			                            </div>											
 									</c:forEach>
 								</c:forEach>
-								<c:if test="${pack.unable == true}" >
-								  <div style="height:20px;font-size:14px;width:250px;">
-								  	<h2> Unable to handle this package. </h2>
-								  </div>
-								</c:if> 	
                         	</div>             
 						</c:forEach>
 						
@@ -333,13 +386,15 @@
 		                                    From:
 		                                </div>
 		                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-		                                	<c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
-		                                		<c:if test="${testIndex.index == 0}" >
-			                                		<c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
-			                                    		${parcelR.get("source")}
-			                                    	</c:forEach>
-		                                    	</c:if>
-		                                    </c:forEach>
+		                                	<c:if test='${pack.get("unable") == false}' >
+			                                	<c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+			                                		<c:if test="${testIndex.index == 0}" >
+				                                		<c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+				                                    		${parcelR.get("source")}
+				                                    	</c:forEach>
+			                                    	</c:if>
+			                                    </c:forEach>
+		                                    </c:if>
 		                                </div>
 		                            </div>
 		                            <div style="height:20px;">
@@ -370,10 +425,18 @@
 								    <c:when test='${pack.get("unable") == true}'>
 								      <br/>
 									  <div>
+									  	<br/>
 									  	<h2> Unable to handle this package. </h2>
 									  </div>								       
 								    </c:when>
 								    <c:otherwise>
+	                     		
+                  					<c:if test='${pack.get("special") == true}' >
+                  						<div>
+                  							<br/>
+                                			This package is a special package.
+                                		</div>
+                                   	</c:if>
 	                     		
 			                         <div id="rank" style="height:100px;margin-top:20px;">
 			                            <div class="title" name="splitNo" style="height:20px;font-size:14px;padding-bottom:10px;">
@@ -399,6 +462,11 @@
 					                                        <td> ${parcelR.get("totalCost")} </td>
 					                                    </tr>
 				                                    </c:forEach>
+				                                    <tr>
+				                                    	<td></td>
+				                                    	<td> Total Cost</td>
+				                                    	<td> ${testResult.get("totalCost")} </td>
+				                                    </tr>
 				                                </table>
 				                            </div>
 				                            <div style="float:left;margin-top:20px;margin-left:5px;">
@@ -422,9 +490,9 @@
 			                                    From:
 			                                </div>
 			                                <div id="source" style="float:left;height:10px;width:60px;font-size:12px;">
-			                                	<c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
+			                                	<c:forEach var="testResult1" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
 			                                		<c:if test="${testIndex.index == 0}" >
-				                                		<c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
+				                                		<c:forEach var="parcelR" items='${testResult1.get("results")}' varStatus="parcelIndex">
 				                                    		${parcelR.get("source")}
 				                                    	</c:forEach>
 			                                    	</c:if>
@@ -453,7 +521,7 @@
 			                                </div>
 			                            </div>
 			                        </div>
-			
+
 				                    <c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
 				                        <div style="height:100px;margin-top:20px;">
 				                            <div style="float:left;height:20px;font-size:14px;">
@@ -482,8 +550,6 @@
 						
 					</div>
                 </div>
-       
-
             </div>
      
             <!-- form ends -->
