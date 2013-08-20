@@ -504,7 +504,7 @@ public class WriteDrl {
 		 */
 		tmp.append(myTab+myTab+"$product : Product($id: prodId, sku.equals(\""+splits[0]+"\"))"+myReturn);
 		tmp.append(myTab+myTab+"eval ($orderE.getProductQty($id)"+splitOperator[0]+ splitValue[0]+")"+myReturn);
-		tmp.append(myTab+myTab+"$s : Store( storeId == "+route+")"+myReturn);
+		tmp.append(myTab+myTab+"$s : Store( storeName.equals(\""+route+"\")"+myReturn);
 		tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
 		tmp.append(myTab+myTab+"$logger: EngineLog()"+myReturn);
 		//tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
