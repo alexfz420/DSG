@@ -74,12 +74,12 @@ public class PlaceOrder {
 			}
 		}
 			
-		Shipment ss = new Shipment();
-		ss = ShipmentDAO.getInstance().getShipmentBySupplyDesitin("15217", "15213");
-		System.out.println("distance "+ss.getDistance());		
-		System.out.println("product length: " + product.length);
-		System.out.println("quantity length: " + quantity.length);		
-		
+//		Shipment ss = new Shipment();
+//		ss = ShipmentDAO.getInstance().getShipmentBySupplyDesitin("15217", "15213");
+//		System.out.println("distance "+ss.getDistance());		
+//		System.out.println("product length: " + product.length);
+//		System.out.println("quantity length: " + quantity.length);		
+//		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		
 		// get results from test
