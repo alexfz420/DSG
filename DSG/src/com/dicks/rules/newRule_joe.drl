@@ -112,9 +112,8 @@ rule  "Threshold for Tmac"
         retract($i);
 end
 
-<<<<<<< HEAD
 rule  "Special Route"
-    salience 435
+    salience 846
     when
         $order : Orders()
         $orderE : OrderE()
@@ -146,8 +145,6 @@ rule  "Special Route"
         retract($product);
 end
 
-=======
->>>>>>> f269f486edb1ec1ea90de8a3027d7411c135a5e8
 rule "Insert Package for Remaining Products"
 	salience -5
 	//agenda-group "first7"

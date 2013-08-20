@@ -124,7 +124,7 @@ public class Allocate {
 
 		ArrayList<Store> stores = null;
 		try {
-			stores = StoreDAO.getInstance().getAllStores();
+			stores = (ArrayList<Store>) StoreDAO.getInstance().getAllStores();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
