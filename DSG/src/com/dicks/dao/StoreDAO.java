@@ -35,8 +35,19 @@ public class StoreDAO extends BaseDao<Store> {
 		return super.get(criterions);
 	}
 	
-	public ArrayList<Store> getAllStores() throws Exception{
+	public List<Store> getAllStores() throws Exception{
 		return (ArrayList<Store>) super.getList();
 	}
+	
+	public String[] getAllNames() throws Exception{
+		List<Store> list = getAllStores();
+		String[] names = new String[list.size()];
+		for(int i = 0; i<list.size() ;i++){
+			names[i] = list.get(i).getStoreName()+"";
+		}
+		return names;
+	}
+	
+
 	
 }

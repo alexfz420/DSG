@@ -1,8 +1,10 @@
 package com.dicks.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Hibernate;
 import org.hibernate.criterion.Criterion;
@@ -49,8 +51,6 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 		return products;	
 	}
 	
-	
-	
 	public String[] getSKUByCategory(String[] categoryNameList) throws Exception{
 		Product[] products = getProductByCategory(categoryNameList);
 		String[] skuArray = new String[products.length];
@@ -95,20 +95,16 @@ public class ProdCateDAO extends BaseDao<ProdCate>{
 	}
 
 	private ProdCate[] filterCate(ProdCate[] storeCates){
-		
 		if(storeCates==null) return null;
+		Set<Integer> cateIds = new HashSet<Integer>();
 		List<ProdCate> storeCates1 = new ArrayList<ProdCate>();
-		int id = 0;
 		for(int i=0; i<storeCates.length ; i++){
-			if(i==0){
-				id=	storeCates[i].getId().getCateProdId();
+			if(!cateIds.contains(storeCates[i].getId().getCateProdId())){
 				storeCates1.add(storeCates[i]);
-			}
-			if(storeCates[i].getId().getCateProdId()!=id){
-				storeCates1.add(storeCates[i]);
-				id =storeCates[i].getId().getCateProdId();
+				cateIds.add(storeCates[i].getId().getCateProdId());
 			}
 		}
+		
 		ProdCate[] result = (ProdCate[])storeCates1.toArray(new ProdCate[storeCates1.size()]); 
 		 return result;
 	}

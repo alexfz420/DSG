@@ -218,4 +218,17 @@ public class InventoryDAO extends BaseDao<Inventory> {
 			}
 		}
 	}
+	
+	
+	public void deleteAll() throws Exception{
+		List<Inventory> inventorys =(List<Inventory>)super.getList();
+		for(Inventory i : inventorys){
+			super.delete(i);
+		}
+	}
+	
+	public long count() throws Exception{
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		return super.getCount(criterions);	
+	}
 }
