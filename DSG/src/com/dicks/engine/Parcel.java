@@ -12,7 +12,7 @@ public class Parcel {
 	private double girth;
 	private boolean overSize;
 	private boolean overWeight;
-	private int storeCount = -1;
+	private int storeCount = 0;
 	
 	public int getStoreCount() {
 		return storeCount;

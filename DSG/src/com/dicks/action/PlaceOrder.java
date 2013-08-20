@@ -48,7 +48,7 @@ public class PlaceOrder {
 	private String shippingzipcode;	
 	
 	private String id;
-	private EngineLog stage1;
+//	private EngineLog stage1;
 	private EngineLog stage2;
 	private EngineLog stage3;
 //	private ArrayList<LogE> stage1Logs;
@@ -67,35 +67,32 @@ public class PlaceOrder {
 	
 	public String placeorder() throws Exception{
 		for(int i=0;i<quantity.length;i++){
-			quantity[i] = quantity[i].toLowerCase();
-			
-			System.out.println("quantity :"+quantity[i]);
-			System.out.println("product :"+product[i]);
+			if (quantity[i] != null) {
+				quantity[i] = quantity[i].toLowerCase();			
+				System.out.println("quantity :"+quantity[i]);
+				System.out.println("product :"+product[i]);
+			}
 		}
-		
-		
+			
 		Shipment ss = new Shipment();
 		ss = ShipmentDAO.getInstance().getShipmentBySupplyDesitin("15217", "15213");
-		System.out.println("distance "+ss.getDistance());
-		
+		System.out.println("distance "+ss.getDistance());		
 		System.out.println("product length: " + product.length);
 		System.out.println("quantity length: " + quantity.length);		
 		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		
+		// get results from test
 		Orders order = test.getOrder();
 		this.id = order.getOrderId() + "";
 		this.leftStores = test.getLeftStores();
 		this.minPackage = test.getPackages();
 		this.allocatedResults = test.getAllocatedResults();
 		
-		this.stage1 = test.getStage1();
-		System.out.println();
-
+	    EngineLog stage1 = test.getStage1();
 		Split split = new Split(minPackage, leftStores, allocatedResults);	
 		
-		this.newAllocatedResults = split.getNewAllocatedResults();
-		
+		this.newAllocatedResults = split.getNewAllocatedResults();	
 		//System.out.println("order id in place order: " + test.getOrderId());			
 
 		LogDAO logDAO =  LogDAO.getInstance();
@@ -108,7 +105,13 @@ public class PlaceOrder {
 			System.out.println("rule " + logE.getName() + " " + rule);
 			Log log = new Log(new LogId(order.getOrderId(), rule.getRuleId()), rule, order, Integer.parseInt(rule.getStage()));
 			System.out.println("logs: " + logE.getLogs());
-			log.setRecord(Arrays.toString(logE.getLogs().toArray()));
+			
+			StringBuilder sb = new StringBuilder();
+			for (String s : logE.getLogs()) {
+				sb.append(s);
+				sb.append(",");
+			}			
+			log.setRecord(sb.toString());
 			logDAO.createLog(log);
 		}	
 		
@@ -162,7 +165,10 @@ public class PlaceOrder {
 					packageDetailDAO.createPackageDetail(packDetail);
 				}
 			}		
-		}		
+		}	
+		
+		// Add logs to database
+				
 		return "success";	
 	}
 
@@ -172,14 +178,6 @@ public class PlaceOrder {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public EngineLog getStage1() {
-		return stage1;
-	}
-
-	public void setStage1(EngineLog stage1) {
-		this.stage1 = stage1;
 	}
 
 	public EngineLog getStage2() {
@@ -313,4 +311,11 @@ public class PlaceOrder {
 		this.packages = packages;
 	}
 
+	public JSONObject getStage2Obj() {
+		return stage2Obj;
+	}
+
+	public void setStage2Obj(JSONObject stage2Obj) {
+		this.stage2Obj = stage2Obj;
+	}
 }

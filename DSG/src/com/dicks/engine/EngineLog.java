@@ -7,11 +7,24 @@ import java.util.Set;
 
 import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
+import com.dicks.pojo.Log;
 import com.dicks.pojo.Rule;
 
 public class EngineLog {
 	private HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();	
 	private int stage;
+	
+	public EngineLog(ArrayList<Log> logs) throws Exception {
+		RuleDAO ruleDAO = RuleDAO.getInstance();
+		
+		for (Log log : logs) {
+			Rule rule = ruleDAO.getRuleById(log.getRule().getRuleId()+ "");
+			String[] strings = log.getRecord().split(",");
+			for (String string : strings) {
+				this.addLog(rule.getRuleName(), string);
+			}
+		}
+	}
 	
 	public EngineLog(int stage) {
 		this.stage = stage;
@@ -75,6 +88,12 @@ public class EngineLog {
 				//System.out.println("categories: " + Arrays.toString(categories));
 				log.setCategories(sb.toString());	
 			}				
+			String[] strings = RuleDAO.getInstance().getDescriptionByRule(rule);
+			System.out.println("conditions: " + strings[0]);
+			System.out.println("actions: " + strings[1]);
+			log.setConditions(strings[0]);
+			log.setActions(strings[1]);
+			
 			log.setRule(rule);
 			log.setIndex(count++);
 			logs.add(log);
@@ -92,6 +111,8 @@ public class EngineLog {
 		private ArrayList<String> logs;
 		private Rule rule;
 		private String categories;
+		private String conditions;
+		private String actions;
 		
 		public LogE(String name, ArrayList<String> logs) {
 			this.name = name;
@@ -136,6 +157,22 @@ public class EngineLog {
 
 		public void setCategories(String categories) {
 			this.categories = categories;
+		}
+
+		public String getConditions() {
+			return conditions;
+		}
+
+		public void setConditions(String conditions) {
+			this.conditions = conditions;
+		}
+
+		public String getActions() {
+			return actions;
+		}
+
+		public void setActions(String actions) {
+			this.actions = actions;
 		}
 	}
 }

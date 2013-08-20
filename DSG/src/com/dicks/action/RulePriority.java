@@ -32,6 +32,7 @@ public class RulePriority {
 	public void setRuleString(String ruleString){
 		this.ruleString = ruleString;
 	}
+	
 	public String gotoruleprioritylist(){
 		
 		int pre = 0;
@@ -81,7 +82,14 @@ public class RulePriority {
 		return "success";
 	}
 	public String reRank(){
-		//System.out.println("!!!!!!!!!!!"+ruleString);
+		
+		System.out.println("nimabicao");
+		String[] s1 = ruleString.split(",");
+		System.out.println("!!!!!!!!!!!"+ruleString);
+		System.out.println("!!!!length "+s1.length);
+		for (int i = 0;i<s1.length;i++){
+			System.out.println(i+" "+s1[i]);
+		}
 		int pre = 0;
 		int mid = 0;
 		int last = 0;
@@ -91,6 +99,12 @@ public class RulePriority {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		System.out.println("-------------");
+		for (int i = 0 ;i < allRule.length;i++){
+			System.out.println(i+" "+allRule[i].getRuleName());
+		}
+		System.out.println("-------------");
 		//System.out.println("rule Length!!!"+allRule.length);
 		Rule[] preRule = null;
 		for (int i = 0; i<allRule.length;i++){
@@ -104,12 +118,12 @@ public class RulePriority {
 			}
 		}
 		mid = allRule.length-pre-last;
-		//System.out.println("all rule number is "+allRule.length);
-		//System.out.println("pre rule number is "+pre);
-		//System.out.println("mid rule number is "+mid);
-		//System.out.println("last rule number is "+last);
+		System.out.println("all rule number is "+allRule.length);
+		System.out.println("pre rule number is "+pre);
+		System.out.println("mid rule number is "+mid);
+		System.out.println("last rule number is "+last);
 		String[] ruleStringList = ruleString.split(",");
-		//System.out.println("hahahahah"+ruleString);
+		System.out.println("hahahahah"+ruleString);
 		
 		Rule[] pRule = new Rule[allRule.length];
 		for (int i = 0;i<pre;i++){
@@ -120,6 +134,7 @@ public class RulePriority {
 			pRule[i] = findRule(allRule,ruleStringList[j]);
 			//System.out.println("pre priority"+pRule[i].getPriority());
 			//System.out.println("computing priority"+pRule[i-1].getPriority());
+			System.out.println(i+" "+pRule[i].getRuleName());
 			pRule[i].setPriority(pRule[i-1].getPriority()-2);
 			//System.out.println("after priority"+pRule[i].getPriority());
 			//System.out.println("first new Rule"+ruleStringList[j]);
@@ -143,8 +158,13 @@ public class RulePriority {
 	}
 	
 	public Rule findRule(Rule[] rule, String find){
+		System.out.println("to find\""+find+"\"");
 		Rule thisRule = new Rule();
+		for (int i = 0 ;i < rule.length;i++){
+			System.out.println(i+" \""+rule[i].getRuleName()+"\"");
+		}
 		for (int i = 0; i<rule.length; i++){
+			//System.out.println("searching "+rule[i].getRuleName());
 			if (rule[i].getRuleName().equalsIgnoreCase(find)){
 				thisRule = rule[i];
 			}

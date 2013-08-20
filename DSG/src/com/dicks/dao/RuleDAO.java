@@ -175,15 +175,14 @@ public class RuleDAO extends BaseDao<Rule> {
 		return "";			
 	}
 	
-	public String[] getDescriptionByRuleId(int ruleId) throws Exception{
+	public String[] getDescriptionByRule(Rule rule) throws Exception{
 		//map
 		buildDictionary();
-
 		
-		List<Criterion> criterions = new ArrayList<Criterion>();
-		Criterion criterion = Restrictions.eq("ruleId", ruleId);
-		criterions.add(criterion);
-		Rule rule  =  super.get(criterions);
+//		List<Criterion> criterions = new ArrayList<Criterion>();
+//		Criterion criterion = Restrictions.eq("ruleId", ruleId);
+//		criterions.add(criterion);
+//		Rule rule  =  super.get(criterions);
 		String type = rule.getType();
 		
 		StringBuffer sbWhen = new StringBuffer();

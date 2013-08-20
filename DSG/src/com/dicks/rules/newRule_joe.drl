@@ -41,10 +41,13 @@ rule "Default Filter Stock"
 	salience 950
 	//agenda-group "first"
     when    	
-    	$item : Product()
+    	$order : Orders()
     	$store : Store()
-    	eval(!InventoryDAO.getInstance().containProduct($store, $item))
+    	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
+    	$logger : EngineLog()
     then
+    	$logger.addLog("Default Filter Stock", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	
     	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
         retract($store);
 end
@@ -58,9 +61,9 @@ rule "Filter Stock 2"
     	$store : Store()
         //eval($store.checkStore($item, $o,"zone","<",2))
         eval(InventoryDAO.getInstance().checkProduct($store, $item,"<",2))
-        $logger : EngineLog() 
+        //$logger : EngineLog() 
     then
-    	$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	//$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
     	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
         retract($store);
 end
@@ -88,23 +91,23 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
-rule  "Threshold for TMAC"
+rule  "Threshold for Tmac"
     salience 848
     when
         $o : Orders()
         $orderE : OrderE()
-        $i : Product( ((Length > 5)||( Width > 5)||( Height > 5)||( Weight > 5))&& (( sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length > 1)||( Width > 2)||( Height > 3)||( Weight > 4))&& (( sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
         $logger: EngineLog()
     then
         for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
         {
-            $logger.addLog("Threshold for TMAC","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            $logger.addLog("Threshold for Tmac","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             PackageE p = new PackageE($o);
             p.addProduct($i,1);
             insert (p);
             $i.minPackage();
-            $logger.addLog("Threshold for TMAC",p.toString()); 
+            $logger.addLog("Threshold for Tmac",p.toString()); 
         }
         retract($i);
 end

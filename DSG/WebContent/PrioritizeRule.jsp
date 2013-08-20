@@ -186,9 +186,13 @@
 									<td
 										style="width:5%; background-color: #75a8d8;">${ruleNum}</td>
 									<td
+
 										style="width:30%; background-color: #75a8d8;">${midRule.ruleName}</td>
+
 									<td
+
 										style="width:35%; background-color: #75a8d8;">${midRule.ruleDescr}</td>
+
 									<td style="width:15%; background-color: #75a8d8;">${midRule.stage}</td>
 									<c:choose>
 										<c:when test="${ (midRule.able == true) }">
