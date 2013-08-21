@@ -631,8 +631,8 @@
                                 		</div>
                                    	</c:if>
 	                     		
-			                         <div id="rank" style="height:auto;margin-top:20px;">
-			                            <div class="subtitle" name="splitNo">
+			                         <div id="rank" style="height:auto;margin-top:20px;width:500px;">
+			                            <div class="subtitle" name="splitNo" style="width:500px;">
 			                                Top Ranking Route&#58;
 			                            </div>
 				                        <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">

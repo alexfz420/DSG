@@ -263,7 +263,7 @@ public class Util {
 		}	
 		long ww = parcel.getWeight()*100;
 		System.out.println("weight is"+ww);
-		//System.out.println("rate: " + rate + " weight: " + parcel.getWeight() + "distance: " + (1+(distance/300)));
+		System.out.println("rate: " + rate + " weight: " + ww + "distance: " +(100 + (distance * 100/ 300)));
 		return (ww * (rate) * (100 + (distance * 100/ 300))) / 10000;
 	}
 	
