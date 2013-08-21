@@ -21,6 +21,7 @@ import java.*;
 import java.String.*;
 import java.util.HashMap;
 import com.dicks.dao.InventoryDAO;
+<<<<<<< HEAD
 rule "Explode Cart"
     agenda-group "init"
     auto-focus true
@@ -125,6 +126,113 @@ rule  "Special route for aj"
         p.setSource($s);
         $logger.addLog("Special route for aj",$product + "get inserted into a new package by speical route rule");
         $logger.addLog("Special route for aj",packageR.toString());      
+=======
+rule "Explore Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 1000
+    dialect "java"
+    when
+        $order : Orders()
+        $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
+    then
+        insert( $item );
+        System.out.println("product"+$item.getSku());
+//        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
+//        System.out.println("order quantity: " + $order.getQuantity());
+//        System.out.println("exlored: " + $order.getExploredItem());
+       
+end
+
+rule "Default Filter Stock"
+	salience 950
+	//agenda-group "first"
+    when    	
+    	$order : Orders()
+    	$store : Store()
+    	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
+    	$logger : EngineLog()
+    then
+    	$logger.addLog("Default Filter Stock", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	
+    	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
+        retract($store);
+end
+
+rule "Filter Stock 2"
+	salience 925
+	//agenda-group "first2"
+    when
+    	//$o : Orders()
+        $item : Product()
+    	$store : Store()
+        //eval($store.checkStore($item, $o,"zone","<",2))
+        eval(InventoryDAO.getInstance().checkProduct($store, $item,"<",2))
+        //$logger : EngineLog() 
+    then
+    	//$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
+        retract($store);
+end
+
+rule  "Default Default Minimum Package Threshold"
+	salience 900
+	//agenda-group "first6"
+    when
+        $o : Orders()
+        $orderE : OrderE()
+		$i : Product( ((weight > 1000)|| ( length > 10) || (width > 10) || (height >10)))
+		 $logger : EngineLog()
+    then     
+    	
+    	for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Default Minimum Package Threshold","Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("Default Minimum Package Threshold",p.toString()); 
+        }
+        retract($i);
+
+end
+
+rule  "special route for wetsuit ha"
+    salience 848
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("ON-OD-WS"))
+        eval ($orderE.getProductQty($id)>0)
+        $s : Store( storeName.equals("York"))
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("special route for wetsuit ha","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        parcelR.calculateCosts();
+        Util.calculateAttribute(parcelR);
+        PackageTestResult packageR = new PackageTestResult(test);
+         packageR.addResult(parcelR);
+        packageR.calculate();
+        p.addTop(packageR);
+        p.setSpecial(true);
+        p.setSource($s);
+        $logger.addLog("special route for wetsuit ha",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("special route for wetsuit ha",packageR.toString());      
+>>>>>>> refs/remotes/origin/master
         System.out.println(packageR);
         insert(packageR);
         retract($product);

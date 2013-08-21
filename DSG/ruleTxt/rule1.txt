@@ -1,4 +1,4 @@
-rule "Explode Cart"
+rule "Explore Cart"
     agenda-group "init"
     auto-focus true
     salience 1000

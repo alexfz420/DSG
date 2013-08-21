@@ -1,17 +1,8 @@
 package Test;
-
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
-
-import org.json.simple.JSONObject;
-import org.junit.Test;
-
-import com.dicks.dao.CustomerDAO;
 import com.dicks.dao.FeeDAO;
 import com.dicks.dao.InventoryDAO;
 import com.dicks.dao.OrderDetailDAO;
@@ -20,7 +11,6 @@ import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreDAO;
 import com.dicks.dao.VendorDAO;
-import com.dicks.pojo.Customer;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Inventory;
 import com.dicks.pojo.InventoryId;
@@ -31,11 +21,9 @@ import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
 import com.dicks.pojo.Store;
 import com.dicks.pojo.Vendor;
-
 import com.dicks.engine.PackageE;
 import com.dicks.engine.Parcel;
 import com.dicks.engine.Util;
-import java.sql.Timestamp;
 
 public class TestUtil {	
 //	@Test
@@ -52,7 +40,7 @@ public class TestUtil {
 		}
 	}
 
-	@Test
+
 	public void testRule2() throws Exception {
 		//System.out.println(InventoryDAO.getInstance().(1, 1));
 		Rule rule = RuleDAO.getInstance().getRuleByName("Default Filter Stock");

@@ -43,18 +43,14 @@
 
  
     $(function() {
-    var availableTags = [
-      "All",
-      "Normal Mall",
-      "Monroeville Mall",
-      "West Mifflin",
-      "Homestead",
-      "Yonkers",
-      "Paramus",
-      "Station Island",
-      "GSI",
-      "Vendor Direct"
-    ];
+    	var name = '${storeName}';
+	    var ch = new Array;
+		 ch = name.split(",");
+		 for(var i=0 ;i<ch.length;i++){
+		  console.log(ch[i]);
+		 }
+	   
+	   availableTags = ch;
     function split( val ) {
       return val.split( /,\s*/ );
     }
@@ -233,7 +229,7 @@ function goBack(){
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates.replace("%20"," ")}</textarea>
+                    <td><textarea name="categoryname"  style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" >${cates.replace("%20"," ")}</textarea>
                     
                     </td>
                 </tr> 
@@ -281,7 +277,7 @@ function goBack(){
                     <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
                     <td><input type="submit" value="Update" class="button"></td>
                      <input type="hidden" id="prodCate" name="prodCate"> 
-                      <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
+                     <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
                 
                 </tr>
             </table>

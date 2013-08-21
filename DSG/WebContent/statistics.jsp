@@ -232,7 +232,7 @@
         });
     });
         </script>
-        <div id="day1" style="min-width: 1010px; height: 250px; margin: 0 auto; display:block;"></div>
+        <div id="day1" style="width:800px; height: 250px; margin: 0 auto; display:block;"></div>
 
         <script type="text/javascript">
           $(function () {
@@ -300,7 +300,7 @@
         });
     });
         </script>
-        <div id="day2" style="min-width: 1010px; height: 350px; margin: 0 auto; display:block;"></div>
+        <div id="day2" style="width: 800px; height:300px; margin: 0 auto; display:block;"></div>
 
         <!--weekly-->
         <div id="week" class="title" style="display:none;">Weekly: 08/17/13&nbsp;&#45;&nbsp;08/23/13</div>
@@ -347,7 +347,7 @@
         });
     });
         </script>
-        <div id="week1" style="min-width: 1010px; height: 250px; margin: 0 auto; display:none;"></div>
+        <div id="week1" style="width: 800px; height: 250px; margin: 0 auto; display:none;"></div>
 
         <script type="text/javascript">
           $(function () {
@@ -410,7 +410,7 @@
         });
     });
         </script>
-        <div id="week2" style="min-width: 1010px; height: 350px; margin: 0 auto; display:none;"></div>
+        <div id="week2" style="width: 800px; height: 300px; margin: 0 auto; display:none;"></div>
 
         <!--monthly-->
         <div id="month" class="title" style="display:none;">Monthly: 07/22/13&nbsp;&#45;&nbsp;08/23/13</div>
@@ -457,7 +457,7 @@
         });
     });
         </script>
-        <div id="month1" style="min-width: 1010px; height: 250px; margin: 0 auto; display:none;"></div>
+        <div id="month1" style="width: 800px; height: 250px; margin: 0 auto; display:none;"></div>
 
         <script type="text/javascript">
           $(function () {
@@ -522,7 +522,7 @@
         });
     });
         </script>
-        <div id="month2" style="min-width: 1010px; height: 350px; margin: 0 auto; display:none;"></div>
+        <div id="month2" style="width: 800px; height: 300px; margin: 0 auto; display:none;"></div>
 
         <!--yearly-->
         <div id="year" class="title" style="display:none;">Yearly: September 2012&nbsp;&#45;&nbsp;August 2013</div>
@@ -569,7 +569,7 @@
         });
     });
         </script>
-        <div id="year1" style="min-width: 1010px; height: 250px; margin: 0 auto; display:none;"></div>
+        <div id="year1" style="width: 800px; height: 250px; margin: 0 auto; display:none;"></div>
 
         <script type="text/javascript">
           $(function () {
@@ -637,7 +637,7 @@
         });
     });
         </script>
-        <div id="year2" style="min-width: 1010px; height: 350px; margin: 0 auto; display:none;"></div>
+        <div id="year2" style="width: 800px; height: 300px; margin: 0 auto; display:none;"></div>
 
 
     </div>
@@ -648,7 +648,7 @@
 
     <!-- footer starts -->
         <div>
-            <div class="footer"><span>©2013 eBusiness Team</span></div>
+            <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
     <!-- footer ends -->
 

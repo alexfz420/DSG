@@ -213,9 +213,9 @@ function goBack(){
                         <br/>
                        <div>
                             <select style="width:180px;" name="attribute">
-                                <option value="Length" <c:if test="${attribute[0] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
-                                <option value="Width" <c:if test="${attribute[0] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
-                                <option value="Height" <c:if test="${attribute[0] == 'Competition'}">selected="selected"</c:if>>Competition</option>
+                                <option value="Distance" <c:if test="${attribute[0] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
+                                <option value="Margin" <c:if test="${attribute[0] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
+                                <option value="Competition" <c:if test="${attribute[0] == 'Competition'}">selected="selected"</c:if>>Competition</option>
                                 
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator">
@@ -234,9 +234,9 @@ function goBack(){
                         <br/>
                         <div>
                             <select style="width:180px;"name="attribute">
-                                <option value="Length" <c:if test="${attribute[1] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
-                                <option value="Width" <c:if test="${attribute[1] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
-                                <option value="Height" <c:if test="${attribute[1] == 'Competition'}">selected="selected"</c:if>>Competition</option>
+                                <option value="Distance" <c:if test="${attribute[1] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
+                                <option value="Margin" <c:if test="${attribute[1] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
+                                <option value="Competition" <c:if test="${attribute[1] == 'Competition'}">selected="selected"</c:if>>Competition</option>
                                 
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator">
@@ -254,9 +254,9 @@ function goBack(){
                         <br/>
                         <div>
                             <select style="width:180px;"name="attribute">
-                                <option value="Length" <c:if test="${attribute[2] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
-                                <option value="Width" <c:if test="${attribute[2] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
-                                <option value="Height" <c:if test="${attribute[2] == 'Competition'}">selected="selected"</c:if>>Competition</option>
+                                <option value="Distance" <c:if test="${attribute[2] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
+                                <option value="Margin" <c:if test="${attribute[2] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
+                                <option value="Competition" <c:if test="${attribute[2] == 'Competition'}">selected="selected"</c:if>>Competition</option>
                                 
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator">

@@ -350,6 +350,7 @@ public class WriteDrl {
 		   
 		     
 		   tmp.append(myTab+myTab+"eval(");
+		   System.out.println("0 attribute"+ splitAttribute[0]);
 		   if (splitAttribute[0].equals("Margin"))
 		   {
 			   tmp.append("(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", "+splitValue[0]+" ))" );
@@ -364,6 +365,7 @@ public class WriteDrl {
 		   }
 		   
 		   for (int i = 1; i < splitAttribute.length; i++){
+			   System.out.println("1 attribute"+ splitAttribute[0]);
 			   if (splitAttribute[i].equals("Margin"))
 			   {
 				   tmp.append("||(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[i]+"\", "+splitValue[i]+" ))" );

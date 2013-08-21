@@ -26,34 +26,26 @@ import com.dicks.pojo.Store;
 public class DatabaseUtil {
 	public static void main(String[] args) {
 		try {
-			createShipment("94065");
+			
+//			StoreDAO.getInstance(). deletePie();
 			
 			
 			
 			
+//			createShipment("94065");
+
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-//			InventoryDAO.getInstance().deleteAll();
-//			ceateInventory(1,100,800,1100,1,20,0,5,0.2,0.7);
-//			ceateInventory(2,300,110,130,1,30,0,5,0.1,0.9);
-//			ceateInventory(3,300,110,130,1,30,0,5,0.1,0.9);
-//			ceateInventory(4,300,110,130,1,30,0,5,0.1,0.9);
-//			ceateInventory(5,300,110,130,1,30,0,5,0.1,0.9);
-//			ceateInventory(6,300,110,130,1,30,0,5,0.1,0.9);
-//			ceateInventory(7,300,110,130,1,30,0,5,0.1,0.9);			
-//			ceateInventory(8,500,34,50,0,70,0,10,0.1,0.9);
-//			ceateInventory(9,500,90,110,0,70,0,10,0.1,0.9);
-//			System.out.println(InventoryDAO.getInstance().count());
+			InventoryDAO.getInstance().deleteAll();
+			ceateInventory(1,100,80000,110000,10,20,5,10,0.2,0.7);
+			ceateInventory(2,300,13000,15000,1,30,0,5,0.1,0.9);
+			ceateInventory(3,300,11000,13000,1,30,0,5,0.1,0.9);
+			ceateInventory(4,300,4000,5000,1,30,0,5,0.1,0.9);
+			ceateInventory(5,300,7000,8000,1,30,0,5,0.1,0.9);
+			ceateInventory(6,300,3000,4000,1,30,0,5,0.1,0.9);
+			ceateInventory(7,300,13000,14000,1,30,0,5,0.1,0.9);			
+			ceateInventory(8,500,65000,75000,0,70,0,10,0.1,0.9);
+			ceateInventory(9,500,9900,11000,0,70,0,10,0.1,0.9);
+			System.out.println(InventoryDAO.getInstance().count());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
