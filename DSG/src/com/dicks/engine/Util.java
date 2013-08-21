@@ -264,7 +264,7 @@ public class Util {
 		return (parcel.getWeight() * rate) / 100;
 	}
 	
-	public static void calculateAttribute(ParcelResult parcelR) {
+	public static void calculateAttribute(ParcelResult parcelR) throws Exception {
 		if (attribute.equals("retailPrice")) {
 			Parcel parcel = parcelR.getParcel();
 			Store store = parcelR.getSource();
@@ -291,7 +291,12 @@ public class Util {
 			attribute -= parcelR.getShippingCost() * 100;
 			parcelR.setAttribute((double) attribute / 100.0);
 		} else if (attribute.equals("proximity")) {
-			
+			Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(
+					parcelR.getSource().getZip(), parcelR.getParcel().getPack().getOrder().getShippingZip());
+			if (shipment != null) {
+				parcelR.setAttribute((double) shipment.getDistance());
+			}
+			System.out.println("caculate attribute: distance");
 		} else if (attribute.equals("totalCost")) {
 			parcelR.setAttribute(parcelR.getCost());
 			//System.out.println("caculate attribute: total costs");
