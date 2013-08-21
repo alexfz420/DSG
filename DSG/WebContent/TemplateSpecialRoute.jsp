@@ -88,13 +88,7 @@
 
 
         </li>
-		<li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+  
     </ul>
 </div>
  <script>
