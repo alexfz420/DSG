@@ -9,6 +9,7 @@ import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreCateDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.engine.CreateTemplate;
 import com.dicks.engine.UpdateTemplate;
 import com.dicks.engine.WriteDrl;
@@ -54,7 +55,15 @@ public class RuleList {
 	public String prodd;
 	public String storeProduct;
 	public String prodLists;
+	public String storeName;
 	
+	public void setStoreName(String s){
+		this.storeName = s;
+	}
+	
+	public String getStoreName(){
+		return storeName;
+	}
 	public void setProductLists(String s){
 		this.prodLists = s;
 	}
@@ -483,6 +492,21 @@ public class RuleList {
 			
 		} 
 		else if (thisRule.getType().equals("3")) {
+			String[] tmp4 = null;
+			//get all storeNames
+			try {
+				tmp4 = StoreDAO.getInstance().getAllNames();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			StringBuffer storeNames = new StringBuffer();
+			storeNames.append(tmp4[0]);
+			for (int i = 1;i<tmp4.length;i++){
+				//System.out.println(tmp2[i]);
+				storeNames.append(","+tmp4[i]);
+			}
+			storeName = storeNames.toString();
 			System.out.println("checking type 3");
 			String[] tmp2 = null;
 			try {
@@ -504,8 +528,8 @@ public class RuleList {
 			
 
 			System.out.println("WTF"+prodCate);
-			rulename = thisRule.getRuleName();
-			ruleDess = thisRule.getRuleDescr();
+			rulename = thisRule.getRuleName().replace(" ","%20");
+			ruleDess = thisRule.getRuleDescr().replace(" ","%20");
 			operator = thisRule.getOperators();
 			value = thisRule.getValues();
 			sources = thisRule.getRoutes();
@@ -654,16 +678,17 @@ public class RuleList {
 		route[0] = "";
 		System.out.println("rule id "+hahaRule.getRuleId());
 		System.out.println("rulename pre "+rulename);
-		System.out.println("rulename after "+rulenames);
+		System.out.println("rulename after "+rulename);
 		UpdateTemplate updateTemplate= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,attribute,operator,value,conditions,route,action,"TH-A,ST-A,SP-A",cateList,true);
 		WriteDrl wdl = new WriteDrl();
 		return "success";
 	}
 	
 	public String updateRuleSpecial(){
-
+		System.out.println("input rulename"+rulename);
 		categoryname =categoryname.replace("%20", " ");
 		rulename = rulename.replace("%20", " ");
+		System.out.println("input rulename"+rulename);
 		des = des.replace("%20", " ");
 		System.out.println("input category"+categoryname);
 		categoryname = categoryname.trim();
@@ -680,7 +705,7 @@ public class RuleList {
 			e1.printStackTrace();
 		}
 		for (int i = 0; i<ruleLists.length;i++){
-			System.out.println("!!fsdfjdsakfasdkfjasdlkfjadslkjflkasjflkasdjfl"+ruleLists[i].getRuleName()+"  "+rulename);
+			//System.out.println("!!fsdfjdsakfasdkfjasdlkfjadslkjflkasjflkasdjfl"+ruleLists[i].getRuleName()+"  "+rulename);
 			if ((ruleLists[i].getRuleName().replace("%20"," ")).equals(rulename)){
 				System.out.println("found it");
 				hahaRule = ruleLists[i];
@@ -731,8 +756,14 @@ public class RuleList {
 		System.out.println("rulename!!!"+rulenames);
 		System.out.println("des "+des);
 		System.out.println("operator "+operator[0]);
-		System.out.println("prodcut "+productcount);
-		UpdateTemplate updateTemplate= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,aa,operator,value," ",productcount,action,flag,cateList,true);
+		System.out.println("prodcut "+productcount[0]);
+		System.out.println("aa "+aa[0]);
+		System.out.println("sources "+sources[0]);
+		System.out.println("prodcut!! "+product[0]);
+		System.out.println("cateList "+cateList[0]);
+		System.out.println("id	 "+hahaRule.getRuleId());
+		
+		UpdateTemplate updateTemplate= new UpdateTemplate(hahaRule.getRuleId(),rulename,rulenames,des,product,aa,operator,productcount," ",sources,action,flag,cateList,true);
 		WriteDrl wdl = new WriteDrl();
 		return "success";
 	}
