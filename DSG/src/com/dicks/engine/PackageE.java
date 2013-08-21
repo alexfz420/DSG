@@ -90,13 +90,17 @@ public class PackageE {
 	}
 	
 	public void addSplitTest(PackageTest test) {
-		JSONArray split;
+		JSONObject split;
+		int maxCount = 0;
 		if (splitNum >= splits.size())  {
-			split = new JSONArray();
+			split = new JSONObject();
 			splits.add(split);
 		} else {
-			split = (JSONArray) splits.get(splitNum);
+			split = (JSONObject) splits.get(splitNum);
 		}
+		
+		JSONArray testJ = new JSONArray();
+		
 		ArrayList<Parcel> parcels = test.getParcels();
 		
 		for (Parcel parcel : parcels) {
@@ -111,8 +115,14 @@ public class PackageE {
 			}
 			obj.put("products", productList);
 			obj.put("storeCount", parcel.getStoreCount());
-			split.add(obj);
+			testJ.add(obj);
+			if (parcel.getStoreCount() > maxCount) {
+				maxCount = parcel.getStoreCount();
+			}
 		}
+		split.put("tests", testJ);
+		split.put("maxCount", maxCount);
+		
 //		System.out.println("split " + this.splitNum + " text: " + text + " splits: " + Arrays.toString(splits.toArray()));
 	}
 	
@@ -130,10 +140,11 @@ public class PackageE {
 		}
 		
 		JSONObject packageE = new JSONObject();
+		
 		packageE.put("splitNum", this.splitNum);
 		packageE.put("unable", this.isUnable());
 		packageE.put("special", this.isSpecial());
-		packageE.put("source", this.source == null? null : this.source.getStoreType() + " " + this.source.getStoreId());
+		packageE.put("source", this.source == null? null : this.source.getStoreType() + " " + this.source.getStoreName());
 		JSONArray productList = new JSONArray();
 		for (Product p : map.keySet()) {
 			JSONObject product = new JSONObject();
@@ -145,6 +156,17 @@ public class PackageE {
 
 //		System.out.println("splits size: " + splits.size());
 		packageE.put("splits", splits);
+		
+		int maxCount = 0;
+		for (int i = 0; i < splits.size(); i++) {
+			JSONObject split = (JSONObject) splits.get(i);
+			int count = (Integer) split.get("maxCount");
+			System.out.println("count: " + count);
+			if (maxCount < count) {
+				maxCount = count;
+			}
+		}
+		packageE.put("maxCount", maxCount);
 		
 //		System.out.println("json splits: " + splitsArray.toString());	
 		return packageE;
@@ -170,7 +192,7 @@ public class PackageE {
 				}
 				parcelRJ.put("products", productsJ);
 				
-				parcelRJ.put("source", parcelR.getSource().toString());
+				parcelRJ.put("source", parcelR.getSource().getStoreType() + " " + parcelR.getSource().getStoreName());
 				parcelRJ.put("totalCost", parcelR.getCost());
 				
 				//costs
@@ -186,7 +208,7 @@ public class PackageE {
 			array.add(rJ);
 		}
 		
-		System.out.println("array: " + array);
+		//System.out.println("array: " + array);
 		
 		return array;
 	}
