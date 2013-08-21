@@ -92,25 +92,78 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
-rule  "addidas threshold"
+rule  "Special Route for wetsuit"
     salience 848
+    when
+        $order : Orders()
+        $orderE : OrderE()
+        $product : Product($id: prodId, sku.equals("ON-OD-WS"))
+        eval ($orderE.getProductQty($id)>0)
+        $s : Store( storeName.equals("York"))
+        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
+        $logger: EngineLog()
+    then
+        $logger.addLog("Special Route for wetsuit","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        PackageE p = new PackageE($order);
+        p.addProduct($product, $orderE.getProductQty($id));
+        insert (p);
+        p.setAllocated(true); 
+        Parcel parcel = new Parcel(p);
+        parcel.addNumProduct($product, $orderE.getProductQty($id));
+        PackageTest test = new PackageTest(p);
+        test.addParcel(parcel);
+        ParcelResult parcelR = new ParcelResult(parcel);
+        parcelR.setSource($s);
+        parcelR.calculateCosts();
+        Util.calculateAttribute(parcelR);
+        PackageTestResult packageR = new PackageTestResult(test);
+         packageR.addResult(parcelR);
+        packageR.calculate();
+        p.addTop(packageR);
+        p.setSpecial(true);
+        p.setSource($s);
+        $logger.addLog("Special Route for wetsuit",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("Special Route for wetsuit",packageR.toString());      
+        System.out.println(packageR);
+        insert(packageR);
+        retract($product);
+end
+
+rule  "Threshold for wetsuit"
+    salience 846
     when
         $o : Orders()
         $orderE : OrderE()
-        $i : Product( ((Length > 5)||( Width > 6)||( Height > 7)||( Weight > 8))&& (( sku.equals("AD-SH-SP"))|| (sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $i : Product( ((Length > 5)||( Width > 5)||( Height > 5)||( Weight > 5))&& (( sku.equals("ON-OD-WS"))|| (sku.equals("TY-OD-WS")))&& (flag.equals("TH-A,ST-A,SP-A")))
         $logger: EngineLog()
     then
         for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
         {
-            $logger.addLog("addidas threshold","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            $logger.addLog("Threshold for wetsuit","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
             PackageE p = new PackageE($o);
             p.addProduct($i,1);
             insert (p);
             $i.minPackage();
-            $logger.addLog("addidas threshold",p.toString()); 
+            $logger.addLog("Threshold for wetsuit",p.toString()); 
         }
         retract($i);
+end
+
+rule  "ca and competition"
+    salience 844
+    when
+        $order : Orders($z:shippingZip)
+        $orderE : OrderE()
+        $product : Product((( prodName.equals("ONeill Men Hammer 3-2 Full Wetsuit"))), $id :prodId)
+        $s: Store( (( storeId == 363)|| (storeId == 367)|| (storeId == 372)|| (storeId == 373)|| (storeId == 374)|| (storeId == 421)|| (storeId == 469)|| (storeId == 470)|| (storeId == 471)|| (storeId == 473)|| (storeId == 474)|| (storeId == 475)|| (storeId == 476)|| (storeId == 477)|| (storeId == 478)|| (storeId == 479)|| (storeId == 480)|| (storeId == 481)|| (storeId == 482)|| (storeId == 489)|| (storeId == 503)|| (storeId == 504)|| (storeId == 511)|| (storeId == 518)|| (storeId == 519)|| (storeId == 527)|| (storeId == 528)|| (storeId == 529)|| (storeId == 542)|| (storeId == 552)|| (storeId == 559)))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 1000 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 5 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.7 ))
+        $logger: EngineLog()
+    then
+        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("ca and competition","Store "+$s.getStoreName()+" is successfully retracted");
+        retract($s);
 end
 
 rule "Insert Package for Remaining Products"

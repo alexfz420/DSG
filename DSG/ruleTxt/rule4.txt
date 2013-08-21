@@ -10,8 +10,8 @@ rule  "Default Default Minimum Package Threshold"
     	
     	for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
         {
-            $logger.addLog("Default Minimum Package Threshold","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            $logger.addLog("Default Minimum Package Threshold","Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
             PackageE p = new PackageE($o);
             p.addProduct($i,1);
             insert (p);

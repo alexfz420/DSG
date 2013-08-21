@@ -247,8 +247,8 @@ public class WriteDrl {
 				tmp.append(myTab+"then"+myReturn);
 				tmp.append(myTab+myTab+"for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)"+myReturn);
 				tmp.append(myTab+myTab+"{"+myReturn);
-				tmp.append(myTab+myTab+myTab+"$logger.addLog(\""+ruleName+"\",\"Product #\"+i+\" \"+$i.getProdName()+\"is over weighted/sized ----Split into a separate package\");"+myReturn);
-				tmp.append(myTab+myTab+myTab+"System.out.println(\"Product #\"+i+\" \"+$i.getProdName()+\"is over weighted/sized ----Split into a separate package\");"+myReturn);
+				tmp.append(myTab+myTab+myTab+"$logger.addLog(\""+ruleName+"\",\"Product #\"+i+\" \"+$i.getProdName()+\"is moved into a separate package\");"+myReturn);
+				tmp.append(myTab+myTab+myTab+"System.out.println(\"Product #\"+i+\" \"+$i.getProdName()+\"is moved into a separate package\");"+myReturn);
 				tmp.append(myTab+myTab+myTab+"PackageE p = new PackageE($o);"+myReturn);
 				tmp.append(myTab+myTab+myTab+"p.addProduct($i,1);"+myReturn);
 				tmp.append(myTab+myTab+myTab+"insert (p);"+myReturn);

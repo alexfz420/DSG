@@ -260,9 +260,11 @@ public class Util {
 			rate = shipment.getOverSizeRate();
 		} else {
 			rate = shipment.getNormalRate();
-		}		
+		}	
+		long ww = parcel.getWeight()*100;
+		System.out.println("weight is"+ww);
 		//System.out.println("rate: " + rate + " weight: " + parcel.getWeight() + "distance: " + (1+(distance/300)));
-		return ((parcel.getWeight()*100) * (rate) * (100 + (distance * 100/ 300))) / 10000;
+		return (ww * (rate) * (100 + (distance * 100/ 300))) / 10000;
 	}
 	
 	public static void calculateAttribute(ParcelResult parcelR) {
