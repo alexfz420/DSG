@@ -145,6 +145,10 @@ public class PackageE {
 		packageE.put("unable", this.isUnable());
 		packageE.put("special", this.isSpecial());
 		packageE.put("source", this.source == null? null : this.source.getStoreType() + " " + this.source.getStoreName());
+		packageE.put("explored", SplitGenerater.getSizeFrom0ToN(this.getProducts().size(), this.splitNum == this.getProducts().size()?splitNum:splitNum + 1));
+		System.out.println("!!!!explored: " + SplitGenerater.getSizeFrom0ToN(this.getProducts().size(), this.splitNum) + " splitNum: " + this.splitNum);
+		packageE.put("total", SplitGenerater.getTotalSize(this.getProducts().size()));
+		//System.out.println("total: " + SplitGenerater.getTotalSize(this.getProducts().size()));
 		JSONArray productList = new JSONArray();
 		for (Product p : map.keySet()) {
 			JSONObject product = new JSONObject();

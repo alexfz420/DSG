@@ -52,5 +52,24 @@ public class StoreDAO extends BaseDao<Store> {
 		return names;
 	}
 	
+	public void setFlag() throws Exception{
+		List<Store> stores =  getAllStores();	
+		
+		for(Store store :stores){
+			store.setFlag("TH-A,ST-A,SP-A");
+			super.update(store);
+		}
+	}
+	
+	public void deletePie() throws Exception{
+		List<Store> stores =  getAllStores();	
+		for(Store store :stores){
+			String name =store.getStoreName();
+			name.replaceAll("'", "");
+			store.setStoreName(name);
+			super.update(store);
+		}
+
+	}
 
 }

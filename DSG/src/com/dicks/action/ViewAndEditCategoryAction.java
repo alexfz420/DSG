@@ -152,8 +152,10 @@ public class ViewAndEditCategoryAction extends ActionSupport {
 		List<String> ruleNames;
 		try {
 			ruleNames = RuleDAO.getInstance().getRuleNamesForProduct();
-			if(ruleNames!=null){
+			if(ruleNames==null||ruleNames.size()==0){}
+			else{
 				this.setRuleList(getRuleListString(ruleNames));
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

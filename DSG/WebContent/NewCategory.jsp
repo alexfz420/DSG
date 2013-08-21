@@ -10,7 +10,7 @@
  <jsp:include page="template_top.jsp" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script src="js/validation.js"></script>
+
 <ul class="nav">
         <li class=""><a class="recordable open" id="toggleone" href="#" 
             memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
@@ -260,33 +260,8 @@
   $(function() {
     var availableTags = [
       "All",
-      "Shirts",
-      "Basketball",
-      "Shoes",
-      "Bags",
-      "Kayaks",
-      "Socks",
-      "Accessories",
-      "Bikes",
-      "Camp",
-      "Graphic Tees",
-      "Shorts",
-      "Pants",
-      "Swimsuits",
-      "Sweatshirts & Hoodies",
-      "Jackets & Vests",
-      "Extended Sizes",
-      "Sports Bras",
-      "Skirts, Skorts & Dresses",
-      "Pants & Capris",
-      "Yoga",
-      "Toddler & Infant Jackets",
-      "Backpacks & Duffles",
-      "Sunglasses",
-      "Hats",
-      "Headbands",
-      "Heart Rate Monitors",
-      "Fishing Apparel"
+      "Outdoor",
+      "Shoe"
     ];
     function split( val ) {
       return val.split( /,\s*/ );
@@ -330,23 +305,7 @@
   
   $(function() {
     var availableTags = [
-      "All", "Adidas", "Antigua", "Asics", "anon",
-      "Brooks", "Burton",
-      "Columbia", 
-      "Dallas Cowboys", 
-      "Fit 2 Win", "Flow Society", 
-      "Glamorise",
-      "Jordan", 
-      "KÃPPEN",
-      "Marmot", "Mountain Hardwear", "Moving Comfort",
-      "NFL Team Apparel", "Nike", 
-      "Patagonia", "Patagonia", "Puma",
-      "R.E.D", "Reebok", "Russell Athletic",
-      "SKINS", "Saucony", "Shock Absorber", "Spanx", "Spyder",
-      "TaylorMade", "The North Face",
-      "Under Armour",
-      "Warrior",
-      "lucy"
+      "All", "Adidas","Ocean","Oneill","Aqua","TYR","Newport"
     ];
 
     function split( val ) {

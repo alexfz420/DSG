@@ -247,8 +247,8 @@ public class WriteDrl {
 				tmp.append(myTab+"then"+myReturn);
 				tmp.append(myTab+myTab+"for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)"+myReturn);
 				tmp.append(myTab+myTab+"{"+myReturn);
-				tmp.append(myTab+myTab+myTab+"$logger.addLog(\""+ruleName+"\",\"Product #\"+i+\" \"+$i.getProdName()+\"is over weighted/sized ----Split into a separate package\");"+myReturn);
-				tmp.append(myTab+myTab+myTab+"System.out.println(\"Product #\"+i+\" \"+$i.getProdName()+\"is over weighted/sized ----Split into a separate package\");"+myReturn);
+				tmp.append(myTab+myTab+myTab+"$logger.addLog(\""+ruleName+"\",\"Product #\"+i+\" \"+$i.getProdName()+\"is moved into a separate package\");"+myReturn);
+				tmp.append(myTab+myTab+myTab+"System.out.println(\"Product #\"+i+\" \"+$i.getProdName()+\"is moved into a separate package\");"+myReturn);
 				tmp.append(myTab+myTab+myTab+"PackageE p = new PackageE($o);"+myReturn);
 				tmp.append(myTab+myTab+myTab+"p.addProduct($i,1);"+myReturn);
 				tmp.append(myTab+myTab+myTab+"insert (p);"+myReturn);
@@ -265,7 +265,7 @@ public class WriteDrl {
 
 	   public String writeWhenStoreRule(String[] splits, String[] splitAttribute, 
 			   String[] splitOperator, String[] splitValue,String[] product, String flag){
-
+		   System.out.println("length!"+product.length);
 		   //first product, special case it if the input is "all"
 		   StringBuffer multiObject = new StringBuffer();
 			if (splits[0].equals("ALL")){
@@ -335,7 +335,7 @@ public class WriteDrl {
 			multiple stores 
 			*/
 
-		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
+		   tmp.append(myTab+myTab+"$product : Product("+multiProduct+", $id :prodId)"+myReturn);
 		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+")"+myReturn);
 				   //"&& (flag.equals(\""+flag+"\")))"+myReturn);
 

@@ -23,6 +23,8 @@ public class SplitGenerater {
 	public static void main(String[] args) {
 		SplitGenerater.cache(10);
 		SplitGenerater.buildIndex(10);
+		
+		System.out.println(SplitGenerater.getSizeFrom0ToN(4, 1));
 	}
 
 	public static ArrayList<PackageTest> getTests(PackageE pack) {
@@ -60,7 +62,7 @@ public class SplitGenerater {
 	
 	public static int getSizeFrom0ToN(int packageSize, int n){
 		int result=0;
-		for(int i = 1 ; i<=packageSize ; i++){
+		for(int i = 1 ; i<=n ; i++){
 			result+= size.get(packageSize+","+i);
 		}
 		return result;

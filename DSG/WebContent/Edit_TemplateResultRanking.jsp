@@ -73,7 +73,7 @@
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" readonly>All</textarea>
+                    <td><textarea id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" readonly>All</textarea>
                     If not found, <a href="createcategory.html">new Group</a></td>
                 </tr>
                 <tr>
