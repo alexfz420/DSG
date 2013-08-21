@@ -79,7 +79,7 @@ public class PlaceOrder {
 //		System.out.println("distance "+ss.getDistance());		
 //		System.out.println("product length: " + product.length);
 //		System.out.println("quantity length: " + quantity.length);		
-		
+
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		
 		// get results from test

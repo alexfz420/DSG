@@ -53,5 +53,4 @@ public class StoreDAO extends BaseDao<Store> {
 	}
 	
 
-	
 }

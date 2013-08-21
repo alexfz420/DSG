@@ -25,7 +25,7 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="selected" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-				<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+				<li class="" id="statlist"><a href="<%=basePath %>statistics.action">Statistics</a><span class="normal">&nbsp;</span></li>
 
 			</ul>
 
@@ -105,7 +105,7 @@ $( "#datepickerend" ).datepicker();
             <div>
             <span>Start Date: <input type="text" id="datepickerstart" /></span>&nbsp;&nbsp;
             <span>End Date: <input type="text" id="datepickerend" /></span>&nbsp;&nbsp;
-            <span>Order Status: 
+            <br/><span>Order Status: 
             <select class="search"><option>All</option><option>Received</option><option>In Process</option><option>Allocated</option><option>Reallocated</option>
             </select></span>&nbsp;&nbsp;
             <span>Order #: <input type="text" class="text"/></span>

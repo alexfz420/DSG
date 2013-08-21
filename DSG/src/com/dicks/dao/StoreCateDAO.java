@@ -47,6 +47,8 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		return names;
 	}
 	
+	
+	
 	public StoreCate[] getStoreCategoryList() throws Exception{
 		ArrayList<StoreCate> cateList =  (ArrayList<StoreCate>) super.getList();
 		StoreCate[] array = (StoreCate[])cateList.toArray(new StoreCate[cateList.size()]); 

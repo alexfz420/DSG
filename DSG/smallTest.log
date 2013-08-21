@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <object-stream>
 <org.drools.core.audit.event.ActivationLogEvent>
   <type>4</type>
@@ -2556,3 +2557,5 @@
   <declarations>$p=[Kayak1](1)</declarations>
 </org.drools.core.audit.event.ActivationLogEvent>
 </object-stream>
+=======
+>>>>>>> branch 'master' of https://github.com/alexfz420/DSG.git
