@@ -90,6 +90,7 @@ rule  "Default Default Minimum Package Threshold"
             $logger.addLog("Default Minimum Package Threshold",p.toString()); 
         }
         retract($i);
+
 end
 
 rule  "special route for wetsuit ha"
