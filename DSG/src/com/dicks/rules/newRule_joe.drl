@@ -91,58 +91,19 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
-rule  "Threshold for Tmac"
+rule  "CA store threshold"
     salience 848
     when
-        $o : Orders()
+        $order : Orders($z:shippingZip)
         $orderE : OrderE()
-        $i : Product( ((Length > 1)||( Width > 2)||( Height > 3)||( Weight > 4))&& (( sku.equals("AD-SH-TM")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $product : Product($id :prodId)
+        $s: Store( (( storeName.equals("Escondido "))|| (storeName.equals("El Cajon "))|| (storeName.equals("Fresno "))|| (storeName.equals("Clovis "))|| (storeName.equals("Modesto "))|| (storeName.equals("Bakersfield "))|| (storeName.equals("West Covina "))|| (storeName.equals("Upland Colonies "))|| (storeName.equals("Laguna "))|| (storeName.equals("Chino "))|| (storeName.equals("Murrieta "))|| (storeName.equals("Tustin "))|| (storeName.equals("Moorpark "))|| (storeName.equals("Yorba Linda "))|| (storeName.equals("Oceanside "))|| (storeName.equals("Pasadena "))|| (storeName.equals("Ladera Beach "))|| (storeName.equals("Santa Clarita "))|| (storeName.equals("Fashion Island "))|| (storeName.equals("San Luis Obispo "))|| (storeName.equals("Huntington Beach "))|| (storeName.equals("San Diego"))|| (storeName.equals("Oxnard "))|| (storeName.equals("Redding "))|| (storeName.equals("Petaluma "))|| (storeName.equals("Visalia "))|| (storeName.equals("Salinas "))|| (storeName.equals("Dublin"))|| (storeName.equals("Chico "))|| (storeName.equals("Victorville"))|| (storeName.equals("Fitness warehouse")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 5000 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 12 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.7 ))
         $logger: EngineLog()
     then
-        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
-        {
-            $logger.addLog("Threshold for Tmac","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            PackageE p = new PackageE($o);
-            p.addProduct($i,1);
-            insert (p);
-            $i.minPackage();
-            $logger.addLog("Threshold for Tmac",p.toString()); 
-        }
-        retract($i);
-end
-
-rule  "Special Route"
-    salience 846
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product($id: prodId, sku.equals("1"))
-        eval ($orderE.getProductQty($id)>1)
-        $s : Store( storeId == 1)
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        $logger: EngineLog()
-    then
-        $logger.addLog("Special Route","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        PackageE p = new PackageE($order);
-        p.addProduct($product, $orderE.getProductQty($id));
-        insert (p);
-        p.setAllocated(true); 
-        Parcel parcel = new Parcel(p);
-        parcel.addNumProduct($product, $orderE.getProductQty($id));
-        PackageTest test = new PackageTest(p);
-        test.addParcel(parcel);
-        ParcelResult parcelR = new ParcelResult(parcel);
-        parcelR.setSource($s);
-        PackageTestResult packageR = new PackageTestResult(test);
-        packageR.addResult(parcelR);
-        $logger.addLog("Special Route",$product + "get inserted into a new package by speical route rule");
-        $logger.addLog("Special Route",packageR.toString());      
-        System.out.println(packageR);
-        insert(packageR);
-        retract(p);
-        retract($product);
+        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("CA store threshold","Store "+$s.getStoreName()+" is successfully retracted");
+        retract($s);
 end
 
 rule "Insert Package for Remaining Products"

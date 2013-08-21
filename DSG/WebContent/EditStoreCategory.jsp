@@ -160,7 +160,7 @@
                  <tr style="height:40px;">
                     <td><div class="form-title" style="width:150px;">Fulfillment Methord:<font color="red">*</font>:</div></td>
                     <td style="width:500px;">
-                      <textarea id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Dick's Stores&#44;&nbsp;</textarea>
+                      <textarea id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
                       <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreTypeCheck()">See All Options</a>
@@ -170,7 +170,7 @@
                 <tr style="height:40px%;">
                     <td><div class="form-title" style="width:150px;">Region:<font color="red">*</font>:</div></td>
                     <td style="width:500px;">
-                      <textarea id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Dick's Stores&#44;&nbsp;</textarea>
+                      <textarea id="storeTypeTags" placeholder="Type store type to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
                       <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStoreTypeCheck()">See All Options</a>
@@ -180,7 +180,7 @@
                 <tr style="height:40px%;">
                     <td><div class="form-title" style="width:150px;">State:<font color="red">*</font>:</div></td>
                     <td style="width:500px;">
-                      <textarea id="stateTags" placeholder="Type store state to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;">Pennsylvania&#44;&nbsp;</textarea>
+                      <textarea id="stateTags" placeholder="Type store state to start autocomplete&hellip;" onkeyup="textAreaAdjust(this)" style="overflow:hidden;width:500px;max-width:500px;min-width:500px;margin-top:10px;"></textarea>
                     </td>
                     <td style="width:110px;">
                       <a class="button" href="#" style="margin-left:5px;margin-top:10px;width:102px;" onclick="getStateCheck()">See All Options</a>
