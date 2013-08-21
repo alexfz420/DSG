@@ -68,7 +68,7 @@ public class Util {
 				}
 				p.setStoreCount(count);
 				if (parcelResults.size() < 1) {
-					System.out.println("in test result: no result for " + test);
+					//System.out.println("in test result: no result for " + test);
 					return null;
 				}		
 				
@@ -112,7 +112,7 @@ public class Util {
 				}
 				p.setStoreCount(count);
 				if (parcelResults.size() < 1) {
-					System.out.println("in test result: no result for " + test);
+					//System.out.println("in test result: no result for " + test);
 					return null;
 				}		
 				Collections.sort(parcelResults, new Comparator<ParcelResult>() {
@@ -148,9 +148,9 @@ public class Util {
 		ParcelResult r = new ParcelResult(parcel);
 		r.setSource(store);
 		r.calculateCosts();	
-		System.out.println("For pacel " + parcel + ", store: " + store + 
-							", totalCosts: " + r.getCost() + ", shipping costs: " + r.getShippingCost() + 
-							", other costs: " + r.getOtherCost() + ", attribute: " + r.getAttribute());
+//		System.out.println("For pacel " + parcel + ", store: " + store + 
+//							", totalCosts: " + r.getCost() + ", shipping costs: " + r.getShippingCost() + 
+//							", other costs: " + r.getOtherCost() + ", attribute: " + r.getAttribute());
 		//System.out.println("shipping costs: " + r.getShippingCost());
 		return r;
 	}
@@ -249,6 +249,7 @@ public class Util {
 		String supplyZip = store.getZip();
 		String destinationZip = parcel.getPack().getOrder().getShippingZip();
 		Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(supplyZip, destinationZip);
+		int distance = shipment.getDistance();
 		if (shipment == null) {
 			//System.out.println("shipment null");
 			return Integer.MAX_VALUE;		
@@ -259,9 +260,11 @@ public class Util {
 			rate = shipment.getOverSizeRate();
 		} else {
 			rate = shipment.getNormalRate();
-		}		
-		//System.out.println("rate: " + rate);
-		return (parcel.getWeight() * rate) / 100;
+		}	
+		long ww = parcel.getWeight()*100;
+		System.out.println("weight is"+ww);
+		//System.out.println("rate: " + rate + " weight: " + parcel.getWeight() + "distance: " + (1+(distance/300)));
+		return (ww * (rate) * (100 + (distance * 100/ 300))) / 10000;
 	}
 	
 	public static void calculateAttribute(ParcelResult parcelR) throws Exception {

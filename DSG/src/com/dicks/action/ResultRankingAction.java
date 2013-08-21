@@ -10,17 +10,20 @@ public class ResultRankingAction {
 	private String minOption;
 	private String maxOption;
 	private String ruleId;
+
 	
 	public String resultRanking() throws Exception{
 		Rule rule = RuleDAO.getInstance().getRuleById(ruleId);
-		
+		System.out.println("%%%%%%%%%%%");
 		rule.setRuleName(this.ruleName);
 		rule.setRuleDescr(this.ruleDescription);
 		rule.setOperator(this.rankOption);
 		if (rankOption.equals("max")) {
 			rule.setAttribute(maxOption);
+			System.out.println("action: " + rankOption + " " + maxOption);
 		} else if (rankOption.equals("min")) {
 			rule.setAttribute(minOption);
+			System.out.println("action: " + rankOption + " " + minOption);
 		}
 		
 		RuleDAO.getInstance().update(rule);
