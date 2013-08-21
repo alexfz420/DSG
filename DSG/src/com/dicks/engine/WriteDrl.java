@@ -334,9 +334,11 @@ public class WriteDrl {
 			   		"\")))"+myReturn);
 			multiple stores 
 			*/
-		   
-		   tmp.append(myTab+myTab+"$product : Product("+multiProduct.toString()+", $id :prodId)"+myReturn);
-		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+"\")))"+myReturn);
+
+		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
+		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+")"+myReturn);
+				   //"&& (flag.equals(\""+flag+"\")))"+myReturn);
+
 
 		   for (int i = 0; i < splitAttribute.length; i++){
 			   //System.out.println("attribute "+i+" "+splitAttribute[i]);
@@ -531,14 +533,23 @@ public class WriteDrl {
 		tmp.append(myTab+myTab+"test.addParcel(parcel);"+myReturn);
 		tmp.append(myTab+myTab+"ParcelResult parcelR = new ParcelResult(parcel);"+myReturn);
 		tmp.append(myTab+myTab+"parcelR.setSource($s);"+myReturn);
+		
+		tmp.append(myTab+myTab+"parcelR.calculateCosts();"+myReturn);
+		tmp.append(myTab+myTab+"Util.calculateAttribute(parcelR);"+myReturn);      
 		tmp.append(myTab+myTab+"PackageTestResult packageR = new PackageTestResult(test);"+myReturn);
-		tmp.append(myTab+myTab+"packageR.addResult(parcelR);"+myReturn);
+		tmp.append(myTab+myTab+" packageR.addResult(parcelR);"+myReturn);
+		tmp.append(myTab+myTab+"packageR.calculate();"+myReturn);
+		tmp.append(myTab+myTab+"p.addTop(packageR);"+myReturn);
+		tmp.append(myTab+myTab+"p.setSpecial(true);"+myReturn);
+		tmp.append(myTab+myTab+"p.setSource($s);"+myReturn);
+
 		tmp.append(myTab+myTab+"$logger.addLog(\""+ruleName+"\",$product + \"get inserted into a new package by speical route rule\");"+myReturn);
 		tmp.append(myTab+myTab+"$logger.addLog(\""+ruleName+"\",packageR.toString());      "+myReturn);
 		tmp.append(myTab+myTab+"System.out.println(packageR);"+myReturn);
 		tmp.append(myTab+myTab+"insert(packageR);"+myReturn);
-		tmp.append(myTab+myTab+"retract(p);"+myReturn);
 		tmp.append(myTab+myTab+"retract($product);"+myReturn);
+
+		
 		//add this "product/quantity", store into a new parcel result.
 		//add this parcel result into a new package result
 		tmp.append("end"+myReturn+myReturn);

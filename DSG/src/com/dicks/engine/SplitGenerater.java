@@ -80,6 +80,20 @@ public class SplitGenerater {
 				Integer.valueOf(indexResult[1]));
 
 	}
+	
+	// split 0 -> n = 1
+	public static int getSizeFrom0ToN(int packageSize, int n){
+		int num= 0;
+		for(int i = 1; i<=n ;i++){
+			String[] combinations = getCombinations(packageSize, i).split("&");
+			num+=combinations.length;
+		}
+		return num;
+	}
+	
+	public static int getTotalSize(int packageSize){
+		return getSizeFrom0ToN(packageSize, packageSize);
+	}	
 
 	public static void cache(int n) {
 		int end = -1;

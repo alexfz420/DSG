@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Store;
 
 public class PackageE {
 	private ArrayList<Product> products = new ArrayList<Product>();
@@ -19,6 +20,8 @@ public class PackageE {
 	private boolean allocated;
 	private boolean splitable = true;
 	private boolean unable = false;
+	private boolean special = false;
+	private Store source;
 	private ArrayList<PackageTestResult> bestResults = new ArrayList<PackageTestResult>();
 	private JSONArray splits = new JSONArray();
 
@@ -129,6 +132,8 @@ public class PackageE {
 		JSONObject packageE = new JSONObject();
 		packageE.put("splitNum", this.splitNum);
 		packageE.put("unable", this.isUnable());
+		packageE.put("special", this.isSpecial());
+		packageE.put("source", this.source == null? null : this.source.getStoreType() + " " + this.source.getStoreId());
 		JSONArray productList = new JSONArray();
 		for (Product p : map.keySet()) {
 			JSONObject product = new JSONObject();
@@ -255,6 +260,10 @@ public class PackageE {
 	public void setBestResults(ArrayList<PackageTestResult> bestResults) {
 		this.bestResults = bestResults;
 	}
+	
+	public void addTop(PackageTestResult testResult) {
+		this.bestResults.add(testResult);
+	}
 
 	public boolean isUnable() {
 		return unable;
@@ -262,5 +271,21 @@ public class PackageE {
 
 	public void setUnable(boolean unable) {
 		this.unable = unable;
+	}
+
+	public boolean isSpecial() {
+		return special;
+	}
+
+	public void setSpecial(boolean special) {
+		this.special = special;
+	}
+
+	public Store getSource() {
+		return source;
+	}
+
+	public void setSource(Store source) {
+		this.source = source;
 	}
 }
