@@ -39,6 +39,9 @@ public class UpdateTemplate {
 		for (int i = 0; i<values.length;i++){
 			System.out.println("!valueasdfads "+values[i]);
 		}
+		for (int i = 0; i<attributes.length;i++){
+			System.out.println("!valueasdfads "+attributes[i]);
+		}
 		for (int i = 0; i<operators.length;i++){
 			System.out.println("operator!!! "+operators[i]);
 		}
