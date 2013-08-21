@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.dicks.dao.FeeDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.dao.ProdCateDAO;
+import com.dicks.dao.ProductDAO;
 import com.dicks.dao.RuleCateDAO;
 import com.dicks.dao.RuleDAO;
 import com.dicks.dao.StoreCateDAO;
@@ -13,6 +14,7 @@ import com.dicks.engine.UpdateTemplate;
 import com.dicks.engine.WriteDrl;
 import com.dicks.pojo.Fee;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
 
 public class RuleList {
@@ -49,7 +51,32 @@ public class RuleList {
 	
 	public String prodCate;
 	public String storeCate;
+	public String prodd;
+	public String storeProduct;
+	public String prodLists;
 	
+	public void setProductLists(String s){
+		this.prodLists = s;
+	}
+	
+	public String getProductLists(){
+		return prodLists;
+	}
+	
+	public void setStoreProduct(String s){
+		this.storeProduct = s;
+	}
+	
+	public String getStoreProduct(){
+		return storeProduct;
+	}
+	private void setProd(String s){
+		this.prodd = s;
+	}
+	
+	private String getProdd(){
+		return prodd;
+	}
 	public void setProductcount(String[] a){
 		this.productcount = a;
 	}
@@ -219,6 +246,21 @@ public class RuleList {
 		
 		String[] temp2 = null;
 		String[] temp3 = null;
+		String[] temp4 = null;
+		try {
+			temp4 = ProductDAO.getInstance().getAllNames();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		StringBuffer prodList = new StringBuffer();
+		prodList.append(temp4[0]);
+		for (int i = 1;i<temp4.length;i++){
+			//System.out.println(tmp2[i]);
+			prodList.append(","+temp4[i]);
+		}
+		prodLists = prodList.toString();
+		
 		try {
 			temp2 = ProdCateDAO.getInstance().getProdCateNames();
 		} catch (Exception e) {
@@ -245,6 +287,9 @@ public class RuleList {
 		}
 		storeCate = catesss.toString();
 		prodCate = catess.toString();
+		
+		
+		
 		
 		
 		Rule thisRule = new Rule();
@@ -334,6 +379,18 @@ public class RuleList {
 			}
 		}
 		else if (thisRule.getType().equals("2")){
+			
+			//get product list
+			
+			/*Product[] pp = ProductDAO.getInstance().getProductsBySKUList(thisRule.getRoutes());
+			StringBuffer ppd = new StringBuffer();
+			ppd.append(pp[0].getSku());
+			for (int i = 0;i<pp.length;i++){
+				ppd.append(","+pp[i].getSku());
+			}
+			prodd = ppd.toString();*/
+			prodd = thisRule.getRoute();
+			
 			System.out.println("checking type 2");
 			String[] tmp2 = null;
 			try {
@@ -404,13 +461,26 @@ public class RuleList {
 			this.ruleName = thisRule.getRuleName();
 			this.setRuleDescription(thisRule.getRuleDescr());
 			this.rule = thisRule;
-			return "goToCostCalculation";
+			if (viewEdit.equals("view")){
+				return "goToViewCostCalculation";
+			}
+			else if (viewEdit.equals("edit")){
+				return "goToEditCostCalculation";
+			}
+			
 		} else if (thisRule.getType().equals("6")) {
 			System.out.println("checking type 6");
 			this.rule = thisRule;
 			this.ruleName = thisRule.getRuleName();
 			this.ruleDescription = thisRule.getRuleDescr();
-			return "goToEvaluationMethod";
+			
+			if (viewEdit.equals("view")){
+				return "goToViewEvaluationMethod";
+			}
+			else if (viewEdit.equals("edit")){
+				return "goToEditEvaluationMethod";
+			}
+			
 		} 
 		else if (thisRule.getType().equals("3")) {
 			System.out.println("checking type 3");
@@ -678,6 +748,19 @@ public class RuleList {
 		Rule hahaRule = new Rule();
 		Rule[] ruleLists = null;
 		
+		System.out.println("store Prodct before "+storeProduct);
+		String[] storeProducts = storeProduct.split(",");
+		int prodLength = 0;
+		for (int j = 0 ; j<storeProducts.length;j++){
+			if ((storeProducts[j] != null) && (!storeProducts[j].equals(" "))){
+				prodLength++;
+			}
+		}
+		String [] prodList = new String[prodLength];
+		for (int i = 0; i<prodList.length;i++){
+			prodList[i] = storeProducts[i];
+		}
+		System.out.println("prodList "+prodList.length);
 		try{
 			ruleLists =RuleDAO.getInstance().getAllSortedListFromStageOne();
 		}

@@ -22,6 +22,7 @@ import org.kie.internal.logger.KnowledgeRuntimeLoggerFactory;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
 import com.dicks.dao.RuleDAO;
+import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
 import com.dicks.pojo.Store;
@@ -134,7 +135,8 @@ public class Split {
 			packageJson.add(pack.getJson());
 		}
 		stage2Logs.put("packages", packageJson);
-		stage2Logs.put("totalStores", stores.size());
+		stage2Logs.put("remainingStores", stores.size());
+		stage2Logs.put("totalStores", StoreDAO.getInstance().getTotalStoreNum());
 		
 		StringWriter out = new StringWriter();
 		stage2Logs.writeJSONString(out);

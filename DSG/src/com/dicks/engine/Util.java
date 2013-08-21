@@ -5,6 +5,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.Set;
 import org.apache.commons.lang3.text.WordUtils;
@@ -30,11 +35,126 @@ public class Util {
 	public final static int OVER_WEIGHT_THRESHOLD = 10000;
 	static String operator = "";
 	static String attribute = "";
-	static Random r = new Random();
 	
-	public static double getShippingDays() {
-		return r.nextInt(7);
+	// Get package result from a list of potential stores
+	public static PackageTestResult getTestResult(PackageTest test, ArrayList<Store> stores) throws Exception {
+		PackageTestResult r = new PackageTestResult(test);
+		ArrayList<Parcel> parcels = test.getParcels();
+		
+		if (parcels == null || parcels.size() < 1) return null;
+		
+		// check whether there is same product among parcels
+		boolean isDuplicate = checkParcelDupliate(parcels);
+		
+		if (isDuplicate) {
+			LinkedList<Parcel> parcelsQ = new LinkedList<Parcel>(parcels);
+			
+			for (int i = 0; i < parcels.size(); i++) {
+				Parcel p = parcelsQ.removeFirst();
+				
+				p.shipmentPreparation();
+				
+				ArrayList<ParcelResult> parcelResults = new ArrayList<ParcelResult>();
+				int count = 0;
+				for (int j = 0; j < stores.size(); j++) {
+					Store s = (Store) stores.get(j);
+					ParcelResult parcelR = getParcelResult(p, s);
+					if (parcelR != null) {
+						parcelResults.add(parcelR);
+						Util.calculateAttribute(parcelR);
+						count++;
+						//System.out.println("in get test result attribute");
+					}
+				}
+				p.setStoreCount(count);
+				if (parcelResults.size() < 1) {
+					System.out.println("in test result: no result for " + test);
+					return null;
+				}		
+				
+				Collections.sort(parcelResults, new Comparator<ParcelResult>() {
+					@Override
+					public int compare(ParcelResult arg0, ParcelResult arg1) {
+						return Util.compareParcelResult(arg0, arg1); 
+					}			
+				});
+				
+				for (int k = 0; k < parcelResults.size(); k++) {
+					ParcelResult parcelR = parcelResults.get(i);
+					HashMap<Integer, HashMap<Product, Integer>> allocated = new HashMap<Integer, HashMap<Product, Integer>>();
+					
+					allocated.put(parcelR.getSource().getStoreId(), parcelR.getParcel().getProducts());
+					
+					for (int l = 0; l < parcelsQ.size(); l++) {
+						
+					}
+				}
+				
+				
+				parcelsQ.addLast(p);
+			}			
+		} else {
+			//System.out.println("in get test result");	
+			for (int i = 0; i < parcels.size(); i++) {
+				Parcel p = (Parcel) parcels.get(i);
+				p.shipmentPreparation();
+				ArrayList<ParcelResult> parcelResults = new ArrayList<ParcelResult>();
+				int count = 0;
+				for (int j = 0; j < stores.size(); j++) {
+					Store s = (Store) stores.get(j);
+					ParcelResult parcelR = getParcelResult(p, s);
+					if (parcelR != null) {
+						parcelResults.add(parcelR);
+						Util.calculateAttribute(parcelR);
+						count++;
+						//System.out.println("in get test result attribute");
+					}
+				}
+				p.setStoreCount(count);
+				if (parcelResults.size() < 1) {
+					System.out.println("in test result: no result for " + test);
+					return null;
+				}		
+				Collections.sort(parcelResults, new Comparator<ParcelResult>() {
+					@Override
+					public int compare(ParcelResult arg0, ParcelResult arg1) {
+						return Util.compareParcelResult(arg0, arg1); 
+					}			
+				});
+				test.getPack().addTops(parcelResults, test);
+				r.addResult((ParcelResult) parcelResults.get(0));
+			}
+			
+			r.calculate();
+			test.getPack().calculateTops();
+		}
+		
+		return r;
 	}
+	
+	public static boolean checkParcelDupliate(ArrayList<Parcel> parcels) {
+		HashSet<Integer> productIdSet = new HashSet<Integer>();
+		for (Parcel parcel : parcels) {
+			for (Product p : parcel.getProducts().keySet()) {
+				if (productIdSet.contains(p.getProdId())) return false;
+				productIdSet.add(p.getProdId());
+			}
+		}
+		return true;
+	}
+	
+	public static ParcelResult getParcelResult(Parcel parcel, Store store) throws Exception {
+		if (!InventoryDAO.getInstance().containAllProductsParcel(store, parcel)) return null;
+		ParcelResult r = new ParcelResult(parcel);
+		r.setSource(store);
+		r.calculateCosts();	
+		System.out.println("For pacel " + parcel + ", store: " + store + 
+							", totalCosts: " + r.getCost() + ", shipping costs: " + r.getShippingCost() + 
+							", other costs: " + r.getOtherCost() + ", attribute: " + r.getAttribute());
+		//System.out.println("shipping costs: " + r.getShippingCost());
+		return r;
+	}
+
 	
 	public static JSONArray getJsonCosts(ParcelResult r) {
 		JSONArray costsJ = new JSONArray();
@@ -49,7 +169,7 @@ public class Util {
 			for (Fee fee : fees) {
 				JSONObject feeJ = new JSONObject();
 				feeJ.put("name", fee.getCostName());
-
+				
 				long singleCost = 0;
 				
 				if (fee.getFlag().equals("v")) {

@@ -197,18 +197,7 @@ function PackageTestResult getTestResult(PackageTest test, ArrayList stores) {
 		r.addResult((ParcelResult) parcelResults.get(0));
 	}
 	
-	double cost = 0;
-	double attribute = 0;
-	double shippingCost = 0;
-	ArrayList parcelResults = r.getResults();
-	for (int i = 0; i < parcelResults.size(); i++) {
-		cost += ((ParcelResult) parcelResults.get(i)).getCost();
-		attribute += ((ParcelResult) parcelResults.get(i)).getAttribute();
-		shippingCost += ((ParcelResult) parcelResults.get(i)).getShippingCost();
-	}
-	r.setCost(cost);
-	r.setAttribute(attribute);
-	r.setShippingCost(shippingCost);
+	r.calculate();
 	test.getPack().calculateTops();
 	return r;
 }

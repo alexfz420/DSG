@@ -28,6 +28,10 @@ public class StoreDAO extends BaseDao<Store> {
 		super.create(store);
 	}
 
+	public int getTotalStoreNum() throws Exception {
+		return super.getList().size();
+	}
+	
 	public Store getById(int id) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		Criterion criterion = Restrictions.eq("storeId", id);
@@ -35,7 +39,7 @@ public class StoreDAO extends BaseDao<Store> {
 		return super.get(criterions);
 	}
 	
-	public List<Store> getAllStores() throws Exception{
+	public ArrayList<Store> getAllStores() throws Exception{
 		return (ArrayList<Store>) super.getList();
 	}
 	
@@ -49,5 +53,4 @@ public class StoreDAO extends BaseDao<Store> {
 	}
 	
 
-	
 }

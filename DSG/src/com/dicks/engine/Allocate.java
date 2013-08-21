@@ -177,10 +177,6 @@ public class Allocate {
 		ksession.dispose();
 	}
 
-	private static void setUpProduct(Product p, String name, double price) {
-		/*p.setPrice(price);
-		p.setProductName(name);*/
-	}
 
 	public EngineLog getStage1() {
 		return stage1;

@@ -33,7 +33,28 @@ public class CreateTemplate {
 	public CreateTemplate  (String ruleName, String description,String type, String[] objects, String[] attributes, 
 			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ,String[] cateList){
 		System.out.println("route!!"+routes);
-		ruleInt --;
+		int pre = 0;
+		Rule[] allRule = null;
+		try {
+			allRule = RuleDAO.getInstance().getAllSortedListFromStageOne() ;
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//System.out.println("rule Length!!!"+allRule.length);
+		
+		for (int i = 0; i<allRule.length;i++){
+			if (allRule[i].getType().equals("9")){
+				if (allRule[i].getPriority()>0){
+					pre++;
+				}
+				
+			}
+		}
+		System.out.println("rule int is "+ruleInt+" pre is "+pre);
+		ruleInt = ruleInt + pre;
+		
 		String condition = null;
 		if (conditions != null){
 			if (conditions.equals("all")){
@@ -186,6 +207,9 @@ public class CreateTemplate {
 	    		  	 }
 	    		  	 else
 	    		  	 {
+	    		  		 for (int x = 0; x<routes.length;x++){
+	    		  			 System.out.println("this route !!!!"+routes[x]);
+	    		  		 }
 	    		  		 ruleFiles[ruleInt] = new Rule(ruleName, "", description, ruleFiles[ruleInt-1].getPriority()-2,type,objects,
 							 					attributes,operators,values,condition, routes,actions,flag, "1",false);
 	    		  	 }
