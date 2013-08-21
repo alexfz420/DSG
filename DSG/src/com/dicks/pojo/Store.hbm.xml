@@ -20,13 +20,22 @@
             <column name="zip" length="45" not-null="true" />
         </property>
         <property name="flag" type="java.lang.String">
-            <column name="flag" length="45" not-null="true" />
+            <column name="flag" length="45" not-null="false" />
         </property>
         <property name="storeType" type="java.lang.String">
             <column name="store_type" length="45" not-null="true" />
         </property>
         <property name="capacity" type="java.lang.Integer">
             <column name="capacity" length="11" not-null="false" />
+        </property>
+                <property name="state" type="java.lang.String">
+            <column name="state" length="45" not-null="true" />
+        </property>
+                <property name="city" type="java.lang.String">
+            <column name="city" length="45" not-null="true" />
+        </property>
+                <property name="region" type="java.lang.String">
+            <column name="region" length="45" not-null="true" />
         </property>
         <set name="packageses" inverse="true">
             <key>

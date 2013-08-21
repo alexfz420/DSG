@@ -1,6 +1,7 @@
 package com.dicks.action;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dicks.dao.ProdCateDAO;
 import com.dicks.dao.ProductDAO;
@@ -26,9 +27,9 @@ public class CreateCategoryAction extends ActionSupport {
 	private String act;
 
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Store> storeList;
+	private List<Store> storeList;
 	
-	public ArrayList<Store> getStoreList() {
+	public List<Store> getStoreList() {
 		return storeList;
 	}
 

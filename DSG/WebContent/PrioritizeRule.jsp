@@ -11,41 +11,39 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
 <ul class="nav">
-	<li class=""><a class="recordable open" id="toggleone" href="#"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
-		<ul class="nav-two" id="navone">
-			<li class="" id="catelist"><a
-				href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span
-				class="normal">&nbsp;</span></li>
-			<li class="" id="newcatelist"><a
-				href="<%=basePath%>gotonewcategory.action">New Group</a><span
-				class="normal">&nbsp;</span></li>
-		</ul></li>
-	<li class=""><a class="recordable open" href="#" id="toggletwo"
-		memo="{id:'21',type:'menu',global:1,status:''}">Manage Business
-			Rule</a>
-		<ul class="nav-two" id="navtwo">
-			<li class="" id="bizrulelist"><a
-				href="<%=basePath%>gotorulelist.action">Business Rule List</a><span
-				class="normal">&nbsp;</span></li>
-			<li class="" id="newbizrulelist"><a
-				href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span
-				class="normal">&nbsp;</span></li>
-			<li class="selected" id="ruleprioritylist"><a
-				href="<%=basePath%>gotoruleprioritylist.action">Business Rule
-					Priority</a><span class="normal">&nbsp;</span></li>
-		</ul></li>
-	<li class=""><a class="recordable open" href="#" id="togglethree"
-		memo="{id:'21',type:'menu',global:1,status:''}">Visualization
-			Dashboard</a>
-		<ul class="nav-two" id="navthree">
-			<li class=""><a id="orderlist" onclick="f(this)"
-				href="<%=basePath%>gotoorderlist.action">Order List</a><span
-				class="normal">&nbsp;</span></li>
-			<li class="" id="statlist"><a href="statistics.html">Statistics</a><span
-				class="normal">&nbsp;</span></li>
-		</ul></li>
-</ul>
+        <li class=""><a class="recordable open" id="toggleone" href="#" 
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Group</a>
+            <ul class="nav-two" id="navone">
+                <li class="" id="catelist"><a href="<%=basePath%>gotocategorylist.action?act=store">Group List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newcatelist"><a href="<%=basePath%>gotonewcategory.action">New Group</a><span class="normal">&nbsp;</span></li>  
+            </ul>
+        </li>
+        <li class=""><a class="recordable open" href="#" id="toggletwo"
+            memo="{id:'21',type:'menu',global:1,status:''}">Manage Business Rule</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="bizrulelist"><a href="<%=basePath%>gotorulelist.action">Business Rule List</a><span class="normal">&nbsp;</span></li>
+                <li class="" id="newbizrulelist"><a href="<%=basePath%>gotonewbizrulelist.action">New Business Rule</a><span class="normal">&nbsp;</span></li>
+                <li class="selected" id="ruleprioritylist"><a href="<%=basePath%>gotoruleprioritylist.action">Business Rule Priority</a><span class="normal">&nbsp;</span></li> 
+            </ul>
+        </li>   
+        <li class=""><a class="recordable open" href="#" id="togglethree"
+            memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
+            <ul class="nav-two" id="navthree">
+                <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
+				<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+
+			</ul>
+
+
+        </li>
+		<li class=""><a class="recordable open" href="#" id="togglefour"
+            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
+                
+            </ul>
+		</li>   
+    </ul>
 </div>
 <script>
 	$(function() {
@@ -143,8 +141,8 @@
 				
 				
 					<c:set var="ruleNum" value="1" />
-					<table class="list" border="0" cellspacing="0" cellpadding="0"
-						style="border-collapse: collapse; width:100%; font-size: 12px;">
+					<table align="top" class="list" border="0" cellspacing="0" cellpadding="0"
+						style="border-collapse: collapse; width:800px; font-size: 12px;">
 						<thead>
 							<tr class="title"
 								style="height: 30px; background-color: #f1f1f1; border-bottom: none;">
@@ -159,11 +157,11 @@
 						<c:forEach var="preRule" items="${preRule}">
 							<tr style="height: 30px;">
 								<td
-									style="width:15%;">${ruleNum}</td>
+									style="width:5%;">${ruleNum}</td>
 								<td
-									style="width:25%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${preRule.ruleName}</div></td>
+									style="width:30%;">${preRule.ruleName}</td>
 								<td
-									style="width:30%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${preRule.ruleDescr}</div></td>
+									style="width:35%;">${preRule.ruleDescr}</td>
 								<td style="width:15%;">${preRule.stage}</td>
 								<c:choose>
 										<c:when test="${(preRule.able == true)}">
@@ -180,17 +178,21 @@
 
 
 					</table>
-					<table id="sort" class="list" border="0"  cellspacing="0" cellpadding="0"
-						style="border-collapse: collapse; width:100%; font-size: 12px;">
+					<table align="top" id="sort" class="list" border="0"  cellspacing="0" cellpadding="0"
+						style="border-collapse: collapse; width:800px; font-size: 12px;">
 						<tbody>
 							<c:forEach var="midRule" items="${midRule}">
 								<tr style="height: 30px;">
 									<td
-										style="width:15%; background-color: #75a8d8;">${ruleNum}</td>
+										style="width:5%; background-color: #75a8d8;">${ruleNum}</td>
 									<td
-										style="width:25%; background-color: #75a8d8;">${midRule.ruleName}</div></td>
+
+										style="width:30%; background-color: #75a8d8;">${midRule.ruleName}</td>
+
 									<td
-										style="width:30%; background-color: #75a8d8;">${midRule.ruleDescr}</div></td>
+
+										style="width:35%; background-color: #75a8d8;">${midRule.ruleDescr}</td>
+
 									<td style="width:15%; background-color: #75a8d8;">${midRule.stage}</td>
 									<c:choose>
 										<c:when test="${ (midRule.able == true) }">
@@ -207,16 +209,16 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<table class="list" border="0" cellspacing="0" cellpadding="0"
-						style="border-collapse: collapse; width: 100%; font-size: 12px;">
+					<table align="top" class="list" border="0" cellspacing="0" cellpadding="0"
+						style="border-collapse: collapse; width: 800px; font-size: 12px;">
 						<c:forEach var="lastRule" items="${lastRule}">
 							<tr style="height: 30px;">
 								<td
-									style="width:15%;">${ruleNum}</td>
+									style="width:5%;">${ruleNum}</td>
 								<td
-									style="width:25%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${lastRule.ruleName}</div></td>
+									style="width:30%;">${lastRule.ruleName}</td>
 								<td
-									style="width:30%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${lastRule.ruleDescr}</div></td>
+									style="width:35%;">${lastRule.ruleDescr}</td>
 								<td style="width:15%;">${lastRule.stage}</td>
 								<c:choose>
 										<c:when test="${ (lastRule.able == true) }">

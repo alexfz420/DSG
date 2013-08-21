@@ -11,7 +11,6 @@ import com.dicks.dao.ShipmentDAO
 import com.dicks.engine.PackageE
 import com.dicks.engine.OrderE
 import com.dicks.engine.Parcel
-//
 import com.dicks.engine.Util
 import com.dicks.engine.ParcelResult
 import com.dicks.engine.PackageTest
@@ -93,18 +92,33 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
-rule  "Special route for tmac"
+rule  "Store Competition for la store"
     salience 896
+    when
+        $order : Orders($z:shippingZip)
+        $orderE : OrderE()
+        $product : Product($id :prodId)
+        $s: Store( (( storeName.equals("Binghamton"))))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 1000 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 1 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.5 ))
+        $logger: EngineLog()
+    then
+        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("Store Competition for la store","Store "+$s.getStoreName()+" is successfully retracted");
+        retract($s);
+end
+
+rule  "Special route for Kobe"
+    salience 894
     when
         $order : Orders()
         $orderE : OrderE()
-        $product : Product($id: prodId, sku.equals("AD-SH-TM"))
-        eval ($orderE.getProductQty($id)>2)
-        $s : Store( storeId == 1)
+        $product : Product($id: prodId, sku.equals("NK-SH-KB"))
+        eval ($orderE.getProductQty($id)>1)
+        $s : Store( storeId == 9)
         eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
         $logger: EngineLog()
     then
-        $logger.addLog("Special route for tmac","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        $logger.addLog("Special route for Kobe","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         PackageE p = new PackageE($order);
         p.addProduct($product, $orderE.getProductQty($id));
@@ -116,23 +130,34 @@ rule  "Special route for tmac"
         test.addParcel(parcel);
         ParcelResult parcelR = new ParcelResult(parcel);
         parcelR.setSource($s);
-        //
-        parcelR.calculateCosts();	
-        Util.calculateAttribute(parcelR);      
+        parcelR.calculateCosts();
+        Util.calculateAttribute(parcelR);
         PackageTestResult packageR = new PackageTestResult(test);
-        packageR.addResult(parcelR);
-        //
+         packageR.addResult(parcelR);
         packageR.calculate();
         p.addTop(packageR);
         p.setSpecial(true);
         p.setSource($s);
-        
-        $logger.addLog("Special route for tmac",$product + "get inserted into a new package by speical route rule");
-        $logger.addLog("Special route for tmac",packageR.toString());      
+        $logger.addLog("Special route for Kobe",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("Special route for Kobe",packageR.toString());      
         System.out.println(packageR);
         insert(packageR);
-//        retract(p);
         retract($product);
+end
+
+rule  "Competition for AJ"
+    salience 892
+    when
+        $order : Orders($z:shippingZip)
+        $orderE : OrderE()
+        $product : Product($id :prodId)
+        $s: Store( (( storeName.equals("Binghamton"))|| (storeName.equals("Vestal"))))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 1000 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 1 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.5 ))
+        $logger: EngineLog()
+    then
+        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("Competition for AJ","Store "+$s.getStoreName()+" is successfully retracted");
+        retract($s);
 end
 
 rule "Insert Package for Remaining Products"

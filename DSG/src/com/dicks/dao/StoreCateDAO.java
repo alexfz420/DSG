@@ -81,22 +81,19 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		}
 		
 	}
-	
+
 	/*private StoreCate[] filterCate(StoreCate[] storeCates){
 		for (int i = 0;i<storeCates.length;i++){
 			System.out.println("before filter "+i+" "+storeCates[i].getCateName());
 		}
+>>>>>>> f269f486edb1ec1ea90de8a3027d7411c135a5e8
 		if(storeCates==null) return null;
+		Set<Integer> cateIds = new HashSet<Integer>();
 		List<StoreCate> storeCates1 = new ArrayList<StoreCate>();
-		int id = 0;
 		for(int i=0; i<storeCates.length ; i++){
-			if(i==0){
-				id=	storeCates[i].getId().getCateStoreId();
+			if(!cateIds.contains(storeCates[i].getId().getCateStoreId())){
 				storeCates1.add(storeCates[i]);
-			}
-			if(storeCates[i].getId().getCateStoreId()!=id){
-				storeCates1.add(storeCates[i]);
-				id =storeCates[i].getId().getCateStoreId();
+				cateIds.add(storeCates[i].getId().getCateStoreId());
 			}
 		}
 		 StoreCate[] result = (StoreCate[])storeCates1.toArray(new StoreCate[storeCates1.size()]); 
@@ -175,6 +172,15 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		String[] skuArray = new String[stores.length];
 		for(int i=0;i<stores.length;i++){
 			skuArray[i] = stores[i].getStoreName();
+		}
+		return skuArray;
+	}
+	
+	public String[] getStoreIdsByCategory(String[] categoryNameList) throws Exception{
+		Store[] stores = getStoreByCategory(categoryNameList);
+		String[] skuArray = new String[stores.length];
+		for(int i=0;i<stores.length;i++){
+			skuArray[i] = stores[i].getStoreId()+"";
 		}
 		return skuArray;
 	}
