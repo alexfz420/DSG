@@ -289,7 +289,7 @@ function goBack(){
      </ul>
 
             <form name ="myForm" action="specialRoutes">
-            <table id="rule" class="text">
+            <table id="rule" class="text" style="width:80%;">
                 <tr>
                     <td>Rule Name&#58;</td>
                     <td>${rulename.replace("%20"," ")}</td>
@@ -312,9 +312,9 @@ function goBack(){
                     <td>${templatename }</td>
                 </tr>
                 <tr class="drl-height">
-                    <td></td>
-                    <td style="width:520px;">
-                    <div id ="firstStep" class="drl"> 
+                    
+                    <td colspan="2">
+                    <div id ="firstStep" class="drl" style="width:100%;"> 
                       <input type="hidden" value="1" id="theValue"/>
                         <a class="button" href="javascript:;" onclick="addSpecialRoute(myDiv);">+ Add Special Route</a>
                         <br/><br/>
@@ -346,6 +346,7 @@ function goBack(){
                     </div>
                     </td>
                 </tr>
+                <tr/>
                 <tr id = "buttons">
                     <td style = "text-align:right"><a class="button" href="<%=basePath%>gotorulelist.action"">Cancel</a></td>
                     <td><a class="button"  onclick='show()'>Continue</a></td>
@@ -384,7 +385,7 @@ function goBack(){
  -->
  			<c:set var="ruleNum" value="1" />
 					<table class="list" border="0" cellspacing="0" cellpadding="0"
-						style="border-collapse: collapse; width:800px; font-size: 12px;">
+						style="border-collapse: collapse; width:750px; font-size: 12px;">
 						<thead>
 							<tr class="title"
 								style="height: 30px; background-color: #f1f1f1; border-bottom: none;">
@@ -404,13 +405,13 @@ function goBack(){
 									style="width:30%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${preRule.ruleName}</div></td>
 								<td
 									style="width:35%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${preRule.ruleDescr}</div></td>
-								<td style="width:5%;">${preRule.stage}</td>
+								<td style="width:10%;">${preRule.stage}</td>
 								<c:choose>
 										<c:when test="${(preRule.able == true)}">
-											<td style="width:15%;">Active</td>
+											<td style="width:10%;">Active</td>
 										</c:when>
 										<c:otherwise>
-											<td style="width:15%;">Disabled</td>
+											<td style="width:10%;">Disabled</td>
 										</c:otherwise>
 									</c:choose>
 							</tr>
@@ -421,7 +422,7 @@ function goBack(){
 
 					</table>
 					<table id="sort" class="list" border="0"  cellspacing="0" cellpadding="0"
-						style="border-collapse: collapse; width:800px; font-size: 12px;">
+						style="border-collapse: collapse; width:750px; font-size: 12px;">
 						<tbody>
 							<c:forEach var="midRule" items="${midRule}">
 								<tr style="height: 30px;">
@@ -431,13 +432,13 @@ function goBack(){
 										style="width:30%; background-color: #75a8d8;">${midRule.ruleName}</td>
 									<td
 										style="width:35%; background-color: #75a8d8;">${midRule.ruleDescr}</td>
-									<td style="width:5%; background-color: #75a8d8;">${midRule.stage}</td>
+									<td style="width:10%; background-color: #75a8d8;">${midRule.stage}</td>
 									<c:choose>
 										<c:when test="${ (midRule.able == true) }">
-											<td style="width:15%;background-color: #75a8d8;">Active&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
+											<td style="width:10%;background-color: #75a8d8;">Active&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
 										</c:when>
 										<c:otherwise>
-											<td style="width:15%;background-color: #75a8d8;">Disabled&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
+											<td style="width:10%;background-color: #75a8d8;">Disabled&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
 										</c:otherwise>
 									</c:choose>
 									
@@ -449,15 +450,15 @@ function goBack(){
 	                            <td style="width:15%;background-color: #E6CFE6;">Your New Rule</td>
 								<td style="width:30%;background-color: #E6CFE6;">${rulename.replace("%20"," ")}</td>
 							    <td style="width:35%;background-color: #E6CFE6;">Please drag and drop the rule</td>
-	                			<td style="width:5%;background-color: #E6CFE6;">1</td>
-	                			<td style="width:15%;background-color: #E6CFE6;">Active&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
+	                			<td style="width:10%;background-color: #E6CFE6;">1</td>
+	                			<td style="width:10%;background-color: #E6CFE6;">Active&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
                 			
                 			</tr>
                 			<c:set var="ruleNum" value="${ruleNum+1}" />
 						</tbody>
 					</table>
 					<table class="list" border="0" cellspacing="0" cellpadding="0"
-						style="border-collapse: collapse; width: 800px; font-size: 12px;">
+						style="border-collapse: collapse; width: 750px; font-size: 12px;">
 						<c:forEach var="lastRule" items="${lastRule}">
 							<tr style="height: 30px;">
 								<td
@@ -466,13 +467,13 @@ function goBack(){
 									style="width:30%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${lastRule.ruleName}</div></td>
 								<td
 									style="width:35%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${lastRule.ruleDescr}</div></td>
-								<td style="width:5%;">${lastRule.stage}</td>
+								<td style="width:10%;">${lastRule.stage}</td>
 								<c:choose>
 										<c:when test="${ (lastRule.able == true) }">
-											<td style="width:15%;">Active</td>
+											<td style="width:10%;">Active</td>
 										</c:when>
 										<c:otherwise>
-											<td style="width:15%;">Disabled</td>
+											<td style="width:10%;">Disabled</td>
 										</c:otherwise>
 									</c:choose>
 							</tr>
