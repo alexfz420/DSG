@@ -68,7 +68,7 @@ public class Util {
 				}
 				p.setStoreCount(count);
 				if (parcelResults.size() < 1) {
-					System.out.println("in test result: no result for " + test);
+					//System.out.println("in test result: no result for " + test);
 					return null;
 				}		
 				
@@ -112,7 +112,7 @@ public class Util {
 				}
 				p.setStoreCount(count);
 				if (parcelResults.size() < 1) {
-					System.out.println("in test result: no result for " + test);
+					//System.out.println("in test result: no result for " + test);
 					return null;
 				}		
 				Collections.sort(parcelResults, new Comparator<ParcelResult>() {
@@ -148,9 +148,9 @@ public class Util {
 		ParcelResult r = new ParcelResult(parcel);
 		r.setSource(store);
 		r.calculateCosts();	
-		System.out.println("For pacel " + parcel + ", store: " + store + 
-							", totalCosts: " + r.getCost() + ", shipping costs: " + r.getShippingCost() + 
-							", other costs: " + r.getOtherCost() + ", attribute: " + r.getAttribute());
+//		System.out.println("For pacel " + parcel + ", store: " + store + 
+//							", totalCosts: " + r.getCost() + ", shipping costs: " + r.getShippingCost() + 
+//							", other costs: " + r.getOtherCost() + ", attribute: " + r.getAttribute());
 		//System.out.println("shipping costs: " + r.getShippingCost());
 		return r;
 	}
@@ -186,13 +186,13 @@ public class Util {
 								attributeValue = costs[i];
 							}
 						}
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("product")) {
 						for (Product p : products) {
 							attributeValue += getAttribute(p, Product.class, names[0]) * parcel.getProductQty(p);
 //							System.out.println("product: " + p.getProdName());
 						}	
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("store")) {
 						attributeValue = getAttribute(store, Store.class, names[0]);
 					} else if (names[1].equals("orderDetail")) {	
@@ -207,18 +207,18 @@ public class Util {
 
 							attributeValue += attribute * qty;
 						}
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("inventory")) {
 						ArrayList<Inventory> inventories = InventoryDAO.getInstance().getInventoryByParcelStore(parcel, store);
 						//System.out.println("inventory size: " + inventories.size());
 						for (Inventory inventory : inventories) {
 							attributeValue += getAttribute(inventory, Inventory.class, names[0]) * parcel.getProductQty(inventory.getProduct());
-							System.out.println("product: " + inventory.getProduct().getProdName() + ", price: " + inventory.getRetailPrice());
+							//System.out.println("product: " + inventory.getProduct().getProdName() + ", price: " + inventory.getRetailPrice());
 						}					
 						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					}
 					singleCost = attributeValue * fee.getPercentage() / 10000;
 //					System.out.println("total costs: " + totalCosts);					
@@ -249,6 +249,7 @@ public class Util {
 		String supplyZip = store.getZip();
 		String destinationZip = parcel.getPack().getOrder().getShippingZip();
 		Shipment shipment = ShipmentDAO.getInstance().getShipmentBySupplyDesitin(supplyZip, destinationZip);
+		int distance = shipment.getDistance();
 		if (shipment == null) {
 			//System.out.println("shipment null");
 			return Integer.MAX_VALUE;		
@@ -260,8 +261,8 @@ public class Util {
 		} else {
 			rate = shipment.getNormalRate();
 		}		
-		//System.out.println("rate: " + rate);
-		return (parcel.getWeight() * rate) / 100;
+		//System.out.println("rate: " + rate + " weight: " + parcel.getWeight() + "distance: " + (1+(distance/300)));
+		return ((parcel.getWeight()*100) * (rate) * (100 + (distance * 100/ 300))) / 10000;
 	}
 	
 	public static void calculateAttribute(ParcelResult parcelR) {
@@ -287,7 +288,7 @@ public class Util {
 			for (Inventory inventory : inventories) {
 				attribute += inventory.getRetailPrice();
 			}			
-			System.out.println("attribute: margin, retail price: " + attribute);
+			//System.out.println("attribute: margin, retail price: " + attribute);
 			attribute -= parcelR.getShippingCost() * 100;
 			parcelR.setAttribute((double) attribute / 100.0);
 		} else if (attribute.equals("proximity")) {
@@ -340,13 +341,13 @@ public class Util {
 								attributeValue = costs[i];
 							}
 						}
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("product")) {
 						for (Product p : products) {
 							attributeValue += getAttribute(p, Product.class, names[0]) * parcel.getProductQty(p);
 //							System.out.println("product: " + p.getProdName());
 						}	
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("store")) {
 						attributeValue = getAttribute(store, Store.class, names[0]);
 					} else if (names[1].equals("orderDetail")) {	
@@ -362,18 +363,18 @@ public class Util {
 
 							attributeValue += attribute * qty;
 						}
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("inventory")) {
 						ArrayList<Inventory> inventories = InventoryDAO.getInstance().getInventoryByParcelStore(parcel, store);
 						//System.out.println("inventory size: " + inventories.size());
 						for (Inventory inventory : inventories) {
 							attributeValue += getAttribute(inventory, Inventory.class, names[0]) * parcel.getProductQty(inventory.getProduct());
-							System.out.println("product: " + inventory.getProduct().getProdName() + ", price: " + inventory.getRetailPrice());
+							//System.out.println("product: " + inventory.getProduct().getProdName() + ", price: " + inventory.getRetailPrice());
 						}					
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					}
 					totalCosts += attributeValue * fee.getPercentage() / 10000;
 //					System.out.println("total costs: " + totalCosts);

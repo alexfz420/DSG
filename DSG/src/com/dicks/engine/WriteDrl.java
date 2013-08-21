@@ -265,7 +265,7 @@ public class WriteDrl {
 
 	   public String writeWhenStoreRule(String[] splits, String[] splitAttribute, 
 			   String[] splitOperator, String[] splitValue,String[] product, String flag){
-
+		   System.out.println("length!"+product.length);
 		   //first product, special case it if the input is "all"
 		   StringBuffer multiObject = new StringBuffer();
 			if (splits[0].equals("ALL")){
@@ -335,7 +335,7 @@ public class WriteDrl {
 			multiple stores 
 			*/
 
-		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
+		   tmp.append(myTab+myTab+"$product : Product("+multiProduct+", $id :prodId)"+myReturn);
 		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+")"+myReturn);
 				   //"&& (flag.equals(\""+flag+"\")))"+myReturn);
 

@@ -33,6 +33,7 @@ public class CreateTemplate {
 	public CreateTemplate  (String ruleName, String description,String type, String[] objects, String[] attributes, 
 			String[] operators, String[] values, String conditions, String[] routes, String[] actions, String flag, int ruleInt ,String[] cateList){
 		System.out.println("route!!"+routes);
+		
 		int pre = 0;
 		Rule[] allRule = null;
 		try {

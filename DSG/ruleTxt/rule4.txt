@@ -4,7 +4,7 @@ rule  "Default Default Minimum Package Threshold"
     when
         $o : Orders()
         $orderE : OrderE()
-		$i : Product( ((weight > 10)|| ( length > 10) || (width > 10) || (height >10)))
+		$i : Product( ((weight > 1000)|| ( length > 10) || (width > 10) || (height >10)))
 		 $logger : EngineLog()
     then     
     	
