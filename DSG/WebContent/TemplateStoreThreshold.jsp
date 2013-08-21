@@ -79,19 +79,13 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-				<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+				<li class="" id="statlist"><a href="<%=basePath %>statistics.action">Statistics</a><span class="normal">&nbsp;</span></li>
 
 			</ul>
 
 
         </li>
-		<li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+  
     </ul>
 </div>
   <script>
@@ -99,7 +93,64 @@
   $(function() {
     $("#sort tbody").sortable().disableSelection();
   });
+</script>
+<script>
 
+	$(function() {
+		
+		var name = '${prodCate}';
+	    var ch = new Array;
+		 ch = name.split(",");
+		 for(var i=0 ;i<ch.length;i++){
+		  console.log(ch[i]);
+		 }
+	   
+	   availableTags = ch;
+
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+ 
+    $( "#tags" ) 
+      // don't navigate away from the field on tab when selecting an item
+      .bind( "keydown", function( event ) {
+        if ( event.KeyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "ui-autocomplete" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            availableTags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( "," );
+          
+          return false;
+        }
+      });
+  });
+	
+</script>
+
+<script>
   //var rule = allRule;
     function show() {
         
@@ -121,6 +172,10 @@
 
       
   } 
+  function textAreaAdjust(o) {
+      o.style.height = "1px";
+      o.style.height = (15+o.scrollHeight)+"px";
+  }
 
   function pageOnLoad() {
 	  close();
@@ -218,7 +273,7 @@ function goBack(){
                     <td>${templatename }</td>
                 </tr>
                 <tr class="drl-height">
-                    <td>Rule Editor&#58;</td>
+                    <td></td>
                     <td>
                     <div id ="firstStep" class="drl"> 
                          <div style="padding-left:20px">
@@ -227,7 +282,8 @@ function goBack(){
                                 <option value="all">All</option> 
                                 <option value="any">Any</option>
                             </select> of the following conditions are met&#58;
-                        </div>  
+                            <textarea id="tags" name = "storeProduct" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in product category;" ></textarea>
+                    	</div>  
                         <br/>
                         <div>
                             <select style="width:180px;" name="attribute">
@@ -309,8 +365,8 @@ function goBack(){
                 </tr>
                  </table>   
             
-            <div id = "secondStep">
-            <table id="sort" class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
+            <div id = "secondStep" style="padding-left:50px;">
+<!--             <table id="sort" class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
 			<thead>
                         <tr style="height:30px;background-color:#f1f1f1;border-bottom:none;">
                             <th style="text-align:center;color:#666;">Rule Number</th>
@@ -338,7 +394,104 @@ function goBack(){
                 </tr>
                 
             </table>
-            		
+ -->
+ 			<c:set var="ruleNum" value="1" />
+					<table class="list" border="0" cellspacing="0" cellpadding="0"
+						style="border-collapse: collapse; width:800px; font-size: 12px;">
+						<thead>
+							<tr class="title"
+								style="height: 30px; background-color: #f1f1f1; border-bottom: none;">
+								<th>Rule#</th>
+								<th>Rule Name</th>
+								<th>Rule Description</th>
+								<th>Stage</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+
+						<c:forEach var="preRule" items="${preRule}">
+							<tr style="height: 30px;">
+								<td
+									style="width:15%;">${ruleNum}</td>
+								<td
+									style="width:30%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${preRule.ruleName}</div></td>
+								<td
+									style="width:35%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${preRule.ruleDescr}</div></td>
+								<td style="width:5%;">${preRule.stage}</td>
+								<c:choose>
+										<c:when test="${(preRule.able == true)}">
+											<td style="width:15%;">Active</td>
+										</c:when>
+										<c:otherwise>
+											<td style="width:15%;">Disabled</td>
+										</c:otherwise>
+									</c:choose>
+							</tr>
+							<c:set var="ruleNum" value="${ruleNum+1}" />
+						</c:forEach>
+
+
+
+					</table>
+					<table id="sort" class="list" border="0"  cellspacing="0" cellpadding="0"
+						style="border-collapse: collapse; width:800px; font-size: 12px;">
+						<tbody>
+							<c:forEach var="midRule" items="${midRule}">
+								<tr style="height: 30px;">
+									<td
+										style="width:15%; background-color: #75a8d8;">${ruleNum}</td>
+									<td
+										style="width:30%; background-color: #75a8d8;">${midRule.ruleName}</td>
+									<td
+										style="width:35%; background-color: #75a8d8;">${midRule.ruleDescr}</td>
+									<td style="width:5%; background-color: #75a8d8;">${midRule.stage}</td>
+									<c:choose>
+										<c:when test="${ (midRule.able == true) }">
+											<td style="width:15%;background-color: #75a8d8;">Active&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
+										</c:when>
+										<c:otherwise>
+											<td style="width:15%;background-color: #75a8d8;">Disabled&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
+										</c:otherwise>
+									</c:choose>
+									
+									
+								</tr>
+								<c:set var="ruleNum" value="${ruleNum+1}" />
+							</c:forEach>
+							<tr style="height:30px;background-color:#E6CFE6;">
+	                            <td style="width:15%;background-color: #E6CFE6;">Your New Rule</td>
+								<td style="width:30%;background-color: #E6CFE6;">${rulename.replace("%20"," ")}</td>
+							    <td style="width:35%;background-color: #E6CFE6;">Please drag and drop the rule</td>
+	                			<td style="width:5%;background-color: #E6CFE6;">1</td>
+	                			<td style="width:15%;background-color: #E6CFE6;">Active&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&darr;</td>
+                			
+                			</tr>
+                			<c:set var="ruleNum" value="${ruleNum+1}" />
+						</tbody>
+					</table>
+					<table class="list" border="0" cellspacing="0" cellpadding="0"
+						style="border-collapse: collapse; width:800px; font-size: 12px;">
+						<c:forEach var="lastRule" items="${lastRule}">
+							<tr style="height: 30px;">
+								<td
+									style="width:15%;">${ruleNum}</td>
+								<td
+									style="width:30%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${lastRule.ruleName}</div></td>
+								<td
+									style="width:35%;"><div style="width:80%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${lastRule.ruleDescr}</div></td>
+								<td style="width:5%;">${lastRule.stage}</td>
+								<c:choose>
+										<c:when test="${ (lastRule.able == true) }">
+											<td style="width:15%;">Active</td>
+										</c:when>
+										<c:otherwise>
+											<td style="width:15%;">Disabled</td>
+										</c:otherwise>
+									</c:choose>
+							</tr>
+							<c:set var="ruleNum" value="${ruleNum+1}" />
+						</c:forEach>
+					</table>           		
             		<a class="button" onclick="goBack()">Back</a>
                     <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
                     <a class="button" onclick='SubmitForm()'>Create</a>

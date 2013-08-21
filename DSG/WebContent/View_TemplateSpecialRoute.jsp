@@ -28,19 +28,13 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-				<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+				<li class="" id="statlist"><a href="<%=basePath %>statistics.action">Statistics</a><span class="normal">&nbsp;</span></li>
 
 			</ul>
 
 
         </li>
-		<li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+  
     </ul>
 </div>
  <script>
@@ -283,52 +277,18 @@ function goBack(){
                     </div>
                     </td>
                 </tr>
-                <tr id = "buttons">
-                    <td style = "text-align:right"><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>
-                    <td><a class="button"  onclick='show()'>Continue</a></td>
-                   
+                <tr>
+                    <td><a class="button" href="<%=basePath%>gotorulelist.action">Back</a></td>  
+                    <td></td>
+                     
+                
                 </tr>
             </table>
             
-            <div id = "secondStep">
-            <table id="sort" class="grid" border="0" style="border-collapse:collapse;width:100%;font-size:12px;">
-			<thead>
-                        <tr style="height:30px;background-color:#f1f1f1;border-bottom:none;">
-                            <th style="text-align:center;color:#666;">Rule Number</th>
-                            <th style="text-align:left;color:#666;">Rule Name</th>
-                            <th style="text-align:left;color:#666;">Rule Description</th>
-                        </tr>
-                    </thead>
-   			<c:set var="ruleNum" value ="1" />
-            <c:forEach var="allRule" items="${allRule}" >
-            
-            		<tr style="height:30px;">
-            				
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;">${ruleNum}</td>
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${allRule.ruleName}</td>
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;">${allRule.ruleDescr}</td>
-                        </tr>
-                 <c:set var="ruleNum" value="${ruleNum+1}" />   
-				</c:forEach>
-				<tr style="height:30px;background-color:8CEEF5">
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: center;color:#666;background-color:#8CEEF5">Your New Rule</td>
-
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">${rulename.replace("%20"," ")}</td>
-
-                            <td style="border-bottom:1px #E5E5E5 solid;padding: 6px 10px 6px 5px;text-align: left;color:#666;background-color:#8CEEF5">This is your new rule</td>
-                </tr>
-                
-            </table>
-            		
-            		<a class="button" onclick="goBack()">Back</a>
-                    <a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a>
-                    <a class="button" onclick='SubmitForm()'>Edit</a>
-                
-            </div>   
+              
             </form>
           </div>
         </div>
-    </div>
 
     <!-- content ends -->
 

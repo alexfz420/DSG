@@ -32,8 +32,9 @@
             <column name="stage" length="1"  />
         </property>
         <property name="object" type="java.lang.String">
-            <column name="object" length="10000"  />
-        </property>
+
+            <column name="object" length="500"  />
+		</property>
         <property name="attribute" type="java.lang.String">
             <column name="attribute" length="45"  />
         </property>
@@ -44,7 +45,7 @@
             <column name="value" length="45" />
         </property>
         <property name="route" type="java.lang.String">
-            <column name="route" length="45"  />
+            <column name="route" length="500"  />
         </property>
         <property name="action" type="java.lang.String">
             <column name="action" length="45"  />

@@ -86,7 +86,7 @@ public class WriteDrl {
 						//System.out.println("This is the new Store Filter rule created by the system!!!!");
 						byte[] contentInBytes = createStoreRule(ruleFiles[i].getRuleName(),ruleFiles[i].getType(),ruleFiles[i].getPriority(),
 								ruleFiles[i].getObjects(),ruleFiles[i].getAttributes(),ruleFiles[i].getOperators(),ruleFiles[i].getValues(),
-								ruleFiles[i].getActions(),ruleFiles[i].getFlag()).getBytes();
+								ruleFiles[i].getActions(),ruleFiles[i].getRoutes(),ruleFiles[i].getFlag()).getBytes();
 						fos.write(contentInBytes);
 					}
 					else if (ruleFiles[i].getType().equalsIgnoreCase("3")){
@@ -100,13 +100,12 @@ public class WriteDrl {
 					//System.out.println("Done");
 				}
 			}
-			fos.write((" ").getBytes());
 			fos.flush();
 			fos.close();
 			fis.close();
 			//System.out.println("New drl file is created!");
 		} catch(Exception e){
-			System.out.println("error: " + e);
+			System.out.println("error writing drl: " + e);
 		} 
 
 		//threshold abc = new threshold("hold");
@@ -136,12 +135,15 @@ public class WriteDrl {
 	}
 
 	public String createStoreRule(String ruleName,String type, int priority, String[] object, String[] attribute, 
-			String[] operator, String[] values,String[] actions,String flag){
+			String[] operator, String[] values,String[] actions,String[] routes,String flag){
 		StringBuffer newRule = new StringBuffer();
 		newRule.append(writeRuleType(ruleName,priority));
-		newRule.append(writeWhenStoreRule(object,attribute,operator,values,flag));
+		
+		newRule.append(writeWhenStoreRule(object,attribute,operator,values,routes,flag));
+		System.out.println("when"+newRule.toString());
+		
 		newRule.append(writeThenStoreRule(actions, ruleName));
-		//System.out.println(newRule.toString());
+		System.out.println(newRule.toString());
 		return newRule.toString();
 	}
 
@@ -245,8 +247,8 @@ public class WriteDrl {
 				tmp.append(myTab+"then"+myReturn);
 				tmp.append(myTab+myTab+"for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)"+myReturn);
 				tmp.append(myTab+myTab+"{"+myReturn);
-				tmp.append(myTab+myTab+myTab+"$logger.addLog(\""+ruleName+"\",\"Product #\"+i+\" \"+$i.getProdName()+\"is over weighted/sized ----Split into a separate package\");"+myReturn);
-				tmp.append(myTab+myTab+myTab+"System.out.println(\"Product #\"+i+\" \"+$i.getProdName()+\"is over weighted/sized ----Split into a separate package\");"+myReturn);
+				tmp.append(myTab+myTab+myTab+"$logger.addLog(\""+ruleName+"\",\"Product #\"+i+\" \"+$i.getProdName()+\"is moved into a separate package\");"+myReturn);
+				tmp.append(myTab+myTab+myTab+"System.out.println(\"Product #\"+i+\" \"+$i.getProdName()+\"is moved into a separate package\");"+myReturn);
 				tmp.append(myTab+myTab+myTab+"PackageE p = new PackageE($o);"+myReturn);
 				tmp.append(myTab+myTab+myTab+"p.addProduct($i,1);"+myReturn);
 				tmp.append(myTab+myTab+myTab+"insert (p);"+myReturn);
@@ -262,25 +264,43 @@ public class WriteDrl {
 	}
 
 	   public String writeWhenStoreRule(String[] splits, String[] splitAttribute, 
-			   String[] splitOperator, String[] splitValue,String flag){
-
+			   String[] splitOperator, String[] splitValue,String[] product, String flag){
+		   System.out.println("length!"+product.length);
 		   //first product, special case it if the input is "all"
 		   StringBuffer multiObject = new StringBuffer();
 			if (splits[0].equals("ALL")){
 				multiObject.append("");
 			}
 			else{
-				multiObject.append("(( storeName.equals(\""+splits[0]+"\"))");
+				multiObject.append("(( storeId == "+splits[0]+")");
 
 				//combing all the other products
 				//sS System.out.println("splits.size: " + splits.length);
 				for (int i = 1; i < splits.length; i++){
-					multiObject.append("|| (storeName.equals(\""+splits[i]+"\"))");
+					multiObject.append("|| (storeId == "+splits[i]+")");
 					//System.out.println("add second product");
 				}
 				multiObject.append(")");
 			}
+			
+			StringBuffer multiProduct = new StringBuffer();
+			
+			if (product[0].equals("ALL")){
+				multiProduct.append("");
+			}
+			else{
+				multiProduct.append("(( prodName.equals(\""+product[0]+"\"))");
 
+				//combing all the other products
+				//sS System.out.println("splits.size: " + splits.length);
+				for (int i = 1; i < product.length; i++){
+					multiProduct.append("|| (prodName.equals(\""+product[i]+"\"))");
+					//System.out.println("add second product");
+				}
+				multiProduct.append(")");
+			}
+			
+			System.out.println("sku"+multiProduct.toString());
 
 
 		   /*System.out.println("multi "+multiObject.toString());
@@ -314,8 +334,11 @@ public class WriteDrl {
 			   		"\")))"+myReturn);
 			multiple stores 
 			*/
-		   tmp.append(myTab+myTab+"$product : Product($id :prodId)"+myReturn);
-		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+"&& (flag.equals(\""+flag+"\")))"+myReturn);
+
+		   tmp.append(myTab+myTab+"$product : Product("+multiProduct+", $id :prodId)"+myReturn);
+		   tmp.append(myTab+myTab+"$s: Store( "+multiObject.toString()+")"+myReturn);
+				   //"&& (flag.equals(\""+flag+"\")))"+myReturn);
+
 
 		   for (int i = 0; i < splitAttribute.length; i++){
 			   //System.out.println("attribute "+i+" "+splitAttribute[i]);
@@ -483,7 +506,7 @@ public class WriteDrl {
 		 */
 		tmp.append(myTab+myTab+"$product : Product($id: prodId, sku.equals(\""+splits[0]+"\"))"+myReturn);
 		tmp.append(myTab+myTab+"eval ($orderE.getProductQty($id)"+splitOperator[0]+ splitValue[0]+")"+myReturn);
-		tmp.append(myTab+myTab+"$s : Store( storeId == "+route+")"+myReturn);
+		tmp.append(myTab+myTab+"$s : Store( storeName.equals(\""+route+"\"))"+myReturn);
 		tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
 		tmp.append(myTab+myTab+"$logger: EngineLog()"+myReturn);
 		//tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+
@@ -510,14 +533,23 @@ public class WriteDrl {
 		tmp.append(myTab+myTab+"test.addParcel(parcel);"+myReturn);
 		tmp.append(myTab+myTab+"ParcelResult parcelR = new ParcelResult(parcel);"+myReturn);
 		tmp.append(myTab+myTab+"parcelR.setSource($s);"+myReturn);
+		
+		tmp.append(myTab+myTab+"parcelR.calculateCosts();"+myReturn);
+		tmp.append(myTab+myTab+"Util.calculateAttribute(parcelR);"+myReturn);      
 		tmp.append(myTab+myTab+"PackageTestResult packageR = new PackageTestResult(test);"+myReturn);
-		tmp.append(myTab+myTab+"packageR.addResult(parcelR);"+myReturn);
+		tmp.append(myTab+myTab+" packageR.addResult(parcelR);"+myReturn);
+		tmp.append(myTab+myTab+"packageR.calculate();"+myReturn);
+		tmp.append(myTab+myTab+"p.addTop(packageR);"+myReturn);
+		tmp.append(myTab+myTab+"p.setSpecial(true);"+myReturn);
+		tmp.append(myTab+myTab+"p.setSource($s);"+myReturn);
+
 		tmp.append(myTab+myTab+"$logger.addLog(\""+ruleName+"\",$product + \"get inserted into a new package by speical route rule\");"+myReturn);
 		tmp.append(myTab+myTab+"$logger.addLog(\""+ruleName+"\",packageR.toString());      "+myReturn);
 		tmp.append(myTab+myTab+"System.out.println(packageR);"+myReturn);
 		tmp.append(myTab+myTab+"insert(packageR);"+myReturn);
-		tmp.append(myTab+myTab+"retract(p);"+myReturn);
 		tmp.append(myTab+myTab+"retract($product);"+myReturn);
+
+		
 		//add this "product/quantity", store into a new parcel result.
 		//add this parcel result into a new package result
 		tmp.append("end"+myReturn+myReturn);

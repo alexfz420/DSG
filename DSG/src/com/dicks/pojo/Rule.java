@@ -314,7 +314,8 @@ public class Rule implements java.io.Serializable {
 	}
 
 	public String translate (StringBuffer s1, String[] s2){
-		if (s2 != null && s2[0] != null){
+		System.out.println("incoming"+s2.length);
+		if (s2 != null && s2.length >0 ){
 			s1.append(s2[0]);
 			for (int i = 1; i < s2.length; i++){
 					if (s2[i].equals("=")){
@@ -391,6 +392,11 @@ public class Rule implements java.io.Serializable {
 	}
 
 	public String[] getRoutes(){
+		String[] ss= null;
+		ss = translateBack(route);
+		for (int i = 0;i<ss.length;i++){
+			System.out.println(i+" asfasdfsdfasdfasdfasdfasdfas"+ss[i]);
+		}
 		return translateBack(route);
 	}
 

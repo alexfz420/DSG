@@ -49,8 +49,10 @@
            <result name="goToViewStoreThreshold" type="dispatcher">/View_TemplateStoreThreshold.jsp</result>
            <result name="goToEditSpecialRoute" type="dispatcher">/Edit_TemplateSpecialRoute.jsp</result>
            <result name="goToViewSpecialRoute" type="dispatcher">/View_TemplateSpecialRoute.jsp</result>
-           <result name="goToCostCalculation" type="dispatcher">/Edit_TemplateCostCalculation.jsp</result>
-           <result name="goToEvaluationMethod" type="dispatcher">/Edit_TemplateResultRanking.jsp</result>
+           <result name="goToEditCostCalculation" type="dispatcher">/Edit_TemplateCostCalculation.jsp</result>
+           <result name="goToEditEvaluationMethod" type="dispatcher">/Edit_TemplateResultRanking.jsp</result>
+           <result name="goToViewCostCalculation" type="dispatcher">/View_TemplateCostCalculation.jsp</result>
+           <result name="goToViewEvaluationMethod" type="dispatcher">/View_TemplateResultRanking.jsp</result>
            <result name="enableSuccess" type="chain">
             <param name="actionName">gotorulelist</param>
           </result> 
@@ -205,6 +207,9 @@
       <action name="typecheck" class="com.dicks.action.CheckAction" method="typeCheck">
           <result name="success">/TypeCheck.jsp</result>
       </action>
+      <action name="statistics" class="com.dicks.action.Redirect" method="goToStatistic">
+          <result name="success">/statistics.jsp</result>
+      </action>   
             
    </package>
 </struts>

@@ -47,6 +47,8 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		return names;
 	}
 	
+	
+	
 	public StoreCate[] getStoreCategoryList() throws Exception{
 		ArrayList<StoreCate> cateList =  (ArrayList<StoreCate>) super.getList();
 		StoreCate[] array = (StoreCate[])cateList.toArray(new StoreCate[cateList.size()]); 
@@ -171,7 +173,7 @@ public class StoreCateDAO extends BaseDao<StoreCate> {
 		Store[] stores = getStoreByCategory(categoryNameList);
 		String[] skuArray = new String[stores.length];
 		for(int i=0;i<stores.length;i++){
-			skuArray[i] = stores[i].getStoreName();
+			skuArray[i] = stores[i].getStoreId()+"";
 		}
 		return skuArray;
 	}

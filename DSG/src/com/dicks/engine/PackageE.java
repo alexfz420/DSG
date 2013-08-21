@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Orders;
+import com.dicks.pojo.Store;
 
 public class PackageE {
 	private ArrayList<Product> products = new ArrayList<Product>();
@@ -19,6 +20,8 @@ public class PackageE {
 	private boolean allocated;
 	private boolean splitable = true;
 	private boolean unable = false;
+	private boolean special = false;
+	private Store source;
 	private ArrayList<PackageTestResult> bestResults = new ArrayList<PackageTestResult>();
 	private JSONArray splits = new JSONArray();
 
@@ -87,13 +90,17 @@ public class PackageE {
 	}
 	
 	public void addSplitTest(PackageTest test) {
-		JSONArray split;
+		JSONObject split;
+		int maxCount = 0;
 		if (splitNum >= splits.size())  {
-			split = new JSONArray();
+			split = new JSONObject();
 			splits.add(split);
 		} else {
-			split = (JSONArray) splits.get(splitNum);
+			split = (JSONObject) splits.get(splitNum);
 		}
+		
+		JSONArray testJ = new JSONArray();
+		
 		ArrayList<Parcel> parcels = test.getParcels();
 		
 		for (Parcel parcel : parcels) {
@@ -108,8 +115,14 @@ public class PackageE {
 			}
 			obj.put("products", productList);
 			obj.put("storeCount", parcel.getStoreCount());
-			split.add(obj);
+			testJ.add(obj);
+			if (parcel.getStoreCount() > maxCount) {
+				maxCount = parcel.getStoreCount();
+			}
 		}
+		split.put("tests", testJ);
+		split.put("maxCount", maxCount);
+		
 //		System.out.println("split " + this.splitNum + " text: " + text + " splits: " + Arrays.toString(splits.toArray()));
 	}
 	
@@ -127,8 +140,15 @@ public class PackageE {
 		}
 		
 		JSONObject packageE = new JSONObject();
+		
 		packageE.put("splitNum", this.splitNum);
 		packageE.put("unable", this.isUnable());
+		packageE.put("special", this.isSpecial());
+		packageE.put("source", this.source == null? null : this.source.getStoreType() + " " + this.source.getStoreName());
+		packageE.put("explored", SplitGenerater.getSizeFrom0ToN(this.getProducts().size(), this.splitNum == this.getProducts().size()?splitNum:splitNum + 1));
+		System.out.println("!!!!explored: " + SplitGenerater.getSizeFrom0ToN(this.getProducts().size(), this.splitNum) + " splitNum: " + this.splitNum);
+		packageE.put("total", SplitGenerater.getTotalSize(this.getProducts().size()));
+		//System.out.println("total: " + SplitGenerater.getTotalSize(this.getProducts().size()));
 		JSONArray productList = new JSONArray();
 		for (Product p : map.keySet()) {
 			JSONObject product = new JSONObject();
@@ -140,6 +160,17 @@ public class PackageE {
 
 //		System.out.println("splits size: " + splits.size());
 		packageE.put("splits", splits);
+		
+		int maxCount = 0;
+		for (int i = 0; i < splits.size(); i++) {
+			JSONObject split = (JSONObject) splits.get(i);
+			int count = (Integer) split.get("maxCount");
+			System.out.println("count: " + count);
+			if (maxCount < count) {
+				maxCount = count;
+			}
+		}
+		packageE.put("maxCount", maxCount);
 		
 //		System.out.println("json splits: " + splitsArray.toString());	
 		return packageE;
@@ -165,7 +196,7 @@ public class PackageE {
 				}
 				parcelRJ.put("products", productsJ);
 				
-				parcelRJ.put("source", parcelR.getSource().toString());
+				parcelRJ.put("source", parcelR.getSource().getStoreType() + " " + parcelR.getSource().getStoreName());
 				parcelRJ.put("totalCost", parcelR.getCost());
 				
 				//costs
@@ -181,7 +212,7 @@ public class PackageE {
 			array.add(rJ);
 		}
 		
-		System.out.println("array: " + array);
+		//System.out.println("array: " + array);
 		
 		return array;
 	}
@@ -255,6 +286,10 @@ public class PackageE {
 	public void setBestResults(ArrayList<PackageTestResult> bestResults) {
 		this.bestResults = bestResults;
 	}
+	
+	public void addTop(PackageTestResult testResult) {
+		this.bestResults.add(testResult);
+	}
 
 	public boolean isUnable() {
 		return unable;
@@ -262,5 +297,21 @@ public class PackageE {
 
 	public void setUnable(boolean unable) {
 		this.unable = unable;
+	}
+
+	public boolean isSpecial() {
+		return special;
+	}
+
+	public void setSpecial(boolean special) {
+		this.special = special;
+	}
+
+	public Store getSource() {
+		return source;
+	}
+
+	public void setSource(Store source) {
+		this.source = source;
 	}
 }

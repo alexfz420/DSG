@@ -30,19 +30,13 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-				<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+				<li class="" id="statlist"><a href="<%=basePath %>statistics.action">Statistics</a><span class="normal">&nbsp;</span></li>
 
 			</ul>
 
 
         </li>
-		<li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+  
     </ul>
 </div>
 <script>
@@ -141,8 +135,9 @@
 				
 				
 					<c:set var="ruleNum" value="1" />
+
 					<table align="top" class="list" border="0" cellspacing="0" cellpadding="0"
-						style="border-collapse: collapse; width:800px; font-size: 12px;">
+							style="border-collapse: collapse; width:800px; font-size: 12px;">
 						<thead>
 							<tr class="title"
 								style="height: 30px; background-color: #f1f1f1; border-bottom: none;">
@@ -178,8 +173,8 @@
 
 
 					</table>
-					<table align="top" id="sort" class="list" border="0"  cellspacing="0" cellpadding="0"
-						style="border-collapse: collapse; width:800px; font-size: 12px;">
+
+					<table align="top" id="sort" class="list" border="0"  cellspacing="0" cellpadding="0" style="border-collapse: collapse; width:800px; font-size: 12px;">
 						<tbody>
 							<c:forEach var="midRule" items="${midRule}">
 								<tr style="height: 30px;">
@@ -209,7 +204,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<table align="top" class="list" border="0" cellspacing="0" cellpadding="0"
+				<table align="top" class="list" border="0" cellspacing="0" cellpadding="0"
 						style="border-collapse: collapse; width: 800px; font-size: 12px;">
 						<c:forEach var="lastRule" items="${lastRule}">
 							<tr style="height: 30px;">

@@ -48,4 +48,8 @@ public class Redirect {
 	public String gotoruleprioritylist(){
 		return "success";
 	}
+	
+	public String goToStatistic(){
+		return "success";
+	}
 }

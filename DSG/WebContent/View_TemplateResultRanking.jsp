@@ -36,8 +36,13 @@
   
     </ul>
 </div>
-    <!-- menu bar ends -->
 
+    <!-- menu bar ends -->
+<script>
+function goBack(){
+	window.history.go(-1);
+}
+</script>
     <!-- content starts -->
     <div class="minibar recordable" id="minibar" memo="{&quot;id&quot;:&quot;menu-toggle&quot;,&quot;type&quot;:&quot;menu-toggle&quot;,&quot;status&quot;:&quot;1&quot;}" style="display:none;"><a id="menu-untoggle" href="javascript:void(0)" class="unfold" ></a></div> 
     <div class="main"  id="main-body">
@@ -65,15 +70,15 @@
             <table class="text">
                 <tr>
                     <td>Rule Name&#58;</td>
-                    <td><input style="width:200px;" type="text" name="ruleName" value ="${ruleName}">&nbsp;&nbsp;</td>
+                    <td><input style="width:200px;" type="text" name="ruleName" value ="${ruleName}" disabled>&nbsp;&nbsp;</td>
                 </tr>   
                 <tr>
                     <td>Rule Description&#58;</td>
-                    <td><textarea name ="ruleDescription" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" >${ruleDescription}</textarea></td>
+                    <td><textarea name ="ruleDescription" style="overflow:hidden;max-width:200px;width:200px;height:50px;" onkeyup="textAreaAdjust(this)" disabled>${ruleDescription}</textarea></td>
                 </tr>
                 <tr>
                     <td>Group<span class="red">*</span>&#58;</td>
-                    <td><textarea id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" readonly>All</textarea>
+                    <td><textarea name="categoryname" id="tags" style="overflow:hidden;max-width:200px;width:200px;height:30px;" onkeyup="textAreaAdjust(this)" placeholder="Group name" disabled >All</textarea>
                     If not found, <a href="createcategory.html">new Group</a></td>
                 </tr>
                 <tr>
@@ -93,7 +98,7 @@
                         <div style="padding-left:50px;">
                         	<input type="radio" name="rankOption" value="max" <c:if test="${rule.getOperator() == 'max'}">checked="checked"</c:if>>
                         	maximize&nbsp;
-                        	<select name="maxOption" style="width:200px;">
+                        	<select name="maxOption" style="width:200px;" disabled>
                         	 	<option value="margin" <c:if test="${rule.getAttribute() == 'margin'}">checked="checked"</c:if>> Total Margin </option>                        	
                         		<option value="retailPrice" <c:if test="${rule.getAttribute() == 'retailPrice'}">checked="checked"</c:if>> Net Merchandise Sales </option>
                         		<option value="shippingCost" <c:if test="${rule.getAttribute() == 'shippingCost'}">checked="checked"</c:if>>Fulfillment Cost</option>
@@ -104,9 +109,9 @@
                         </div>
                         <br/>
                         <div style="padding-left:50px;">
-                             <input type="radio" name="rankOption" value="min" <c:if test="${rule.getOperator() == 'min'}">checked="checked"</c:if>>
+                             <input type="radio" name="rankOption" value="min" <c:if test="${rule.getOperator() == 'min'}" >checked="checked"</c:if>>
                              minimize&nbsp;&nbsp;
-                             <select name="minOption" style="width:200px;">
+                             <select name="minOption" style="width:200px;"disabled>
                                 <option value="totalCost" <c:if test="${rule.getAttribute() == 'totalCost'}">checked="checked"</c:if>> Total Cost </option>
                            		<option value="shippingCost" <c:if test="${rule.getAttribute() == 'shippingCost'}">checked="checked"</c:if>>Fulfillment Cost</option>
                         		<option value="otherCost" <c:if test="${rule.getAttribute() == 'otherCost'}">checked="checked"</c:if>>Other Cost</option>
@@ -121,8 +126,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
-                    <td><input type="submit" class="button" value="Update" /></td>
+                    <td><input type="button" class="button" value="Back" onclick="goBack()">
+					
                 </tr>
             </table>   
             </form>

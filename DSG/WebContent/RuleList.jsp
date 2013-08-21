@@ -25,19 +25,13 @@
             memo="{id:'21',type:'menu',global:1,status:''}">Visualization Dashboard</a>
             <ul class="nav-two" id="navthree">
                 <li class="" ><a id="orderlist" onclick="f(this)" href="<%=basePath%>gotoorderlist.action">Order List</a><span class="normal">&nbsp;</span></li>
-				<li class="" id="statlist"><a href="statistics.html">Statistics</a><span class="normal">&nbsp;</span></li>
+				<li class="" id="statlist"><a href="<%=basePath %>statistics.action">Statistics</a><span class="normal">&nbsp;</span></li>
 
 			</ul>
 
 
         </li>
-		<li class=""><a class="recordable open" href="#" id="togglefour"
-            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
-            <ul class="nav-two" id="navtwo">
-                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
-                
-            </ul>
-		</li>   
+   
     </ul>
 </div>
     
@@ -85,11 +79,11 @@
             </div>
         <br/>
         
-        <div id="Outline" class="table-list">
+        <div id="Outline" class="table-list" >
         <table cellspacing="0" cellpadding="0" class="list">
             <tbody><tr class="title">
                 <th><input type="checkbox" id="selectall"/></th>
-                <th>Rule Number</th>
+                <th>Rule#</th>
                 <th>Rule Name</th>
                 <th>Description</th>
                 <th>Type</th>
@@ -102,7 +96,7 @@
             
             		<tr style="height:30px;">
             				<td class=""><input type="checkbox" class="case"/></td>
-            				<td style="width:10px;"class="">${ruleNum}</td>
+            				<td class="">${ruleNum}</td>
 		                    <td class="">${allRule.ruleName.replace("%20"," ")}</td>
 		                    <td class="">${allRule.ruleDescr}</td>
 		                    <c:if test="${allRule.type == '9'}">
@@ -164,7 +158,7 @@
 						</c:if>
 						
 						<c:if test="${allRule.type == '5'}">
-		                    <td class="">Cost Calculation</td>
+		                    <td class="">Default</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
 									<td> <a class="buttondisable" >&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
@@ -179,7 +173,7 @@
 		                    </td>
 						</c:if>
 						<c:if test="${allRule.type == '6'}">
-		                    <td class="">Evaluation</td>
+		                    <td class="">Default</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
 									<td> <a class="buttondisable">&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
@@ -232,7 +226,7 @@
     
     <!-- content ends -->        
     <!-- footer starts -->
-        </div>
+        
             <div class="footer"><span>&copy;2013 eBusiness Team</span></div>
         </div>
         </form>

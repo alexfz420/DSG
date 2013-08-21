@@ -23,6 +23,8 @@ public class ProductDAO extends BaseDao<Product> {
 	public void createProduct(Product product) throws Exception {
 		super.create(product);
 	}
+	
+	
 
 	public Product getById(Integer id) throws Exception {
 		List<Criterion> criterions = new ArrayList<Criterion>();

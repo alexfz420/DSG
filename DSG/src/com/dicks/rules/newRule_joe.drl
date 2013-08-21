@@ -11,6 +11,7 @@ import com.dicks.dao.ShipmentDAO
 import com.dicks.engine.PackageE
 import com.dicks.engine.OrderE
 import com.dicks.engine.Parcel
+import com.dicks.engine.Util
 import com.dicks.engine.ParcelResult
 import com.dicks.engine.PackageTest
 import com.dicks.engine.PackageTestResult
@@ -74,14 +75,14 @@ rule  "Default Default Minimum Package Threshold"
     when
         $o : Orders()
         $orderE : OrderE()
-		$i : Product( ((weight > 10)|| ( length > 10) || (width > 10) || (height >10)))
+		$i : Product( ((weight > 1000)|| ( length > 10) || (width > 10) || (height >10)))
 		 $logger : EngineLog()
     then     
     	
     	for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
         {
-            $logger.addLog("Default Minimum Package Threshold","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            $logger.addLog("Default Minimum Package Threshold","Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
             PackageE p = new PackageE($o);
             p.addProduct($i,1);
             insert (p);
@@ -89,21 +90,6 @@ rule  "Default Default Minimum Package Threshold"
             $logger.addLog("Default Minimum Package Threshold",p.toString()); 
         }
         retract($i);
-end
-
-rule  "CA store threshold"
-    salience 848
-    when
-        $order : Orders($z:shippingZip)
-        $orderE : OrderE()
-        $product : Product($id :prodId)
-        $s: Store( (( storeName.equals("Escondido "))|| (storeName.equals("El Cajon "))|| (storeName.equals("Fresno "))|| (storeName.equals("Clovis "))|| (storeName.equals("Modesto "))|| (storeName.equals("Bakersfield "))|| (storeName.equals("West Covina "))|| (storeName.equals("Upland Colonies "))|| (storeName.equals("Laguna "))|| (storeName.equals("Chino "))|| (storeName.equals("Murrieta "))|| (storeName.equals("Tustin "))|| (storeName.equals("Moorpark "))|| (storeName.equals("Yorba Linda "))|| (storeName.equals("Oceanside "))|| (storeName.equals("Pasadena "))|| (storeName.equals("Ladera Beach "))|| (storeName.equals("Santa Clarita "))|| (storeName.equals("Fashion Island "))|| (storeName.equals("San Luis Obispo "))|| (storeName.equals("Huntington Beach "))|| (storeName.equals("San Diego"))|| (storeName.equals("Oxnard "))|| (storeName.equals("Redding "))|| (storeName.equals("Petaluma "))|| (storeName.equals("Visalia "))|| (storeName.equals("Salinas "))|| (storeName.equals("Dublin"))|| (storeName.equals("Chico "))|| (storeName.equals("Victorville"))|| (storeName.equals("Fitness warehouse")))&& (flag.equals("TH-A,ST-A,SP-A")))
-        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 5000 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 12 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.7 ))
-        $logger: EngineLog()
-    then
-        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
-        $logger.addLog("CA store threshold","Store "+$s.getStoreName()+" is successfully retracted");
-        retract($s);
 end
 
 rule "Insert Package for Remaining Products"
@@ -135,4 +121,3 @@ rule "Wrap up Remaining Products"
 		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
 end
 
- 
