@@ -147,13 +147,18 @@ public class Split {
 		System.out.println("stage2Logs: " + jsonText);
 		stage2.addLog("Cost Calculation", jsonText);	
 		
+		JSONObject package3Obj = new JSONObject();
 		JSONArray packageJson3 = new JSONArray();
 		for (PackageE pack : packages) {
 			packageJson3.add(pack.getStage3Json());
 		}
 		
+		package3Obj.put("stage3Arrays", packageJson3);
+		package3Obj.put("rankOption", Util.getOperator());
+		package3Obj.put("attribute", Util.getAttribute());
+		
 		out = new StringWriter();
-		packageJson3.writeJSONString(out);
+		package3Obj.writeJSONString(out);
 		jsonText = out.toString();	
 		System.out.println("stage3Logs: " + jsonText);
 		stage3.addLog("Evaluation", jsonText);
@@ -192,38 +197,6 @@ public class Split {
 		return packageTests;
 	}
 
-//	public static PackageTestResult getTestResult(final Orders order, Parcel test, ArrayList<Store> stores) throws Exception {
-//		ArrayList<Store> testStores = new ArrayList<Store>();
-//		for (int j = 0; j < stores.size(); j++) {
-//			Store s = stores.get(j);
-//			if (InventoryDAO.getInstance().containAllProductsParcel(s, test)) {
-//				testStores.add(s);
-//			} else {
-//				System.out.println("filter out: " + s.getStoreId());
-//			}
-//		}
-//
-//		if (testStores.size() == 0) return null;
-//
-//		// possible problem
-//		PackageTestResult r = new PackageTestResult(test);
-//		Collections.sort(testStores, new Comparator<Store>() {
-//			@Override
-//			public int compare(Store arg0, Store arg1) {
-//				return (int) (Util.getShippingCosts() 
-//								- Util.getShippingCosts()); 
-//			}
-//
-//		});
-//
-//		System.out.println("stores: " + Arrays.toString(stores.toArray()));
-//
-//		Store source = testStores.get(0);
-//		//System.out.println("source: " + source.getZoneID());
-//		r.setSource(source);
-//		r.setCost(Util.getShippingCosts());
-//		return r;
-//	}
 
 	public static Combination[][] setUpMatrix(Product[] a) {
 		Combination[][] matrix = new Combination[a.length][a.length];

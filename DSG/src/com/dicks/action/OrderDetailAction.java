@@ -32,6 +32,7 @@ public class OrderDetailAction {
 	private ArrayList<LogE> stage1Logs;
 	private JSONObject stage2Obj;
 	private JSONArray packages;
+	private JSONObject stage3Obj;
 	private JSONArray stage3Arrays;
 	
 	public Orders getOrder() {
@@ -111,7 +112,8 @@ public class OrderDetailAction {
 		String stage3Record = stage3Log.getRecord();
 		//System.out.println("order detail stage3 record: " + stage3Record);
 		array = (JSONArray) parser.parse(stage3Record);
-		this.stage3Arrays = (JSONArray) array.get(0);
+		this.stage3Obj = (JSONObject) array.get(0);
+		this.stage3Arrays = (JSONArray) stage3Obj.get("stage3Arrays");
 		
 //		stage2Logs = logDAO.getLogByOrderStage(order.getOrderId(), 2).get(0).getRecord();
 //		stage3Logs = logDAO.getLogByOrderStage(order.getOrderId(), 3).get(0).getRecord();
@@ -176,5 +178,13 @@ public class OrderDetailAction {
 
 	public void setStage1(EngineLog stage1) {
 		this.stage1 = stage1;
+	}
+
+	public JSONObject getStage3Obj() {
+		return stage3Obj;
+	}
+
+	public void setStage3Obj(JSONObject stage3Obj) {
+		this.stage3Obj = stage3Obj;
 	}
 }

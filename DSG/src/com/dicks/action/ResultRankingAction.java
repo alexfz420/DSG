@@ -14,7 +14,7 @@ public class ResultRankingAction {
 	
 	public String resultRanking() throws Exception{
 		Rule rule = RuleDAO.getInstance().getRuleById(ruleId);
-		System.out.println("%%%%%%%%%%%");
+		//System.out.println("%%%%%%%%%%%");
 		rule.setRuleName(this.ruleName);
 		rule.setRuleDescr(this.ruleDescription);
 		rule.setOperator(this.rankOption);

@@ -308,6 +308,31 @@ public class Util {
 		}
 	}
 	
+	public static String getOperator() {
+		if (operator.equals("max")) {
+			return "Maximize";
+		}
+		return "Minimize";
+	}
+	
+	public static String getAttribute() {
+		if (attribute.equals("retailPrice")) {
+			return "Retail Price";
+		} else if (attribute.equals("shippingCost")) {
+			return "Fulfillment Costs";
+		} else if (attribute.equals("margin")) {
+			return "Margin";
+		} else if (attribute.equals("proximity")) {
+			return "Proximity";
+		} else if (attribute.equals("totalCost")) {
+			return "Total Costs";
+		} else if (attribute.equals("otherCost")) {
+			return "Other costs";
+		}
+		
+		return "";
+	}
+	
 	public static int compareParcelResult(ParcelResult arg0, ParcelResult arg1) {
 		if (Util.operator.equals("max")) {
 			return Double.compare(arg1.getAttribute(), arg0.getAttribute());
