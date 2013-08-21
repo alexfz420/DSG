@@ -162,7 +162,7 @@
 					<tr>
 						<td>${order.orderId}</td>
 						<td>${order.orderDate}</td>
-						<td>${order.orderStatus}</td>
+						<td> Allocated </td>
 						<td><a class="button"
 							href="<%=basePath%>orderdetail.action?id=${order.orderId}">View
 								Routing</a></td>

@@ -41,7 +41,12 @@
 
 
         </li>
-  
+        <li class=""><a class="recordable open" href="#" id="togglefour"
+            memo="{id:'21',type:'menu',global:1,status:''}">Simulation</a>
+            <ul class="nav-two" id="navtwo">
+                <li class="" id="neworderlist"><a href="<%=basePath%>gotoplaceorder.action">New Order</a><span class="normal">&nbsp;</span></li>
+            </ul>
+        </li>   
     </ul>
     </div>
 <style>
@@ -60,6 +65,29 @@
     div.subtitle{height:auto;font-size:14px;padding-bottom:15px;}
     div.allpackage{float:left;padding-bottom:15px;padding-left:10px;}   
 </style>
+<style type="text/css">
+	div.text-container {
+		margin: 0 auto;
+	}
+	.text-content {
+		line-height: 1em;
+	}
+	.short-text {
+	overflow: hidden;
+	height: 19px;
+	}
+	.full-text {
+		height: auto;
+	}
+	h1 {
+		font-size: 24px;
+	}
+	.show-more {
+		padding: 10px 0;
+		text-align: center;
+	}
+</style>
+
 <script >
   function changeDiv(obj) {
         var className = obj.className;
@@ -111,7 +139,34 @@
 
 
 </script>  
+<script type="text/javascript">//<![CDATA[
+	$(window).load(function f(){
+		$(".show-more a").click(function () {
+			var $link = $(this);
+			var $content = $link.parent().prev("div.text-content");
+			var linkText = $link.text();
+ 			switchClasses($content);
+ 			$link.text(getShowLinkText(linkText));
+		return false;
+	});
 
+	function switchClasses($content) {
+		if ($content.hasClass("short-text")) {
+ 			$content.switchClass("short-text", "full-text", 400);
+ 		} else {
+ 			$content.switchClass("full-text", "short-text", 400);
+ 		}
+		}function getShowLinkText(currentText) {
+			var newText = '';
+			if (currentText.toUpperCase() === "SHOW MORE") {
+				newText = "Show Less";
+ 			} else {
+ 				newText = "Show More";
+ 			}
+			return newText;
+		}
+	});//]]> 
+</script>
     <!-- menu bar ends -->
 
 
@@ -171,6 +226,7 @@
                     
                         <h3>Stage 3 - Allocation Optimization</h3>
                         <div style="border: 1px solid #aaaaaa;">
+                  	      <li style="height:30px;"><a onClick="changeDiv(this)" class="stage3AllRoute">All Package Routes</a></li>
                             <ul>
                                 <c:forEach var="pack" items="${packages}" varStatus="index">
                                     <li style="height:30px;"><a onClick="changeDiv(this)" class="stage3route${index.index}"> Package${index.count} </a></li>                                
@@ -260,18 +316,27 @@
                         
                         <!-- Add block for stage 1 -->
                         <div id="stage1AllRule" class="block" style="display:none;padding-left:30px;padding-top:30px;padding-bottom:30px;">
-                            <div class="title">All Rules</div>
+                            <div class="title" style="width:500px;">All Rules</div>
                             <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
                                 <div id="rule${log.getIndex()}">
                                     <div style="padding-bottom:30px;">
                                         <div style="float:left; width:100px;">Rule ${index.count}:</div>
                                         <div id="rule${index.index}" class="right">${log.getName()}</div>
                                     </div>
-                                    <div style="padding-bottom:30px;padding-left:100px;"> 
-                                        <c:forEach var="logdetail" items="${log.getLogs()} ">
-                                            ${logdetail.replace("[","").replace("]","")} 
-                                            <br/>
-                                        </c:forEach>
+                                    
+                                    <div>
+                                    	<div style="float:left; width:100px;"></div>
+                                    	<div class="text-container" style="float:left; width:400px;padding-bottom:30px;padding-left:100px;">
+                                    		<div>
+                                    			<div class="text-content short-text" style="float:left;width:300px;padding-bottom:30px;"> 
+                                        			<c:forEach var="logdetail" items="${log.getLogs()} ">
+                                            			${logdetail.replace("[","").replace("]","")} 
+                                            			<br/><br/>
+                                        			</c:forEach>
+                                        		</div>
+                                        		<div class="show-more" style="float:left;width:100px;"> <a href="#" class="button">Show More</a></div>
+                                        	</div>
+                                    	</div>
                                     </div>
                                 </div>                                                              
                             </c:forEach>
@@ -323,11 +388,18 @@
                                 </div>
                                 <div style="padding-bottom:30px;">
                                     <div class="left">Result of this rule&#58;</div>
-                                    <div id="orderdate" class="right"> 
-                                        <c:forEach var="logdetail" items="${log.getLogs()} ">
-                                            ${logdetail.replace("[","").replace("]","")}  
-                                            <br/>
-                                        </c:forEach>
+                                    <div id="orderdate" class="text-container" style="float:left;width:350px;padding-bottom:30px;"> 
+                                    	<div>
+                                    		<div class="text-content short-text" style="float:left;width:250px;padding-bottom:30px;">
+                                        		<c:forEach var="logdetail" items="${log.getLogs()} ">
+                                            		${logdetail.replace("[","").replace("]","")}  
+                                            		<br/><br/>
+                                        		</c:forEach>
+                                        	</div>
+                                        	<div class="show-more" style="float:left;width:100px;">
+                                        		<a href="#" class="button">Show More</a>
+                                        	</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>                              
@@ -414,38 +486,87 @@
 								  </div>
 								</c:if> 			                        
 		                        
-		                        
 	                            <c:forEach var="split" items='${pack.get("splits")}' varStatus="splitIndex">
 	                            		<div name="splitNo" class="split">
 			                                Split ${splitIndex.index}
 			                            </div>
-	                            	<c:forEach var="testR" items='${split.get("tests")}' >
-			                            	                            
-			                            	
-				                            <div name="product" class="product">
-					                            {<c:forEach var="p" items='${testR.get("products")}' varStatus="index">
-													${p.get("prodName")} (${p.get("quantity")}) 
-												</c:forEach>}
-				                            </div>	                            
-				                            <div style="float:left;width:200px;">
-				                                <div name="failed" class="message">
-				                                    Failed&#58; ${stage2Obj.get("remainingStores") - testR.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
-				                                </div>
-				                                <div name="success" class="message">
-				                                    Success&#58; ${testR.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
-				                                </div>
-				                            </div>											
-										
-
+	                            	<c:forEach var="testR" items='${split.get("tests")}' >			                            	                            
+	                            		<c:forEach var="obj" items='${testR}' >			                            	                            
+			                             
+			                            <div name="product" class="product">
+				                            {<c:forEach var="p" items='${obj.get("products")}' varStatus="index">
+												${p.get("prodName")} (${p.get("quantity")}) 
+											</c:forEach>}
+			                            </div>	                            
+			                            <div style="float:left;width:200px;">
+			                                <div name="failed" class="message">
+			                                    Failed&#58; ${stage2Obj.get("remainingStores") - obj.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
+			                                </div>
+			                                <div name="success" class="message">
+			                                    Success&#58; ${obj.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
+			                                </div>
+			                            </div>		
+				                            									
+										</c:forEach>
+										<c:if test='${split.get("tests").size() > 1}' >
+											<div class="left" style="width:500px;"> <hr/> </div>
+										</c:if>
 									</c:forEach>
-									<c:if test='${split.get("tests").size() > 1}' >
-										<div class="left" style="width:500px;"> <hr/> </div>
-									</c:if>
+
 								</c:forEach>
                         	</div> 
 						</c:forEach>
 						
 					<!-- Add route for stage 3 -->
+					<div id="stage3AllRoute" class="block" style="display:none;padding-left:30px;padding-top:30px;">
+                             <div class="title">All Packages</div>
+ 
+                             <div>
+                     	      	<div class="allpackage" style="width:200px;"> Evaluation Method </div>
+                     	      	<div class="allpackage" style="width:300px;"> ${stage3Obj.get("rankOption")} ${stage3Obj.get("attribute")} </div>
+                             </div>                            
+                             
+                             <c:forEach var="pack" items="${packages}" varStatus="index"> 
+	                            <div style="width:520px;">
+	                                   <div class="subtitle">Package ${index.count}:</div>
+	                                   <div>
+	                            	      <div class="allpackage" style="width:200px;">Included Items&#58;</div>
+	                            	      <div class="table-list" style="float:left; width:300px;padding-bottom:15px;padding-left:10px;">
+	                            		     <table cellspacing="0" cellpadding="0" class="list">
+	                            			    <tr class="title">
+	                            				<th>Product</th>
+	                            				<th>Quantity</th>
+	                            			    </tr>
+						                        <c:forEach var="product" items='${pack.get("products")}' varStatus="index">
+		                            			    <tr>
+		                            				<td> ${product.get("prodName")} </td>
+		                            				<td> ${product.get("quantity")} </td>
+		                            			    </tr>					                        
+												</c:forEach>	                            			    
+	                            		     </table>
+	                            	      </div>
+	                                   </div>
+	                                   <div>
+	                            	      <div class="allpackage" style="width:200px;">Number of Subpackages:</div>
+	                            	      <div class="allpackage" style="width:300px;"> ${pack.get("splitNum") + 1} </div>
+	                                   </div>
+	                          	       <div>
+	                            	      <div class="allpackage" style="width:200px;padding-bottom:50px;">Status:</div>
+	                            	      <div class="allpackage" style="width:300px;padding-bottom:50px;">
+												<c:choose>
+													<c:when test='${ pack.get("unable") == true}'>
+														Unable to handle
+													</c:when>
+													<c:otherwise>
+														Allocated
+													</c:otherwise>
+												</c:choose>
+										  </div>
+	                                   </div>
+	                            </div>
+                            </c:forEach>                      	
+                        </div>
+					
 						<c:forEach var="pack" items="${packages}" varStatus="index">   	
 							<div id="stage3route${index.index}" class="block" style="display:none;padding-left:30px;padding-top:30px;">
 		                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">

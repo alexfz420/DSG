@@ -66,20 +66,25 @@ public class PlaceOrder {
 	private Collection<PackageTestResult> allAllocatedResults;
 	
 	public String placeorder() throws Exception{
-		for(int i=0;i<quantity.length;i++){
-			if (quantity[i] != null) {
-				quantity[i] = quantity[i].toLowerCase();			
-				System.out.println("quantity :"+quantity[i]);
-				System.out.println("product :"+product[i]);
-			}
-		}
 			
-//		Shipment ss = new Shipment();
-//		ss = ShipmentDAO.getInstance().getShipmentBySupplyDesitin("15217", "15213");
-//		System.out.println("distance "+ss.getDistance());		
-//		System.out.println("product length: " + product.length);
-//		System.out.println("quantity length: " + quantity.length);		
-
+		this.product = new String[5];
+		product[0] = "OC-OD-KY";
+		product[1] = "ON-OD-WS";
+		product[2] = "FI-OD-FI";
+		product[3] = "AQ-OD-MA";
+		product[4] = "TY-OD-WS";
+		
+		this.quantity = new String[5];
+		quantity[0] = "2";
+		quantity[1] = "1";
+		quantity[2] = "2";
+		quantity[3] = "2";
+		quantity[4] = "1";
+		
+		this.shippingtype = "Next Day Air";
+		this.shippingaddress = "510 Shannon Way #2102, Redwood City, CA 94065";
+		this.shippingzipcode = "94065";
+		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
 		
 		// get results from test
@@ -141,7 +146,7 @@ public class PlaceOrder {
 			logDAO.createLog(log);
 		}	
 		this.setStage3Logs(stage3.getLogsByName("Evaluation").get(0));
-		this.stage3Arrays = (JSONArray) parser.parse(this.stage3Logs);
+//		this.stage3Arrays = (JSONArray) parser.parse(this.stage3Logs);
 
 		allAllocatedResults = new ArrayList<PackageTestResult>();
 		allAllocatedResults.addAll(this.allocatedResults);

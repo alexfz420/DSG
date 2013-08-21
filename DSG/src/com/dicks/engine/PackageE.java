@@ -99,8 +99,14 @@ public class PackageE {
 			split = (JSONObject) splits.get(splitNum);
 		}
 		
-		JSONArray testJ = new JSONArray();
+		JSONArray testsJ = (JSONArray) split.get("tests");
+		if (testsJ == null) {
+			testsJ = new JSONArray();
+			split.put("tests", testsJ);
+		}
 		
+		JSONArray testJ = new JSONArray();
+		testsJ.add(testJ);
 		ArrayList<Parcel> parcels = test.getParcels();
 		
 		for (Parcel parcel : parcels) {
@@ -120,7 +126,7 @@ public class PackageE {
 				maxCount = parcel.getStoreCount();
 			}
 		}
-		split.put("tests", testJ);
+	
 		split.put("maxCount", maxCount);
 		
 //		System.out.println("split " + this.splitNum + " text: " + text + " splits: " + Arrays.toString(splits.toArray()));
