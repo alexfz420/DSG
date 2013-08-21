@@ -46,7 +46,7 @@ public class InventoryDAO extends BaseDao<Inventory> {
 		Inventory inventory  = get(criterions);
 		System.out.println("store id " + storeId + " prodId: " + prodId);
 		if (inventory == null) return 1.0;
-		System.out.println("competition" + inventory.getCompetition());
+		//System.out.println("competition" + inventory.getCompetition());
 		return inventory.getCompetition();
 	}
 
@@ -157,11 +157,11 @@ public class InventoryDAO extends BaseDao<Inventory> {
 
 	public boolean checkProduct(Store store, Product product, String operator, int mar) throws Exception {
 		Inventory in = getInventoryByStoreProduct(store.getStoreId(), product.getProdId());
-		if (in != null){
-			System.out.println("product "+product.getProdName()+" has inventory of "+(in.getInventory() - in.getSafetyStock()));
-			
-			System.out.println("margin!"+(in.getInventory() - in.getSafetyStock()));
-		}
+//		if (in != null){
+//			System.out.println("product "+product.getProdName()+" has inventory of "+(in.getInventory() - in.getSafetyStock()));
+//			
+//			System.out.println("margin!"+(in.getInventory() - in.getSafetyStock()));
+//		}
 		
 		
 		if (operator.equals(">")){

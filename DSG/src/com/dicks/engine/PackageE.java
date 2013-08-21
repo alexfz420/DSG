@@ -144,7 +144,7 @@ public class PackageE {
 		packageE.put("splitNum", this.splitNum);
 		packageE.put("unable", this.isUnable());
 		packageE.put("special", this.isSpecial());
-		packageE.put("source", this.source == null? null : this.source.getStoreType() + " " + this.source.getStoreId());
+		packageE.put("source", this.source == null? null : this.source.getStoreType() + " " + this.source.getStoreName());
 		JSONArray productList = new JSONArray();
 		for (Product p : map.keySet()) {
 			JSONObject product = new JSONObject();
@@ -192,7 +192,7 @@ public class PackageE {
 				}
 				parcelRJ.put("products", productsJ);
 				
-				parcelRJ.put("source", parcelR.getSource().toString());
+				parcelRJ.put("source", parcelR.getSource().getStoreType() + " " + parcelR.getSource().getStoreName());
 				parcelRJ.put("totalCost", parcelR.getCost());
 				
 				//costs

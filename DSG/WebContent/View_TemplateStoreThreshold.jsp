@@ -219,7 +219,7 @@ function goBack(){
                         </div>  
                         <br/>
                        <div>
-                            <select style="width:70px;"name="attribute" disabled>
+                            <select style="width:180px;"name="attribute" disabled>
                                 <option value="Length" <c:if test="${attribute[0] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
                                 <option value="Width" <c:if test="${attribute[0] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
                                 <option value="Height" <c:if test="${attribute[0] == 'Competition'}">selected="selected"</c:if>>Competition</option>
@@ -240,10 +240,10 @@ function goBack(){
                         </div>
                         <br/>
                         <div>
-                            <select style="width:70px;"name="attribute" disabled>
-                                <option value="Length" <c:if test="${attribute[0] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
-                                <option value="Width" <c:if test="${attribute[0] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
-                                <option value="Height" <c:if test="${attribute[0] == 'Competition'}">selected="selected"</c:if>>Competition</option>
+                            <select style="width:180px;"name="attribute" disabled>
+                                <option value="Length" <c:if test="${attribute[1] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
+                                <option value="Width" <c:if test="${attribute[1] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
+                                <option value="Height" <c:if test="${attribute[1] == 'Competition'}">selected="selected"</c:if>>Competition</option>
                                 
                             </select>&nbsp;&nbsp;
                             <select style="width:40px;" name="operator" disabled>
@@ -260,7 +260,7 @@ function goBack(){
                         </div>
                         <br/>
                         <div>
-                            <select style="width:70px;"name="attribute" disabled>
+                            <select style="width:180px;"name="attribute" disabled>
                                 <option value="Length" <c:if test="${attribute[2] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
                                 <option value="Width" <c:if test="${attribute[2] == 'Margin'}">selected="selected"</c:if>>Inventory Margin</option>
                                 <option value="Height" <c:if test="${attribute[2] == 'Competition'}">selected="selected"</c:if>>Competition</option>
@@ -292,10 +292,13 @@ function goBack(){
                
                     
                 </tr>
-                <tr id = "buttons">
-                   <td><a class="button" href="<%=basePath%>gotorulelist.action">Cancel</a></td>  
-                   <td><input type="submit" value="Update" class="button"></td>
-                    
+                
+                 <tr id ="button">
+                    <td><a class="button" href="<%=basePath%>gotorulelist.action">Back</a></td>  
+                    <td></td>
+                     
+                
+                
                 <input type="hidden" name="rulename" id="rulename" value=<%=request.getAttribute("rulename")%> />
                 <input type="hidden" name="categoryname"  value=<%=request.getAttribute("categoryname")%> />
                 

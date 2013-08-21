@@ -272,12 +272,12 @@ public class WriteDrl {
 				multiObject.append("");
 			}
 			else{
-				multiObject.append("(( storeName.equals(\""+splits[0]+"\"))");
+				multiObject.append("(( storeId == "+splits[0]+")");
 
 				//combing all the other products
 				//sS System.out.println("splits.size: " + splits.length);
 				for (int i = 1; i < splits.length; i++){
-					multiObject.append("|| (storeName.equals(\""+splits[i]+"\"))");
+					multiObject.append("|| (storeId == "+splits[i]+")");
 					//System.out.println("add second product");
 				}
 				multiObject.append(")");
@@ -506,7 +506,7 @@ public class WriteDrl {
 		 */
 		tmp.append(myTab+myTab+"$product : Product($id: prodId, sku.equals(\""+splits[0]+"\"))"+myReturn);
 		tmp.append(myTab+myTab+"eval ($orderE.getProductQty($id)"+splitOperator[0]+ splitValue[0]+")"+myReturn);
-		tmp.append(myTab+myTab+"$s : Store( storeName.equals(\""+route+"\")"+myReturn);
+		tmp.append(myTab+myTab+"$s : Store( storeName.equals(\""+route+"\"))"+myReturn);
 		tmp.append(myTab+myTab+"eval(InventoryDAO.getInstance().checkProduct($s, $product, \""+splitOperator[0]+"\", $orderE.getProductQty($id)))"+myReturn);
 		tmp.append(myTab+myTab+"$logger: EngineLog()"+myReturn);
 		//tmp.append(myTab+myTab+"$i : Product( ("+ multiAttribute+")"+multiObject.toString()+

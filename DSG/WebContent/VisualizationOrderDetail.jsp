@@ -219,7 +219,7 @@
                             	<div class="table-list" style="float:left; width:350px; padding-bottom:15px;">
 							    <table cellspacing="0" cellpadding="0" class="list">
 			                                    <tr class="title">
-			                                        <th>Store ID</th>
+			                                        <th>Store Name</th>
 			                                        <th>Product</th>
 			                                        <th>Total Cost</th>
 			                                    </tr>
@@ -512,7 +512,7 @@
 				                                Rank # ${testIndex.count} Route&#58;
 				                                <table cellspacing="0" cellpadding="0" class="list">
 				                                    <tr class="title">
-				                                        <th>Store ID</th>
+				                                        <th>Store Name</th>
 				                                        <th>Product</th>
 				                                        <th>Total Cost</th>
 				                                    </tr>
