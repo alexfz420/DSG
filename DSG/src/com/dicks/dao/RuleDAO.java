@@ -179,11 +179,6 @@ public class RuleDAO extends BaseDao<Rule> {
 	public String[] getDescriptionByRule(Rule rule) throws Exception{
 		//map
 		buildDictionary();
-		
-//		List<Criterion> criterions = new ArrayList<Criterion>();
-//		Criterion criterion = Restrictions.eq("ruleId", ruleId);
-//		criterions.add(criterion);
-//		Rule rule  =  super.get(criterions);
 		String type = rule.getType();
 		
 		StringBuffer sbWhen = new StringBuffer();
@@ -216,10 +211,30 @@ public class RuleDAO extends BaseDao<Rule> {
 			sbWhen.append(dictionary.get(operators[0])).append(" ").append(values[0]);
 			sbThen.append("then ").append(dictionary.get(actions[0])).append(" Store ").append(route);
 			
-		}
-		if("3".equals(type)){
 			
+		}if("2".equals(type)){
+			sbWhen.append("when ");
+			for(int i = 0 ; i<attributes.length ; i ++){
+				sbWhen.append(attributes[i]).append(" ").append(dictionary.get(operators[i])).append(" ").append(values[i]).append(", ").append(condition).append(" ");
+			}
+			sbWhen.delete(sbWhen.length()-5,sbWhen.length()-1) ;
+			
+			sbThen.append("then ");
+			for(int i = 0; i<actions.length ; i++){
+				sbThen.append("this store will be filted out");
+			}
 		}
+		if("9".equals(type)){
+			if("Default Filter Stock".equals(rule.getRuleName())){
+				sbWhen.append("When the store does not have the product");
+				sbThen.append("Then this store will be filted out in the Stage 1");
+			}
+			if("Default Minimum Package Threshold".equals(rule.getRuleName())){
+				sbWhen.append("When the product is too big and too heavy");
+				sbThen.append("Then this product will be shipped alone");
+			}
+		}
+		
 		
 		result[0] = sbWhen.toString();
 		result[1] = sbThen.toString();
@@ -271,6 +286,5 @@ public class RuleDAO extends BaseDao<Rule> {
 		}
 		return result;
 	}
-
 	
 }

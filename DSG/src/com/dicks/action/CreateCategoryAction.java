@@ -45,7 +45,18 @@ public class CreateCategoryAction extends ActionSupport {
 	
 	public String createCategory() throws Exception{
 		if("store".equals(act)){
-			String[] ids = storeId.split(",");
+			String[] ids = null;
+			if(storeState!= null){
+				if("California".equals(storeState)){
+					storeId = "363,367,372,373,374,421,469,470,471,473,474,475,476,477,478,479,480,481,482,489,503,504,511,518,519,527,528,529,542,552,559";
+				}
+				if("Pennsylvania".equals(storeState)){
+					storeId = "266,14,15,277,24,25,28,29,36,37,38,39,40,298,305,58,59,61,73,74,75,83,85,100,384,136,151,187,188,198,203,204,222,225,491,250";
+				}
+			}
+			
+			
+				ids = storeId.split(",");
 //			System.out.println("!!!"+ids);
 			int cateId = StoreCateDAO.getInstance().getNewId();
 			
@@ -56,7 +67,46 @@ public class CreateCategoryAction extends ActionSupport {
 				StoreCateDAO.getInstance().createCategory(storeCate);
 			}
 		}else if("product".equals(act)){
-			String[] skus = productSKU.split(",");
+			String[] skus = null;
+			if(brand!=null){
+				if("Nike".equals(brand)){
+					productSKU="NK-SH-KB";
+				}
+				if("Ocean".equals(brand)){
+					productSKU="OC-OD-KY";
+				}
+				if("Oneill".equals(brand)){
+					productSKU="ON-OD-WS";
+				}
+				if("Adidas".equals(brand)){
+					productSKU="AD-SH-SP,AD-SH-TM";
+				}
+				if("Aqua".equals(brand)){
+					productSKU="AQ-OD-MA";
+				}
+				if("TYR".equals(brand)){
+					productSKU="TY-OD-WS";
+				}
+				if("Newport".equals(brand)){
+					productSKU="NE-SH-SA";
+				}
+				if("All".equals(brand)){
+					productSKU = "OC-OD-KY,ON-OD-WS,FI-OD-FI,AQ-OD-MA,TY-OD-WS,NK-SH-KB,AD-SH-SP,AD-SH-TM,NE-SH-SA";
+				}	
+			}	
+			
+			if(productType !=null){
+				if("Outdoor".equals(productType)){
+					productSKU = "OC-OD-KY,ON-OD-WS,FI-OD-FI,AQ-OD-MA,TY-OD-WS";
+				}
+				if("Shoe".equals(productType)){
+					productSKU = "NK-SH-KB,AD-SH-SP,AD-SH-TM,NE-SH-SA";
+				}
+				if("All".equals(productType)){
+					productSKU = "OC-OD-KY,ON-OD-WS,FI-OD-FI,AQ-OD-MA,TY-OD-WS,NK-SH-KB,AD-SH-SP,AD-SH-TM,NE-SH-SA";
+				}	
+			}
+			skus = productSKU.split(",");
 			int cateId = ProdCateDAO.getInstance().getNewId();
 			int[] ids = ProductDAO.getInstance().getProductIdsBySKUList(skus);
 			for(int id:ids){
