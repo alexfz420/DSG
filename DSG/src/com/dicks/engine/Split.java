@@ -5,6 +5,8 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,6 +28,7 @@ import com.dicks.dao.StoreDAO;
 import com.dicks.pojo.Product;
 import com.dicks.pojo.Rule;
 import com.dicks.pojo.Store;
+import com.opensymphony.xwork2.inject.util.Strings;
 
 public class Split {
 	private EngineLog stage2;
@@ -113,7 +116,6 @@ public class Split {
 		ksession.fireAllRules();
 
 		// Remove comment if using logging
-
 		
 		newAllocatedResults = (Collection<PackageTestResult>) ksession.getObjects( new ClassObjectFilter(PackageTestResult.class) );
 		
@@ -134,6 +136,7 @@ public class Split {
 		for (PackageE pack : packages) {
 			packageJson.add(pack.getJson());
 		}
+		
 		stage2Logs.put("packages", packageJson);
 		stage2Logs.put("remainingStores", stores.size());
 		stage2Logs.put("totalStores", StoreDAO.getInstance().getTotalStoreNum());

@@ -63,6 +63,7 @@
     div.package{float:left;padding-left:20px;height:auto;font-size:12px;padding-bottom:5px;}
     div.item2{padding-left:30px;height:auto;font-size:12px;padding-bottom:5px;width:420px;}
     div.subtitle{height:auto;font-size:14px;padding-bottom:15px;}
+    div.allpackage{float:left;padding-bottom:15px;padding-left:10px;}   
 </style>
 <script >
   function changeDiv(obj) {
@@ -341,7 +342,38 @@
 
                         <!-- Add package for stage 2 -->	
                         <div id="stage2AllPackage" class="block" style="display:none;padding-left:30px;padding-top:30px;">
-                        	
+                             <div class="title">All Packages</div>
+                             
+                             <c:forEach var="pack" items="${packages}" varStatus="index"> 
+	                            <div style="width:520px;">
+	                                   <div class="subtitle">Package ${index.count}:</div>
+	                                   <div>
+	                            	      <div class="allpackage" style="width:200px;">Included Items&#58;</div>
+	                            	      <div class="table-list" style="float:left; width:300px;padding-bottom:15px;padding-left:10px;">
+	                            		     <table cellspacing="0" cellpadding="0" class="list">
+	                            			    <tr class="title">
+	                            				<th>Product</th>
+	                            				<th>Quantity</th>
+	                            			    </tr>
+						                        <c:forEach var="product" items='${pack.get("products")}' varStatus="index">
+		                            			    <tr>
+		                            				<td> ${product.get("prodName")} </td>
+		                            				<td> ${product.get("quantity")} </td>
+		                            			    </tr>					                        
+												</c:forEach>	                            			    
+	                            		     </table>
+	                            	      </div>
+	                                   </div>
+	                                   <div>
+	                            	      <div class="allpackage" style="width:200px;">Number of Subpackages:</div>
+	                            	      <div class="allpackage" style="width:300px;"> ${pack.get("splitNum") + 1} </div>
+	                                   </div>
+	                          	       <div>
+	                            	      <div class="allpackage" style="width:200px;">Maximum number of sources:</div>
+	                            	      <div class="allpackage" style="width:300px;">${pack.get("maxCount")}/580</div>
+	                                   </div>
+	                            </div>
+                            </c:forEach>                      	
                         </div>
                                                 
                         <c:forEach var="pack" items="${packages}" varStatus="index">         		                     	
@@ -377,27 +409,33 @@
 								  </div>
 								</c:if> 			                        
 		                        
+		                        
 	                            <c:forEach var="split" items='${pack.get("splits")}' varStatus="splitIndex">
-		                            <div name="splitNo" class="split">
-		                                Split ${splitIndex.index}
-		                            </div>	                            
-		                            <c:forEach var="obj" items='${split}'>	
-			                            <div name="product" class="product">
-				                            {<c:forEach var="p" items='${obj.get("products")}' varStatus="index">
-												${p.get("prodName")} (${p.get("quantity")}) 
-											</c:forEach>}
+	                            	<c:forEach var="testR" items='${split.get("tests")}' >
+			                            <div name="splitNo" class="split">
+			                                Split ${splitIndex.index}
 			                            </div>	                            
-			                            <div style="float:left;width:200px;">
-			                                <div name="failed" class="message">
-			                                    Failed&#58; ${stage2Obj.get("remainingStores") - obj.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
-			                                </div>
-			                                <div name="success" class="message">
-			                                    Success&#58; ${obj.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
-			                                </div>
-			                            </div>											
+			                            	
+				                            <div name="product" class="product">
+					                            {<c:forEach var="p" items='${testR.get("products")}' varStatus="index">
+													${p.get("prodName")} (${p.get("quantity")}) 
+												</c:forEach>}
+				                            </div>	                            
+				                            <div style="float:left;width:200px;">
+				                                <div name="failed" class="message">
+				                                    Failed&#58; ${stage2Obj.get("remainingStores") - testR.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
+				                                </div>
+				                                <div name="success" class="message">
+				                                    Success&#58; ${testR.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
+				                                </div>
+				                            </div>											
+										
+										<c:if test='${split.get("tests").size() > 1}' >
+											<div> <hr/> </div>
+										</c:if>
 									</c:forEach>
 								</c:forEach>
-                        	</div>             
+                        	</div> 
 						</c:forEach>
 						
 					<!-- Add route for stage 3 -->

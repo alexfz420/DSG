@@ -1,0 +1,155 @@
+//created on: Jul 4, 2013
+package com.dicks.rules;
+
+//list any import classes here.
+import com.dicks.pojo.Orders
+import com.dicks.pojo.Product
+import com.dicks.pojo.Store
+import com.dicks.dao.InventoryDAO
+import com.dicks.dao.OrderDetailDAO
+import com.dicks.dao.ShipmentDAO
+import com.dicks.engine.PackageE
+import com.dicks.engine.OrderE
+import com.dicks.engine.Parcel
+import com.dicks.engine.Util
+import com.dicks.engine.ParcelResult
+import com.dicks.engine.PackageTest
+import com.dicks.engine.PackageTestResult
+import com.dicks.engine.EngineLog
+import java.util.ArrayList
+import java.*; 
+import java.String.*;
+import java.util.HashMap;
+import com.dicks.dao.InventoryDAO;
+rule "Explode Cart"
+    agenda-group "init"
+    auto-focus true
+    salience 1000
+    dialect "java"
+    when
+        $order : Orders()
+        $item : Product() from OrderDetailDAO.getInstance().getProductsByOrder($order)
+    then
+        insert( $item );
+        System.out.println("product"+$item.getSku());
+//        modify ($order) { setExploredItem($order.getExploredItem() + 1); }
+//        System.out.println("order quantity: " + $order.getQuantity());
+//        System.out.println("exlored: " + $order.getExploredItem());
+       
+end
+
+rule "Default Filter Stock"
+	salience 950
+	//agenda-group "first"
+    when    	
+    	$order : Orders()
+    	$store : Store()
+    	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
+    	$logger : EngineLog()
+    then
+    	$logger.addLog("Default Filter Stock", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	
+    	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
+        retract($store);
+end
+
+rule "Filter Stock 2"
+	salience 925
+	//agenda-group "first2"
+    when
+    	//$o : Orders()
+        $item : Product()
+    	$store : Store()
+        //eval($store.checkStore($item, $o,"zone","<",2))
+        eval(InventoryDAO.getInstance().checkProduct($store, $item,"<",2))
+        //$logger : EngineLog() 
+    then
+    	//$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
+        retract($store);
+end
+
+rule  "Default Default Minimum Package Threshold"
+	salience 900
+	//agenda-group "first6"
+    when
+        $o : Orders()
+        $orderE : OrderE()
+		$i : Product( ((weight > 10)|| ( length > 10) || (width > 10) || (height >10)))
+		 $logger : EngineLog()
+    then     
+    	
+    	for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Default Minimum Package Threshold","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("Default Minimum Package Threshold",p.toString()); 
+        }
+        retract($i);
+end
+
+rule  "Store Competition for la store"
+    salience 896
+    when
+        $order : Orders($z:shippingZip)
+        $orderE : OrderE()
+        $product : Product($id :prodId)
+        $s: Store( (( storeName.equals("Binghamton"))))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 1000 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 1 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.5 ))
+        $logger: EngineLog()
+    then
+        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("Store Competition for la store","Store "+$s.getStoreName()+" is successfully retracted");
+        retract($s);
+end
+
+
+
+rule  "Competition for AJ"
+    salience 892
+    when
+        $order : Orders($z:shippingZip)
+        $orderE : OrderE()
+        $product : Product($id :prodId)
+        $s: Store( (( storeName.equals("Binghamton"))|| (storeName.equals("Vestal"))))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 1000 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 1 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.5 ))
+        $logger: EngineLog()
+    then
+        System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("Competition for AJ","Store "+$s.getStoreName()+" is successfully retracted");
+        retract($s);
+end
+
+rule "Insert Package for Remaining Products"
+	salience -5
+	//agenda-group "first7"
+	when
+		$i : Product()
+		$o : Orders()
+		not PackageE(isForRemain())
+	then
+		PackageE p = new PackageE($o);
+		p.setForRemain(true);
+		insert (p);
+		System.out.println("insert new package");
+//		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
+//		System.out.println("set to next group");
+end
+
+rule "Wrap up Remaining Products"
+	salience -10
+	//agenda-group "first8"
+	when
+		$i : Product()
+		$p : PackageE(isForRemain())
+		$orderE : OrderE()
+	then
+		$p.addProduct($i, $orderE.getProductQty($i.getProdId()));
+		retract($i);
+		drools.getKnowledgeRuntime().getAgenda().getAgendaGroup( "split" ).setFocus();
+end
+

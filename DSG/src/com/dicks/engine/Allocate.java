@@ -117,7 +117,7 @@ public class Allocate {
 		final StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 		// setup the audit logging
 		// Remove comment to use FileLogger
-		KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger( ksession, "./smallTest" );
+		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger( ksession, "./smallTest" );
 
 		// Remove comment to use ThreadedFileLogger so audit view reflects events whilst debugging
 		//KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newThreadedFileLogger( ksession, "./helloworld", 1000 );
@@ -173,10 +173,9 @@ public class Allocate {
 		System.out.println("end");
 
 		// Remove comment if using logging
-		logger.close();
+		//logger.close();
 		ksession.dispose();
 	}
-
 
 	public EngineLog getStage1() {
 		return stage1;
