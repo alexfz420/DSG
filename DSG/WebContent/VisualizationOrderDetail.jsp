@@ -65,6 +65,29 @@
     div.subtitle{height:auto;font-size:14px;padding-bottom:15px;}
     div.allpackage{float:left;padding-bottom:15px;padding-left:10px;}   
 </style>
+<style type="text/css">
+	div.text-container {
+		margin: 0 auto;
+	}
+	.text-content {
+		line-height: 1em;
+	}
+	.short-text {
+	overflow: hidden;
+	height: 19px;
+	}
+	.full-text {
+		height: auto;
+	}
+	h1 {
+		font-size: 24px;
+	}
+	.show-more {
+		padding: 10px 0;
+		text-align: center;
+	}
+</style>
+
 <script >
   function changeDiv(obj) {
         var className = obj.className;
@@ -116,7 +139,34 @@
 
 
 </script>  
+<script type="text/javascript">//<![CDATA[
+	$(window).load(function f(){
+		$(".show-more a").click(function () {
+			var $link = $(this);
+			var $content = $link.parent().prev("div.text-content");
+			var linkText = $link.text();
+ 			switchClasses($content);
+ 			$link.text(getShowLinkText(linkText));
+		return false;
+	});
 
+	function switchClasses($content) {
+		if ($content.hasClass("short-text")) {
+ 			$content.switchClass("short-text", "full-text", 400);
+ 		} else {
+ 			$content.switchClass("full-text", "short-text", 400);
+ 		}
+		}function getShowLinkText(currentText) {
+			var newText = '';
+			if (currentText.toUpperCase() === "SHOW MORE") {
+				newText = "Show Less";
+ 			} else {
+ 				newText = "Show More";
+ 			}
+			return newText;
+		}
+	});//]]> 
+</script>
     <!-- menu bar ends -->
 
 
@@ -266,18 +316,27 @@
                         
                         <!-- Add block for stage 1 -->
                         <div id="stage1AllRule" class="block" style="display:none;padding-left:30px;padding-top:30px;padding-bottom:30px;">
-                            <div class="title">All Rules</div>
+                            <div class="title" style="width:500px;">All Rules</div>
                             <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
                                 <div id="rule${log.getIndex()}">
                                     <div style="padding-bottom:30px;">
                                         <div style="float:left; width:100px;">Rule ${index.count}:</div>
                                         <div id="rule${index.index}" class="right">${log.getName()}</div>
                                     </div>
-                                    <div style="padding-bottom:30px;padding-left:100px;"> 
-                                        <c:forEach var="logdetail" items="${log.getLogs()} ">
-                                            ${logdetail.replace("[","").replace("]","")} 
-                                            <br/>
-                                        </c:forEach>
+                                    
+                                    <div>
+                                    	<div style="float:left; width:100px;"></div>
+                                    	<div class="text-container" style="float:left; width:400px;padding-bottom:30px;padding-left:100px;">
+                                    		<div>
+                                    			<div class="text-content short-text" style="float:left;width:300px;padding-bottom:30px;"> 
+                                        			<c:forEach var="logdetail" items="${log.getLogs()} ">
+                                            			${logdetail.replace("[","").replace("]","")} 
+                                            			<br/><br/>
+                                        			</c:forEach>
+                                        		</div>
+                                        		<div class="show-more" style="float:left;width:100px;"> <a href="#" class="button">Show More</a></div>
+                                        	</div>
+                                    	</div>
                                     </div>
                                 </div>                                                              
                             </c:forEach>
@@ -329,11 +388,18 @@
                                 </div>
                                 <div style="padding-bottom:30px;">
                                     <div class="left">Result of this rule&#58;</div>
-                                    <div id="orderdate" class="right"> 
-                                        <c:forEach var="logdetail" items="${log.getLogs()} ">
-                                            ${logdetail.replace("[","").replace("]","")}  
-                                            <br/>
-                                        </c:forEach>
+                                    <div id="orderdate" class="text-container" style="float:left;width:350px;padding-bottom:30px;"> 
+                                    	<div>
+                                    		<div class="text-content short-text" style="float:left;width:250px;padding-bottom:30px;">
+                                        		<c:forEach var="logdetail" items="${log.getLogs()} ">
+                                            		${logdetail.replace("[","").replace("]","")}  
+                                            		<br/><br/>
+                                        		</c:forEach>
+                                        	</div>
+                                        	<div class="show-more" style="float:left;width:100px;">
+                                        		<a href="#" class="button">Show More</a>
+                                        	</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>                              
@@ -454,7 +520,11 @@
 					<!-- Add route for stage 3 -->
 					<div id="stage3AllRoute" class="block" style="display:none;padding-left:30px;padding-top:30px;">
                              <div class="title">All Packages</div>
-                             
+ 
+                             <div>
+                     	      	<div class="allpackage" style="width:200px;"> Evaluation Method </div>
+                     	      	<div class="allpackage" style="width:300px;"> ${stage3Obj.get("rankOption")} ${stage3Obj.get("attribute")} </div>
+                             </div>                            
                              
                              <c:forEach var="pack" items="${packages}" varStatus="index"> 
 	                            <div style="width:520px;">
@@ -493,41 +563,6 @@
 												</c:choose>
 										  </div>
 	                                   </div>
-	                                   
-	                                   <c:forEach var="testResult" items='${stage3Arrays.get(index.index)}' varStatus="testIndex">
-	                                   		
-	                                   
-					                        <div style="float:left;width:350px;padding-bottom:15px;" class="table-list">
-				                                Rank # ${testIndex.count} Route&#58;
-				                                <table cellspacing="0" cellpadding="0" class="list" style="width:350px;">
-				                                    <tr class="title">
-				                                        <th>Store Name</th>
-				                                        <th>Product</th>
-				                                        <th>Total Cost</th>
-				                                    </tr>
-				                                    <c:forEach var="parcelR" items='${testResult.get("results")}' >
-					                                    <tr>
-					                                        <td style="width:50px;white-space:normal;overflow:auto;"> ${parcelR.get("source")} </td>
-					                                        <td style="width:250px;white-space:normal;overflow:auto;">
-					                                        	<c:forEach var="parcelP" items='${parcelR.get("products")}' > 
-					                                        		${parcelP.get("prodName")} (${parcelP.get("quantity")}) 
-					                                        	</c:forEach>
-					                                        </td>
-					                                        <td style="width:50px;white-space:normal;overflow:auto;"> ${parcelR.get("totalCost")} </td>
-					                                    </tr>
-				                                    </c:forEach>
-				                                    <tr>
-				                                    	<td></td>
-				                                    	<td> Total Cost</td>
-				                                    	<td> ${testResult.get("totalCost")} </td>
-				                                    </tr>
-				                                </table>
-				                            </div>
-				                            <div style="float:left;margin-top:20px;margin-left:5px;">
-				                            	
-				                                <input name="cost${index.index}${testIndex.index}" class="button" style="width:96px;" value="View Cost Detail" onClick="changeDiv(this)">
-				                            </div>			
-										</c:forEach>
 	                            </div>
                             </c:forEach>                      	
                         </div>
