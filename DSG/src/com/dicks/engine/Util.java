@@ -215,7 +215,7 @@ public class Util {
 							attributeValue += getAttribute(inventory, Inventory.class, names[0]) * parcel.getProductQty(inventory.getProduct());
 							//System.out.println("product: " + inventory.getProduct().getProdName() + ", price: " + inventory.getRetailPrice());
 						}					
-						System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
+						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
 					} else if (names[1].equals("order")) {
 						attributeValue = getAttribute(parcel.getPack().getOrder(), Orders.class, names[0]);
 						//System.out.println("product: " + fee.getPercentage()/100.0 + "% of " + names[0] + ": " + attributeValue);
@@ -224,9 +224,9 @@ public class Util {
 //					System.out.println("total costs: " + totalCosts);					
 				}
 				feeJ.put("value", (double) singleCost / 100.0);
-				System.out.println("feeJ: " + feeJ);
+				//System.out.println("feeJ: " + feeJ);
 				costsJ.add(feeJ);
-				System.out.println("costJ: " + costsJ);
+				//System.out.println("costJ: " + costsJ);
 			}	
 		} catch (Exception e) {
 			e.printStackTrace();

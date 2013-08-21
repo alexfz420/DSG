@@ -18,6 +18,7 @@ public class SplitGenerater {
 	private static HashMap<String, String> combinations;
 	private static ArrayList<Integer[]> arrays;
 	private static HashMap<String, String> index;
+	private static HashMap<String, Integer> size;
 
 	public static void main(String[] args) {
 		SplitGenerater.cache(10);
@@ -56,6 +57,21 @@ public class SplitGenerater {
 		}
 		return results;
 	}
+	
+	public static int getSizeFrom0ToN(int packageSize, int n){
+		int result=0;
+		for(int i = 1 ; i<=packageSize ; i++){
+			result+= size.get(packageSize+","+i);
+		}
+		return result;
+//		int num= 0;
+//		for(int i = 1; i<=n ;i++){
+//			String[] combinations = getCombinations(packageSize, i).split("&");
+//			num+=combinations.length;
+//		}
+//		return num;
+	}
+
 
 	public static String getCombinations(int n, int m) {
 		StringBuffer sb = new StringBuffer();
@@ -81,63 +97,70 @@ public class SplitGenerater {
 
 	}
 	
-	// split 0 -> n = 1
-	public static int getSizeFrom0ToN(int packageSize, int n){
-		int num= 0;
-		for(int i = 1; i<=n ;i++){
-			String[] combinations = getCombinations(packageSize, i).split("&");
-			num+=combinations.length;
-		}
-		return num;
-	}
 	
 	public static int getTotalSize(int packageSize){
 		return getSizeFrom0ToN(packageSize, packageSize);
 	}	
 
 	public static void cache(int n) {
-		int end = -1;
-
+		int end=-1;
+		
 		File cacheFile = new File("cache.txt");
 		File indexFile = new File("index.txt");
-		OutputStream os;
+		File sizeFile = new File("size.txt");
+		OutputStream  os;
 		BufferedOutputStream bos;
-		OutputStream os1;
+		OutputStream  os1;
 		BufferedOutputStream bos1;
+		OutputStream  os2;
+		BufferedOutputStream bos2;
 		try {
-			if (cacheFile.exists()) {
+			if(cacheFile.exists()){
 				cacheFile.delete();
 			}
-
-			if (indexFile.exists()) {
+			
+			if(indexFile.exists()){
 				indexFile.delete();
 			}
+			
+			if(sizeFile.exists()){
+				sizeFile.delete();
+			}
+			
 			cacheFile.createNewFile();
 			indexFile.createNewFile();
+			sizeFile.createNewFile();
+			
 			os = new FileOutputStream("cache.txt");
 			bos = new BufferedOutputStream(os);
 			os1 = new FileOutputStream("index.txt");
 			bos1 = new BufferedOutputStream(os1);
-
-			for (int i = 1; i <= n; i++) {
-				for (int j = 1; j <= i; j++) {
-					String str = split(i, j);
+			os2 = new FileOutputStream("size.txt");
+			bos2 = new BufferedOutputStream(os2);
+			
+			for(int i =1;i<=n;i++){
+				for(int j =1; j<=i;j++){
+					String str = split(i,j);
+					String size = str.split("&").length+"&";
 					bos.write(str.getBytes());
-					bos1.write(((end + 1) + "," + (end + str.length() + 1) + "/")
-							.getBytes());
-					end += str.length();
+					bos1.write(((end+1)+","+(end+str.length()+1)+"/").getBytes());
+					bos2.write(size.getBytes());
+					end+=str.length();
 				}
-			}
+			}		
+			
 			bos.close();
 			os.close();
 			bos1.close();
 			os1.close();
+			bos2.close();
+			os2.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-	}
+		
+	}  
 
 	private static String split(int n, int m) {
 		arrays = new ArrayList<Integer[]>();
@@ -270,39 +293,57 @@ public class SplitGenerater {
 		return null;
 	}
 
-	public static HashMap<String, String> buildIndex(int n) {
-		index = new HashMap<String, String>();
-
-		StringBuffer sb = new StringBuffer();
-		try {
-			FileReader fr = new FileReader("index.txt");
-
+	public static HashMap<String,String> buildIndex(int n) {
+		index = new HashMap<String,String>();
+		size = new HashMap<String,Integer>();
+		
+		StringBuffer sb =new StringBuffer();
+		StringBuffer sb1 =new StringBuffer();
+		try{
+			FileReader fr = new FileReader(
+					"index.txt");
+	
+			FileReader fr1 = new FileReader(
+					"size.txt");
+			
 			BufferedReader br = new BufferedReader(fr);
-
+			BufferedReader br1 = new BufferedReader(fr1);
+			
 			String str;
-
-			while (null != (str = br.readLine())) {
+			String str1;
+	
+			while (null != (str = br.readLine()))
+			{
 				sb.append(str);
 			}
+			
+			while (null != (str1 = br1.readLine()))
+			{
+				sb1.append(str1);
+			}
+			fr.close();
 			br.close();
-
-		} catch (IOException e) {
+			fr1.close();
+			br1.close();
+			
+		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		String[] indexResult = sb.toString().split("/");
-		int k = 0;
-		for (int i = 1; i < n + 1; i++) {
-			for (int j = 1; j <= i; j++) {
-
-				index.put(i + "," + j, indexResult[k]);
+		String[] sizeResult = sb1.toString().split("&");
+		int k=0;
+		for(int i=1;i<n+1;i++){
+			for(int j=1;j<=i;j++){
+				size.put(i+","+j, Integer.valueOf(sizeResult[k]));
+				index.put(i+","+j,indexResult[k]);
 				k++;
 			}
 		}
-
+		
+		
 		return index;
-
 	}
 
 	public static Combination[] getCombinations(int i, int j, Item[] items) {
