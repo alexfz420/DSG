@@ -212,7 +212,7 @@ function removeElement(divNum) {
 	  document.getElementById('firstStep').style.display='block';
       document.getElementById('buttons').style.display='block'; 
       document.getElementById('progressbar2').style.display='block';
-	    document.getElementById('progressbar3').style.display='none';   
+	  document.getElementById('progressbar3').style.display='none';   
       
 
 

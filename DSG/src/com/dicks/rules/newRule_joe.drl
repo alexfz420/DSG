@@ -92,13 +92,13 @@ rule  "Default Default Minimum Package Threshold"
 end
 
 rule  "fsdaaa"
-    salience 848
+    salience 846
     when
         $order : Orders()
         $orderE : OrderE()
         $product : Product($id: prodId, sku.equals("AD-SH-TM"))
         eval ($orderE.getProductQty($id)>5)
-        $s : Store( storeName.equals("Latham  [Albany]")
+        $s : Store( storeName.equals("Latham  [Albany]"))
         eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
         $logger: EngineLog()
     then
@@ -124,19 +124,41 @@ rule  "fsdaaa"
         retract($product);
 end
 
-rule  "store threshold"
-    salience 846
+
+rule  "store xxxx"
+    salience 842
     when
         $order : Orders($z:shippingZip)
         $orderE : OrderE()
-        $product : Product((( prodName.equals("Kayak1"))), $id :prodId)
-        $s: Store( (( storeName.equals("Binghamton"))|| (storeName.equals("Vestal")))&& (flag.equals("TH-A,ST-A,SP-A")))
-        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 5 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 5 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 0.5 ))
+        $product : Product((( prodName.equals("AJ13"))), $id :prodId)
+        $s: Store( (( storeId == 9)|| (storeId == 10))&& (flag.equals("TH-A,ST-A,SP-A")))
+        eval((ShipmentDAO.getInstance().getShipmentBySupplyDesitin($s.getZip(),$z).getDistance() > 500 )||(InventoryDAO.getInstance().checkProduct($s, $product, ">", 500 ))||(InventoryDAO.getInstance().getCompetition($product.getProdId(),$s.getStoreId())  > 5 ))
         $logger: EngineLog()
     then
         System.out.println("Store "+$s.getStoreName()+" is successfully retracted");
-        $logger.addLog("store threshold","Store "+$s.getStoreName()+" is successfully retracted");
+        $logger.addLog("store xxxx","Store "+$s.getStoreName()+" is successfully retracted");
         retract($s);
+end
+
+rule  "Tmac threshold"
+    salience 840
+    when
+        $o : Orders()
+        $orderE : OrderE()
+        $i : Product( ((Length > 5)||( Width > 5)||( Height > 5)||( Weight > 5))&& (( sku.equals("AD-SH-TM"))|| (sku.equals("NK-SH-KB")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $logger: EngineLog()
+    then
+        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Tmac threshold","Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is over weighted/sized ----Split into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("Tmac threshold",p.toString()); 
+        }
+        retract($i);
 end
 
 rule "Insert Package for Remaining Products"

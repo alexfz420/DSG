@@ -461,13 +461,26 @@ public class RuleList {
 			this.ruleName = thisRule.getRuleName();
 			this.setRuleDescription(thisRule.getRuleDescr());
 			this.rule = thisRule;
-			return "goToCostCalculation";
+			if (viewEdit.equals("view")){
+				return "goToViewCostCalculation";
+			}
+			else if (viewEdit.equals("edit")){
+				return "goToEditCostCalculation";
+			}
+			
 		} else if (thisRule.getType().equals("6")) {
 			System.out.println("checking type 6");
 			this.rule = thisRule;
 			this.ruleName = thisRule.getRuleName();
 			this.ruleDescription = thisRule.getRuleDescr();
-			return "goToEvaluationMethod";
+			
+			if (viewEdit.equals("view")){
+				return "goToViewEvaluationMethod";
+			}
+			else if (viewEdit.equals("edit")){
+				return "goToEditEvaluationMethod";
+			}
+			
 		} 
 		else if (thisRule.getType().equals("3")) {
 			System.out.println("checking type 3");
