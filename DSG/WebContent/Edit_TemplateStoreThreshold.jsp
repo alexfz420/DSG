@@ -208,9 +208,12 @@ function goBack(){
                                 <option value="all">All</option> 
                                 <option value="any">Any</option>
                             </select> of the following conditions are met&#58;
+                            <br/><br/>
+                            </div> 
+                            <div>
                             <textarea id="tags" name = "storeProduct" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in product category;" >${prodd}</textarea>
-                    	 </div>  
-                        <br/>
+                    	  
+                        </div><br/>
                        <div>
                             <select style="width:180px;" name="attribute">
                                 <option value="Distance" <c:if test="${attribute[0] == 'Distance'}">selected="selected"</c:if>>Shipping Distance</option> 
