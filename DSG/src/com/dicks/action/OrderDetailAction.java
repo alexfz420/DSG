@@ -12,6 +12,7 @@ import com.dicks.dao.LogDAO;
 import com.dicks.dao.OrderDetailDAO;
 import com.dicks.dao.OrdersDAO;
 import com.dicks.engine.EngineLog;
+import com.dicks.engine.Util;
 import com.dicks.engine.EngineLog.LogE;
 import com.dicks.pojo.Log;
 import com.dicks.pojo.OrderDetail;
@@ -93,6 +94,7 @@ public class OrderDetailAction {
 	}
 	
 	public String showDetails() throws Exception{
+		Util.percentage = "0";
 		System.out.println("id in order detail: " + this.id);
 		order = OrdersDAO.getInstance().getById(Integer.parseInt(id));
 		details = new ArrayList<OrderDetail>();

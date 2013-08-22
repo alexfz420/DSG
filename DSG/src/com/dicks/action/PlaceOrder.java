@@ -27,6 +27,7 @@ import com.dicks.engine.PackageTestResult;
 import com.dicks.engine.Parcel;
 import com.dicks.engine.ParcelResult;
 import com.dicks.engine.Split;
+import com.dicks.engine.Util;
 import com.dicks.engine.EngineLog.LogE;
 import com.dicks.pojo.Log;
 import com.dicks.pojo.LogId;
@@ -85,7 +86,11 @@ public class PlaceOrder {
 		this.shippingaddress = "510 Shannon Way #2102, Redwood City, CA 94065";
 		this.shippingzipcode = "94065";
 		
+		Util.percentage = "5";
+		
 		Allocate test = new Allocate(product, quantity,shippingtype, shippingaddress, shippingzipcode);
+		
+		Util.percentage = "45";
 		
 		// get results from test
 		Orders order = test.getOrder();
@@ -96,6 +101,8 @@ public class PlaceOrder {
 		
 	    EngineLog stage1 = test.getStage1();
 		Split split = new Split(minPackage, leftStores, allocatedResults);	
+		
+		Util.percentage = "80";
 		
 		this.newAllocatedResults = split.getNewAllocatedResults();	
 		//System.out.println("order id in place order: " + test.getOrderId());			
@@ -120,6 +127,8 @@ public class PlaceOrder {
 			logDAO.createLog(log);
 		}	
 		
+		Util.percentage = "85";
+		
 		// For stage 2
 		this.stage2 = split.getStage2();
 		for (LogE logE : stage2.getLogs()) {
@@ -133,7 +142,9 @@ public class PlaceOrder {
 		this.stage2Logs = stage2.getLogsByName("Cost Calculation").get(0);
 		JSONParser parser = new JSONParser();
 		stage2Obj = (JSONObject) parser.parse(stage2Logs);
-		packages = (JSONArray) stage2Obj.get("packages");		
+		packages = (JSONArray) stage2Obj.get("packages");	
+		
+		Util.percentage = "90";
 		
 		// For stage 3
 		this.stage3 = split.getStage3();	
@@ -148,6 +159,8 @@ public class PlaceOrder {
 		this.setStage3Logs(stage3.getLogsByName("Evaluation").get(0));
 //		this.stage3Arrays = (JSONArray) parser.parse(this.stage3Logs);
 
+		Util.percentage = "95";
+		
 		allAllocatedResults = new ArrayList<PackageTestResult>();
 		allAllocatedResults.addAll(this.allocatedResults);
 		allAllocatedResults.addAll(this.newAllocatedResults);
@@ -173,7 +186,7 @@ public class PlaceOrder {
 		}	
 		
 		// Add logs to database
-				
+		Util.percentage = "100";		
 		return "success";	
 	}
 
