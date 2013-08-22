@@ -94,12 +94,12 @@
                         	<input type="radio" name="rankOption" value="max" <c:if test="${rule.getOperator() == 'max'}">checked="checked"</c:if>>
                         	maximize&nbsp;
                         	<select name="maxOption" style="width:200px;">
-                        	 	<option value="margin" <c:if test="${rule.getAttribute() == 'margin'}">checked="checked"</c:if>> Total Margin </option>                        	
-                        		<option value="retailPrice" <c:if test="${rule.getAttribute() == 'retailPrice'}">checked="checked"</c:if>> Net Merchandise Sales </option>
-                        		<option value="shippingCost" <c:if test="${rule.getAttribute() == 'shippingCost'}">checked="checked"</c:if>>Fulfillment Cost</option>
-                         		<option value="otherCost" <c:if test="${rule.getAttribute() == 'otherCost'}">checked="checked"</c:if>>Other Cost</option>
-                        		<option value="proximity" <c:if test="${rule.getAttribute() == 'proximity'}">checked="checked"</c:if>> Proximity to Customer </option>
-                        		<option value="totalCost" <c:if test="${rule.getAttribute() == 'totalCost'}">checked="checked"</c:if>> Total Cost </option>
+                        	 	<option value="margin" <c:if test="${rule.getOperator() == 'max' && rule.getAttribute() == 'margin'}">selected="selected"</c:if>> Total Margin </option>                        	
+                        		<option value="retailPrice" <c:if test="${rule.getOperator() == 'max' && rule.getAttribute() == 'retailPrice'}">selected="selected"</c:if>> Net Merchandise Sales </option>
+                        		<option value="shippingCost" <c:if test="${rule.getOperator() == 'max' && rule.getAttribute() == 'shippingCost'}">selected="selected"</c:if>>Fulfillment Cost</option>
+                         		<option value="otherCost" <c:if test="${rule.getOperator() == 'max' && rule.getAttribute() == 'otherCost'}">selected="selected"</c:if>>Other Cost</option>
+                        		<option value="proximity" <c:if test="${rule.getOperator() == 'max' && rule.getAttribute() == 'proximity'}">selected="selected"</c:if>> Proximity to Customer </option>
+                        		<option value="totalCost" <c:if test="${rule.getOperator() == 'max' && rule.getAttribute() == 'totalCost'}">selected="selected"</c:if>> Total Cost </option>
                         	</select>
                         </div>
                         <br/>
@@ -107,12 +107,12 @@
                              <input type="radio" name="rankOption" value="min" <c:if test="${rule.getOperator() == 'min'}">checked="checked"</c:if>>
                              minimize&nbsp;&nbsp;
                              <select name="minOption" style="width:200px;">
-                                <option value="totalCost" <c:if test="${rule.getAttribute() == 'totalCost'}">checked="checked"</c:if>> Total Cost </option>
-                           		<option value="shippingCost" <c:if test="${rule.getAttribute() == 'shippingCost'}">checked="checked"</c:if>>Fulfillment Cost</option>
-                        		<option value="otherCost" <c:if test="${rule.getAttribute() == 'otherCost'}">checked="checked"</c:if>>Other Cost</option>
-                        		<option value="proximity" <c:if test="${rule.getAttribute() == 'proximity'}">checked="checked"</c:if>> Proximity to Customer </option>
-                        	 	<option value="margin" <c:if test="${rule.getAttribute() == 'margin'}">checked="checked"</c:if>> Total Margin </option>
-                        		<option value="retailPrice" <c:if test="${rule.getAttribute() == 'retailPrice'}">checked="checked"</c:if>> Net Merchandise Sales </option>
+                                <option value="totalCost" <c:if test="${rule.getOperator() == 'min' && rule.getAttribute() == 'totalCost'}">selected="selected"</c:if>> Total Cost </option>
+                           		<option value="shippingCost" <c:if test="${rule.getOperator() == 'min' && rule.getAttribute() == 'shippingCost'}">selected="selected"</c:if>>Fulfillment Cost</option>
+                        		<option value="otherCost" <c:if test="${rule.getOperator() == 'min' && rule.getAttribute() == 'otherCost'}">selected="selected"</c:if>>Other Cost</option>
+                        		<option value="proximity" <c:if test="${rule.getOperator() == 'min' && rule.getAttribute() == 'proximity'}">selected="selected"</c:if>> Proximity to Customer </option>
+                        	 	<option value="margin" <c:if test="${rule.getOperator() == 'min' && rule.getAttribute() == 'margin'}">selected="selected"</c:if>> Total Margin </option>
+                        		<option value="retailPrice" <c:if test="${rule.getOperator() == 'min' && rule.getAttribute() == 'retailPrice'}">selected="selected"</c:if>> Net Merchandise Sales </option>
                         	 </select>
                          </div>
                          <br/>
