@@ -131,7 +131,7 @@
 						</tr>
 						<tr>
 							<td>Order Status:</td>
-							<td><select class="search"><option>All</option>
+							<td><select style="width:60%"><option>All</option>
 									<option>Received</option>
 									<option>In Process</option>
 									<option>Allocated</option>
