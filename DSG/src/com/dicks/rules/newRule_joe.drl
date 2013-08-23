@@ -53,22 +53,6 @@ rule "Default Filter Stock"
         retract($store);
 end
 
-rule "Filter Stock 2"
-	salience 925
-	//agenda-group "first2"
-    when
-    	//$o : Orders()
-        $item : Product()
-    	$store : Store()
-        //eval($store.checkStore($item, $o,"zone","<",2))
-        eval(InventoryDAO.getInstance().checkProduct($store, $item,"<",2))
-        //$logger : EngineLog() 
-    then
-    	//$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
-    	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
-        retract($store);
-end
-
 rule  "Default Default Minimum Package Threshold"
 	salience 900
 	//agenda-group "first6"
@@ -88,27 +72,6 @@ rule  "Default Default Minimum Package Threshold"
             insert (p);
             $i.minPackage();
             $logger.addLog("Default Minimum Package Threshold",p.toString()); 
-        }
-        retract($i);
-end
-
-rule  "Threshold for nike shoes"
-    salience 848
-    when
-        $o : Orders()
-        $orderE : OrderE()
-        $i : Product( ((Length > 2)||( Width > 2)||( Height > 2)||( Weight > 2))&& (( sku.equals("FI-OD-FI")))&& (flag.equals("TH-A,ST-A,SP-A")))
-        $logger: EngineLog()
-    then
-        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
-        {
-            $logger.addLog("Threshold for nike shoes","Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
-            PackageE p = new PackageE($o);
-            p.addProduct($i,1);
-            insert (p);
-            $i.minPackage();
-            $logger.addLog("Threshold for nike shoes",p.toString()); 
         }
         retract($i);
 end
