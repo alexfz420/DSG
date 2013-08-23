@@ -446,7 +446,7 @@ function goBack(){
 								</tr>
 								<c:set var="ruleNum" value="${ruleNum+1}" />
 							</c:forEach>
-							<tr style="height:30px;background-color:#ED2D2D">
+							<tr style="height:30px;background-color:#E6CFE6;">
 	                            <td style="width:15%;background-color: #E6CFE6;">Your New Rule</td>
 								<td style="width:30%;background-color: #E6CFE6;">${rulename.replace("%20"," ")}</td>
 							    <td style="width:35%;background-color: #E6CFE6;">Please drag and drop the rule</td>
