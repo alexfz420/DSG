@@ -122,7 +122,8 @@ public class Store implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return this.storeType + ": " + this.storeId;
+		String type = this.storeType;
+		return  type.substring(0,1).toUpperCase() + type.substring(1) + ": " + this.storeId;
 	}
 
 	public Set getPackageses() {

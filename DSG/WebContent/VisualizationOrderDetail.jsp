@@ -53,7 +53,7 @@
     div.title{font-size:16px;padding-bottom:30px;}
     div.left{float:left; width:150px}
     div.right{float:left; width:350px}
-    div.include{float:left;height:auto;width:210px;font-size:14px;padding-bottom:15px;"}
+    div.include{float:left;height:auto;width:210px;font-size:14px;padding-bottom:15px;}
     div.item{height:auto;font-size:12px;width:280px;padding-left:10px;padding-bottom:5px;}
     div.split{height:auto;font-size:14px;width:120px;padding-bottom:15px;}
     div.product{float:left;height:auto;font-size:14px;width:210px;padding-left:10px;padding-bottom:5px;}

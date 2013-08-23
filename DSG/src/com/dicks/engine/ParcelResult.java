@@ -56,7 +56,7 @@ public class ParcelResult {
 	
 	public void calculateCosts() throws Exception {
 		long shippingCosts = Util.getShippingCosts(parcel, source);
-		System.out.println("shipping costs: " + shippingCosts);
+		//System.out.println("shipping costs: " + shippingCosts);
 		long otherCosts = Util.calculateCosts(parcel, source);
 		long totalCosts = shippingCosts + otherCosts;
 		this.shippingCost = (double) shippingCosts / 100.0;

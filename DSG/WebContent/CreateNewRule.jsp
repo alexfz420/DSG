@@ -210,7 +210,7 @@
                 <tr>
                     <td>Rule Template<span class="red">*</span>&#58;</td>
                     
-                    <td><select class="big" name="templatename" onchange="chooseFormat(this.value)">
+                    <td><select  name="templatename" onchange="chooseFormat(this.value)">
                         <option value="product_threshold">Product Threshold</option> 
                         <option value="store_threshold">Store Threshold</option>
                         <option value="special_route">Special Route</option>

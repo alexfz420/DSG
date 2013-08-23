@@ -201,8 +201,8 @@ public class PackageE {
 					productsJ.add(pJ);
 				}
 				parcelRJ.put("products", productsJ);
-				
-				parcelRJ.put("source", parcelR.getSource().getStoreType() + " " + parcelR.getSource().getStoreName());
+				String type = parcelR.getSource().getStoreType();
+				parcelRJ.put("source", type.substring(0,1).toUpperCase() + type.substring(1) + " " + parcelR.getSource().getStoreName());
 				parcelRJ.put("totalCost", parcelR.getCost());
 				
 				//costs

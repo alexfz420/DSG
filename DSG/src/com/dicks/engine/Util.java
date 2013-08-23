@@ -262,10 +262,10 @@ public class Util {
 			rate = shipment.getNormalRate();
 		}	
 		long ww = parcel.getWeight()*100;
-		if (store.getStoreType().equals("vendor")) {
-			System.out.println("weight is"+ww);
-			System.out.println("rate: " + rate + " weight: " + ww + "distance: " +(100 + (distance * 100/ 3000)));
-		}
+//		if (store.getStoreType().equals("vendor")) {
+//			System.out.println("weight is"+ww);
+//			System.out.println("rate: " + rate + " weight: " + ww + "distance: " +(100 + (distance * 100/ 3000)));
+//		}
 		return (ww * (rate) * (100 + (distance * 100/ 3000))) / 10000;
 
 	}
