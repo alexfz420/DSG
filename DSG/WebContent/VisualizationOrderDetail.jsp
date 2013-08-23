@@ -58,7 +58,7 @@
     div.split{height:auto;font-size:12px;width:120px;padding-bottom:15px;}
     div.product{float:left;height:auto;font-size:12px;width:210px;padding-left:10px;padding-bottom:5px;}
     div.message{height:auto;font-size:12px;padding-bottom:5px;}
-    div.address{float:left;height:auto;width:500px;font-size:12px;padding-bottom:10px;}
+    div.address{float:left;height:auto;width:450px;font-size:12px;padding-bottom:10px;}
     div.source{float:left;height:auto;width:50px;font-size:12px;padding-bottom:10px;}
     div.package{float:left;padding-left:20px;height:auto;font-size:12px;padding-bottom:5px;}
     div.item2{padding-left:30px;height:auto;font-size:12px;padding-bottom:5px;width:420px;}
@@ -614,7 +614,7 @@
 		                        </div>	                        
 			                     
 		                        <div id="included" style="height:auto;margin-top:30px;width:530px;">
-		                            <div class="subtitle">
+		                            <div class="subtitle" style="width:530px;">
 		                                Included Packages:
 		                            </div>
 		                            

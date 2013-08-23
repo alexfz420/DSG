@@ -76,65 +76,6 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
-rule  "Special Route for TYR"
-    salience 846
-    when
-        $order : Orders()
-        $orderE : OrderE()
-        $product : Product($id: prodId, sku.equals("TY-OD-WS"))
-        eval ($orderE.getProductQty($id)>0)
-        $s : Store( storeName.equals("TYR warehouse"))
-        eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
-        $logger: EngineLog()
-    then
-        $logger.addLog("Special Route for TYR","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
-        PackageE p = new PackageE($order);
-        p.addProduct($product, $orderE.getProductQty($id));
-        insert (p);
-        p.setAllocated(true); 
-        Parcel parcel = new Parcel(p);
-        parcel.addNumProduct($product, $orderE.getProductQty($id));
-        PackageTest test = new PackageTest(p);
-        test.addParcel(parcel);
-        ParcelResult parcelR = new ParcelResult(parcel);
-        parcelR.setSource($s);
-        parcelR.calculateCosts();
-        Util.calculateAttribute(parcelR);
-        PackageTestResult packageR = new PackageTestResult(test);
-         packageR.addResult(parcelR);
-        packageR.calculate();
-        p.addTop(packageR);
-        p.setSpecial(true);
-        p.setSource($s);
-        $logger.addLog("Special Route for TYR",$product + "get inserted into a new package by speical route rule");
-        $logger.addLog("Special Route for TYR",packageR.toString());      
-        System.out.println(packageR);
-        insert(packageR);
-        retract($product);
-end
-
-rule  "Threshold for mask"
-    salience 844
-    when
-        $o : Orders()
-        $orderE : OrderE()
-        $i : Product( ((Length > 3)||( Width > 3)||( Height > 3)||( Weight > 3))&& (( sku.equals("AQ-OD-MA")))&& (flag.equals("TH-A,ST-A,SP-A")))
-        $logger: EngineLog()
-    then
-        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
-        {
-            $logger.addLog("Threshold for mask","Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
-            System.out.println("Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
-            PackageE p = new PackageE($o);
-            p.addProduct($i,1);
-            insert (p);
-            $i.minPackage();
-            $logger.addLog("Threshold for mask",p.toString()); 
-        }
-        retract($i);
-end
-
 rule "Insert Package for Remaining Products"
 	salience -5
 	//agenda-group "first7"
