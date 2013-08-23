@@ -205,8 +205,8 @@ function goBack(){
                     <div class="drl">
                          <div> If
                             <select style="width:50px;" name="conditions" disabled>
-                                <option value="all">All</option> 
-                                <option value="any">Any</option>
+                                <option value="all">Any</option> 
+                                <option value="any">All</option>
                             </select> of the following conditions are met&#58;
                             <textarea id="tags" name = "storeProduct" style="overflow:hidden;max-width:300px;width:300px;height:15px;" onkeyup="textAreaAdjust(this)" placeholder="Type in product category;" disabled>${prodd}</textarea>
                     	

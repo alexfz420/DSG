@@ -215,7 +215,7 @@ public class RuleDAO extends BaseDao<Rule> {
 		}if("2".equals(type)){
 			sbWhen.append("when ");
 			for(int i = 0 ; i<attributes.length ; i ++){
-				sbWhen.append(attributes[i]).append(" ").append(dictionary.get(operators[i])).append(" ").append(values[i]).append(", ").append(condition).append(" ");
+				sbWhen.append(attributes[i]).append(" ").append(dictionary.get(operators[i])).append(" ").append(values[i]).append(", ").append(condition).append(" ").append("inches").append(" ");
 			}
 			sbWhen.delete(sbWhen.length()-5,sbWhen.length()-1) ;
 			
@@ -230,7 +230,7 @@ public class RuleDAO extends BaseDao<Rule> {
 				sbThen.append("Then this store will be filted out in the Stage 1");
 			}
 			if("Default Minimum Package Threshold".equals(rule.getRuleName())){
-				sbWhen.append("When the product is too big and too heavy");
+				sbWhen.append("When the product is too big or too heavy");
 				sbThen.append("Then this product will be shipped alone");
 			}
 		}

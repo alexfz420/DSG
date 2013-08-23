@@ -13,3 +13,6 @@ function progressBar(percent, $element) {
 	var progressBarWidth = percent * $element.width() / 100;
 	$element.find('div').animate({ width: progressBarWidth }, 5).html(percent + "%&nbsp;");
 }
+function redirecting(redirect, $element){
+	$element.find('div').html("Redirect...");
+}

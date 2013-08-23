@@ -1051,6 +1051,10 @@ $(window).load(function(){
 							//console.log(i);
 							setTimeout(barSecond, 30);
 						}
+						else{
+							redirecting("redirecting", $('#progressBar'));
+							setTimeout(barSecond, 30);
+						}
 					}
 					barSecond();
 					document.forms['checkOutForm'].submit();

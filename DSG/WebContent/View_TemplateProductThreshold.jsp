@@ -154,8 +154,8 @@
                     <div class="drl"> 
                          <div> If
                             <select style="width:50px;" name="conditions"disabled>
-                                <option value="All" <c:if test="${condition == 'All'}">selected="selected"</c:if>>All</option> 
-                                <option value="Any" <c:if test="${condition == 'Any'}">selected="selected"</c:if>>Any</option>
+                                <option value="All" <c:if test="${condition == 'All'}">selected="selected"</c:if>>Any</option> 
+                                <option value="Any" <c:if test="${condition == 'Any'}">selected="selected"</c:if>>All</option>
                             </select> of the following conditions are met&#58;
                         </div> 
                         <br/> 

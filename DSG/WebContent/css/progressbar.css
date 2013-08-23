@@ -5,8 +5,11 @@
 	overflow: hidden;		
 }
 .jquery-ui-like div {
+
 	/*background-image: url(pbar-ani.gif);*/
 	background-color: #F7B00A;
+
+
 	border-right: 1px solid #AAA;
 	text-align:right;
 }

@@ -158,7 +158,7 @@
 						</c:if>
 						
 						<c:if test="${allRule.type == '5'}">
-		                    <td class="">Default</td>
+		                    <td class="">Cost Calculation</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
 									<td> <a class="buttondisable" >&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>
@@ -173,7 +173,7 @@
 		                    </td>
 						</c:if>
 						<c:if test="${allRule.type == '6'}">
-		                    <td class="">Default</td>
+		                    <td class="">Evaluation</td>
 		                    <c:choose>
 								<c:when test="${ (allRule.able == true) }">
 									<td> <a class="buttondisable">&nbsp;&nbsp;Active&nbsp;&nbsp;</a> </td>

@@ -90,7 +90,7 @@ rule  "CA store and high competition"
         retract($s);
 end
 
-rule  "Special Route for TYR Wet Suit"
+rule  "Special route for TYR"
     salience 846
     when
         $order : Orders()
@@ -101,7 +101,7 @@ rule  "Special Route for TYR Wet Suit"
         eval(InventoryDAO.getInstance().checkProduct($s, $product, ">", $orderE.getProductQty($id)))
         $logger: EngineLog()
     then
-        $logger.addLog("Special Route for TYR Wet Suit","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
+        $logger.addLog("Special route for TYR","special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         System.out.println("special routes for product "+$product.getProdName()+" with quantity "+$orderE.getProductQty($id)+" is successfully allocated");
         PackageE p = new PackageE($order);
         p.addProduct($product, $orderE.getProductQty($id));
@@ -122,8 +122,8 @@ rule  "Special Route for TYR Wet Suit"
         p.addTop(packageR);
         p.setSpecial(true);
         p.setSource($s);
-        $logger.addLog("Special Route for TYR Wet Suit",$product + "get inserted into a new package by speical route rule");
-        $logger.addLog("Special Route for TYR Wet Suit",packageR.toString());      
+        $logger.addLog("Special route for TYR",$product + "get inserted into a new package by speical route rule");
+        $logger.addLog("Special route for TYR",packageR.toString());      
         System.out.println(packageR);
         insert(packageR);
         retract($product);
