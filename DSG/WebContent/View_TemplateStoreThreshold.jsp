@@ -277,7 +277,7 @@ function goBack(){
                         <br/>
                         <div>
                             <select disabled>
-                                <option value="#">Ship this product separately</option>
+                                <option value="#">Retract this store</option>
                                 <option value="#">Inform the vendor to ship this product</option>
                                 <option value="#">Route the product to warehouse</option>
                                 <option value="#">Cancel this order</option>

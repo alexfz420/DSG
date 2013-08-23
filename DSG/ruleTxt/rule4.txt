@@ -16,7 +16,6 @@ rule  "Default Default Minimum Package Threshold"
             p.addProduct($i,1);
             insert (p);
             $i.minPackage();
-            $logger.addLog("Default Minimum Package Threshold",p.toString()); 
         }
         retract($i);
 end

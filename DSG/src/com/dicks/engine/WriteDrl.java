@@ -253,7 +253,6 @@ public class WriteDrl {
 				tmp.append(myTab+myTab+myTab+"p.addProduct($i,1);"+myReturn);
 				tmp.append(myTab+myTab+myTab+"insert (p);"+myReturn);
 				tmp.append(myTab+myTab+myTab+"$i.minPackage();"+myReturn);
-				tmp.append(myTab+myTab+myTab+"$logger.addLog(\""+ruleName+"\",p.toString()); "+myReturn);
 				tmp.append(myTab+myTab+"}"+myReturn);
 				tmp.append(myTab+myTab+"retract($i);"+myReturn);
 

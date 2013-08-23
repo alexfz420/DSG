@@ -2572,7 +2572,8 @@ a.button {
 	color: #666;
 	text-decoration: none;
 	background-color: #fff;
-	padding: 3px 8px;
+	padding: 4px 10px;
+	font-size:12px;
 }
 
 a.buttondisable {
@@ -2616,6 +2617,7 @@ input.button {
 	text-decoration: none;
 	background-color: #fff;
 	padding: 4px 10px;
+	font-size:12px;	
 }
 
 input.button span,a.button input {

@@ -72,7 +72,7 @@ public class EngineLog {
 		for (String name : map.keySet()) {
 			LogE log = new LogE(name, map.get(name));
 
-			//System.out.println("rule name:" + name);
+			System.out.println("rule name:" + name);
 			Rule rule = RuleDAO.getInstance().getRuleByName(name);
 			//System.out.println("rule id:" + rule.getRuleId());
 			String[] categories = RuleCateDAO.getInstance().getCateNamesByRuleId(rule.getRuleId()+"");
