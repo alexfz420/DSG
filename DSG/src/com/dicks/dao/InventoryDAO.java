@@ -138,7 +138,7 @@ public class InventoryDAO extends BaseDao<Inventory> {
 									.add(Restrictions.eq("product.id", detail.getProduct().getProdId())));
 				Inventory inventory = (Inventory) criteria.uniqueResult();
 				if (inventory == null) noProductNum++;
-				else if (inventory.getInventory() - inventory.getSafetyStock() < detail.getQty()) {
+				else if (inventory.getInventory() - inventory.getSafetyStock() < (detail.getQty()+3)) {
 					noProductNum++;
 				}
 			}		
@@ -172,9 +172,10 @@ public class InventoryDAO extends BaseDao<Inventory> {
 		} 
 		
 		if (operator.equals("<")){
-			if (in == null || in.getInventory() - in.getSafetyStock() >= mar) return false;
+			if (in == null) return true;
+			if (in.getInventory() - in.getSafetyStock() >= mar) return false;
 			int margin = in.getInventory() - in.getSafetyStock();
-			return margin < mar && margin > 0;
+			return margin < mar;
 		}
 		
 		if (operator.equals("=")){

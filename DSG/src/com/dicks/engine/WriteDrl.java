@@ -531,6 +531,7 @@ public class WriteDrl {
 		tmp.append(myTab+myTab+"p.setAllocated(true); "+myReturn);
 		tmp.append(myTab+myTab+"Parcel parcel = new Parcel(p);"+myReturn);
 		tmp.append(myTab+myTab+"parcel.addNumProduct($product, $orderE.getProductQty($id));"+myReturn);
+		tmp.append(myTab+myTab+"parcel.shipmentPreparation();"+myReturn);
 		tmp.append(myTab+myTab+"PackageTest test = new PackageTest(p);"+myReturn);
 		tmp.append(myTab+myTab+"test.addParcel(parcel);"+myReturn);
 		tmp.append(myTab+myTab+"ParcelResult parcelR = new ParcelResult(parcel);"+myReturn);

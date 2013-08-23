@@ -72,9 +72,9 @@ public class EngineLog {
 		for (String name : map.keySet()) {
 			LogE log = new LogE(name, map.get(name));
 
-			System.out.println("rule name:" + name);
+			//System.out.println("rule name:" + name);
 			Rule rule = RuleDAO.getInstance().getRuleByName(name);
-			System.out.println("rule id:" + rule.getRuleId());
+			//System.out.println("rule id:" + rule.getRuleId());
 			String[] categories = RuleCateDAO.getInstance().getCateNamesByRuleId(rule.getRuleId()+"");
 			if (rule.getType().equals("9")) log.setCategories("All");
 			else {
@@ -89,8 +89,8 @@ public class EngineLog {
 				log.setCategories(sb.toString());	
 			}				
 			String[] strings = RuleDAO.getInstance().getDescriptionByRule(rule);
-			System.out.println("conditions: " + strings[0]);
-			System.out.println("actions: " + strings[1]);
+			//System.out.println("conditions: " + strings[0]);
+			//System.out.println("actions: " + strings[1]);
 			log.setConditions(strings[0]);
 			log.setActions(strings[1]);
 			

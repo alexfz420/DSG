@@ -314,7 +314,7 @@ public class Rule implements java.io.Serializable {
 	}
 
 	public String translate (StringBuffer s1, String[] s2){
-		System.out.println("incoming"+s2.length);
+		//System.out.println("incoming"+s2.length);
 		if (s2 != null && s2.length >0 ){
 			s1.append(s2[0]);
 			for (int i = 1; i < s2.length; i++){
@@ -324,7 +324,7 @@ public class Rule implements java.io.Serializable {
 					s1.append(",");
 					s1.append(s2[i]);
 			}
-			System.out.println("translated"+s1.toString());
+			//System.out.println("translated"+s1.toString());
 			
 			return s1.toString();
 		}
@@ -337,7 +337,7 @@ public class Rule implements java.io.Serializable {
 	public String[] translateBack(String s1){		
 		s1 = s1.replace("=", "==");
 		String[] s2 = s1.split(",");
-		System.out.println("translated back");
+		//System.out.println("translated back");
 		for (int i = 0;i<s2.length;i++){
 			System.out.print(s2[i]);
 		}

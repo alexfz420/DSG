@@ -47,25 +47,9 @@ rule "Default Filter Stock"
     	eval(!InventoryDAO.getInstance().containAnyProductOrder($store, $order))
     	$logger : EngineLog()
     then
-    	$logger.addLog("Default Filter Stock", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
+    	$logger.addLog("Default Filter Stock", "store "+$store.getStoreId()+ " retracted by rule Default store filter rule");
     	
     	System.out.println("store "+ $store.getStoreId()+ " retracted by rule filter stock");
-        retract($store);
-end
-
-rule "Filter Stock 2"
-	salience 925
-	//agenda-group "first2"
-    when
-    	//$o : Orders()
-        $item : Product()
-    	$store : Store()
-        //eval($store.checkStore($item, $o,"zone","<",2))
-        eval(InventoryDAO.getInstance().checkProduct($store, $item,"<",2))
-        //$logger : EngineLog() 
-    then
-    	//$logger.addLog("Filter Stock 2", "store "+$store.getStoreId()+ " retracted by rule filter stock2");
-    	System.out.println("store "+$store.getStoreId()+ " retracted by rule filter stock2");
         retract($store);
 end
 
