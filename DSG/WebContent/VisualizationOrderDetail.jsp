@@ -55,8 +55,8 @@
     div.right{float:left; width:350px}
     div.include{float:left;height:auto;width:210px;font-size:14px;padding-bottom:15px;}
     div.item{height:auto;font-size:12px;width:280px;padding-left:10px;padding-bottom:5px;}
-    div.split{height:auto;font-size:14px;width:120px;padding-bottom:15px;}
-    div.product{float:left;height:auto;font-size:14px;width:210px;padding-left:10px;padding-bottom:5px;}
+    div.split{height:auto;font-size:12px;width:120px;padding-bottom:15px;}
+    div.product{float:left;height:auto;font-size:12px;width:210px;padding-left:10px;padding-bottom:5px;}
     div.message{height:auto;font-size:12px;padding-bottom:5px;}
     div.address{float:left;height:auto;width:500px;font-size:12px;padding-bottom:10px;}
     div.source{float:left;height:auto;width:50px;font-size:12px;padding-bottom:10px;}
@@ -235,7 +235,7 @@
                         </div>
                     </div>
                 
-                <div id="block2" style="float:left;height:465px;width:600px;border:1px solid #ccc;border-radius:5px;overflow-y:scroll;">
+                <div id="block2" style="float:left;height:465px;width:560px;border:1px solid #ccc;border-radius:5px;overflow-y:scroll;">
    						<!-- Add order detail and summary -->
                         <div style="padding-left:30px;padding-top:30px;padding-bottom:30px;" id="detail" class="block">
                             <div style="padding-bottom:30px;">
@@ -322,12 +322,12 @@
                         
                         <!-- Add block for stage 1 -->
                         <div id="stage1AllRule" class="block" style="display:none;padding-left:30px;padding-top:30px;padding-bottom:30px;">
-                            <div class="title" style="width:500px;">All Rules</div>
+                            <div class="title" style="width:530px;">All Rules</div>
                             <c:forEach var="log" items="${stage1.getLogs()}" varStatus="index">
                                 <div id="rule${log.getIndex()}">
                                     <div style="padding-bottom:30px;">
                                         <div style="float:left; width:100px;">Rule ${index.count}:</div>
-                                        <div id="rule${index.index}" class="right">${log.getName()}</div>
+                                        <div id="rule${index.index}" style="float:left; width:400px">${log.getName()}</div>
                                     </div>
                                     
                                     <div>
@@ -398,7 +398,7 @@
                                     <div class="left">Result of this rule&#58;</div>
                                     <div id="orderdate" class="text-container" style="float:left;width:350px;padding-bottom:30px;"> 
                                     	<div>
-                                    		<div class="text-content short-text" style="float:left;width:250px;padding-bottom:30px;">
+                                    		<div class="text-content short-text" style="float:left;width:270px;padding-bottom:30px;">
                                     		<ul>
                                         		<c:forEach var="logdetail" items="${log.getLogs()} ">
                                             		<li style="list-style-type:disc;margin-left:15px;">${logdetail.replace("[","").replace("]","")} </li> 
@@ -406,7 +406,7 @@
                                         		</c:forEach>
                                         	</ul>
                                         	</div>
-                                        	<div class="show-more" style="float:left;width:100px;">
+                                        	<div class="show-more" style="float:left;width:80px;">
                                         		<a href="#" class="button">Show More</a>
                                         	</div>
                                         </div>
@@ -420,11 +420,11 @@
                              <div class="title">All Packages</div>
                              
                              <c:forEach var="pack" items="${packages}" varStatus="index"> 
-	                            <div style="width:520px;">
+	                            <div style="width:530px;">
 	                                   <div class="subtitle">Package ${index.count}:</div>
 	                                   <div>
-	                            	      <div class="allpackage" style="width:200px;">Included Items&#58;</div>
-	                            	      <div class="table-list" style="float:left; width:300px;padding-bottom:15px;padding-left:10px;">
+	                            	      <div class="allpackage" style="width:180px;">Included Items&#58;</div>
+	                            	      <div class="table-list" style="float:left; width:310px;padding-bottom:15px;padding-left:10px;padding-right:10px;">
 	                            		     <table cellspacing="0" cellpadding="0" class="list">
 	                            			    <tr class="title">
 	                            				<th>Product</th>
@@ -440,12 +440,12 @@
 	                            	      </div>
 	                                   </div>
 	                                   <div>
-	                            	      <div class="allpackage" style="width:200px;">Number of Subpackages:</div>
-	                            	      <div class="allpackage" style="width:300px;"> ${pack.get("splitNum") + 1} </div>
+	                            	      <div class="allpackage" style="width:180px;padding-right:10px;">Number of Subpackages:</div>
+	                            	      <div class="allpackage" style="width:310px;padding-right:10px;"> ${pack.get("splitNum") + 1} </div>
 	                                   </div>
 	                          	       <div>
-	                            	      <div class="allpackage" style="width:200px;padding-bottom:50px;">Maximum number of sources:</div>
-	                            	      <div class="allpackage" style="width:300px;padding-bottom:50px;">${pack.get("maxCount")}/580</div>
+	                            	      <div class="allpackage" style="width:180px;padding-bottom:50px;padding-right:10px;">Maximum number of sources:</div>
+	                            	      <div class="allpackage" style="width:310px;padding-bottom:50px;padding-right:10px;">${pack.get("maxCount")}/580</div>
 	                                   </div>
 	                            </div>
                             </c:forEach>                      	
@@ -457,7 +457,7 @@
 		                            Package ${index.count}
 		                        </div>
 	
-		                        <div id="included" style="height:auto;width:500px;padding-bottom:30px;">
+		                        <div id="included" style="height:auto;width:530px;padding-bottom:30px;">
 		                        	
 		                        	<div style="height:30px;padding-bottom:15px;">
 		                        		<div class="include">
@@ -503,7 +503,7 @@
 	                            	<c:forEach var="testR" items='${split.get("tests")}' >			                            	                            
 	                            		<c:forEach var="obj" items='${testR}' >			                            	                            
 			                             
-			                            <div name="product" class="product">
+			                            <div name="product" class="product" style="width:205px;padding-right:5px;">
 			                            <ul>
 				                            {<c:forEach var="p" items='${obj.get("products")}' varStatus="index">
 												<li style="list-style-type:disc;margin-left:30px;">${p.get("prodName")} (${p.get("quantity")}) </li>
@@ -535,16 +535,16 @@
                              <div class="title">All Packages</div>
  
                              <div>
-                     	      	<div class="allpackage" style="width:200px;"> Evaluation Method </div>
-                     	      	<div class="allpackage" style="width:300px;"> ${stage3Obj.get("rankOption")} ${stage3Obj.get("attribute")} </div>
+                     	      	<div class="allpackage" style="width:180px;"> Evaluation Method </div>
+                     	      	<div class="allpackage" style="width:320px;"> ${stage3Obj.get("rankOption")} ${stage3Obj.get("attribute")} </div>
                              </div>                            
                              
                              <c:forEach var="pack" items="${packages}" varStatus="index"> 
-	                            <div style="width:520px;">
+	                            <div style="width:530px;">
 	                                   <div class="subtitle">Package ${index.count}:</div>
 	                                   <div>
-	                            	      <div class="allpackage" style="width:200px;">Included Items&#58;</div>
-	                            	      <div class="table-list" style="float:left; width:300px;padding-bottom:15px;padding-left:10px;">
+	                            	      <div class="allpackage" style="width:150px;">Included Items&#58;</div>
+	                            	      <div class="table-list" style="float:left; width:340px;padding-bottom:15px;padding-left:10px;padding-right:10px;">
 	                            		     <table cellspacing="0" cellpadding="0" class="list">
 	                            			    <tr class="title">
 	                            				<th>Product</th>
@@ -560,12 +560,12 @@
 	                            	      </div>
 	                                   </div>
 	                                   <div>
-	                            	      <div class="allpackage" style="width:200px;">Number of Subpackages:</div>
-	                            	      <div class="allpackage" style="width:300px;"> ${pack.get("splitNum") + 1} </div>
+	                            	      <div class="allpackage" style="width:150px;">Number of Subpackages:</div>
+	                            	      <div class="allpackage" style="width:340px;"> ${pack.get("splitNum") + 1} </div>
 	                                   </div>
 	                          	       <div>
-	                            	      <div class="allpackage" style="width:200px;padding-bottom:50px;">Status:</div>
-	                            	      <div class="allpackage" style="width:300px;padding-bottom:50px;">
+	                            	      <div class="allpackage" style="width:150px;padding-bottom:50px;">Status:</div>
+	                            	      <div class="allpackage" style="width:340px;padding-bottom:50px;">
 												<c:choose>
 													<c:when test='${ pack.get("unable") == true}'>
 														Unable to handle
@@ -582,7 +582,7 @@
 					
 						<c:forEach var="pack" items="${packages}" varStatus="index">   	
 							<div id="stage3route${index.index}" class="block" style="display:none;padding-left:30px;padding-top:30px;">
-		                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;">
+		                        <div class="route" style="height:30px;font-size:18px;margin-top:10px;padding-bottom:10px;width:530px;">
 		                            Route ${index.count}
 		                        </div>	
 		                        
@@ -613,7 +613,7 @@
 		                            </div>
 		                        </div>	                        
 			                     
-		                        <div id="included" style="height:auto;margin-top:30px;">
+		                        <div id="included" style="height:auto;margin-top:30px;width:530px;">
 		                            <div class="subtitle">
 		                                Included Packages:
 		                            </div>
@@ -638,7 +638,7 @@
 								    <c:otherwise>
 	                     		
                   					<c:if test='${pack.get("special") == true}' >
-                  						<div>
+                  						<div style="width:500px;">
                   							<br/>
                                 			This package is a special package.
                                 		</div>
