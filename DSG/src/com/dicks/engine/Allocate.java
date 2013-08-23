@@ -69,6 +69,7 @@ public class Allocate {
 									shippingAddress, shippingZipcode, "412-622-3748", "");
 		
 		OrdersDAO.getInstance().createOrder(order);
+		Util.percentage = "7";
 		
 		this.order = order;
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -88,6 +89,8 @@ public class Allocate {
 					                               product, order, product.getFactoryPrice() + 1000, qty);
 			OrderDetailDAO.getInstance().createOrderDetail(detail);
 		}		
+		
+		Util.percentage = "10";
 		
 		final KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
@@ -142,6 +145,9 @@ public class Allocate {
 		ksession.insert(order);
 		ksession.insert(orderE);
 		ksession.insert(stage1);
+		
+		Util.percentage = "12";
+		
 		ksession.fireAllRules();
 
 		packages = (Collection<PackageE>) ksession.getObjects( new ClassObjectFilter(PackageE.class) );

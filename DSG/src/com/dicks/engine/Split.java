@@ -112,6 +112,8 @@ public class Split {
 		}
 
 		System.out.println("----------------------");
+		
+		Util.percentage = "55";
 
 		ksession.fireAllRules();
 
@@ -149,19 +151,28 @@ public class Split {
 		
 		JSONObject package3Obj = new JSONObject();
 		JSONArray packageJson3 = new JSONArray();
+		double totalCosts = 0;
+		
 		for (PackageE pack : packages) {
 			packageJson3.add(pack.getStage3Json());
+			if (!pack.isUnable() && pack.getBestResults() != null && pack.getBestResults().size() > 0) {
+				PackageTestResult best = pack.getBestResults().get(0);
+				totalCosts += best.getCost();
+			}
 		}
-		
+		package3Obj.put("totalCosts", Math.round(totalCosts * 100) / 100.0);
 		package3Obj.put("stage3Arrays", packageJson3);
 		package3Obj.put("rankOption", Util.getOperator());
 		package3Obj.put("attribute", Util.getAttribute());
+		
 		
 		out = new StringWriter();
 		package3Obj.writeJSONString(out);
 		jsonText = out.toString();	
 		System.out.println("stage3Logs: " + jsonText);
 		stage3.addLog("Evaluation", jsonText);
+		
+		Util.percentage = "75";
 	}
 
 	public static ArrayList<PackageTest> getTests(PackageE pack) {

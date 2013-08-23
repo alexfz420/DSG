@@ -92,6 +92,27 @@ rule  "Default Default Minimum Package Threshold"
         retract($i);
 end
 
+rule  "Threshold for nike shoes"
+    salience 848
+    when
+        $o : Orders()
+        $orderE : OrderE()
+        $i : Product( ((Length > 2)||( Width > 2)||( Height > 2)||( Weight > 2))&& (( sku.equals("FI-OD-FI")))&& (flag.equals("TH-A,ST-A,SP-A")))
+        $logger: EngineLog()
+    then
+        for (int i = 0 ; i <$orderE.getProductQty($i.getProdId());i++)
+        {
+            $logger.addLog("Threshold for nike shoes","Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
+            System.out.println("Product #"+i+" "+$i.getProdName()+"is moved into a separate package");
+            PackageE p = new PackageE($o);
+            p.addProduct($i,1);
+            insert (p);
+            $i.minPackage();
+            $logger.addLog("Threshold for nike shoes",p.toString()); 
+        }
+        retract($i);
+end
+
 rule "Insert Package for Remaining Products"
 	salience -5
 	//agenda-group "first7"

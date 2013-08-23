@@ -33,6 +33,7 @@ import com.dicks.pojo.Store;
 public class Util {
 	public final static int OVER_SIZE_THRESHOLD = 10000;
 	public final static int OVER_WEIGHT_THRESHOLD = 10000;
+	public static String percentage = "";
 	static String operator = "";
 	static String attribute = "";
 	
@@ -124,7 +125,6 @@ public class Util {
 				test.getPack().addTops(parcelResults, test);
 				r.addResult((ParcelResult) parcelResults.get(0));
 			}
-			
 			r.calculate();
 			test.getPack().calculateTops();
 		}
@@ -262,8 +262,8 @@ public class Util {
 			rate = shipment.getNormalRate();
 		}	
 		long ww = parcel.getWeight()*100;
-		System.out.println("weight is"+ww);
-		System.out.println("rate: " + rate + " weight: " + ww + "distance: " +(100 + (distance * 100/ 300)));
+		//System.out.println("weight is"+ww);
+		//System.out.println("rate: " + rate + " weight: " + ww + "distance: " +(100 + (distance * 100/ 300)));
 		return (ww * (rate) * (100 + (distance * 100/ 300))) / 10000;
 	}
 	
@@ -299,7 +299,7 @@ public class Util {
 			if (shipment != null) {
 				parcelR.setAttribute((double) shipment.getDistance());
 			}
-			System.out.println("caculate attribute: distance");
+			//System.out.println("caculate attribute: distance");
 		} else if (attribute.equals("totalCost")) {
 			parcelR.setAttribute(parcelR.getCost());
 			//System.out.println("caculate attribute: total costs");

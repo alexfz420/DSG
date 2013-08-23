@@ -210,6 +210,11 @@
       <action name="statistics" class="com.dicks.action.Redirect" method="goToStatistic">
           <result name="success">/statistics.jsp</result>
       </action>   
-            
-   </package>
+  </package>   
+  <package name="default" namespace="/" extends="json-default">
+      <action name="getPercentage" class="com.dicks.action.PercentageAction">
+       	 <result type="json" />
+      </action>
+  </package>
+  
 </struts>

@@ -278,7 +278,6 @@
 							    	<c:if test='${packages.get(index.index).get("unable") == false}'>
                                 	<c:forEach var="testResult" items='${pack}' varStatus="testIndex">
                                 		<c:if test="${testIndex.index == 0}" >
-                                			
 	                                		<c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
 	                                    		<tr>
 	                                    			<td style="width:100px;white-space:normal;overflow:auto;">${parcelR.get("source")}</td>
@@ -296,6 +295,11 @@
                                     </c:forEach>
                                     </c:if>	
                                     </c:forEach>	
+                                    <tr>
+                                    	<td></td>
+                                    	<td> Total Costs </td>
+                                    	<td> ${stage3Obj.get("totalCosts")} </td>
+                                    </tr>                                    
                                 </table>
                                 </div>						    							    
 
