@@ -159,7 +159,7 @@
 		}function getShowLinkText(currentText) {
 			var newText = '';
 			if (currentText.toUpperCase() === "SHOW MORE") {
-				newText = "Show Less";
+				newText = "Show Less ";
  			} else {
  				newText = "Show More";
  			}
@@ -280,13 +280,15 @@
                                 		<c:if test="${testIndex.index == 0}" >
 	                                		<c:forEach var="parcelR" items='${testResult.get("results")}' varStatus="parcelIndex">
 	                                    		<tr>
-	                                    			<td style="width:100px;white-space:normal;overflow:auto;">${parcelR.get("source")}</td>
-	                                    			<td style="width:150px;white-space:normal;overflow:auto;">
+	                                    			<td style="width:80px;white-space:normal;overflow:auto;">${parcelR.get("source")}</td>
+	                                    			<td style="width:220px;white-space:normal;overflow:auto;">
+	                                    			<ul>
 	                                    				<c:forEach var="product" items='${parcelR.get("products")}' >
-	                                    					${product.get("prodName")} (${product.get("quantity")})
+	                                    					<li style="list-style-type:disc;margin-left:10px;">${product.get("prodName")} (${product.get("quantity")})</li>
 	                                    				</c:forEach>
+	                                    			</ul>
 	                                    			</td>
-	                                    			<td style="width:100px;white-space:normal;overflow:auto;">
+	                                    			<td style="width:50px;white-space:normal;overflow:auto;">
 	                                    				${parcelR.get("totalCost")}
 	                                    			</td>
 	                                    		</tr>
@@ -333,10 +335,12 @@
                                     	<div class="text-container" style="float:left; width:400px;padding-bottom:30px;padding-left:100px;">
                                     		<div>
                                     			<div class="text-content short-text" style="float:left;width:300px;padding-bottom:30px;"> 
+                                    			<ul>
                                         			<c:forEach var="logdetail" items="${log.getLogs()} ">
-                                            			${logdetail.replace("[","").replace("]","")} 
-                                            			<br/><br/>
+                                            			<li style="list-style-type:disc;margin-left:15px;">${logdetail.replace("[","").replace("]","")} </li>
+                                            			<br/>
                                         			</c:forEach>
+                                        		</ul>
                                         		</div>
                                         		<div class="show-more" style="float:left;width:100px;"> <a href="#" class="button">Show More</a></div>
                                         	</div>
@@ -395,10 +399,12 @@
                                     <div id="orderdate" class="text-container" style="float:left;width:350px;padding-bottom:30px;"> 
                                     	<div>
                                     		<div class="text-content short-text" style="float:left;width:250px;padding-bottom:30px;">
+                                    		<ul>
                                         		<c:forEach var="logdetail" items="${log.getLogs()} ">
-                                            		${logdetail.replace("[","").replace("]","")}  
-                                            		<br/><br/>
+                                            		<li style="list-style-type:disc;margin-left:15px;">${logdetail.replace("[","").replace("]","")} </li> 
+                                            		<br/>
                                         		</c:forEach>
+                                        	</ul>
                                         	</div>
                                         	<div class="show-more" style="float:left;width:100px;">
                                         		<a href="#" class="button">Show More</a>
@@ -498,11 +504,14 @@
 	                            		<c:forEach var="obj" items='${testR}' >			                            	                            
 			                             
 			                            <div name="product" class="product">
+			                            <ul>
 				                            {<c:forEach var="p" items='${obj.get("products")}' varStatus="index">
-												${p.get("prodName")} (${p.get("quantity")}) 
+												<li style="list-style-type:disc;margin-left:30px;">${p.get("prodName")} (${p.get("quantity")}) </li>
 											</c:forEach>}
+										</ul>
 			                            </div>	                            
 			                            <div style="float:left;width:200px;">
+			                            <br/>
 			                                <div name="failed" class="message">
 			                                    Failed&#58; ${stage2Obj.get("remainingStores") - obj.get("storeCount")}/${stage2Obj.get("remainingStores")} stores
 			                                </div>
@@ -652,9 +661,11 @@
 					                                    <tr>
 					                                        <td style="width:50px;white-space:normal;overflow:auto;"> ${parcelR.get("source")} </td>
 					                                        <td style="width:250px;white-space:normal;overflow:auto;">
+					                                        <ul>
 					                                        	<c:forEach var="parcelP" items='${parcelR.get("products")}' > 
-					                                        		${parcelP.get("prodName")} (${parcelP.get("quantity")}) 
+					                                        		<li style="list-style-type:disc;margin-left:10px;">${parcelP.get("prodName")} (${parcelP.get("quantity")})</li> 
 					                                        	</c:forEach>
+					                                        </ul>
 					                                        </td>
 					                                        <td style="width:50px;white-space:normal;overflow:auto;"> ${parcelR.get("totalCost")} </td>
 					                                    </tr>
@@ -701,7 +712,7 @@
 			                                    To:
 			                                </div>
 			                                <div id="destination" class="address">
-			                                    5000 Forbes Ave, Pitsburgh, PA 15213
+			                                    ${order.shippingAddr}
 			                                </div>
 			                            </div>
 			                        </div>	                        
