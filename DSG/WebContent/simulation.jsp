@@ -42,7 +42,7 @@ $(window).load(function(){
     // Semicolon (;) to ensure closing of earlier scripting
     // Encapsulation
     // $ is assigned to jQuery
-    ;(function($) {
+    ;/* (function($) {
 
          // DOM Ready
         $(function() {
@@ -63,7 +63,7 @@ $(window).load(function(){
 
         });
 
-    })(jQuery);
+    })(jQuery); */
 
 /*================================================================================
  * @name: bPopup - if you can't get it up, use bPopup
@@ -950,37 +950,7 @@ $(window).load(function(){
 								
 							</form>
 	<!-- <script type="text/javascript" async src="js/vglnk.js"></script> -->
-	<div id="element_to_pop_up" style="left: 500px; position: absolute; top: 195.5px; z-index: 9999; display: none;">
-    <a class="b-close">x</a>
-    <div style="padding-top:50px;padding-right:40px;padding-left:40px;">
-	<div id="progressBar" class="jquery-ui-like" style="width:300px;"><div style="height:15px;"></div></div>
-	<script>
 	
-	$("button:submit[name='checkpop']").click(function f(){
-					var i=1;
-					//window.setTimeout('window.location="http://localhost:8080/Struts/placeorder"; ',1000);
-					function barSecond(){
-						$.getJSON("http://localhost:8080/Struts/getPercentage",function(result){
-							i=result.percentage;
-							console.log(i);
-    					});
-						if(i<=100)
-						{
-							progressBar(i, $('#progressBar'));
-							//i++;
-							//console.log(i);
-							setTimeout(barSecond, 60);
-							//if(i>10){clearTimeout( handle );}
-						}
-					}
-					barSecond();
-					document.forms['checkOutForm'].submit();
-					
-				}
-	);
-	</script>
-    </div>
-</div>
 		<div id="order-summary" class="order-summary module">
 			
 			<div class="content">
@@ -1048,10 +1018,48 @@ $(window).load(function(){
 							</div>
 
 							<div class="checkoutOptions checkoutOptionsBottom">
-								<form class="proceedToCheckoutForm" method="post" action="placeorder">
-									<button type="submit" name="checkpop" class="checkout">Proceed to  </button>
+								<form class="proceedToCheckoutForm"  method="post" action="placeorder">
+									<button type="submit" class="checkout" name="checkpop">Proceed to secure Checkout</button>
 								</form>
-								
+								<div id="element_to_pop_up" style="left: 500px; position: absolute; top: 195.5px; z-index: 9999; display: none;">
+    <a class="b-close">x</a>
+    <div style="padding-top:50px;padding-right:40px;padding-left:40px;">
+	<div id="progressBar" class="jquery-ui-like" style="width:300px;"><div style="height:15px;"></div></div>
+	<script>
+	
+	$("button:submit[name='checkpop']").click(function (e){
+
+            // Prevents the default action to be triggered. 
+            e.preventDefault();
+
+            // Triggering bPopup when click event is fired
+            //$('#element_to_pop_up').bPopup();
+			$('#element_to_pop_up').bPopup({
+        		
+    		});
+					var i=1;
+					//window.setTimeout('window.location="http://localhost:8080/Struts/placeorder"; ',100);
+					function barSecond(){
+						/* $.getJSON("http://localhost:8080/Struts/getPercentage",function(result){
+							i=result.percentage;
+							//console.log(i);
+    					});  */
+						if(i<=100)
+						{
+							progressBar(i, $('#progressBar'));
+							i++;
+							//console.log(i);
+							setTimeout(barSecond, 30);
+						}
+					}
+					barSecond();
+					document.forms['checkOutForm'].submit();
+					
+				}
+	);
+	</script>
+    </div>
+</div>
 								<!-- span class="checkoutOptions-separator">-or-</span -->
 								<!-- PPE button	-->
 								<div class="checkoutOptions-paypal">
